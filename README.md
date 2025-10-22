@@ -76,7 +76,7 @@ Website thương mại điện tử chuyên cung cấp đèn trang trí và các
 4. Xem báo cáo thống kê
 5. Cấu hình hệ thống
 
-### 💡 Quy tắc quan Trọng khi làm việc
+## 💡 Quy tắc quan Trọng khi làm việc
 
 1. Pull trước khi bắt đầu làm việc mỗi ngày
 2. Commit nhỏ và thường xuyên (không chờ cuối ngày)
@@ -89,6 +89,6 @@ Website thương mại điện tử chuyên cung cấp đèn trang trí và các
 
 1. Không chắc chắn? → Hỏi team trước khi push
 2. Gặp lỗi Git? → Không tự ý force push, hỏi và hỏi
-3. Conflict phức tạp? → Hỏi và hỏi, hỏi quan trọng phải nói 3 lần 🥹🥹
+3. Conflict phức tạp? → Hỏi , hỏi và hỏi điều quan trọng phải nói 3 lần 🥹🥹
 
 💡 **Lighting Shop** - Thắp sáng không gian sống của bạn!
