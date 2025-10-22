@@ -2,7 +2,8 @@
 
 ## 📖 Giới Thiệu
 
-Website thương mại điện tử chuyên cung cấp đèn trang trí và các thiết bị chiếu sáng chất lượng cao. Nền tảng mang đến trải nghiệm mua sắm trực tuyến hoàn hảo với danh mục sản phẩm đa dạng từ đèn LED, đèn trang trí, đèn thông minh đến các thiết bị chiếu sáng công nghiệp và dân dụng.
+Web Shop Bán Đèn & Thiết Bị Chiếu Sáng là một website thương mại điện tử được xây dựng nhằm cung cấp các sản phẩm đèn trang trí, đèn năng lượng mặt trời và thiết bị chiếu sáng hiện đại.
+Dự án hướng đến việc mang đến cho người dùng trải nghiệm mua sắm tiện lợi, giao diện thân thiện, và quản lý hiệu quả cho cả người mua và người bán.
 
 ### 🎯 Mục Tiêu Dự Án
 
