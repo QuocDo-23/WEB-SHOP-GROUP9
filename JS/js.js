@@ -14,7 +14,6 @@ const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 
 function updateButtons() {
-  // Disable nút prev ở trang đầu
   if (currentPage === 0) {
     prevBtn.classList.add("disabled");
     prevBtn.disabled = true;
@@ -23,7 +22,6 @@ function updateButtons() {
     prevBtn.disabled = false;
   }
 
-  // Disable nút next ở trang cuối
   if (currentPage === totalPages - 1) {
     nextBtn.classList.add("disabled");
     nextBtn.disabled = true;
@@ -34,12 +32,10 @@ function updateButtons() {
 }
 
 function showPage(page) {
-  // Ẩn tất cả sản phẩm
   allProducts.forEach((product) => {
     product.classList.add("hidden");
   });
 
-  // Hiển thị 4 sản phẩm của trang hiện tại
   const start = page * productsPerPage;
   const end = start + productsPerPage;
 
@@ -53,12 +49,10 @@ function showPage(page) {
 function slideProducts(direction) {
   const newPage = currentPage + direction;
 
-  // Kiểm tra giới hạn
   if (newPage >= 0 && newPage < totalPages) {
     currentPage = newPage;
     showPage(currentPage);
   }
 }
 
-// Hiển thị trang đầu tiên khi load
 showPage(0);
