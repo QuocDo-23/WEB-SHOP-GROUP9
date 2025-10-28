@@ -88,8 +88,16 @@ nav {
   position: relative;
 }
 
-.nav-links a:hover {
+.nav-links li:hover > a {
   color: #8b7355;
+}
+
+.nav-links li:hover > a::after {
+  width: 100%;
+}
+
+.nav-links a {
+  position: relative;
 }
 
 .nav-links a::after {
@@ -102,6 +110,7 @@ nav {
   background: #8b7355;
   transition: width 0.3s;
 }
+
 .nav-links a.active {
   color: #8b7355;
 }
@@ -119,6 +128,78 @@ nav {
 .nav-links a:hover::after {
   width: 100%;
 }
+
+.nav-links a i {
+  padding-left: 5px;
+  font-size: 15px;
+  align-items: center;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+.nav-links li:hover > a i {
+  transform: rotate(180deg);
+}
+.nav-links li .sub-item {
+  display: none;
+}
+.nav-links li:hover .sub-item {
+  display: block;
+  position: absolute;
+  top: 65px;
+  margin-left: -350px;
+  padding: 20px;
+}
+.contant-sub {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 20px;
+  width: 800px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+}
+.contant-sub h2 {
+  text-align: left;
+  margin-top: 0;
+}
+.cont-item {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.product_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: white;
+}
+.product_cont {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.product_item:hover {
+  border-color: #8b7355;
+  box-shadow: 0 2px 8px rgba(101, 64, 5, 0.15);
+  transform: translateX(5px);
+}
+.item {
+  font-size: 15px;
+  color: #333;
+  font-weight: 500;
+}
+.product_cont img {
+  width: 20px;
+  height: 20px;
+}
+
+/*section 1*/
 .section_1 {
   position: relative;
   top: 0;
