@@ -1,6 +1,7 @@
 body {
   padding: 0;
   margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 nav {
@@ -289,6 +290,7 @@ nav {
   font-weight: 900;
   letter-spacing: 1px;
   margin-bottom: 15px;
+  text-transform: uppercase;
 }
 
 .section-header .divider {
@@ -639,32 +641,10 @@ nav {
 /*stat-section*/
 .stats-section {
   position: relative;
-  background: linear-gradient(135deg, #0a1929 0%, #1a2942 50%, #0a1929 100%);
+  background: linear-gradient(135deg, #1a0f0a 0%, #2d1b13 50%, #1a0f0a 100%);
   padding: 80px 20px;
   overflow: hidden;
   width: 100%;
-}
-
-.stats-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  animation: particles 20s ease-in-out infinite;
-}
-
-@keyframes particles {
-  0%,
-  100% {
-    opacity: 0.5;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.1);
-  }
 }
 
 .container {
@@ -701,8 +681,8 @@ nav {
   height: 100%;
   background: linear-gradient(
     135deg,
-    rgba(52, 152, 219, 0.1),
-    rgba(155, 89, 182, 0.1)
+    rgba(93, 64, 55, 0.1),
+    rgba(141, 110, 99, 0.1)
   );
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -711,8 +691,8 @@ nav {
 .stat-item:hover {
   transform: translateY(-10px);
   background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(52, 152, 219, 0.5);
-  box-shadow: 0 20px 60px rgba(52, 152, 219, 0.2);
+  border-color: rgba(141, 110, 99, 0.5);
+  box-shadow: 0 20px 60px rgba(121, 85, 72, 0.3);
 }
 
 .stat-item:hover::before {
@@ -730,18 +710,18 @@ nav {
   width: 70px;
   height: 70px;
   margin: 0 auto;
-  background: linear-gradient(135deg, #3498db, #2980b9);
+  background: linear-gradient(135deg, #5d4037, #8d6e63);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 30px rgba(52, 152, 219, 0.4);
+  box-shadow: 0 10px 30px rgba(93, 64, 55, 0.4);
   transition: all 0.4s ease;
 }
 
 .stat-item:hover .icon {
   transform: scale(1.1) rotateY(360deg);
-  box-shadow: 0 15px 40px rgba(52, 152, 219, 0.6);
+  box-shadow: 0 15px 40px rgba(141, 110, 99, 0.6);
 }
 
 .icon svg {
@@ -763,7 +743,7 @@ nav {
   color: #fff;
   margin-bottom: 15px;
   letter-spacing: 2px;
-  background: linear-gradient(135deg, #fff, #3498db);
+  background: linear-gradient(135deg, #fff, #8d6e63);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

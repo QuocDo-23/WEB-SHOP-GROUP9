@@ -1,0 +1,169 @@
+.link-page {
+  padding: 120px 0 10px 10px;
+  border-bottom: solid 3px#424140;
+  width: 1300px;
+  margin: 0 auto;
+}
+.link-page a {
+  text-decoration: none;
+  font-size: 15px;
+  color: #8b7355;
+  font-weight: bolder;
+}
+.section_1_about {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 500px;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("https://www.mpe.com.vn/media/zzbjgmwb/ca-n-ho.jpg") no-repeat center
+      center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.section_1_about .cont {
+  max-width: 1300px;
+  margin: 0 auto;
+  height: 100%;
+  margin-top: 150px;
+  text-align: center;
+}
+
+.section_1_content h1 {
+  font-size: 75px;
+  line-height: 1.3;
+  font-weight: 700;
+  margin-bottom: 0;
+  color: white;
+}
+
+.story-header {
+  background: #fff;
+  width: 1300px;
+  position: absolute;
+  top: 520px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  box-shadow: 0 -20px 20px rgba(11, 4, 4, 0.05);
+}
+.story-section {
+  width: 1300px;
+  margin: 0 auto;
+  background: #fff;
+  box-shadow: 0 20px 20px rgba(11, 4, 4, 0.05);
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 40px;
+  letter-spacing: 2px;
+  color: #2c3e50;
+}
+
+.story-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 49px;
+  align-items: center;
+  padding: 10px 40px 80px 40px;
+
+  background: #fff;
+}
+
+.story-text h3 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #8b7355;
+  font-weight: bold;
+  text-align: center;
+}
+
+.story-text p {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.story-image {
+  height: 500px;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.story-image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+
+.values-section {
+  background-color: #fff;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+.values-cont {
+  width: 1300px;
+  margin: 0 auto;
+}
+.values-cont h2 {
+  color: rgb(15, 11, 11);
+  margin-top: 0;
+  padding-top: 40px;
+}
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+  padding: 40px;
+  padding-top: 0;
+}
+
+.value-card {
+  background: white;
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  border-radius: 40px;
+  text-align: center;
+  transition: transform 0.3s ease, background 0.3s ease;
+  border: solid 3px rgba(15, 13, 13, 0.2);
+  color: black;
+  box-shadow: 0 20px 20px rgba(11, 4, 4, 0.05);
+  cursor: pointer;
+}
+
+.value-card:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.value-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.value-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+.value-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+#about.stats-section {
+  padding: 10px 20px 80px 20px;
+}
+#about h2 {
+  color: white;
+}
