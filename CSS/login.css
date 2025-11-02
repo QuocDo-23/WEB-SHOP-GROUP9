@@ -1,0 +1,147 @@
+/* ===================== */
+/* CẤU HÌNH CHUNG TRANG  */
+/* ===================== */
+body{
+    background-image: url("https://i.pinimg.com/1200x/a9/14/6a/a9146a4647a90eeaeb84cc34215c3257.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+/* ===================== */
+/* LOGO Ở GÓC TRÊN TRÁI */
+/* ===================== */
+.login-logo{
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    z-index: 10;
+}
+
+.login-logo img{
+    width: 200px;
+    height: auto;
+}
+
+/* ===================== */
+/* KHUNG FORM ĐĂNG NHẬP */
+/* ===================== */
+.login-container {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    padding: 40px 60px;
+    border-radius: 15px; /* Bo góc*/
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    margin-top: 120px;
+    min-width: 350px;
+    max-width: 500px;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h2{
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: #2C210D;
+    font-size: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* ===================== */
+/* FORM ĐĂNG NHẬP       */
+/* ===================== */
+
+.login-form {
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.form-group{
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+label{
+    font-weight: bold;
+    font-size: 17px;
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 17px;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 4px rgba(0,123,255,0.4);
+}
+
+/* ===================== */
+/* NÚT ĐĂNG NHẬP        */
+/* ===================== */
+.btn-login{
+    width: 50%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-login:hover{
+    background-color: #0056b3;
+}
+
+/* ===================== */
+/* CHÂN FORM (LINK)     */
+/* ===================== */
+.register {
+    margin-top: 10px;
+    font-size: 20px;
+    color: #2C210D
+}
+
+.register a{
+    color: #007bff;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.register a:hover{
+    text-decoration: underline;
+}
