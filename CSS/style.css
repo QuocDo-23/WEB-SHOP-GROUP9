@@ -147,7 +147,7 @@ nav {
   display: block;
   position: absolute;
   top: 65px;
-  margin-left: -350px;
+  margin-left: -420px;
   padding: 20px;
 }
 .contant-sub {
@@ -155,7 +155,7 @@ nav {
   flex-direction: column;
   background-color: white;
   padding: 20px;
-  width: 800px;
+  width: 1000px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   border-radius: 20px;
 }
@@ -165,7 +165,7 @@ nav {
 }
 .cont-item {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 15px;
 }
 
