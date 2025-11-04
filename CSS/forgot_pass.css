@@ -5,42 +5,72 @@ body{
     background-image: url("https://i.pinimg.com/1200x/a9/14/6a/a9146a4647a90eeaeb84cc34215c3257.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed;
+    background-position: center;
+    margin: 0;
+
     font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /* ===================== */
-/* LOGO Ở GÓC TRÊN TRÁI */
+/*HEADER TRANG LẤY LẠI MẬT KHẨU*/
 /* ===================== */
-.login-logo{
-    position: absolute;
-    top: 20px;
-    left: 20px;
+.fp-header{
+    width: 1300px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 70px;
+    border-bottom: 1px solid #eee;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    position: relative;
     z-index: 10;
 }
 
-.login-logo img{
-    width: 100px;
+
+.fp-header .header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fp-header .header-logo {
+    width: 65px;
     height: auto;
 }
 
+.fp-header h2 {
+    font-size: 25px;
+    color: #2C210D;
+    font-weight: 500;
+}
+
+.fp-header .header-right a {
+    color: #d0011b;
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.fp-header .header-right a:hover {
+    text-decoration: underline;
+}
+
 /* ===================== */
-/* KHUNG FORM ĐĂNG NHẬP */
+/* KHUNG FORM FORGOT */
 /* ===================== */
-.login-container {
+.fp-container {
     -webkit-backdrop-filter: blur(10px);
     padding-right: 0;
     padding-left: 0;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     text-align: center;
-    min-height: 250px;
 
 }
 
-.login-container .container {
+.fp-container .container {
+    margin-top: 70px;
     padding-top: 20px;
     padding-bottom: 20px;
     display: flex;
@@ -52,7 +82,6 @@ h2{
     color: #2C210D;
     font-size: 25px;
     font-weight: bold;
-    text-transform: uppercase;
 }
 
 .abc {
@@ -82,28 +111,40 @@ h2{
 .abc .back-btn a:hover {
     transform: translateY(-50%) scale(1.15);
 }
-/* ===================== */
-/* FORM ĐĂNG NHẬP       */
-/* ===================== */
 
-.login-form {
-    border-radius: 20px;
-    background: white;
-    width: 500px;
+/* ===================== */
+/* FORM LẤY LẠI MẬT KHẨU */
+/* ===================== */
+.fp-form {
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.95);
+    width: 550px;
+    min-height: 350px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    padding: 60px 40px;            /* thêm đệm trong form */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
 }
 
-.login-form:hover {
+.fp-form:hover {
     transform: translateY(-5px);
+}
+
+.fp-form h2 {
+    font-size: 25px;
+    font-weight: bold;
+    color: #2C210D;
+    text-transform: uppercase;
 }
 
 /* ===================== */
 /*  Ô NHẬP THÔNG TIN     */
 /* ===================== */
 .form-group{
+    /*margin-top: 20px;*/
     width: 80%;
     margin-bottom: 10px;
     text-align: left;
@@ -133,9 +174,9 @@ input:focus {
 }
 
 /* ===================== */
-/*  NÚT ĐĂNG NHẬP        */
+/*  NÚT GỬI YÊU CẦU      */
 /* ===================== */
-.btn-login{
+.btn-request{
     width: 50%;
     padding: 12px;
     background-color: #c09b5b;
@@ -148,25 +189,25 @@ input:focus {
     transition: background-color 0.3s ease;
 }
 
-.btn-login:hover{
+.btn-request:hover{
     background-color: #a57f3a;
 }
 
 /* ===================== */
-/* CHÂN FORM (LINK)     */
+/*         FOOTER        */
 /* ===================== */
-.login-footer {
+.fp-footer {
     margin-top: 10px;
     font-size: 20px;
     color: #2C210D
 }
 
-.login-footer a{
+.fp-footer a{
     color: #007bff;
     text-decoration: none;
     font-size: 20px;
 }
 
-.login-footer a:hover{
+.fp-footer a:hover{
     text-decoration: underline;
 }

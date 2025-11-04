@@ -79,6 +79,10 @@ body{
     align-items: center;
 }
 
+.register-container:hover {
+    transform: translateY(-5px);
+}
+
 .h2{
     margin-bottom: 25px;
     color: #2C210D;
