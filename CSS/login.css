@@ -7,16 +7,9 @@ body{
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
-
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
 }
 
 /* ===================== */
@@ -24,8 +17,8 @@ body{
 /* ===================== */
 .login-logo{
     position: absolute;
-    top: 50px;
-    left: 50px;
+    top: 20px;
+    left: 20px;
     z-index: 10;
 }
 
@@ -38,40 +31,57 @@ body{
 /* KHUNG FORM ĐĂNG NHẬP */
 /* ===================== */
 .login-container {
-    background: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-
-    padding: 40px 60px;
-    border-radius: 20px;
+    padding-right: 0;
+    padding-left: 0;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     text-align: center;
-    margin-top: 120px;
-    min-width: 350px;
-    max-width: 500px;
     min-height: 250px;
+
+}
+.login-container .container {
+    padding-top: 20px;
+    padding-bottom: 20px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 h2{
-    margin-top: 0;
-    margin-bottom: 25px;
     color: #2C210D;
     font-size: 25px;
     font-weight: bold;
     text-transform: uppercase;
 }
+.abc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+}
 
+/* Nút quay lại ở góc trái */
+.abc .back-btn {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.abc .back-btn a {
+    text-decoration: none;
+    font-size: 30px;
+    color: #a57f3a;
+}
 /* ===================== */
 /* FORM ĐĂNG NHẬP       */
 /* ===================== */
 
 .login-form {
-    width: 100%;
-    max-width: 450px;
+    border-radius: 20px;
+    background: white;
+    width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -82,7 +92,7 @@ h2{
 /*  Ô NHẬP THÔNG TIN     */
 /* ===================== */
 .form-group{
-    width: 100%;
+    width: 80%;
     margin-bottom: 10px;
     text-align: left;
 }
@@ -116,7 +126,7 @@ input:focus {
 .btn-login{
     width: 50%;
     padding: 12px;
-    background-color: #007bff;
+    background-color: #c09b5b;
     color: white;
     border: none;
     border-radius: 8px;
@@ -127,7 +137,7 @@ input:focus {
 }
 
 .btn-login:hover{
-    background-color: #0056b3;
+    background-color: #a57f3a;
 }
 
 /* ===================== */
