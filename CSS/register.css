@@ -6,6 +6,7 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    min-height: 100%;
     margin: 0;
 
     font-family: Arial, sans-serif;
@@ -17,12 +18,12 @@ body{
 /* HEADER TRANG ĐĂNG KÝ  */
 /* ===================== */
 .register-header {
-    width: 1300px;
+    width: 100%;
     background-color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 66px;
+    /*padding: 15px 66px;*/
     border-bottom: 1px solid #eee;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     position: relative;
