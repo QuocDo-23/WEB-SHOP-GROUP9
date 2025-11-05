@@ -6,10 +6,12 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    min-height: 100vh;
+    padding-top: 120px;
     margin: 0;
 
     font-family: Arial, sans-serif;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -17,16 +19,18 @@ body{
 /* HEADER TRANG ĐĂNG KÝ  */
 /* ===================== */
 .register-header {
-    width: 1300px;
+    width: 100%;
     background-color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 66px;
     border-bottom: 1px solid #eee;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    position: relative;
-    z-index: 10;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
 }
 
 .register-header .header-left {
@@ -64,7 +68,7 @@ body{
     background: white;
     -webkit-backdrop-filter: blur(10px);
 
-    margin: 50px auto;
+    margin: 20px auto 50px auto;
     padding: 50px 70px;
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
