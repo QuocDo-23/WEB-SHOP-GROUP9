@@ -1,0 +1,126 @@
+/* ===================== */
+/* CẤU HÌNH CHUNG TRANG  */
+/* ===================== */
+body {
+    font-family: "Segoe UI", sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* ===================== */
+/*      HEADER TRANG     */
+/* ===================== */
+.card-header {
+    background-color: #f7f7f7;
+    padding: 12px 40px;
+    font-size: 16px;
+}
+
+.card-header a {
+    color: #666;
+    text-decoration: none;
+}
+.card-header a:hover {
+    text-decoration: underline;
+}
+
+.card-header span {
+    color: #999;
+}
+
+.cart-page {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 40px 60px;
+}
+
+.cart-left {
+    flex: 2;
+}
+
+.cart-left h2 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.line {
+    width: 50%;
+    height: 2px;
+    background-color: #000;
+    border: none;
+    margin: 10px 0 30px;
+}
+
+.empty {
+    font-size: 18px;
+    color: #777;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.cart-right {
+    flex: 1;
+}
+
+.order-box {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.order-box h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff3d00;
+    border: none;
+    color: white;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.checkout-btn:hover {
+    background-color: #e53935;
+}
+
+.order-note {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #555;
+}
+
+.order-note a {
+    display: block;
+    margin-bottom: 10px;
+    color: #444;
+    text-decoration: none;
+}
+
+.order-note i {
+    margin-right: 5px;
+}
+
+.order-note ul {
+    padding-left: 20px;
+}
+
+.order-note li {
+    margin-bottom: 10px;
+}
