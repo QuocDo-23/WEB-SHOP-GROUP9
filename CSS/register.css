@@ -7,57 +7,60 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     min-height: 100vh;
-    padding-top: 120px;
     margin: 0;
-
     font-family: Arial, sans-serif;
     justify-content: flex-start;
     align-items: center;
 }
 
 /* ===================== */
-/* HEADER TRANG ĐĂNG KÝ  */
+/*HEADER TRANG TẠO LẠI MẬT KHẨU*/
 /* ===================== */
-.register-header {
+.cp-header {
     width: 100%;
+    background-color: white;
+}
+
+.cp-header .header-containt {
+    width: 1300px;
     background-color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 15px 70px;
     border-bottom: 1px solid #eee;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-
-    position: fixed;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     top: 0;
     left: 0;
     z-index: 9999;
+    margin: 0 auto;
 }
 
-.register-header .header-left {
+.cp-header .header-left {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.register-header .header-logo {
+.cp-header .header-logo {
     width: 65px;
     height: auto;
 }
 
-.register-header h2 {
+.cp-header h2 {
     font-size: 25px;
     color: #2C210D;
     font-weight: 500;
 }
 
-.register-header .header-right a {
+.cp-header .header-right a {
     color: #d0011b;
     font-size: 16px;
     text-decoration: none;
     font-weight: 500;
 }
 
-.register-header .header-right a:hover {
+.cp-header .header-right a:hover {
     text-decoration: underline;
 }
 
