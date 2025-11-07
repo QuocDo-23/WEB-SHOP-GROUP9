@@ -6,41 +6,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng Nhập</title>
     <link rel="stylesheet" href="./CSS/login.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
 
 <body>
-    <!--Logo trang wec-->
+    <!--Logo trang web-->
     <div class="login-logo">
         <a href="./index.html">
-            <img src="https://i.postimg.cc/Dwc6skGQ/brand-icon-deepcool.webp" alt="Logo">
+            <img src="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png" alt="Logo">
         </a>
     </div>
+
     <!--Form đăng nhập-->
     <div class="login-container">
-        <h2>Đăng Nhập</h2>
+        <div class="container">
+            <form action="#" method="post" class="login-form">
+                <div class="abc">
+                    <div class="back-btn">
+                        <a href="index.html"> <i class="bi bi-arrow-left-circle"></i> </a>
+                    </div>
 
-        <form action="#" method="post" class="login-form">
+                    <h2>Đăng Nhập</h2>
+                </div>
 
-            <!--Nhập mail để login-->
-            <div class="form-group">
-                <label for="email">Email: </label> <!-- Nhãn cho ô nhập -->
-                <input type="email" id="email" name="email" placeholder="Nhập địa chỉ email" required>
+                <!--Nhập mail để login-->
+                <div class="form-group">
+                    <label for="email">Email: </label> <!-- Nhãn cho ô nhập -->
+                    <input type="email" id="email" name="email" placeholder="Nhập địa chỉ email" required>
+                </div>
+                <!--Nhập mật khẩu đăng nhập-->
+                <div class="form-group">
+                    <label for="password">Mật khẩu: </label>
+                    <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" required>
+                </div>
+
+                <!--nút đăng nhập-->
+                <button type="submit" class="btn-login">Đăng Nhập</button>
+
+                <!--Đăng kí và quên pass-->
+                <div class="login-footer">
+                    <p>Bạn chưa có tài khoản? <a href="register.html">Đăng kí ngay</a></p>
+                    <p><a href="forgot_pass.html">Quên mật khẩu</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--Chân trang chứa thông tin liên hệ-->
+    <footer class="footer-main">
+        <div class="footer-container">
+            <div class="footer-column company-info">
+                <h3>THÔNG TIN CHUNG</h3>
+                <h2>ĐÈN VÀ THIẾT BỊ CHIẾU SÁNG</h2>
+
+                <div class="contact-item">
+                    <i class="bi bi-telephone-fill"></i>
+                    <a href="tel:0999999999"> (84-28)-38966780</a>
+                </div>
+
+                <div class="contact-item">
+                    <i class="bi bi-envelope-fill"></i>
+                    <a href="mailto:cskh@hoanghoavn.vn">vphanhchinh@hcmuaf.edu.vn; ico@hcmuaf.edu.vn</a>
+                </div>
+
+                <div class="contact-item">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    <a href="https://www.hcmuaf.edu.vn/map.html">Khu Phố 33, Phường Linh Xuân, TP. Hồ Chí Minh, Việt
+                        Nam</a>
+                </div>
             </div>
-            <!--Nhập mật khẩu đăng nhập-->
-            <div class="form-group">
-                <label for="password">Password: </label>
-                <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" required>
+
+            <div class="footer-column">
+                <h3>VỀ CHÚNG TÔI</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Giới thiệu</a></li>
+                    <li><a href="#">Sản phẩm</a></li>
+                    <li><a href="#">Tin tức</a></li>
+                    <li><a href="#">Liên hệ</a></li>
+                </ul>
             </div>
 
-            <!--nút đăng nhập-->
-            <button type="submit" class="btn-login">Đăng Nhập</button>
-
-            <!--Đăng kí và quên pass-->
-            <div class="register">
-                <p>Bạn chưa có tài khoản? <a href="#">Đăng kí ngay</a></p>
-                <p><a href="#">Quên mật khẩu</a></p>
+            <div class="footer-column social-section">
+                <h3>KẾT NỐI VỚI CHÚNG TÔI</h3>
+                <div class="social-icons">
+                    <div class="social-icon">
+                        <i class="bi bi-facebook"></i>
+                    </div>
+                    <div class="social-icon">
+                        <i class="bi bi-twitter"></i>
+                    </div>
+                    <div class="social-icon">
+                        <i class="bi bi-envelope-fill"></i>
+                    </div>
+                </div>
             </div>
-        </form>
+        </div>
+    </footer>
+    <div class="footer">
+        <div class="footer-cont">
+            <div class="footer-text">
+                <p>Copyright &copy;2024 by Quoc | All Right Reserves</p>
+            </div>
+        </div>
     </div>
 </body>
 
