@@ -1,194 +1,190 @@
 /* --- KHU VỰC SẢN PHẨM --- */
 .product-section {
-    margin-top: 40px;
+  margin-top: 40px;
 }
-
-
 
 /* Grid sản phẩm */
 .product-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
 
 /* Thẻ sản phẩm */
 .product-card {
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-    border: 1px solid #eee;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #eee;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+  transform: translateY(-6px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
 }
 
 /* --- Khung hình ảnh sản phẩm --- */
 .product-image {
-    position: relative;
-    width: 100%;
-    height: 250px; /* Chiều cao cố định cho ảnh đều nhau */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background-color: #fff;
-    box-sizing: border-box;
-
+  position: relative;
+  width: 100%;
+  height: 250px; /* Chiều cao cố định cho ảnh đều nhau */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #fff;
+  box-sizing: border-box;
 }
 
 /* Ảnh sản phẩm căn giữa tuyệt đối */
 .product-image img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain; /* Giữ tỉ lệ ảnh, không bị cắt méo */
-    display: block;
-    transition: opacity 0.4s ease, transform 0.3s ease;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Giữ tỉ lệ ảnh, không bị cắt méo */
+  display: block;
+  transition: opacity 0.4s ease, transform 0.3s ease;
 }
 
 /* Ảnh khi hover (ẩn đi lúc đầu) */
 .product-image .img-hover {
-    opacity: 0;
+  opacity: 0;
 }
 
 /* Khi hover card → hiện ảnh hover */
 .product-card:hover .img-hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 /* --- Nhãn giảm giá --- */
 .product-sale {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    background: #d62b2b;
-    color: #fff;
-    font-size: 13px;
-    padding: 4px 8px;
-    border-radius: 6px;
-    font-weight: bold;
-    z-index: 3;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: #d62b2b;
+  color: #fff;
+  font-size: 13px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: bold;
+  z-index: 3;
 }
 
 /* --- Thông tin sản phẩm --- */
 .product-info {
-    padding: 12px;
-    text-align: center;
+  padding: 12px;
+  text-align: center;
 }
 
 .product-name a {
-    text-decoration: none;
-    color: #222;
-    font-weight: 600;
-    display: block;
-    margin-bottom: 6px;
+  text-decoration: none;
+  color: #222;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
 }
 
 .product-prices {
-    margin: 5px 0;
+  margin: 5px 0;
 }
 
 .current-price {
-    color: #e63946;
-    font-weight: bold;
+  color: #e63946;
+  font-weight: bold;
 }
 
 .old-price {
-    color: #999;
-    font-size: 0.9em;
-    margin-left: 4px;
+  color: #999;
+  font-size: 0.9em;
+  margin-left: 4px;
 }
 
 .product-meta {
-    font-size: 0.85em;
-    color: #666;
+  font-size: 0.85em;
+  color: #666;
 }
 
 /* --- Màu lựa chọn --- */
 .color-options {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .color {
-    display: inline-block;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    border: 1px solid #ccc;
-    margin-right: 6px;
-    cursor: pointer;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  margin-right: 6px;
+  cursor: pointer;
 }
 
 .color:hover {
-    border-color: #e63946;
+  border-color: #e63946;
 }
 
 /* --- Tiêu đề phụ (ví dụ: Đèn Bàn) --- */
 .sub-title {
-    font-size: 2.4rem;
-    margin-bottom: 20px;
-    color: #444;
+  font-size: 2.4rem;
+  margin-bottom: 20px;
+  color: #444;
 }
 .pagination {
-    text-align: center;
-    margin-top: 20px;
+  text-align: center;
+  margin-top: 20px;
 }
 .pagination button {
-    background-color: #eee;
-    border: none;
-    padding: 6px 12px;
-    margin: 0 4px;
-    border-radius: 6px;
-    cursor: pointer;
+  background-color: #eee;
+  border: none;
+  padding: 6px 12px;
+  margin: 0 4px;
+  border-radius: 6px;
+  cursor: pointer;
 }
 .pagination button.active {
-    background-color: #d32f2f;
-    color: #fff;
-    font-weight: bold;
+  background-color: #d32f2f;
+  color: #fff;
+  font-weight: bold;
 }
 :root {
-    --color-gray-300: #ccc;
+  --color-gray-300: #ccc;
 }
 
 /* Khung chứa sao */
 .star-rating {
-    position: relative;
-    display: inline-block;
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-    font-size: 20px;
-    color: var(--color-gray-300); /* màu sao nền xám */
-    margin-top: 8px;
-    margin-bottom: 8px;
+  position: relative;
+  display: inline-block;
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 20px;
+  color: var(--color-gray-300); /* màu sao nền xám */
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 /* 5 sao nền (màu xám) */
 .star-rating::before {
-    content: "\f005\f005\f005\f005\f005";
+  content: "\f005\f005\f005\f005\f005";
 }
 
 /* Phần sao vàng */
 .star-rating span {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%; /* 100% = 5 sao vàng, 80% = 4 sao, 60% = 3 sao,... */
-    overflow: hidden;
-    color: #EABE12; /* màu vàng */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* 100% = 5 sao vàng, 80% = 4 sao, 60% = 3 sao,... */
+  overflow: hidden;
+  color: #eabe12; /* màu vàng */
 }
 
 /* 5 sao vàng */
 .star-rating span::before {
-    content: "\f005\f005\f005\f005\f005";
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
+  content: "\f005\f005\f005\f005\f005";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
 }
-
