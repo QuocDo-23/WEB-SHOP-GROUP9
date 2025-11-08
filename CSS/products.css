@@ -77,8 +77,10 @@
 
 /* --- Thông tin sản phẩm --- */
 .product-info {
-  padding: 12px;
-  text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 180px; /* hoặc tùy độ cao bạn muốn cho mỗi card */
 }
 
 .product-name a {
@@ -187,4 +189,58 @@
   content: "\f005\f005\f005\f005\f005";
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
+}
+/* --- Hàng giá + giỏ hàng --- */
+.product-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* giá bên trái, icon bên phải */
+    margin-top: 8px;
+}
+
+/* --- GIỎ HÀNG --- */
+.cart-icon a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: #8b7355;
+    border: 1px solid #ddd;
+    color: #8b7355; /* màu theo yêu cầu */
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+
+.cart-icon i {
+    font-size: 18px;
+}
+
+/* --- GIÁ --- */
+.product-prices {
+    text-align: left;
+}
+
+.current-price {
+    color: #e63946;
+    font-weight: bold;
+}
+
+.old-price {
+    color: #999;
+    font-size: 0.9em;
+    margin-left: 4px;
+}
+
+/* --- SỐ LƯỢNG BÁN --- */
+.product-meta {
+    font-size: 0.85em;
+    color: #666;
+    margin-top: 8px;
+    text-align: left;
+}
+html {
+    scroll-behavior: smooth;
 }
