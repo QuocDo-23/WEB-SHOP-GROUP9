@@ -4,9 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="./CSS/style.css">
-    <title>Group 9</title>
+    <link rel="stylesheet" href="./CSS/sub_login.css">
+    <link rel="stylesheet" href="./CSS/products.css">
+
+    <title>LightUP</title>
 </head>
 
 <body>
@@ -33,7 +38,7 @@
                                             <div class="product_cont">
                                                 <img src="https://cdn-icons-png.freepik.com/512/4452/4452959.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
                                                     alt="">
-                                                <div class="item">Đèn Bàn</div>
+                                                <a class="item" href="./products.html#denban-section">Đèn Bàn</a>
                                             </div>
                                             <span class="arrow">›</span>
                                         </div>
@@ -41,7 +46,7 @@
                                             <div class="product_cont">
                                                 <img src="https://cdn-icons-png.freepik.com/512/1237/1237786.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
                                                     alt="">
-                                                <div class="item">Đèn Chùm</div>
+                                                <a class="item" href="./products.html#denchum-section">Đèn Chùm</a>
                                             </div>
                                             <span class="arrow">›</span>
                                         </div>
@@ -49,7 +54,7 @@
                                             <div class="product_cont">
                                                 <img src="https://cdn-icons-png.freepik.com/512/18200/18200846.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
                                                     alt="">
-                                                <div class="item">Đèn Ốp Trần</div>
+                                                <a class="item" href="./products.html#denoptran-section">Đèn Ốp Trần</a>
                                             </div>
                                             <span class="arrow">›</span>
                                         </div>
@@ -57,7 +62,7 @@
                                             <div class="product_cont">
                                                 <img src="https://cdn-icons-png.freepik.com/512/6202/6202698.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
                                                     alt="">
-                                                <div class="item">Đèn Vách</div>
+                                                <a class="item" href="./products.html#denvach-section">Đèn Vách</a>
                                             </div>
                                             <span class="arrow">›</span>
                                         </div>
@@ -65,7 +70,7 @@
                                             <div class="product_cont">
                                                 <img src="https://cdn-icons-png.freepik.com/512/3719/3719943.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
                                                     alt="">
-                                                <div class="item">Đèn Thả</div>
+                                                <a class="item" href="./products.html#dentha-section">Đèn Thả</a>
                                             </div>
                                             <span class="arrow">›</span>
                                         </div>
@@ -73,7 +78,7 @@
                                             <div class="product_cont">
                                                 <img src="https://cdn-icons-png.freepik.com/512/896/896351.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
                                                     alt="">
-                                                <div class="item">Đèn Cây</div>
+                                                <a class="item" href="./products.html#dencay-section">Đèn Cây</a>
                                             </div>
                                             <span class="arrow">›</span>
                                         </div>
@@ -81,7 +86,7 @@
                                             <div class="product_cont">
                                                 <img src="https://cdn-icons-png.freepik.com/512/3724/3724416.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
                                                     alt="">
-                                                <div class="item">Đèn Quạt</div>
+                                                <a class="item" href="./products.html#denquat-section">Đèn Quạt</a>
                                             </div>
                                             <span class="arrow">›</span>
                                         </div>
@@ -89,18 +94,12 @@
                                             <div class="product_cont">
                                                 <img src="https://cdn-icons-png.freepik.com/512/7402/7402062.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
                                                     alt="">
-                                                <div class="item">Bóng Đèn</div>
+                                                <a class="item" href="./products.html#bongden-section">Bóng Đèn</a>
                                             </div>
                                             <span class="arrow">›</span>
                                         </div>
-
-
-
-
                                     </div>
-
                                 </div>
-
                             </div>
                         </li>
                         <li><a href="./news.html">TIN TỨC</a></li>
@@ -116,6 +115,12 @@
                         <div class="login">
                             <a href="./login.html"><i class="bi bi-person-circle" title="Tài Khoản"></i>
                             </a>
+                            <div class="sub_login">
+                                <div class="container-sub-login">
+                                    <a href="./profile.html"><i class="bi bi-person"></i> Tài khoản</a>
+                                    <a href="./order.html"><i class="bi bi-clipboard-check"></i>Đơn Hàng</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -147,70 +152,83 @@
             </div>
 
             <div class="products-grid-2">
-                <div class="product-card-2">
-                    <div class="product-image-2">
-                        <img src="//file.hstatic.net/200000072226/collection/den_ban_8e55e26993ba48949f97a1b491c86b35_medium.png"
-                            alt="led dân dụng">
+                <a href="./products.html#denban-section">
+                    <div class="product-card-2">
+                        <div class="product-image-2">
+                            <img src="//file.hstatic.net/200000072226/collection/den_ban_8e55e26993ba48949f97a1b491c86b35_medium.png"
+                                alt="led dân dụng">
+                        </div>
+                        <div class="product-name-2">Đèn Bàn</div>
                     </div>
-                    <div class="product-name-2">Đèn Bàn</div>
-                </div>
+                </a>
+                <a href="./products.html#denchum-section">
+                    <div class="product-card-2">
+                        <div class="product-image-2">
+                            <img src="//file.hstatic.net/200000072226/collection/den_ban_opple__4__f8a074b9e6354c2596eb7765202386c5_medium.png"
+                                alt="led dân dụng">
+                        </div>
+                        <div class="product-name-2">Đèn Chùm</div>
+                    </div>
+                </a>
+                <a href="./products.html#denoptran-section">
+                    <div class="product-card-2">
+                        <div class="product-image-2">
+                            <img src="//file.hstatic.net/200000072226/collection/op_tran_b80ecf42de5942db830f47d37649197f_medium.png"
+                                alt="led dân dụng">
+                        </div>
+                        <div class="product-name-2">Đèn Ốp Trần</div>
+                    </div>
+                </a>
 
-                <div class="product-card-2">
-                    <div class="product-image-2">
-                        <img src="//file.hstatic.net/200000072226/collection/den_ban_opple__4__f8a074b9e6354c2596eb7765202386c5_medium.png"
-                            alt="led dân dụng">
-                    </div>
-                    <div class="product-name-2">Đèn Chùm</div>
-                </div>
 
-                <div class="product-card-2">
-                    <div class="product-image-2">
-                        <img src="//file.hstatic.net/200000072226/collection/op_tran_b80ecf42de5942db830f47d37649197f_medium.png"
-                            alt="led dân dụng">
+                <a href="">
+                    <div class="product-card-2">
+                        <div class="product-image-2">
+                            <img src="http://duhal.com.vn/upload/product/dtv003-4451.jpg" alt="led dân dụng">
+                        </div>
+                        <div class="product-name-2">Đèn Vách</div>
                     </div>
-                    <div class="product-name-2">Đèn Ốp Trần</div>
-                </div>
+                </a>
 
-                <div class="product-card-2">
-                    <div class="product-image-2">
-                        <img src="http://duhal.com.vn/upload/product/dtv003-4451.jpg"
-                            alt="led dân dụng">
+                <a href="./products.html#dentha-section">
+                    <div class="product-card-2">
+                        <div class="product-image-2">
+                            <img src="//file.hstatic.net/200000072226/collection/den_tha_63dd6162d68846a7ac45730b58991a92_medium.png"
+                                alt="led dân dụng">
+                        </div>
+                        <div class="product-name-2">Đèn Thả</div>
                     </div>
-                    <div class="product-name-2">Đèn Vách</div>
-                </div>
+                </a>
+                <a href="./products.html#dencay-section">
+                    <div class="product-card-2">
+                        <div class="product-image-2">
+                            <img src="https://i0.wp.com/eglo.vn/wp-content/uploads/2017/03/92894.png?resize=150%2C150&ssl=1 1x, https://eglo.vn/wp-content/uploads/2017/03/92894.png 2x"
+                                alt="led dân dụng">
+                        </div>
+                        <div class="product-name-2">Đèn Cây</div>
+                    </div>
+                </a>
+                <a href="./products.html#denquat-section">
+                    <div class="product-card-2">
+                        <div class="product-image-2">
+                            <img src="//file.hstatic.net/200000072226/collection/quat-tran-5canh-classic-dong-den-768x768_e70e022735184d95a00a4d479dec8661_medium.jpg"
+                                alt="led dân dụng">
+                        </div>
+                        <div class="product-name-2">Đèn Quạt</div>
+                    </div>
+                </a>
 
-                <div class="product-card-2">
-                    <div class="product-image-2">
-                        <img src="//file.hstatic.net/200000072226/collection/den_tha_63dd6162d68846a7ac45730b58991a92_medium.png"
-                            alt="led dân dụng">
-                    </div>
-                    <div class="product-name-2">Đèn Thả</div>
-                </div>
 
-                <div class="product-card-2">
-                    <div class="product-image-2">
-                        <img src="https://i0.wp.com/eglo.vn/wp-content/uploads/2017/03/92894.png?resize=150%2C150&ssl=1 1x, https://eglo.vn/wp-content/uploads/2017/03/92894.png 2x"
-                            alt="led dân dụng">
+                <a href="./products.html#bongden-section">
+                    <div class="product-card-2">
+                        <div class="product-image-2">
+                            <img src="//file.hstatic.net/200000072226/collection/den_trong_nha_5612597d199f4ed0b33ca08774362003_medium.png"
+                                alt="led dân dụng">
+                        </div>
+                        <div class="product-name-2">Bóng Đèn</div>
                     </div>
-                    <div class="product-name-2">Đèn Cây</div>
-                </div>
+            </div></a>
 
-                <div class="product-card-2">
-                    <div class="product-image-2">
-                        <img src="//file.hstatic.net/200000072226/collection/quat-tran-5canh-classic-dong-den-768x768_e70e022735184d95a00a4d479dec8661_medium.jpg"
-                            alt="led dân dụng">
-                    </div>
-                    <div class="product-name-2">Đèn Quạt</div>
-                </div>
-
-                <div class="product-card-2">
-                    <div class="product-image-2">
-                        <img src="//file.hstatic.net/200000072226/collection/den_trong_nha_5612597d199f4ed0b33ca08774362003_medium.png"
-                            alt="led dân dụng">
-                    </div>
-                    <div class="product-name-2">Bóng Đèn</div>
-                </div>
-            </div>
         </div>
 
         <div class="section-3">
@@ -222,163 +240,141 @@
             <div class="products-slider">
                 <button class="slider-btn prev" id="prevBtn" onclick="slideProducts(-1)">‹</button>
 
-                <div class="products-container" id="productsContainer">
+                <div class="product-grid" id="productGrid">
+
+                    <!-- ===== SẢN PHẨM 1 ===== -->
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="https://product.hstatic.net/200000659319/product/anh_chup_man_hinh_2023-02-25_085801_732c8329654b44dd94d78e5f3503e385_master.png"
-                                alt="đèn Comi">
+                            <div class="product-sale">-20%</div>
+                            <a href="#">
+                                <img src="https://flexhouse.vn/wp-content/uploads/2023/05/Den-san-vuon-nang-luong-mat-troi-hien-dai-CB3075-15.jpg"
+                                    alt="Bóng đèn LED 1" class="img-main">
+                                <img src="https://flexhouse.vn/wp-content/uploads/2023/05/Den-san-vuon-nang-luong-mat-troi-hien-dai-CB3075-3.jpg"
+                                    alt="Bóng đèn LED 1 góc khác" class="img-hover">
+                            </a>
                         </div>
                         <div class="product-info">
-                            <h3 class="product-name">COMI SP06 6W-8W-10W-12W-15W-20W</h3>
-                            <div class="product-rating">
-                                <span class="star">★★★</span>
+                            <h3 class="product-name"><a href="#">Bóng đèn decor sân vườn năng lượng mặt trời
+                                    CB3075</a></h3>
+                            <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                            <div class="star-rating">
+                                <span style="width:100%"></span>
                             </div>
-
-                            <div class="product-price">
-                                <p>8 VNĐ</p>
+                            <div class="product-action">
+                                <div class="product-prices">
+                                    <span class="current-price">4.423.000₫</span>
+                                    <span class="old-price"><del>5.5285.000₫</del></span>
+                                </div>
                                 <div class="cart-icon">
                                     <a href="">
-                                        <i class="bi bi-cart-check"></i></a>
+                                        <i class="bi bi-cart-check"></i>
+                                    </a>
                                 </div>
                             </div>
-
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="https://prolux.vn/tenancy/bd3ff90f-60fe-4f48-9d7b-e10c7ebf2f65/uploads/2024-08-29/1627d610-59a0-47b1-8e2c-e4cd7b04d73a.png"
-                                alt="Đèn chống nổ">
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-name">Đèn chống Nổ</h3>
-                            <div class="product-rating">
-                                <span class="star">★★★★★</span>
-                            </div>
-                            <div class="product-price">
-                                <p>8.999.000.00000000 VNĐ</p>
-                                <div class="cart-icon">
-                                    <a href="">
-                                        <i class="bi bi-cart-check"></i></a>
-                                </div>
+                            <div class="product-meta"><span class="sold">Đã bán: 140</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="https://prolux.vn/tenancy/bd3ff90f-60fe-4f48-9d7b-e10c7ebf2f65/uploads/2024-08-20/956a01d4-8430-4462-bc38-4788688ee1b7.png"
-                                alt="đèn khẩn cấp">
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-name">Đèn khẩn cấp</h3>
-                            <div class="product-rating">
-                                <span class="star">★★★★★</span>
-                            </div>
-                            <div class="product-price">
-                                <p>8.999.000 VNĐ</p>
-                                <div class="cart-icon">
-                                    <a href="">
-                                        <i class="bi bi-cart-check"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- ===== SẢN PHẨM 2 ===== -->
+
 
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="https://prolux.vn/tenancy/bd3ff90f-60fe-4f48-9d7b-e10c7ebf2f65/uploads/2024-08-16/49daffd2-3fbe-4616-8b1b-a1490988fef6.png"
-                                alt="Đèn chiếu bảo tàn">
+                            <div class="product-sale">-20%</div>
+                            <a href="#">
+                                <img src="https://flexhouse.vn/wp-content/uploads/2024/01/Den-op-tran-dieu-khac-hoa-cham-pa-nghe-thuat-ND6725-2.jpg"
+                                    alt="Đèn ốp trần vuông 2" class="img-main">
+                                <img src="https://flexhouse.vn/wp-content/uploads/2024/01/Den-op-tran-dieu-khac-hoa-cham-pa-nghe-thuat-ND6725-1.jpg"
+                                    alt="Đèn ốp trần vuông 2 góc khác" class="img-hover">
+                            </a>
                         </div>
                         <div class="product-info">
-                            <h3 class="product-name">Đèn chiếu bảo tàn</h3>
-                            <div class="product-rating">
-                                <span class="star">★★★★★</span>
+                            <h3 class="product-name"><a href="#">Đèn ốp trần điêu khắc hoa Chăm Pa nghệ thuật
+                                    ND6725</a></h3>
+                            <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                            <div class="star-rating">
+                                <span style="width:100%"></span>
                             </div>
-                            <div class="product-price">
-                                <p>8.999.000 VNĐ</p>
+                            <div class="product-action">
+                                <div class="product-prices">
+                                    <span class="current-price">6.080.000₫</span>
+                                    <span class="old-price"><del>7.600.000₫</del></span>
+                                </div>
                                 <div class="cart-icon">
                                     <a href="">
-                                        <i class="bi bi-cart-check"></i></a>
+                                        <i class="bi bi-cart-check"></i>
+                                    </a>
                                 </div>
                             </div>
+                            <div class="product-meta"><span class="sold">Đã bán: 95</span></div>
                         </div>
                     </div>
 
-                    <!-- <div class="product-card">
+                    <!-- ===== SẢN PHẨM 3 ===== -->
+                    <div class="product-card">
                         <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500"
-                                alt="Sofa Cao Cấp">
+                            <div class="product-sale">-26%</div>
+                            <a href="#">
+                                <img src="https://flexhouse.vn/wp-content/uploads/2025/06/Den-chum-pha-le-phong-khach-sang-trong-ZGL6939-2.jpg"
+                                    alt="Đèn chùm tròn 2" class="img-main">
+                                <img src="https://flexhouse.vn/wp-content/uploads/2025/06/Den-chum-pha-le-phong-khach-sang-trong-ZGL6939-3.jpg"
+                                    alt="Đèn chùm tròn 2 góc khác" class="img-hover">
+                            </a>
                         </div>
                         <div class="product-info">
-                            <h3 class="product-name">SOFA CAO CẤP</h3>
-                            <div class="product-rating">
-                                <span class="star">★★★★★</span>
+                            <h3 class="product-name"><a href="#">Đèn chùm phòng khách sang trọng ZGL6939</a></h3>
+                            <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                            <div class="star-rating">
+                                <span style="width:100%"></span>
                             </div>
-                            <div class="product-price">
-                                <p>8.999.000 VNĐ</p>
+                            <div class="product-action">
+                                <div class="product-prices">
+                                    <span class="current-price">11.038.000₫</span>
+                                    <span class="old-price"><del>8.190.000₫</del></span>
+                                </div>
                                 <div class="cart-icon">
                                     <a href="">
-                                        <i class="bi bi-cart-check"></i></a>
+                                        <i class="bi bi-cart-check"></i>
+                                    </a>
                                 </div>
+                            </div>
+                            <div class="product-meta"><span class="sold">Đã bán: 72</span></div>
+                        </div>
+                    </div>
+                    <!-- ===== SẢN PHẨM 4 ===== -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <div class="product-sale">-20%</div>
+                            <a href="#">
+                                <img src="https://flexhouse.vn/wp-content/uploads/2024/01/Den-cay-dung-phoi-chau-trang-tri-khuon-vien-san-vuon-C1270-4.jpg"
+                                    alt="Đèn cây cổ điển 2" class="img-main">
+                                <img src="https://flexhouse.vn/wp-content/uploads/2024/01/Den-cay-dung-phoi-chau-trang-tri-khuon-vien-san-vuon-C1270-9.jpg"
+                                    alt="Đèn cây cổ điển 2 góc khác" class="img-hover">
+                            </a>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name"><a href="#">Đèn cây đứng phối chậu trang trí khuôn viên sân
+                                    vườn C1270</a></h3>
+                            <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                            <div class="star-rating">
+                                <span style="width:100%"></span>
+                            </div>
+                            <div class="product-action">
+                                <div class="product-prices">
+                                    <span class="current-price">6.240.000₫</span>
+                                    <span class="old-price"><del>7.790.000₫</del></span>
+                                </div>
+                                <div class="cart-icon">
+                                    <a href="">
+                                        <i class="bi bi-cart-check"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-meta"><span class="sold">Đã bán: 52</span>
                             </div>
                         </div>
                     </div>
-
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500" alt="Bàn Ăn">
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-name">BÀN ĂN</h3>
-                            <div class="product-rating">
-                                <span class="star">★★★★★</span>
-                            </div>
-                            <div class="product-price">
-                                <p>8.999.000 VNĐ</p>
-                                <div class="cart-icon">
-                                    <a href="">
-                                        <i class="bi bi-cart-check"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500" alt="Bàn Ăn">
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-name">BÀN ĂN</h3>
-                            <div class="product-rating">
-                                <span class="star">★★★★★</span>
-                            </div>
-                            <div class="product-price">
-                                <p>8.999.000 VNĐ</p>
-                                <div class="cart-icon">
-                                    <a href="">
-                                        <i class="bi bi-cart-check"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500" alt="Bàn Ăn">
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-name">BÀN ĂN</h3>
-                            <div class="product-rating">
-                                <span class="star">★★★★★</span>
-                            </div>
-                            <div class="product-price">
-                                <p>8.999.000 VNĐ</p>
-                                <div class="cart-icon">
-                                    <a href="">
-                                        <i class="bi bi-cart-check"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
 
                 <button class="slider-btn next" id="nextBtn" onclick="slideProducts(1)">›</button>
@@ -612,15 +608,15 @@
                     </div>
                 </div>
             </div>
-        </footer>
-        <div class="footer">
-            <div class="footer-cont">
-                <div class="footer-text">
-                    <p>Copyright &copy;2024 by Quoc | All Right Reserves</p>
+            <div class="footer">
+                <div class="footer-cont">
+                    <div class="footer-text">
+                        <p>Copyright &copy;2024 by Quoc | All Right Reserves</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <a href="#home">
+        </footer>
+        <a href="#">
             <button id="scrollToTopBtn">
                 <i class="bi bi-chevron-up"></i>
             </button>

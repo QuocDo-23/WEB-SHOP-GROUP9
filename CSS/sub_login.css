@@ -1,0 +1,85 @@
+.login {
+  position: relative;
+}
+
+.sub_login {
+  position: absolute;
+  top: calc(60% + 10px);
+  right: 0;
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+  transform: translateY(-10px) scale(0.95);
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  padding-top: 20px;
+}
+
+.login:hover .sub_login {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.container-sub-login {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+  background-color: white;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.container-sub-login a {
+  padding: 14px 24px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.container-sub-login a i {
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.container-sub-login a:hover i {
+  transform: scale(1.2) rotate(5deg);
+}
+
+.container-sub-login a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #8b7355, #a0876f);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.container-sub-login a:hover::before {
+  transform: scaleY(1);
+}
+
+.container-sub-login a:hover {
+  background: linear-gradient(90deg, #f5f1ed 0%, #ffffff 100%);
+  color: #8b7355;
+  padding-left: 32px;
+  transform: translateX(4px);
+}
+
+.container-sub-login a:hover::after {
+  opacity: 1;
+  transform: translateX(0);
+}

@@ -29,7 +29,7 @@
 .product-image {
   position: relative;
   width: 100%;
-  height: 250px; /* Chiều cao cố định cho ảnh đều nhau */
+  height: 250px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -44,11 +44,14 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 100%;
-  max-height: 100%;
   object-fit: contain; /* Giữ tỉ lệ ảnh, không bị cắt méo */
   display: block;
   transition: opacity 0.4s ease, transform 0.3s ease;
+  width: 90%;
+  height: 90%;
+  object-fit: cover;
+  border: 1px solid #424140;
+  border-radius: 8px;
 }
 
 /* Ảnh khi hover (ẩn đi lúc đầu) */
@@ -77,18 +80,31 @@
 
 /* --- Thông tin sản phẩm --- */
 .product-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 180px; /* hoặc tùy độ cao bạn muốn cho mỗi card */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 180px; /* hoặc tùy độ cao bạn muốn cho mỗi card */
+  padding: 20px;
+  padding-top: 10px;
+  text-align: center;
 }
 
 .product-name a {
   text-decoration: none;
-  color: #222;
+  color: #1d1f2c;
+}
+.product-name {
+  font-size: 18px;
   font-weight: 600;
-  display: block;
-  margin-bottom: 6px;
+
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.4;
 }
 
 .product-prices {
@@ -109,25 +125,6 @@
 .product-meta {
   font-size: 0.85em;
   color: #666;
-}
-
-/* --- Màu lựa chọn --- */
-.color-options {
-  margin-top: 10px;
-}
-
-.color {
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  border: 1px solid #ccc;
-  margin-right: 6px;
-  cursor: pointer;
-}
-
-.color:hover {
-  border-color: #e63946;
 }
 
 /* --- Tiêu đề phụ (ví dụ: Đèn Bàn) --- */
@@ -192,55 +189,57 @@
 }
 /* --- Hàng giá + giỏ hàng --- */
 .product-action {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* giá bên trái, icon bên phải */
-    margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* giá bên trái, icon bên phải */
+  margin-top: 8px;
 }
 
 /* --- GIỎ HÀNG --- */
-.cart-icon a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background-color: #8b7355;
-    border: 1px solid #ddd;
-    color: #8b7355; /* màu theo yêu cầu */
-    transition: all 0.3s ease;
-    text-decoration: none;
+.cart-icon {
+  width: 40px;
+  height: 40px;
+  background: #8b7355;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
-
 .cart-icon i {
-    font-size: 18px;
+  font-size: 18px;
+  color: white;
+}
+.cart-icon:hover {
+  transform: scale(1.1);
 }
 
 /* --- GIÁ --- */
 .product-prices {
-    text-align: left;
+  text-align: left;
 }
 
 .current-price {
-    color: #e63946;
-    font-weight: bold;
+  color: #e63946;
+  font-weight: bold;
 }
 
 .old-price {
-    color: #999;
-    font-size: 0.9em;
-    margin-left: 4px;
+  color: #999;
+  font-size: 0.9em;
+  margin-left: 4px;
 }
 
 /* --- SỐ LƯỢNG BÁN --- */
 .product-meta {
-    font-size: 0.85em;
-    color: #666;
-    margin-top: 8px;
-    text-align: left;
+  font-size: 0.85em;
+  color: #666;
+  margin-top: 8px;
+  text-align: left;
 }
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
