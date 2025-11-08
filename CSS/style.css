@@ -60,7 +60,7 @@ nav {
 }
 
 .nav-container .shop i,
-.login i {
+.login > a > i {
   display: inline-flex;
   justify-content: center;
   align-items: center;
