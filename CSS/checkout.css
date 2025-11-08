@@ -47,8 +47,6 @@ body {
   flex-direction: column;
 }
 .main-content .containt-up {
-  display: flex;
-  justify-content: space-between;
   padding-bottom: 20px;
 }
 
@@ -59,34 +57,6 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-}
-.content-l a {
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-}
-
-.login-prompt {
-  background: #dad2c8;
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  color: #8b7355;
-  cursor: pointer;
-  border-radius: 30px;
-  gap: 10px;
-}
-
-.login-icon i {
-  width: 24px;
-  height: 24px;
-  background: #8b7355;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 14px;
 }
 
 .form-group,
