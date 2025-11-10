@@ -12,19 +12,51 @@ body{
     flex-direction: column;
 }
 
-/* ===================== */
-/* LOGO Ở GÓC TRÊN TRÁI */
-/* ===================== */
-.login-logo{
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 10;
+.cp-header {
+    width: 100%;
+    background-color: white;
 }
 
-.login-logo img{
-    width: 100px;
+.cp-header .header-containt {
+    width: 1300px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 70px;
+    border-bottom: 1px solid #eee;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    margin: 0 auto;
+}
+
+.cp-header .header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cp-header .header-logo {
+    width: 65px;
     height: auto;
+}
+
+.cp-header h2 {
+    font-size: 25px;
+    color: #2c210d;
+    font-weight: 500;
+}
+
+.cp-header .header-right a {
+    color: #d0011b;
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.cp-header .header-right a:hover {
+    text-decoration: underline;
 }
 
 /* ===================== */
@@ -68,7 +100,7 @@ h2{
 /* ===================== */
 .abc .back-btn {
     position: absolute;
-    left: 0;
+    left: 15px;
     top: 50%;
     transform: translateY(-50%);
 }
