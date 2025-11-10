@@ -31,6 +31,9 @@ body {
     color: #999;
 }
 
+/* ===================== */
+/*    TRANG GIỎ HÀNG     */
+/* ===================== */
 .cart-page {
     display: flex;
     justify-content: space-between;
@@ -38,6 +41,9 @@ body {
     padding: 40px 60px;
 }
 
+/* ===================== */
+/*    GIỎ HẢNG BÊN TRÁI  */
+/* ===================== */
 .cart-left {
     flex: 2;
 }
@@ -55,13 +61,9 @@ body {
     margin: 10px 0 30px;
 }
 
-.empty {
-    font-size: 18px;
-    color: #777;
-    text-align: center;
-    margin-top: 60px;
-}
-
+/* ===================== */
+/*   SẢN PHẨM DEMO       */
+/* ===================== */
 .cart-item {
     display: flex;
     align-items: center;
@@ -92,7 +94,7 @@ body {
 }
 
 .price {
-    color: #ff3d00;
+    color: #b98b53;
     font-weight: 600;
     margin: 6px 0;
 }
@@ -103,6 +105,9 @@ body {
     gap: 10px;
 }
 
+/* ===================== */
+/*    NÚT TĂNG GIẢM SL   */
+/* ===================== */
 .quantity button {
     background-color: #eee;
     border: none;
@@ -122,6 +127,9 @@ body {
     font-weight: bold;
 }
 
+/* ===================== */
+/*     XÓA SẢN PHẨM      */
+/* ===================== */
 .delete-btn {
     border: none;
     background-color: transparent;
@@ -134,6 +142,9 @@ body {
     text-decoration: underline;
 }
 
+/* ===================== */
+/*    GIỎ HẢNG BÊN PHẢI  */
+/* ===================== */
 .cart-right {
     flex: 1;
 }
@@ -158,6 +169,9 @@ body {
     margin-bottom: 20px;
 }
 
+/* ===================== */
+/*      NÚT THANH TOÁN   */
+/* ===================== */
 .checkout-btn {
     width: 100%;
     padding: 12px;
