@@ -1,67 +1,67 @@
 /* ===================== */
 /* CẤU HÌNH CHUNG TRANG  */
 /* ===================== */
-body{
-    background-image: url("https://i.pinimg.com/1200x/a9/14/6a/a9146a4647a90eeaeb84cc34215c3257.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    min-height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-    justify-content: flex-start;
-    align-items: center;
+body {
+  background-image: url("https://i.pinimg.com/1200x/a9/14/6a/a9146a4647a90eeaeb84cc34215c3257.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 /* ===================== */
 /*HEADER TRANG LẤY LẠI MẬT KHẨU*/
 /* ===================== */
 .cp-header {
-    width: 100%;
-    background-color: white;
+  width: 100%;
+  background-color: white;
 }
 
 .cp-header .header-containt {
-    width: 1300px;
-    background-color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 70px;
-    border-bottom: 1px solid #eee;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    top: 0;
-    left: 0;
-    z-index: 9999;
-    margin: 0 auto;
+  width: 1300px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 70px;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  margin: 0 auto;
 }
 
 .cp-header .header-left {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .cp-header .header-logo {
-    width: 65px;
-    height: auto;
+  width: 65px;
+  height: auto;
 }
 
 .cp-header h2 {
-    font-size: 25px;
-    color: #2C210D;
-    font-weight: 500;
+  font-size: 25px;
+  color: #2c210d;
+  font-weight: 500;
 }
 
 .cp-header .header-right a {
-    color: #d0011b;
-    font-size: 16px;
-    text-decoration: none;
-    font-weight: 500;
+  color: #d0011b;
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: 500;
 }
 
 .cp-header .header-right a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 /* ===================== */
@@ -132,10 +132,6 @@ h2 {
   padding: 60px 40px; /* thêm đệm trong form */
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
   transition: all 0.3s ease;
-}
-
-.fp-form:hover {
-  transform: translateY(-5px);
 }
 
 .fp-form h2 {
