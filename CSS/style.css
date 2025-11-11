@@ -725,6 +725,15 @@ nav {
   line-height: 1.4;
 }
 
+.featured-content h3 a{
+    text-decoration: none;
+    color: black;
+}
+
+.featured-content h3 a:hover {
+    text-decoration: underline;
+}
+
 .featured-content p {
   font-size: 15px;
   line-height: 1.6;
@@ -767,17 +776,19 @@ nav {
   justify-content: center;
 }
 
-.post-content h4 {
+.post-content h4 a{
   font-size: 18px;
   font-weight: 700;
-  color: #1a2942;
   margin-bottom: 10px;
   line-height: 1.4;
   transition: color 0.3s ease;
+    text-decoration: none;
+    color: black;
 }
 
-.post-item:hover .post-content h4 {
-  color: #c9a26a;
+.post-content h4 a:hover{
+    color: #8b7355;
+    text-decoration: underline;
 }
 
 .post-content p {
