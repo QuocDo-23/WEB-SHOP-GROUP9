@@ -1,49 +1,69 @@
-/* --- BỐ CỤC 2 CỘT CHO CHI TIẾT SẢN PHẨM --- */
-.product-image-summary-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 40px;
-  margin: 40px auto;
-  width: 90%;
+.row {
+    display: flex;
+    width: 1300px;
+    margin: 0 auto;
+    margin-top: 80px;
+    gap: 40px;
+}
+.content_img_l {
+    width: 50%;
+    float: left;
+    overflow: hidden;
+}
+.content_img_l .cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.content_img_l .img_down {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* padding: 10px; */
+    gap: 10px;
+    box-sizing: border-box;
 }
 
-/* --- CỘT TRÁI: ẢNH SẢN PHẨM --- */
-.product-image-summary-inner .product-gallery {
-  flex: 1;
-  max-width: 45%;
+.img_down img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
 }
 
-.product-image-summary-inner .product-gallery img {
-  width: 100%;
-  border-radius: 8px;
-  object-fit: cover;
+.content_img_l .img_main img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
 }
 
 /* --- CỘT PHẢI: THÔNG TIN SẢN PHẨM --- */
 .product-image-summary-inner .content_products {
-  flex: 1;
-  max-width: 55%;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 50%;
 }
 
 /* Tên sản phẩm */
 .content_products h1,
 .content_products .product-title {
-  font-size: 26px;
-  font-weight: 600;
-  color: #2c2c2c;
-  margin-bottom: 5px;
+    font-size: 30px;
+    font-weight: 600;
+    color: #2c2c2c;
+    margin-bottom: 20px;
+    margin-top: 0;
 }
 /* Đánh giá*/
 .star-rating {
-  font-size: 20px;
-  color: #ffd700; /* màu vàng */
-  display: flex;
-  align-items: center;
-  gap: 5px;
+    font-size: 20px;
+    color: #ffd700; /* màu vàng */
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 /* Giá hiện tại và giá cũ */
@@ -85,16 +105,30 @@
   padding: 8px 10px;
   border-bottom: 1px solid #eee;
 }
+.woocommerce-product-attributes.shop_attributes p {
+    margin: 0;
+}
 
-/* Khu vực hành động (nút, giỏ hàng, mua ngay) */
+.quantity-input::-webkit-inner-spin-button,
+.quantity-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.quantity-input {
+    -moz-appearance: textfield;
+}
+
 .quantity-section {
   margin-bottom: 25px;
 }
 
 .quantity-label {
-  display: block;
-  margin-bottom: 10px;
-  font-weight: 600;
+    display: block;
+    margin-bottom: 10px;
+    margin-top: 10px;
+
+    font-weight: 600;
 }
 
 .quantity-control {
@@ -130,69 +164,90 @@
   border-left: 1px solid #ddd;
   border-right: 1px solid #ddd;
 }
-
+.action-buttons a {
+    text-decoration: none;
+}
 /* Action Buttons */
 .action-buttons {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 30px;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
 }
-
+.action-buttons a {
+    flex: 1;
+    text-decoration: none;
+}
+.action-buttons button {
+    width: 100%;
+    padding: 15px 0;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 2px solid #a67c52; /* cùng màu với nút phải */
+    box-sizing: border-box;
+}
 .btn {
-  padding: 14px 28px;
-  border-radius: 4px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border: none;
+    padding: 14px 28px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
 }
 
 /* 🛒 Nút Thêm vào giỏ hàng */
 .btn-add-cart {
-  background: white; /* nền trắng */
-  color: #a1801b; /* chữ màu vàng nâu */
-  border: 2px solid #a1801b; /* viền cùng màu chữ */
-  flex: 1;
-  transition: all 0.3s ease; /* hiệu ứng mượt khi hover */
+    background: white;
+    color: #a1801b;
+    border: 2px solid #a1801b;
+    flex: 1;
+    transition: all 0.3s ease;
 }
 
 .btn-add-cart:hover {
-  background: #a1801b; /* khi hover: nền đổi sang vàng nâu */
-  color: white; /* chữ đổi sang trắng */
+    background: #a1801b; /* khi hover: nền đổi sang vàng nâu */
+    color: white; /* chữ đổi sang trắng */
 }
 
 /* 🛒 Nút Mua ngay (giữ nguyên vì bạn không yêu cầu đổi) */
 .btn-buy-now {
-  background: #a1801b;
-  color: white;
-  flex: 1;
-  transition: all 0.3s ease;
+    background: #a1801b;
+    color: white;
+    flex: 1;
+    transition: all 0.3s ease;
+    border: 2px solid #a1801b;
 }
 
 .btn-buy-now:hover {
-  opacity: 0.9; /* hiệu ứng nhẹ khi rê chuột */
+    opacity: 0.9;
 }
-
+.woocommerce-product-rating a {
+    text-decoration: none;
+}
 /* 📞 Nút Liên hệ mua sỉ */
 .btn-contact {
-  background: white; /* nền trắng */
-  color: #a1801b; /* chữ vàng nâu */
-  border: 2px solid #a1801b; /* viền cùng màu */
-  width: 100%;
-  transition: all 0.3s ease; /* hiệu ứng mượt */
-  display: flex; /* dùng flexbox để canh giữa nội dung */
-  justify-content: center; /* canh giữa theo chiều ngang */
-  align-items: center; /* canh giữa theo chiều dọc */
-  text-align: center; /* đảm bảo chữ giữa dòng */
+    background: white; /* nền trắng */
+    color: #a1801b; /* chữ vàng nâu */
+    border: 2px solid #a1801b; /* viền cùng màu */
+    width: 100%;
+    transition: all 0.3s ease; /* hiệu ứng mượt */
+    display: flex; /* dùng flexbox để canh giữa nội dung */
+    justify-content: center; /* canh giữa theo chiều ngang */
+    align-items: center; /* canh giữa theo chiều dọc */
+    text-align: center; /* đảm bảo chữ giữa dòng */
 }
 
 .btn-contact:hover {
-  background: #a1801b; /* khi hover: nền vàng nâu */
-  color: white; /* chữ trắng */
+    background: #a1801b; /* khi hover: nền vàng nâu */
+    color: white; /* chữ trắng */
 }
 
 /* Nút thêm vào giỏ hàng & mua ngay */
@@ -215,11 +270,11 @@
   color: #6e5c44;
 }
 /* Tiêu đề MÔ TẢ */
-#tab-item-title-description .wd-accordion-title-text span {
-  font-weight: 700;
-  font-size: 16px;
-  text-transform: uppercase;
-  color: #a1801b; /* màu vàng nâu nổi bật */
+.wd-accordion-title-text span {
+    font-weight: 700;
+    font-size: 30px;
+    text-transform: uppercase;
+    color: #a1801b; /* màu vàng nâu nổi bật */
 }
 
 /* Nội dung mô tả */
@@ -265,9 +320,10 @@
 
 /* Title */
 .woocommerce-Reviews-title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 /* Star summary box layout */
@@ -284,8 +340,8 @@
 
 /* Left side (average rating) */
 .star-average {
-  text-align: center;
-  margin-right: 30px;
+    text-align: center;
+    margin-right: 30px;
 }
 
 .star-average .star_average {
@@ -295,14 +351,13 @@
 }
 
 .star-average strong {
-  font-size: 14px;
-  color: #666;
+    font-size: 14px;
+    color: #666;
 }
 .woocommerce-product-rating {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Căn giữa ngang */
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .star_box {
   display: flex;
@@ -403,8 +458,8 @@
   font-size: 14px;
 }
 .devvn_review_mid {
-  display: flex;
-  gap: 20px;
+    display: flex;
+    gap: 20px;
 }
 
 .devvn_review_bottom {
@@ -417,4 +472,76 @@
 
 .devvn_review_bottom a {
   color: #0073aa;
+}
+.wd-accordion-item {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.wd-accordion-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 20px;
+    cursor: pointer;
+    background: white;
+    transition: background 0.3s ease;
+    user-select: none;
+}
+
+.wd-accordion-title:hover {
+    background: #f8f8f8;
+}
+
+.wd-accordion-title-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.wd-accordion-opener {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.wd-accordion-opener::before,
+.wd-accordion-opener::after {
+    content: "";
+    position: absolute;
+    background: #666;
+    transition: transform 0.3s ease;
+}
+
+.wd-accordion-opener::before {
+    width: 12px;
+    height: 2px;
+    top: 11px;
+    left: 6px;
+}
+
+.wd-accordion-opener::after {
+    width: 2px;
+    height: 12px;
+    top: 6px;
+    left: 11px;
+}
+
+.wd-accordion-title.wd-active .wd-accordion-opener::after {
+    transform: rotate(90deg);
+    opacity: 0;
+}
+
+.wd-accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+}
+
+.wd-accordion-content.wd-active {
+    max-height: 5000px;
+    transition: max-height 0.6s ease-in;
+}
+.col-12 {
+    padding-bottom: 50px;
 }
