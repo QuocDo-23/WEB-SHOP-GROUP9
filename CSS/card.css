@@ -30,11 +30,12 @@ body {
   width: 100px;
   height: 100px;
 }
-.header h1 {
+.header h2 {
   color: #8b7355;
   font-size: 28px;
   font-weight: 600;
 }
+
 .cart-page {
   display: flex;
   justify-content: space-between;
