@@ -18,6 +18,7 @@ main {
 }
 
 .od-track {
+  position: relative;
   background: #ffffff;
   border-radius: 15px;
   padding: 40px;
@@ -158,4 +159,26 @@ main {
 .information p {
   margin: 6px 0;
   color: #444;
+}
+.close-btn {
+  position: absolute;
+  top: 20px;
+  left: 640px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(107, 114, 128, 0.1);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  font-size: 20px;
+}
+
+.close-btn:hover {
+  background: #f7e4bc;
+  color: #111827;
+  transform: scale(1.05);
 }

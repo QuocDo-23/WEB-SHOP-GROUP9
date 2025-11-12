@@ -299,12 +299,12 @@
               <a href="./card.html"> <button class="btn btn-add-cart">
                   THÊM VÀO GIỎ HÀNG
                 </button></a>
-              <a href="./card.html"> <button class="btn btn-buy-now ">
+              <a href="./checkout.html"> <button class="btn btn-buy-now ">
                   THANH TOÁN
                 </button></a>
             </div>
 
-            <a href=""><button class="btn btn-contact" style="width: 100%;">
+            <a href="./contact.html"><button class="btn btn-contact" style="width: 100%;">
                 LIÊN HỆ
               </button></a>
           </div>
@@ -732,23 +732,7 @@
     </button>
   </a>
 
-  <script>
-    // JavaScript cho accordion
-    document.addEventListener('DOMContentLoaded', function () {
-      const accordionTitles = document.querySelectorAll('.wd-accordion-title');
-
-      accordionTitles.forEach(function (title) {
-        title.addEventListener('click', function () {
-          const targetId = this.getAttribute('data-target');
-          const content = document.getElementById('tab-' + targetId);
-
-          // Toggle active state
-          this.classList.toggle('wd-active');
-          content.classList.toggle('wd-active');
-        });
-      });
-    });
-  </script>
+  <script src="./JS/product_detail.js"></script>
 </body>
 
 </html>
