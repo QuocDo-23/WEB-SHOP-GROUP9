@@ -2,6 +2,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden;
 }
 html {
   scroll-behavior: smooth;
@@ -257,7 +258,7 @@ nav {
   color: #c09b5b;
   display: block;
   margin-top: 5px;
-    font-size: 35px;
+  font-size: 35px;
 }
 
 .section_1-content p {
@@ -725,13 +726,13 @@ nav {
   line-height: 1.4;
 }
 
-.featured-content h3 a{
-    text-decoration: none;
-    color: black;
+.featured-content h3 a {
+  text-decoration: none;
+  color: white;
 }
 
 .featured-content h3 a:hover {
-    text-decoration: underline;
+  color: #c9a26a;
 }
 
 .featured-content p {
@@ -776,19 +777,18 @@ nav {
   justify-content: center;
 }
 
-.post-content h4 a{
+.post-content h4 a {
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 10px;
   line-height: 1.4;
   transition: color 0.3s ease;
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
 
-.post-content h4 a:hover{
-    color: #8b7355;
-    text-decoration: underline;
+.post-content h4 a:hover {
+  color: #c9a26a;
 }
 
 .post-content p {
@@ -888,7 +888,6 @@ nav {
     font-size: 13px;
   }
 }
-
 
 .cta-section::before {
   content: "";
@@ -1116,4 +1115,20 @@ nav {
   transition: background-color 0.3s ease;
   z-index: 999;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+.login img {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: transparent;
+  border: 0.2rem solid #8b7355;
+  background-color: white;
+  border-radius: 50%;
+
+  color: white;
+  transition: 0.5s ease;
+  margin-left: 10px;
+  cursor: pointer;
 }
