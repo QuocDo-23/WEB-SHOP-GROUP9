@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="./CSS/style.css">
     <link rel="stylesheet" href="./CSS/sub_login.css">
     <link rel="stylesheet" href="./CSS/products.css">
-
+    <link rel="stylesheet" href="CSS/cart.css">
     <title>LightUP</title>
+
 </head>
 
 <body>
@@ -110,7 +111,7 @@
                             <input type="text" placeholder="Tìm kiếm "><i class="bi bi-search"></i>
                         </div>
                         <div class="shop">
-                            <a href="./card.html"> <i class="bi bi-cart-check" title="Giỏ hàng"></i></a>
+                            <a href="cart_detail.html"> <i class="bi bi-cart-check" title="Giỏ hàng"></i></a>
                         </div>
                         <div class="login">
                             <a href="./login.html"><img src="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png" alt="">
@@ -267,7 +268,7 @@
                                     <span class="old-price"><del>5.5285.000₫</del></span>
                                 </div>
                                 <div class="cart-icon">
-                                    <a href="">
+                                    <a href=""class="open-cart">
                                         <i class="bi bi-cart-check"></i>
                                     </a>
                                 </div>
@@ -303,7 +304,7 @@
                                     <span class="old-price"><del>7.600.000₫</del></span>
                                 </div>
                                 <div class="cart-icon">
-                                    <a href="">
+                                    <a href=""class="open-cart">
                                         <i class="bi bi-cart-check"></i>
                                     </a>
                                 </div>
@@ -335,7 +336,7 @@
                                     <span class="old-price"><del>8.190.000₫</del></span>
                                 </div>
                                 <div class="cart-icon">
-                                    <a href="">
+                                    <a href=""class="open-cart">
                                         <i class="bi bi-cart-check"></i>
                                     </a>
                                 </div>
@@ -367,7 +368,7 @@
                                     <span class="old-price"><del>7.790.000₫</del></span>
                                 </div>
                                 <div class="cart-icon">
-                                    <a href="">
+                                    <a href=""class="open-cart">
                                         <i class="bi bi-cart-check"></i>
                                     </a>
                                 </div>
@@ -618,9 +619,192 @@
                 <i class="bi bi-chevron-up"></i>
             </button>
         </a>
+        <div id="khunggiohang" class="cart-widget-side wd-right">
+            <!-- Tiêu đề và nút đóng -->
+            <div class="wd-heading">
+                <span class="title">Giỏ hàng</span>
+                <div class="close-side-widget wd-action-btn wd-style-text wd-cross-icon">
+                    <!-- Nút xóa -->
+
+                    <a href="#" class="close-cart" rel="nofollow">× Đóng</a>
+                </div>
+            </div>
+            <!-- Nội dung widget giỏ hàng -->
+            <div class="woocommerce-cart-widget">
+                <div class="widget_shopping_cart_content">
+                    <!-- Phần thân giỏ hàng với cuộn -->
+                    <div class="shopping-cart-widget-body wd-scroll">
+                        <div class="wd-scroll-content">
+                            <!-- Danh sách sản phẩm -->
+                            <ul class="cart_list product_list_widget woocommerce-mini-cart">
+                                <li class="woocommerce-mini-cart-item mini_cart_item" data-key="afd9aae7ea73221ba1c2b2af3ea1cb61">
+                                    <!-- Khung chung dẫn đến chi tiết sản phẩm -->
+                                    <a href="./product-detail.html" class="cart-item-link" style=" text-decoration: none; color: inherit;">
+                                        <!-- Ảnh sản phẩm -->
+                                        <div class="cart-item-image">
+                                            <img src="https://flexhouse.vn/wp-content/uploads/2023/06/Den-LED-bong-bong-trang-tri-cong-vien-canh-quan-MT6720-16.jpg"
+                                                 alt="Đèn thả bàn ăn hậu hiện đại XY3122">
+                                        </div>
+
+                                        <!-- Thông tin sản phẩm -->
+                                        <div class="cart-info">
+                                            <div class="cart-info-top" style="display: flex;  align-items: center;">
+                                                <span class="wd-entities-title">Đèn thả bàn ăn hậu hiện đại XY3122</span>
+                                                <!-- Nút xóa -->
+                                                <a href="#" class="remove remove_from_cart_button" data-product_id="501425" data-cart_item_key="afd9aae7ea73221ba1c2b2af3ea1cb61" data-product_sku="XY3122">×</a>
+                                            </div>
+                                            <span class="quantity">2 × <span class="woocommerce-Price-amount amount"><bdi>5,403,000&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></bdi></span></span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul><!-- Kết thúc danh sách sản phẩm -->
+                        </div>
+                        <div class="wd-scroll-content">
+                            <!-- Danh sách sản phẩm -->
+                            <ul class="cart_list product_list_widget woocommerce-mini-cart">
+                                <li class="woocommerce-mini-cart-item mini_cart_item" data-key="afd9aae7ea73221ba1c2b2af3ea1cb61">
+                                    <!-- Khung chung dẫn đến chi tiết sản phẩm -->
+                                    <a href="./product-detail.html" class="cart-item-link" style=" text-decoration: none; color: inherit;">
+                                        <!-- Ảnh sản phẩm -->
+                                        <div class="cart-item-image">
+                                            <img src="https://flexhouse.vn/wp-content/uploads/2023/06/Den-LED-bong-bong-trang-tri-cong-vien-canh-quan-MT6720-16.jpg"
+                                                 alt="Đèn thả bàn ăn hậu hiện đại XY3122">
+                                        </div>
+
+                                        <!-- Thông tin sản phẩm -->
+                                        <div class="cart-info">
+                                            <div class="cart-info-top" style="display: flex;  align-items: center;">
+                                                <span class="wd-entities-title">Đèn thả bàn ăn hậu hiện đại XY3122</span>
+                                                <!-- Nút xóa -->
+                                                <a href="#" class="remove remove_from_cart_button" data-product_id="501425" data-cart_item_key="afd9aae7ea73221ba1c2b2af3ea1cb61" data-product_sku="XY3122">×</a>
+                                            </div>
+                                            <span class="quantity">2 × <span class="woocommerce-Price-amount amount"><bdi>5,403,000&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></bdi></span></span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul><!-- Kết thúc danh sách sản phẩm -->
+                        </div>
+                        <div class="wd-scroll-content">
+                            <!-- Danh sách sản phẩm -->
+                            <ul class="cart_list product_list_widget woocommerce-mini-cart">
+                                <li class="woocommerce-mini-cart-item mini_cart_item" data-key="afd9aae7ea73221ba1c2b2af3ea1cb61">
+                                    <!-- Khung chung dẫn đến chi tiết sản phẩm -->
+                                    <a href="./product-detail.html" class="cart-item-link" style=" text-decoration: none; color: inherit;">
+                                        <!-- Ảnh sản phẩm -->
+                                        <div class="cart-item-image">
+                                            <img src="https://flexhouse.vn/wp-content/uploads/2023/06/Den-LED-bong-bong-trang-tri-cong-vien-canh-quan-MT6720-16.jpg"
+                                                 alt="Đèn thả bàn ăn hậu hiện đại XY3122">
+                                        </div>
+
+                                        <!-- Thông tin sản phẩm -->
+                                        <div class="cart-info">
+                                            <div class="cart-info-top" style="display: flex;  align-items: center;">
+                                                <span class="wd-entities-title">Đèn thả bàn ăn hậu hiện đại XY3122</span>
+                                                <!-- Nút xóa -->
+                                                <a href="#" class="remove remove_from_cart_button" data-product_id="501425" data-cart_item_key="afd9aae7ea73221ba1c2b2af3ea1cb61" data-product_sku="XY3122">×</a>
+                                            </div>
+                                            <span class="quantity">2 × <span class="woocommerce-Price-amount amount"><bdi>5,403,000&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></bdi></span></span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul><!-- Kết thúc danh sách sản phẩm -->
+                        </div>
+                        <div class="wd-scroll-content">
+                            <!-- Danh sách sản phẩm -->
+                            <ul class="cart_list product_list_widget woocommerce-mini-cart">
+                                <li class="woocommerce-mini-cart-item mini_cart_item" data-key="afd9aae7ea73221ba1c2b2af3ea1cb61">
+                                    <!-- Khung chung dẫn đến chi tiết sản phẩm -->
+                                    <a href="./product-detail.html" class="cart-item-link" style=" text-decoration: none; color: inherit;">
+                                        <!-- Ảnh sản phẩm -->
+                                        <div class="cart-item-image">
+                                            <img src="https://flexhouse.vn/wp-content/uploads/2023/06/Den-LED-bong-bong-trang-tri-cong-vien-canh-quan-MT6720-16.jpg"
+                                                 alt="Đèn thả bàn ăn hậu hiện đại XY3122">
+                                        </div>
+
+                                        <!-- Thông tin sản phẩm -->
+                                        <div class="cart-info">
+                                            <div class="cart-info-top" style="display: flex;  align-items: center;">
+                                                <span class="wd-entities-title">Đèn thả bàn ăn hậu hiện đại XY3122</span>
+                                                <!-- Nút xóa -->
+                                                <a href="#" class="remove remove_from_cart_button" data-product_id="501425" data-cart_item_key="afd9aae7ea73221ba1c2b2af3ea1cb61" data-product_sku="XY3122">×</a>
+                                            </div>
+                                            <span class="quantity">2 × <span class="woocommerce-Price-amount amount"><bdi>5,403,000&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></bdi></span></span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul><!-- Kết thúc danh sách sản phẩm -->
+                        </div>
+                        <div class="wd-scroll-content">
+                            <!-- Danh sách sản phẩm -->
+                            <ul class="cart_list product_list_widget woocommerce-mini-cart">
+                                <li class="woocommerce-mini-cart-item mini_cart_item" data-key="afd9aae7ea73221ba1c2b2af3ea1cb61">
+                                    <!-- Khung chung dẫn đến chi tiết sản phẩm -->
+                                    <a href="./product-detail.html" class="cart-item-link" style=" text-decoration: none; color: inherit;">
+                                        <!-- Ảnh sản phẩm -->
+                                        <div class="cart-item-image">
+                                            <img src="https://flexhouse.vn/wp-content/uploads/2023/06/Den-LED-bong-bong-trang-tri-cong-vien-canh-quan-MT6720-16.jpg"
+                                                 alt="Đèn thả bàn ăn hậu hiện đại XY3122">
+                                        </div>
+
+                                        <!-- Thông tin sản phẩm -->
+                                        <div class="cart-info">
+                                            <div class="cart-info-top" style="display: flex;  align-items: center;">
+                                                <span class="wd-entities-title">Đèn thả bàn ăn hậu hiện đại XY3122</span>
+                                                <!-- Nút xóa -->
+                                                <a href="#" class="remove remove_from_cart_button" data-product_id="501425" data-cart_item_key="afd9aae7ea73221ba1c2b2af3ea1cb61" data-product_sku="XY3122">×</a>
+                                            </div>
+                                            <span class="quantity">2 × <span class="woocommerce-Price-amount amount"><bdi>5,403,000&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></bdi></span></span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul><!-- Kết thúc danh sách sản phẩm -->
+                        </div> <div class="wd-scroll-content">
+                        <!-- Danh sách sản phẩm -->
+                        <ul class="cart_list product_list_widget woocommerce-mini-cart">
+                            <li class="woocommerce-mini-cart-item mini_cart_item" data-key="afd9aae7ea73221ba1c2b2af3ea1cb61">
+                                <!-- Khung chung dẫn đến chi tiết sản phẩm -->
+                                <a href="./product-detail.html" class="cart-item-link" style=" text-decoration: none; color: inherit;">
+                                    <!-- Ảnh sản phẩm -->
+                                    <div class="cart-item-image">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2023/06/Den-LED-bong-bong-trang-tri-cong-vien-canh-quan-MT6720-16.jpg"
+                                             alt="Đèn thả bàn ăn hậu hiện đại XY3122">
+                                    </div>
+
+                                    <!-- Thông tin sản phẩm -->
+                                    <div class="cart-info">
+                                        <div class="cart-info-top" style="display: flex;  align-items: center;">
+                                            <span class="wd-entities-title">Đèn thả bàn ăn hậu hiện đại XY3122</span>
+                                            <!-- Nút xóa -->
+                                            <a href="#" class="remove remove_from_cart_button" data-product_id="501425" data-cart_item_key="afd9aae7ea73221ba1c2b2af3ea1cb61" data-product_sku="XY3122">×</a>
+                                        </div>
+                                        <span class="quantity">2 × <span class="woocommerce-Price-amount amount"><bdi>5,403,000&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></bdi></span></span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul><!-- Kết thúc danh sách sản phẩm -->
+                    </div>
+
+                    </div>
+
+                    <!-- Phần chân giỏ hàng -->
+                    <div class="shopping-cart-widget-footer">
+                        <!-- Tổng phụ -->
+                        <p class="woocommerce-mini-cart__total total">
+                            <strong>Tổng số phụ:</strong> <span class="woocommerce-Price-amount amount"><bdi>10,806,000&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></bdi></span>
+                        </p>
+                        <!-- Nút hành động -->
+                        <p class="woocommerce-mini-cart__buttons buttons">
+                            <a href="./cart_detail.html" class="button btn-cart wc-forward">Xem giỏ hàng</a>
+                            <a href="./order.html" class="button checkout wc-forward">Thanh toán</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="cart-overlay"></div>
 
     </main>
-
+    <script src="./JS/products.js"></script>
 </body>
 
 </html>
