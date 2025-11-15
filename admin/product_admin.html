@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản Phẩm - Quản Lý Đèn</title>
+    <link rel="stylesheet" href="../CSS/admin.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png" alt="logo">
+                LightAdmin
+            </div>
+            <a href="../admin/dashboard.html" class="menu-item">
+                📊 Tổng Quan
+            </a>
+            <a href="../admin/product_admin.html" class="menu-item active">
+                📦 Sản Phẩm
+            </a>
+            <a href="../admin/orders-admin.html" class="menu-item">
+                🛒 Đơn Hàng
+            </a>
+            <a href="../admin/customers.html" class="menu-item">
+                👥 Khách Hàng
+            </a>
+            <a href="../admin/news-admin.html" class="menu-item">
+                📰 Tin Tức
+            </a>
+            <a href="../admin/analytics.html" class="menu-item">
+                📈 Thống Kê
+            </a>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>Quản Lý Sản Phẩm</h1>
+                <div class="user-info">
+                    <div class="avatar">Q</div>
+                    <div>
+                        <div style="font-weight: 600;">Admin</div>
+                        <div style="font-size: 12px; color: #718096;">Quản trị viên</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <h2>Quản Lý Sản Phẩm</h2>
+                    <div class="search-box">
+                        <input type="text" placeholder="Tìm kiếm sản phẩm...">
+                        <button class="btn btn-primary" onclick="openModal()">
+                            + Thêm Sản Phẩm
+                        </button>
+                    </div>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hình Ảnh</th>
+                            <th>Sản Phẩm</th>
+                            <th>Danh Mục</th>
+                            <th>Giá</th>
+                            <th>Số Lượng</th>
+                            <th>Chức Năng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="product-img">
+                                <img src="https://flexhouse.vn/wp-content/uploads/2023/05/Den-san-vuon-nang-luong-mat-troi-hien-dai-CB3075-15.jpg"
+                                    alt="">
+                            </td>
+                            <td>
+                                <div class="product-info">
+                                    <div class="products-name">Đèn LED Downlight 7W</div>
+                                </div>
+                            </td>
+                            <td>Đèn LED</td>
+                            <td class="cost-products">45,000 VNĐ</td>
+                            <td>150</td>
+                            <td>
+                                <button class="btn btn-sm btn-edit">Sửa</button>
+                                <button class="btn btn-sm btn-delete">xóa</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="product-img">
+                                <img src="https://flexhouse.vn/wp-content/uploads/2023/05/Den-san-vuon-nang-luong-mat-troi-hien-dai-CB3075-15.jpg"
+                                    alt="">
+                            </td>
+                            <td>
+                                <div class="product-info">
+                                    <div class="products-name">Đèn Chùm Pha Lê</div>
+                                </div>
+                            </td>
+                            <td>Đèn Trang Trí</td>
+                            <td class="cost-products">2,500,000 VNĐ</td>
+                            <td>25</td>
+                            <td>
+                                <button class="btn btn-sm btn-edit">Sửa</button>
+                                <button class="btn btn-sm btn-delete">xóa</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="product-img">
+                                <img src="https://flexhouse.vn/wp-content/uploads/2023/05/Den-san-vuon-nang-luong-mat-troi-hien-dai-CB3075-15.jpg"
+                                    alt="">
+                            </td>
+                            <td>
+                                <div class="product-info">
+                                    <div class="products-name">Đèn Tuýp LED T8 1.2m</div>
+                                </div>
+                            </td>
+                            <td>Đèn LED</td>
+                            <td class="cost-products">65,000 VNĐ</td>
+                            <td>200</td>
+                            <td>
+                                <button class="btn btn-sm btn-edit">Sửa</button>
+                                <button class="btn btn-sm btn-delete">xóa</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="product-img">
+                                <img src="https://flexhouse.vn/wp-content/uploads/2023/05/Den-san-vuon-nang-luong-mat-troi-hien-dai-CB3075-15.jpg"
+                                    alt="">
+                            </td>
+                            <td>
+                                <div class="product-info">
+                                    <div class="products-name">Đèn Pha LED 50W</div>
+                                </div>
+                            </td>
+                            <td>Đèn Công Nghiệp</td>
+                            <td class="cost-products">350,000 VNĐ</td>
+                            <td>80</td>
+                            <td>
+                                <button class="btn btn-sm btn-edit">Sửa</button>
+                                <button class="btn btn-sm btn-delete">xóa</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="product-img">
+                                <img src="https://flexhouse.vn/wp-content/uploads/2023/05/Den-san-vuon-nang-luong-mat-troi-hien-dai-CB3075-15.jpg"
+                                    alt="">
+                            </td>
+                            <td>
+                                <div class="product-info">
+                                    <div class="products-name">Đèn Bàn Học LED</div>
+                                </div>
+                            </td>
+                            <td>Đèn Trang Trí</td>
+                            <td class="cost-products">180,000 VNĐ</td>
+                            <td>60</td>
+                            <td>
+                                <button class="btn btn-sm btn-edit">Sửa</button>
+                                <button class="btn btn-sm btn-delete">xóa</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Thêm Sản Phẩm Mới</h3>
+                <button class="close-btn" onclick="closeModal()">×</button>
+            </div>
+            <form id="productForm">
+                <div class="form-group">
+                    <label>Link Hình Ảnh Sản Phẩm</label>
+                    <input type="url" id="imageLink">
+                </div>
+                <div class="form-group">
+                    <label>Tên Sản Phẩm</label>
+                    <input type="text" id="productName" required>
+                </div>
+                <div class="form-group">
+                    <label>Danh Mục</label>
+                    <select id="productCategory" required>
+                        <option value="">Chọn danh mục</option>
+                        <option value="Đèn LED">Đèn LED</option>
+                        <option value="Đèn Trang Trí">Đèn Trang Trí</option>
+                        <option value="Đèn Công Nghiệp">Đèn Công Nghiệp</option>
+                        <option value="Phụ Kiện">Phụ Kiện</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Giá (VNĐ)</label>
+                    <input type="number" id="productPrice" required>
+                </div>
+                <div class="form-group">
+                    <label>Số Lượng Tồn Kho</label>
+                    <input type="number" id="productStock" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Hủy</button>
+                    <button type="submit" class="btn btn-primary">Thêm Sản Phẩm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('productModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').classList.remove('active');
+        }
+
+        document.getElementById('productForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            // Xử lý thêm sản phẩm ở đây
+            alert('Thêm sản phẩm thành công!');
+            closeModal();
+        });
+    </script>
+</body>
+
+</html>

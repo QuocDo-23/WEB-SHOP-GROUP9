@@ -1,156 +1,153 @@
-
-#row-1918689964 {
-    display: flex;
-    flex-wrap: wrap;
-justify-content: space-between;
-    padding-bottom: 100px;
+.container {
+  box-sizing: border-box;
 }
 
-#row-1918689964 .col {
-    width: 40%;        /* 2 cột bằng nhau */
-    box-sizing: border-box;
+.container * {
+  box-sizing: border-box;
 }
 .section_1_contact {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 500px;
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("https://file.hstatic.net/1000129146/file/10_92e37aa1e83f49599f92517344afa15e_grande.jpg") no-repeat center center;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    overflow: hidden;
-    margin-top: 10px;
-    text-align: center;
-   display: flex;
-    align-items: center;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 500px;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("https://file.hstatic.net/1000129146/file/10_92e37aa1e83f49599f92517344afa15e_grande.jpg")
+      no-repeat center center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  margin-top: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
 }
-.content-area{
-    margin: 0 auto;
-    width: 1300px;
+.content-area {
+  margin: 0 auto;
+  width: 1300px;
+}
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 30px;
 }
 
+.col {
+  background: white;
+  padding: 40px 20px 40px 20px;
+}
 /* ====== TIÊU ĐỀ ====== */
 .title-contact-page {
-    font-size: 20px;
-    font-weight: 700;
-    color: #a1801b;
-    margin-bottom: 15px;
+  color: #a1801b;
+  font-size: 28px;
+  margin-bottom: 20px;
+  border-bottom: 3px solid #a1801b;
+  padding-bottom: 10px;
 }
 
-/* ====== MÔ TẢ BÊN TRÁI ====== */
 .des-contact-page {
-    font-size: 15px;
-    line-height: 1.6;
-    color: #444;
-    margin-bottom: 20px;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 25px;
 }
 
-/* Title địa chỉ */
 .widget-title {
-    font-size: 16px;
-    font-weight: 700;
-    color: #000;
+  font-weight: bold;
+  color: #333;
+  font-size: 18px;
+  display: block;
+  margin-bottom: 15px;
 }
-
 /* Danh sách địa chỉ */
 #footer-text li {
-    margin-bottom: 8px;
-    font-size: 15px;
-    color: #333;
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: #333;
+}
+#footer-text {
+  padding-left: 20px;
+  padding-bottom: 20px;
 }
 
-/* ====== FORM LIÊN HỆ ====== */
-.block-right-contact-page label {
-    font-weight: 600;
-    font-size: 14px;
-    color: #333;
+.btn a {
+  /*width: 120%;*/
+  background: #a1801b;
+  border: 2px solid #c9a26a;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  text-align: center;
+  padding: 20px;
 }
-
-/* Input + textarea */
-.block-right-contact-page input,
-.block-right-contact-page textarea {
-    width: 96%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    font-size: 14px;
-
+.btn {
+  display: flex;
+  justify-content: center;
 }
-
-/* Hover input */
-.block-right-contact-page input:focus,
-.block-right-contact-page textarea:focus {
-    border-color: #a1801b;
-    box-shadow: 0 0 3px rgba(222, 135, 34, 0.3);
-}
-
-/* ====== BUTTON ====== */
-.block-right-contact-page input[type="submit"] {
-    background: #a1801b;
-    color: #fff;
-    padding: 10px 25px;
-    border-radius: 4px;
-    border: none;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.block-right-contact-page input[type="submit"]:hover {
-    background: #a1801b;
-}
-
-.wpcf7-form.init{
-    width: 100%;
- }
-.col-inner a {
-    /*width: 120%;*/
-    background: #a1801b;
-    border: 2px solid #c9a26a;
-    color: white;
-    font-size: 16px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    text-align: center;
-    padding: 20px;
-
-}
-.btn{
-    display: flex;
-    justify-content: center;
-    }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-    #row-1918689964 {
-        flex-direction: column;
-        gap: 20px;
-    }
+  #row-1918689964 {
+    flex-direction: column;
+    gap: 20px;
+  }
 
-    #row-1918689964 .col {
-        width: 100%;
-    }
-
+  #row-1918689964 .col {
+    width: 100%;
+  }
 }
 .google-map {
-    width: 100%;
-    height: 400px; /* chiều cao mong muốn */
-    border: 0;
-    border-radius: 6px; /* nếu muốn bo góc */
-    overflow: hidden;
+  width: 100%;
+  height: 400px; /* chiều cao mong muốn */
+  border: 0;
+  border-radius: 6px; /* nếu muốn bo góc */
+  overflow: hidden;
 }
 
 .google-map iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
+form label {
+  color: #333;
+  font-weight: 600;
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 8px;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+  font-family: inherit;
+}
+
+form input:focus,
+form textarea:focus {
+  outline: none;
+  border-color: #a1801b;
+}
+
+form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.btn {
+  margin-top: 25px;
+}

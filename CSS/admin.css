@@ -402,3 +402,6 @@ tr:hover {
 .content-section.active {
   display: block;
 }
+.sidebar a {
+  text-decoration: none;
+}
