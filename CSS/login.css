@@ -140,6 +140,9 @@ button#register:hover i {
   right: 20px;
   opacity: 1;
 }
+.btn_lgin a {
+  color: white;
+}
 
 .login-container form {
   background-color: #fff;
