@@ -198,11 +198,7 @@
     padding-top: 0;
 }
 
-.section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+
 
 .section-header_search {
     display: flex;
@@ -210,8 +206,7 @@
     align-items: center;
     border-bottom: 1px solid #f0f2f5;
 }
-
-.section-title {
+ .section-title-search {
     font-size: 15px;
     font-weight: 600;
     color: #65676b;
