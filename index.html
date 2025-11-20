@@ -174,23 +174,88 @@
 
     </nav>
     <div class="search-overlay" id="searchOverlay" onclick="closeSearchPanel()"></div>
-    <section class="section_1" id="home">
-        <div class="cont">
-            <div class="section_1-content">
-                <h1>
-                    LIGHTUP
-                    <span class="highlight">Đèn Và Thiết Bị Chiếu Sáng</span>
-                </h1>
-                <p>
-                    Sứ mệnh của chúng tôi là kết hợp hài hòa giữa ý tưởng và
-                    mong muốn của khách hàng, đem lại những phút giây thư
-                    giãn tuyệt vời bên gia đình và những người thân yêu.
-                </p>
-                <a href="contact.html" class="cta-button">LIÊN HỆ NGAY</a>
+    <div class="carousel-container" id="carouselContainer">
+        <!-- Slide 1 -->
+        <div class="carousel-slide active">
+            <div class="section_1"
+                 style="background-image: url('https://www.mpe.com.vn/media/zzbjgmwb/ca-n-ho.jpg');">
+                <div class="cont">
+                    <div class="section_1-content">
+                        <h1>LIGHTUP</h1>
+                        <span class="highlight">Đèn Và Thiết Bị Chiếu Sáng</span>
+                        <p> Chúng tôi không chỉ bán đèn, chúng tôi mang đến sự an tâm và niềm tin về một không gian
+                            được
+                            chiếu sáng hoàn hảo.</p>
+                        <a href="#" class="cta-button">Liên Hệ</a>
+                    </div>
+                </div>
             </div>
         </div>
 
-    </section>
+        <!-- Slide 2 -->
+        <div class="carousel-slide ">
+            <div class="section_1"
+                 style="background-image: url('https://denchum.mauthemewp.com/wp-content/uploads/2022/05/artglass-particles06.igallery.image0000007.jpg');">
+                <div class="cont">
+                    <div class="section_1-content p2">
+                        <div class="p2-r">
+                            <div class="r-up">
+                                <h1>LIGHTUP</h1>
+                                <span class="highlight">Đèn Và Thiết Bị Chiếu Sáng</span>
+
+                            </div>
+                            <div class="r-down">
+                                <img src="https://www.mpe.com.vn/media/zzbjgmwb/ca-n-ho.jpg" alt="">
+                                <div class="down_c">
+                                    <a href="">liên hệ ngay</a>
+                                    <div class="contact-box">
+                                        <div class="contact-phone">
+                                            <div class="phone-icon">☎</div>
+                                            <span>0906.94.94.88</span>
+                                        </div>
+                                        <div class="contact-phone">
+                                            <div class="phone-icon">☎</div>
+                                            <span>0937.94.94.88</span>
+                                        </div>
+                                        <div class="addresses">
+                                            <div class="address-item"><strong>CN1:</strong> 98 Đường số 2, KDC Giồng
+                                                Ông
+                                                Tố, P. Bình Trưng, HCM</div>
+                                            <div class="address-item"><strong>CN2:</strong> 684 Phan Văn Trị, P Gò
+                                                Vấp,
+                                                TP HCM</div>
+                                            <div class="address-item"><strong>CN3:</strong> 290 Đại Lộ Bình Dương,
+                                                P.
+                                                Bình Dương, TP HCM</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="p2-l">
+                            <img src="https://denchum.mauthemewp.com/wp-content/uploads/2022/05/artglass-particles06.igallery.image0000007.jpg"
+                                 alt="">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <button class="carousel-arrow prev" onclick="prevSlide()">❮</button>
+        <button class="carousel-arrow next" onclick="nextSlide()">❯</button>
+
+        <div class="carousel-dots" id="dots">
+            <span class="dot active" onclick="goToSlide(0)"></span>
+            <span class="dot" onclick="goToSlide(1)"></span>
+        </div>
+    </div>
+
+
     <div class="section-2">
         <div class="section-header">
             <h2>DÒNG SẢN PHẨM CHÍNH</h2>
