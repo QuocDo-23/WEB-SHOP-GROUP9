@@ -1,6 +1,6 @@
 /* --- KHU VỰC SẢN PHẨM --- */
 .product-section {
-  margin-top: 40px;
+  margin-top: 20px;
   scroll-margin-top: 130px;
 }
 
@@ -133,6 +133,7 @@
   font-size: 2.4rem;
   margin-bottom: 20px;
   color: #444;
+    margin-top: 0;
 }
 .pagination {
   text-align: center;
@@ -240,5 +241,215 @@
   color: #666;
   margin-top: 8px;
   text-align: left;
+}
+/* Thanh Bộ Lọc + Sắp Xếp */
+.filter-sort-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Bộ lọc bên trái, sắp xếp bên phải */
+    padding: 12px 0;
+    position: relative;
+    font-family: sans-serif;
+    flex-wrap: wrap; /* Wrap trên mobile */
+    width: 1300px;
+    margin: 0 auto;
+    margin-top: 20px;
+
+}
+
+/* Container bộ lọc bên trái */
+.filter-container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+/* Các dropdown bộ lọc (Bộ lọc, Giá, Chất liệu, Phong Cách, Loại đèn) */
+.filter-dropdown {
+    position: relative;
+}
+
+.filter-toggle {
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f9f9f9;
+    transition: 0.2s;
+}
+
+.filter-toggle:hover {
+    background: #f0f0f0;
+}
+
+.filter-toggle i.bi-funnel-fill {
+    font-size: 16px;
+    color: #333;
+}
+
+.filter-toggle i {
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.filter-toggle.open i:last-child {
+    transform: rotate(180deg);
+}
+
+.filter-list {
+    display: none;
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background: #fff;
+    width: 200px; /* Vừa đủ cho tổng hợp */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 20;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.filter-list.show {
+    display: block;
+}
+
+.filter-list li {
+    padding: 8px 0;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.filter-list li:hover {
+    background: #f2f2f2;
+}
+
+.filter-list li label {
+    display: block;
+    margin: 0;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Style đặc biệt cho dropdown Bộ lọc (tổng hợp) */
+.filter-list.combined {
+    padding: 15px;
+    width: 810px ;
+}
+
+.filter-list.combined .combined-group {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    width: 810px;
+}
+
+.filter-list.combined .group-item {
+    flex: 1;
+}
+
+.filter-list.combined .group-item h5 {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.filter-list.combined .group-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.filter-list.combined .group-item li {
+    padding: 5px 0;
+}
+
+
+/* Sắp xếp bên phải riêng biệt */
+.sort-box {
+    position: relative;
+    margin-left: auto; /* Đẩy sát bên phải */
+}
+
+.sort-toggle {
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f9f9f9;
+    transition: 0.2s;
+}
+
+.sort-toggle:hover {
+    background: #f0f0f0;
+}
+
+.sort-toggle i {
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.sort-toggle.open i {
+    transform: rotate(180deg);
+}
+
+.sort-list {
+    display: none;
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background: #fff;
+    width: 180px;
+    position: absolute;
+    right: 0;
+    z-index: 20;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.sort-list.show {
+    display: block;
+}
+
+.sort-list li {
+    padding: 8px 0;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.sort-list li:hover {
+    background: #f2f2f2;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .filter-sort-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .filter-container {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .sort-box {
+        margin-left: 0;
+        align-self: flex-end;
+    }
+    .filter-list.combined .combined-group {
+        flex-direction: column;
+        gap: 10px;
+    }
 }
 
