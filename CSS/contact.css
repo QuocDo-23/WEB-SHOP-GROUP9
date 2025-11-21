@@ -11,17 +11,37 @@
   left: 0;
   width: 100%;
   height: 500px;
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("https://file.hstatic.net/1000129146/file/10_92e37aa1e83f49599f92517344afa15e_grande.jpg")
-      no-repeat center center;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  overflow: hidden;
+    background-image: url("https://denchum.mauthemewp.com/wp-content/uploads/2022/05/contact-title.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
   margin-top: 10px;
   text-align: center;
   display: flex;
   align-items: center;
+}
+
+.section_1_contact h1 {
+    font-family: 'Monsieur La Doulaise', cursive;
+    font-size: 100px;
+    color: #ddb28c;
+    font-weight: normal;
+    margin-bottom: 0;
+    line-height:0;
+}
+
+
+.section_1_contact .highlight {
+    color: white;
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: 90px;
+    font-family: "Literata", sans-serif;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
 }
 .content-area {
   margin: 0 auto;
@@ -150,4 +170,32 @@ form textarea {
 
 .btn {
   margin-top: 25px;
+}
+/* CSS gốc của bạn, đã chỉnh lọc */
+.ux-shape-divider {
+    --divider-top-width: 100%;
+    --divider-width: 100%;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    bottom: 0; /* Đặt divider ở dưới cùng của section */
+}
+.ux-shape-divider svg {
+    display: block;
+    position: relative;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    height: 150px;
+    width: 100%; /* Đảm bảo width đầy đủ, trừ khi override */
+}
+.ux-shape-divider--bottom svg {
+    width: calc(var(--divider-width) + 2px); /* Giữ nguyên như bạn cung cấp */
+}
+/* Thêm fill cho SVG để có màu (bạn có thể thay đổi) */
+.ux-shape-fill {
+    fill: #ffffff; /* Màu nền cho phần dưới divider (khớp với body) */
 }
