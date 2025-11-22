@@ -267,7 +267,7 @@ button#register:hover i {
 .overlay-panel img {
   width: 100px;
   height: auto;
-  background-color: #e0e0e0;
+  background-color: white;
   border-radius: 50%;
 }
 
