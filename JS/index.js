@@ -52,4 +52,4 @@ function goToSlide(n) {
 }
 
 // Auto-advance every 5 seconds
-setInterval(nextSlide, 500000);
+setInterval(nextSlide, 5000);
