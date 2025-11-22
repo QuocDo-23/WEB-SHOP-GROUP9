@@ -178,20 +178,32 @@ input:focus {
 /*  NÚT GỬI YÊU CẦU      */
 /* ===================== */
 .btn-request {
-  width: 50%;
-  padding: 12px;
-  background-color: #c09b5b;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    position: relative;
+    border-radius: 20px;
+    border: 1px solid #c09b5b;
+    background-color: #c09b5b;
+    box-shadow: 0 0 1rem rgba(192, 155, 91, 0.6);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 10px;
+    padding: 12px 80px;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
 }
 
 .btn-request:hover {
-  background-color: #a57f3a;
+    letter-spacing: 3px;
+    background-color: #d4ab6a;
+    box-shadow: 0 0 1.5rem rgba(192, 155, 91, 0.8);
+}
+.btn-request:active{
+    transform: scale(0.95);
+}
+.btn-request:focus{
+    outline: none;
 }
 
 /* ===================== */
