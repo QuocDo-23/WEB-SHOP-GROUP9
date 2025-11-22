@@ -107,16 +107,61 @@
                 <li><a href="./news.html" class="active">TIN TỨC</a></li>
                 <li><a href="./contact.html">LIÊN HỆ</a></li>
             </ul>
-            <div class="nav_r">
-                <div class="search-icon">
-                    <input type="text" placeholder="Tìm kiếm "><i class="bi bi-search"></i>
+            <div class="nav_r" id="nav_r">
+            <!-- Ô SEARCH TRÊN NAV -->
+            <div class="search-icon" onclick="openSearchBar()">
+                <input type="text" placeholder="Tìm kiếm ">
+                <i class="bi bi-search"></i>
+            </div>
+
+            <!-- NÚT QUAY LẠI ẨN LÚC BÌNH THƯỜNG -->
+            <i class="bi bi-x back-button-nav" onclick="closeSearchBar()"></i>
+
+
+            <!-- khung tìm kiếm -->
+            <div class="search-panel" id="searchPanel">
+                <div class="search-content">
+                    <div class="section-header_search">
+                        <h2 class="section-title-search">Gợi ý tìm kiếm</h2>
+                    </div>
+
+                    <div class="search-item ">
+                        <span class="arrow-icon">  <i class="bi bi-search"></i></span>
+                        <div class="item-content">
+                            <div class="item-name">
+                                Đèn để bàn phòng khách phong cách tối giản KLS0049</div>
+                        </div>
+                    </div>
+
+                    <div class="search-item">
+                        <span class="arrow-icon">  <i class="bi bi-search"></i></span>
+                        <div class="item-content">
+                            <div class="item-name">Đèn bàn đọc sách làm việc hiện đại
+                                tối giản FLM5145</div>
+                        </div>
+
+                    </div>
+
+                    <div class="search-item">
+                        <span class="arrow-icon">  <i class="bi bi-search"></i></span>
+                        <div class="item-content">
+                            <div class="item-name">Đèn bàn bằng gốm sứ nhiều màu
+                                HYJ0029</div>
+                        </div>
+
+                    </div>
                 </div>
-                <div class="shop">
-                    <a href="cart_detail.html"> <i class="bi bi-cart-check" title="Giỏ hàng"></i></a>
+            </div>
+
+            <!-- ICON SHOP -->
+            <div class="icon-group">
+                <div class="shop" id="shop">
+                    <a href="cart_detail.html"><i class="bi bi-cart-check" title="Giỏ hàng"></i></a>
                 </div>
-                <div class="login">
-                    <a href="./login.html"><i class="bi bi-person-circle" title="Tài Khoản"></i>
-                    </a>
+
+                <!-- ICON LOGIN -->
+                <div class="login" id="login">
+                    <a href="./login.html"><i class="bi bi-person-circle" title="Tài Khoản"></i></a>
                     <div class="sub_login">
                         <div class="container-sub-login">
                             <a href="./profile.html"><i class="bi bi-person"></i> Tài khoản</a>
@@ -125,6 +170,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
 
     </div>
@@ -394,7 +440,8 @@
                     </div>
                 </div>
             </div>
-    </section>
+
+     </section>
 </main>
 
 <!--Chân trang chứa thông tin liên hệ-->
@@ -454,6 +501,7 @@
         </div>
     </div>
 </div>
+<script src="./JS/index.js"></script>
 </body>
 
 </html>
