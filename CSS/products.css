@@ -452,4 +452,21 @@
         gap: 10px;
     }
 }
+.quantity {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
 
+.quantity button {
+    background-color: #eee;
+    border: none;
+    padding: 5px 10px;
+    font-size: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.quantity button:hover {
+    background-color: #ccc;
+}
