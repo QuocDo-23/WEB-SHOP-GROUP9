@@ -444,10 +444,7 @@ body {
   color: white;
 }
 
-.btn-action.btn-delete {
-  background: #f0f0f0;
-  color: #718096;
-}
+
 
 .btn-action.btn-delete:hover {
   background: #718096;

@@ -545,3 +545,119 @@
 .col-12{
     padding-bottom: 50px;
 }
+
+  .review-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 500px;
+            margin: auto;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Căn giữa tuyệt đối */
+            z-index: 1000; /* Đảm bảo trên overlay */
+            display: none; /* Ẩn hộp đánh giá ban đầu */
+            white-space: nowrap;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+        .close-btn:hover {
+            color: #000;
+        }
+        .review-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .review-stars label {
+            margin-bottom: 10px;
+            display: block;
+            font-weight: bold;
+            text-align: center;
+        }
+        .stars {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+        .stars a {
+            text-decoration: none;
+            background: none;
+            color: #ccc;
+            font-size: 32px;
+            transition: 0.2s;
+        }
+        .stars a:hover,
+        .stars a.active {
+            color: #ffcc00;
+        }
+        textarea {
+            width: 90%;
+            height: 120px;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            margin: 12px auto 0;
+            resize: none;
+            display: block;
+        }
+        .submit-btn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #a1801b;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .submit-btn:hover {
+            background: #8b6a17;
+        }
+        .star-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 60px;
+        }
+        /* Style cho nút "Đánh giá ngay" */
+        .star_box_right {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .btn-reviews-now {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #0284c7;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .btn-reviews-now:hover {
+            background: #0369a1;
+        }
+        .overlay {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.5); /* Màu đen mờ */
+                    z-index: 999;
+                    display: none; /* Ẩn ban đầu */
+                     z-index: 1000;
+                }
