@@ -116,7 +116,7 @@ body {
   text-transform: capitalize;
   transition: 0.3s ease-in-out;
   width: calc(100% - 20px);
-  margin-top: 100px;
+  margin-top: 90px;
   cursor: pointer;
 }
 
@@ -443,8 +443,6 @@ body {
   background: #3498db;
   color: white;
 }
-
-
 
 .btn-action.btn-delete:hover {
   background: #718096;
