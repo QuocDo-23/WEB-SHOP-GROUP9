@@ -220,11 +220,16 @@
   cursor: pointer;
   transition: all 0.2s;
   gap: 12px;
+  text-decoration: none;
+  color: inherit; /* giữ nguyên màu chữ */
+
+
 }
 
 .search-item:hover {
   transform: translateX(10px);
   background: linear-gradient(90deg, #f5f1ed 0%, #ffffff 100%);
+  text-decoration: none;
 }
 
 .item-content {
