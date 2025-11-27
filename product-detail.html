@@ -504,11 +504,13 @@
                         </div>
                       </div>
                     </div>
-                    <div class="star_box_right">
-                      <a href=""
-                        title="Đánh giá ngay" class="btn-reviews-now">Đánh giá ngay</a>
-                    </div>
+                      <!-- Nút mở hộp đánh giá -->
+                      <div class="star_box_right">
+                          <a href="#" title="Đánh giá ngay" class="btn-reviews-now">Đánh giá ngay</a>
+                      </div>
+
                   </div>
+
 
                   <ol class="commentlist">
                     <li class="review even thread-even depth-1 wd-col" id="li-comment-55849">
@@ -776,7 +778,25 @@
       <i class="bi bi-chevron-up"></i>
     </button>
   </a>
-
+  <!-- Overlay để làm tối nền -->
+  <div class="overlay"></div>
+  <!-- Hộp đánh giá -->
+  <div class="review-box">
+      <button class="close-btn">✖</button>
+      <div class="review-title">Đánh giá sản phẩm</div>
+      <div class="review-stars">
+          <label>Bạn cảm thấy như thế nào về sản phẩm? (Chọn sao)</label>
+          <div class="stars">
+              <div class="star-item"><a href="#" class="star-1 active" data-rating="1">★</a><small>Rất tệ</small></div>
+              <div class="star-item"><a href="#" class="star-2 active" data-rating="2">★</a><small>Không tệ</small></div>
+              <div class="star-item"><a href="#" class="star-3 active" data-rating="3">★</a><small>Trung bình</small></div>
+              <div class="star-item"><a href="#" class="star-4 active" data-rating="4">★</a><small>Tốt</small></div>
+              <div class="star-item"><a href="#" class="star-5 active" data-rating="5">★</a><small>Tuyệt vời</small></div>
+          </div>
+      </div>
+      <textarea placeholder="Mời bạn chia sẻ cảm nhận về sản phẩm..."></textarea>
+      <button class="submit-btn">Gửi đánh giá</button>
+  </div>
   <script src="./JS/product_detail.js"></script>
   <script src="./JS/index.js"></script>
 </body>
