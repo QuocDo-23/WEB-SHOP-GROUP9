@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Đơn Hàng - Quản Lý Đèn</title>
     <link rel="stylesheet" href="../CSS/admin.css">
+    <link rel="stylesheet" href="../CSS/order-admin.css">
 </head>
 
 <body>
@@ -31,10 +33,13 @@
             <a href="../admin/news-admin.html" class="menu-item">
                 📰 Tin Tức
             </a>
+            <a href="../admin/review.html" class="menu-item ">
+                ⭐ Đánh Giá
+            </a>
             <a href="../admin/analytics.html" class="menu-item">
                 📈 Thống Kê
             </a>
-            <button type="button" onclick="window.location.href='../index.html'">Đăng xuất</button>
+            <button type="button" class="logout-btn" onclick="window.location.href='../index.html'">Đăng xuất</button>
         </div>
 
         <div class="main-content">
@@ -62,7 +67,7 @@
                             <th>Ngày</th>
                             <th>Tổng Tiền</th>
                             <th>Trạng Thái</th>
-                            <th>Hành Động</th>
+                            <th>Đánh giá đơn hàng</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -74,7 +79,9 @@
                             <td style="font-weight: 600;">2.5M VNĐ</td>
                             <td><span class="badge badge-success">Đã giao</span></td>
                             <td>
-                                <button class="btn btn-sm btn-edit">👁️</button>
+                                <button class="btn btn-sm btn-view" onclick="viewReview()">
+                                    <i class="fas fa-eye"></i> Xem
+                                </button>
                             </td>
                         </tr>
                         <tr>
@@ -85,14 +92,69 @@
                             <td style="font-weight: 600;">1.2M VNĐ</td>
                             <td><span class="badge badge-warning">Đang xử lý</span></td>
                             <td>
-                                <button class="btn btn-sm btn-edit">👁️</button>
+                                <button class="btn btn-sm btn-view" disabled style="opacity: 0.5; cursor: not-allowed;">
+                                    <i class="fas fa-eye"></i> chưa có đánh giá
+                                </button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+        <div id="reviewModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-star" style="color: #f39c12;"></i> Chi Tiết Đánh Giá</h3>
+                    <span class="close" onclick="closeModal()">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="review-detail">
+                        <div class="review-detail-label">Mã đơn hàng</div>
+                        <div class="review-detail-content" id="modalOrderId">#DH01</div>
+                    </div>
+                    <div class="review-detail">
+                        <div class="review-detail-label">Khách hàng</div>
+                        <div class="review-detail-content" id="modalCustomer">Nguyễn Văn A</div>
+                    </div>
+                    <div class="review-detail">
+                        <div class="review-detail-label">Đánh giá</div>
+                        <div class="review-stars" id="modalRating">
+                            <div class="rating-display">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-detail">
+                        <div class="review-detail-label">Ghi chú từ khách hàng</div>
+                        <div class="review-note-box" id="modalNote">Sản phẩm rất đẹp và chất lượng. Giao hàng nhanh,
+                            đóng gói cẩn thận.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
+<script>
+    function viewReview(orderId, customer, rating, note) {
+
+        document.getElementById('reviewModal').style.display = 'block';
+    }
+    function closeModal() {
+        document.getElementById('reviewModal').style.display = 'none';
+    }
+
+    window.onclick = function (event) {
+        const modal = document.getElementById('reviewModal');
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+</script>
 
 </html>
