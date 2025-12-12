@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng của bạn</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png">
+    <link rel="stylesheet" href="./CSS/sub_login.css">
+    <link rel="stylesheet" href="CSS/cart_detail.css">
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./CSS/about.css">
+
+</head>
+
+<body>
+    <!--header trang-->
+    <div class="nav_head">
+        <a href="./index.html">
+            <div class="logo">
+                <img src="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png" alt="Logo">
+            </div>
+        </a>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="./index.html">TRANG CHỦ</a></li>
+                <li><a href="./about.html">GIỚI THIỆU</a></li>
+                <li><a href="./products.html">SẢN PHẨM <i class="bi bi-caret-down-fill"></i></a>
+
+                    <div class="sub-item">
+                        <div class="contant-sub">
+                            <h2>Danh mục sản phẩm</h2>
+                            <div class="cont-item">
+                                <div class="product_item">
+                                    <div class="product_cont">
+                                        <img src="https://cdn-icons-png.freepik.com/512/4452/4452959.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                            alt="">
+                                        <a class="item" href="./products.html#denban-section">Đèn Bàn</a>
+                                    </div>
+                                    <span class="arrow">›</span>
+                                </div>
+                                <div class="product_item">
+                                    <div class="product_cont">
+                                        <img src="https://cdn-icons-png.freepik.com/512/1237/1237786.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                            alt="">
+                                        <a class="item" href="./products.html#denchum-section">Đèn Chùm</a>
+                                    </div>
+                                    <span class="arrow">›</span>
+                                </div>
+                                <div class="product_item">
+                                    <div class="product_cont">
+                                        <img src="https://cdn-icons-png.freepik.com/512/18200/18200846.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                            alt="">
+                                        <a class="item" href="./products.html#denoptran-section">Đèn Ốp Trần</a>
+                                    </div>
+                                    <span class="arrow">›</span>
+                                </div>
+                                <div class="product_item">
+                                    <div class="product_cont">
+                                        <img src="https://cdn-icons-png.freepik.com/512/6202/6202698.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                            alt="">
+                                        <a class="item" href="./products.html#denvach-section">Đèn Vách</a>
+                                    </div>
+                                    <span class="arrow">›</span>
+                                </div>
+                                <div class="product_item">
+                                    <div class="product_cont">
+                                        <img src="https://cdn-icons-png.freepik.com/512/3719/3719943.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                            alt="">
+                                        <a class="item" href="./products.html#dentha-section">Đèn Thả</a>
+                                    </div>
+                                    <span class="arrow">›</span>
+                                </div>
+                                <div class="product_item">
+                                    <div class="product_cont">
+                                        <img src="https://cdn-icons-png.freepik.com/512/896/896351.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                            alt="">
+                                        <a class="item" href="./products.html#dencay-section">Đèn Cây</a>
+                                    </div>
+                                    <span class="arrow">›</span>
+                                </div>
+                                <div class="product_item">
+                                    <div class="product_cont">
+                                        <img src="https://cdn-icons-png.freepik.com/512/3724/3724416.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                            alt="">
+                                        <a class="item" href="./products.html#denquat-section">Đèn Quạt</a>
+                                    </div>
+                                    <span class="arrow">›</span>
+                                </div>
+                                <div class="product_item">
+                                    <div class="product_cont">
+                                        <img src="https://cdn-icons-png.freepik.com/512/7402/7402062.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                            alt="">
+                                        <a class="item" href="./products.html#bongden-section">Bóng Đèn</a>
+                                    </div>
+                                    <span class="arrow">›</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </li>
+                <li><a href="./news.html">TIN TỨC</a></li>
+                <li><a href="./contact.html">LIÊN HỆ</a></li>
+            </ul>
+            <div class="nav_r" id="nav_r">
+                <!-- Ô SEARCH TRÊN NAV -->
+                <div class="search-icon" onclick="openSearchBar()">
+                    <input type="text" placeholder="Tìm kiếm ">
+                    <i class="bi bi-search"></i>
+                </div>
+
+                <!-- NÚT QUAY LẠI ẨN LÚC BÌNH THƯỜNG -->
+                <i class="bi bi-x back-button-nav" onclick="closeSearchBar()"></i>
+
+
+                <!-- khung tìm kiếm -->
+                <div class="search-panel" id="searchPanel">
+                    <div class="search-content">
+                        <div class="section-header_search">
+                            <h2 class="section-title-search">Gợi ý tìm kiếm</h2>
+                        </div>
+
+                        <a href="./product-detail.html" class="search-item">
+                            <span class="arrow-icon"><i class="bi bi-search"></i></span>
+                            <div class="item-content">
+                                <div class="item-name">Đèn để bàn phòng khách phong cách tối giản KLS0049</div>
+                            </div>
+                        </a>
+
+                        <a href="./product-detail.html" class="search-item">
+                            <span class="arrow-icon"><i class="bi bi-search"></i></span>
+                            <div class="item-content">
+                                <div class="item-name">Đèn bàn đọc sách làm việc hiện đại tối giản FLM5145</div>
+                            </div>
+                        </a>
+
+                        <a href="./product-detail.html" class="search-item">
+                            <span class="arrow-icon"><i class="bi bi-search"></i></span>
+                            <div class="item-content">
+                                <div class="item-name">Đèn bàn bằng gốm sứ nhiều màu HYJ0029</div>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+
+
+                <!-- ICON SHOP -->
+                <div class="icon-group">
+                    <div class="shop" id="shop">
+                        <a href="cart_detail.html"><i class="bi bi-cart-check" title="Giỏ hàng"></i></a>
+                        <div class="item-quantity">2</div>
+                    </div>
+
+                    <!-- ICON LOGIN -->
+                    <div class="login" id="login">
+                        <a href="./login.html"><i class="bi bi-person-circle" title="Tài Khoản"></i></a>
+                        <div class="sub_login">
+                            <div class="container-sub-login">
+                                <a href="./profile.html"><i class="bi bi-person"></i> Tài khoản</a>
+                                <a href="./order.html"><i class="bi bi-clipboard-check"></i>Đơn Hàng</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--danh sách sản phẩm-->
+    <main class="cart-page">
+        <div class="cart-left">
+            <h2>Giỏ hàng của bạn</h2>
+            <hr class="line">
+
+            <!--sản phẩm demo 1-->
+            <div class="cart-item">
+                <img src="https://flexhouse.vn/wp-content/uploads/2022/12/Den-de-ban-phong-khach-phong-cach-toi-gian-KLS0049-4-430x430.jpg"
+                    alt="Đèn tường LED">
+                <div class="item-info">
+                    <h4>Đèn để bàn phòng khách phong cách tối giản KLS0049</h4>
+                    <p class="price">3.900.000 VND</p>
+                    <div class="quantity">
+                        <button type="submit">-</button>
+                        <span class="qty">1</span>
+                        <button type="submit">+</button>
+                    </div>
+                </div>
+                <div class="item-total">3.900.000 VND</div>
+                <button class="delete-btn" type="submit">Xóa</button>
+            </div>
+
+            <!--sản phẩm demo 2-->
+            <div class="cart-item">
+                <img src="https://flexhouse.vn/wp-content/uploads/2023/05/Den-vach-tuong-trang-tri-canh-quan-ngoai-troi-JJ7118-1-430x430.jpeg"
+                    alt="Đèn thả trang trí">
+                <div class="item-info">
+                    <h4>Đèn vách tường trang trí cảnh quan ngoài trời JJ7118</h4>
+                    <p class="price">3.330.000 VND</p>
+                    <div class="quantity">
+                        <button type="submit">-</button>
+                        <span class="qty">1</span>
+                        <button type="submit">+</button>
+                    </div>
+                </div>
+                <div class="item-total">3.330.000 VND</div>
+                <button class="delete-btn" type="submit">Xóa</button>
+            </div>
+        </div>
+
+        <!--tổng tiền sản phẩm-->
+        <div class="cart-right">
+            <div class="order-box">
+                <h3>Thông tin đơn hàng</h3>
+                <ul>
+                    <li>Đèn để bàn phòng khách phong cách tối giản KLS0049 - SL: 1</li>
+                    <li>Đèn vách tường trang trí cảnh quan ngoài trời JJ7118 - SL: 1</li>
+                </ul>
+                <div class="total">
+                    <span>Tổng tiền:</span>
+                    <strong id="total">7.230.000 VND</strong>
+                </div>
+                <a href="./checkout.html"> <button class="checkout-btn">THANH TOÁN</button></a>
+            </div>
+
+            <div class="order-note">
+                <a href="products.html"><i class="bi bi-arrow-return-left"></i> Tiếp tục mua hàng</a>
+                <ul>
+                    <li>✔ Không rủi ro.</li>
+                    <li>✔ Đặt hàng trước, thanh toán sau tại nhà. Miễn phí giao hàng & lắp đặt tại TP.HCM, Hà Nội,...
+                    </li>
+                    <li>✔ Đơn hàng sẽ được giao trong vòng 3 ngày, vui lòng chờ nhân viên tư vấn xác nhận.</li>
+                    <li>✔ Miễn phí 1 đổi 1 - Bảo hành 2 tháng - Bảo trì nhanh chóng.</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    <footer class="footer-main">
+        <div class="footer-container">
+            <div class="footer-column company-info">
+                <h3>THÔNG TIN CHUNG</h3>
+                <h2>ĐÈN VÀ THIẾT BỊ CHIẾU SÁNG</h2>
+
+                <div class="contact-item">
+                    <i class="bi bi-telephone-fill"></i>
+                    <a href="tel:0999999999"> (84-28)-38966780</a>
+                </div>
+
+                <div class="contact-item">
+                    <i class="bi bi-envelope-fill"></i>
+                    <a href="mailto:cskh@hoanghoavn.vn">vphanhchinh@hcmuaf.edu.vn; ico@hcmuaf.edu.vn</a>
+                </div>
+
+                <div class="contact-item">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    <a href="https://www.hcmuaf.edu.vn/map.html">Khu Phố 33, Phường Linh Xuân, TP. Hồ Chí Minh, Việt
+                        Nam</a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>VỀ CHÚNG TÔI</h3>
+                <ul class="footer-links">
+                    <li><a href="./about.html">Giới thiệu</a></li>
+                    <li><a href="./products.html">Sản phẩm</a></li>
+                    <li><a href="./news.html">Tin tức</a></li>
+                    <li><a href="./contact.html">Liên hệ</a></li>
+                </ul>
+            </div>
+
+
+            <div class="footer-column social-section">
+                <h3>KẾT NỐI VỚI CHÚNG TÔI</h3>
+                <div class="social-icons">
+                    <div class="social-icon">
+                        <i class="bi bi-facebook"></i>
+                    </div>
+                    <div class="social-icon">
+                        <i class="bi bi-twitter"></i>
+                    </div>
+                    <div class="social-icon">
+                        <i class="bi bi-envelope-fill"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="footer-cont">
+                <div class="footer-text">
+                    <p>Copyright &copy;2025 by LightUP | All Right Reserves</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="./JS/index.js"></script>
+</body>
+
+</html>

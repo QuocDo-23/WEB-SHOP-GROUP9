@@ -1,0 +1,47 @@
+package code.web.webgroup9.dao;
+
+import code.web.webgroup9.model.Image;
+import org.jdbi.v3.core.Jdbi;
+import java.util.List;
+
+public class ImageDAO {
+    private final Jdbi jdbi;
+
+    public ImageDAO() {
+        this.jdbi = BaseDao.get();
+    }
+
+    /**
+     * Lấy tất cả hình ảnh của sản phẩm
+     */
+    public List<Image> getImagesByProductId(int productId) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery(
+                                "SELECT * FROM Image " +
+                                        "WHERE type = 'product' AND ref_id = :productId " +
+                                        "ORDER BY id"
+                        )
+                        .bind("productId", productId)
+                        .mapToBean(Image.class)
+                        .list()
+        );
+    }
+
+    /**
+     * Lấy hình ảnh chính của sản phẩm
+     */
+    public Image getMainImage(int productId) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery(
+                                "SELECT * FROM Image " +
+                                        "WHERE type = 'product' AND ref_id = :productId " +
+                                        "LIMIT 1"
+                        )
+                        .bind("productId", productId)
+                        .mapToBean(Image.class)
+                        .findFirst()
+                        .orElse(null)
+        );
+    }
+}
+

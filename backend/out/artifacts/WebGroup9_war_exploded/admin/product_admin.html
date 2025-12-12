@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png">
+    <title>Sản Phẩm - Quản Lý Đèn</title>
+    <link rel="stylesheet" href="../CSS/admin.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png" alt="logo">
+                LightAdmin
+            </div>
+            <a href="../admin/dashboard.html" class="menu-item">
+                📊 Tổng Quan
+            </a>
+            <a href="../admin/product_admin.html" class="menu-item active">
+                📦 Sản Phẩm
+            </a>
+            <a href="../admin/orders-admin.html" class="menu-item">
+                🛒 Đơn Hàng
+            </a>
+            <a href="../admin/customers.html" class="menu-item">
+                👥 Khách Hàng
+            </a>
+            <a href="../admin/news-admin.html" class="menu-item">
+                📰 Tin Tức
+            </a>
+            <a href="../admin/review.html" class="menu-item ">
+                ⭐ Đánh Giá
+            </a>
+            <a href="../admin/analytics.html" class="menu-item">
+                📈 Thống Kê
+            </a>
+
+            <button type="button" class="logout-btn" onclick="window.location.href='../index.html'">Đăng xuất</button>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>Quản Lý Sản Phẩm</h1>
+                <div class="user-info">
+                    <div class="avatar">Q</div>
+                    <div>
+                        <div style="font-weight: 600;">Admin</div>
+                        <div style="font-size: 12px; color: #718096;">Quản trị viên</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <h2>Danh Sách Sản Phẩm</h2>
+                    <div class="search-box">
+                        <input type="text" placeholder="Tìm kiếm sản phẩm..." id="searchInput">
+                        <button class="btn btn-primary" onclick="openModal()">+ Thêm Sản Phẩm</button>
+                    </div>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hình Ảnh</th>
+                            <th>Sản Phẩm</th>
+                            <th>Danh Mục</th>
+                            <th>Giá</th>
+                            <th>Số Lượng</th>
+                            <th>Trạng Thái</th>
+                            <th>Chức Năng</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productTableBody">
+                        <tr>
+                            <td class="product-img">
+                                <img src="https://flexhouse.vn/wp-content/uploads/2023/05/Den-san-vuon-nang-luong-mat-troi-hien-dai-CB3075-15.jpg"
+                                    alt="">
+                            </td>
+                            <td>
+                                <div class="products-name">Đèn LED Downlight 7W</div>
+                            </td>
+                            <td>Đèn LED</td>
+                            <td class="cost-products">45,000 VNĐ</td>
+                            <td>150</td>
+                            <td><span class="badge badge-success">active</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-edit">Sửa</button>
+                                <button class="btn btn-sm btn-delete">Xóa</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Thêm Sản Phẩm Mới</h3>
+                <button class="close-btn" onclick="closeModal()">×</button>
+            </div>
+            <form id="productForm">
+                <!-- Thông tin cơ bản -->
+                <div class="form-section">
+                    <div class="form-section-title">📋 Thông Tin Cơ Bản</div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Tên Sản Phẩm <span class="required">*</span></label>
+                            <input type="text" id="productName" required placeholder="Nhập tên sản phẩm">
+                        </div>
+                        <div class="form-group">
+                            <label>Danh Mục <span class="required">*</span></label>
+                            <select id="productCategory" required>
+                                <option value="">Chọn danh mục</option>
+                                <option value="1">Đèn LED</option>
+                                <option value="2">Đèn Trang Trí</option>
+                                <option value="3">Đèn Công Nghiệp</option>
+                                <option value="4">Phụ Kiện</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Giá (VNĐ) <span class="required">*</span></label>
+                            <input type="number" id="productPrice" required min="0" placeholder="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Số Lượng Tồn Kho <span class="required">*</span></label>
+                            <input type="number" id="productStock" required min="0" value="0" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Giảm Giá</label>
+                            <select id="productDiscount">
+                                <option value="">Không giảm giá</option>
+                                <option value="1">Giảm 10%</option>
+                                <option value="2">Giảm 20%</option>
+                                <option value="3">Giảm 30%</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Trạng Thái</label>
+                            <select id="productStatus">
+                                <option value="active">Đang bán</option>
+                                <option value="inactive">Ngừng bán</option>
+                                <option value="out_of_stock">Hết hàng</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row full">
+                        <div class="form-group">
+                            <label>Link Hình Ảnh Sản Phẩm</label>
+                            <input type="url" id="imageLink" placeholder="https://example.com/image.jpg"
+                                onchange="previewImage()">
+                            <div id="imagePreview" class="image-preview empty">
+                                Chưa có hình ảnh
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chi tiết sản phẩm -->
+                <div class="form-section">
+                    <div class="form-section-title">🔧 Chi Tiết Sản Phẩm</div>
+
+                    <div class="form-row full">
+                        <div class="form-group">
+                            <label>Mô Tả Sản Phẩm</label>
+                            <textarea id="productDescription"
+                                placeholder="Nhập mô tả chi tiết về sản phẩm..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Chất Liệu</label>
+                            <input type="text" id="productMaterial" placeholder="Nhôm, Thép, Nhựa...">
+                        </div>
+                        <div class="form-group">
+                            <label>Điện Áp</label>
+                            <input type="text" id="productVoltage" placeholder="220V, 12V, USB 5V...">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Kích Thước</label>
+                            <input type="text" id="productDimension" placeholder="60x60cm, Ø12xH20cm...">
+                        </div>
+                        <div class="form-group">
+                            <label>Loại Đèn</label>
+                            <input type="text" id="productType" placeholder="Ốp trần, âm trần, tuýp, bulb...">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Màu Sắc</label>
+                            <input type="text" id="productColor" placeholder="Trắng 6500K, Vàng ấm 3000K, RGB...">
+                        </div>
+                        <div class="form-group">
+                            <label>Phong Cách</label>
+                            <input type="text" id="productStyle" placeholder="Hiện đại, cổ điển, công nghiệp...">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Bảo Hành (Tháng)</label>
+                            <input type="number" id="productWarranty" min="0" placeholder="12, 24, 36...">
+                        </div>
+                        <div class="form-group">
+                            <!-- Empty for layout -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Hủy</button>
+                    <button type="submit" class="btn btn-primary">Thêm Sản Phẩm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('productModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').classList.remove('active');
+            document.getElementById('productForm').reset();
+            document.getElementById('imagePreview').innerHTML = 'Chưa có hình ảnh';
+            document.getElementById('imagePreview').classList.add('empty');
+        }
+
+        function previewImage() {
+            const imageLink = document.getElementById('imageLink').value;
+            const preview = document.getElementById('imagePreview');
+
+            if (imageLink) {
+                preview.innerHTML = `<img src="${imageLink}" alt="Preview" onerror="this.parentElement.innerHTML='Không thể tải hình ảnh'; this.parentElement.classList.add('empty')">`;
+                preview.classList.remove('empty');
+            } else {
+                preview.innerHTML = 'Chưa có hình ảnh';
+                preview.classList.add('empty');
+            }
+        }
+
+        document.getElementById('productForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Lấy dữ liệu từ form
+            const productData = {
+                name: document.getElementById('productName').value,
+                category: document.getElementById('productCategory').value,
+                price: document.getElementById('productPrice').value,
+                stock: document.getElementById('productStock').value,
+                discount: document.getElementById('productDiscount').value,
+                status: document.getElementById('productStatus').value,
+                image: document.getElementById('imageLink').value,
+                description: document.getElementById('productDescription').value,
+                material: document.getElementById('productMaterial').value,
+                voltage: document.getElementById('productVoltage').value,
+                dimension: document.getElementById('productDimension').value,
+                type: document.getElementById('productType').value,
+                color: document.getElementById('productColor').value,
+                style: document.getElementById('productStyle').value,
+                warranty: document.getElementById('productWarranty').value
+            };
+
+            console.log('Dữ liệu sản phẩm:', productData);
+
+            // Thêm sản phẩm vào bảng
+            addProductToTable(productData);
+
+            alert('Thêm sản phẩm thành công!');
+            closeModal();
+        });
+
+        function addProductToTable(product) {
+            const tbody = document.getElementById('productTableBody');
+            const row = document.createElement('tr');
+
+            const categoryNames = {
+                '1': 'Đèn LED',
+                '2': 'Đèn Trang Trí',
+                '3': 'Đèn Công Nghiệp',
+                '4': 'Phụ Kiện'
+            };
+
+            const statusBadges = {
+                'active': '<span class="badge badge-success">active</span>',
+                'inactive': '<span class="badge badge-warning">inactive</span>',
+                'out_of_stock': '<span class="badge badge-danger">out_of_stock</span>'
+            };
+
+            row.innerHTML = `
+                <td class="product-img">
+                    <img src="${product.image || 'https://via.placeholder.com/55'}" alt="">
+                </td>
+                <td>
+                    <div class="products-name">${product.name}</div>
+                </td>
+                <td>${categoryNames[product.category] || 'N/A'}</td>
+                <td class="cost-products">${parseInt(product.price).toLocaleString('vi-VN')} VNĐ</td>
+                <td>${product.stock}</td>
+                <td>${statusBadges[product.status]}</td>
+                <td>
+                    <button class="btn btn-sm btn-edit">Sửa</button>
+                    <button class="btn btn-sm btn-delete" onclick="this.closest('tr').remove()">Xóa</button>
+                </td>
+            `;
+
+            tbody.insertBefore(row, tbody.firstChild);
+        }
+
+        // Tìm kiếm sản phẩm
+        document.getElementById('searchInput').addEventListener('input', function (e) {
+            const searchText = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('#productTableBody tr');
+
+            rows.forEach(row => {
+                const productName = row.querySelector('.products-name').textContent.toLowerCase();
+                if (productName.includes(searchText)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+        // Đóng modal khi click bên ngoài
+        document.getElementById('productModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+
+</html>

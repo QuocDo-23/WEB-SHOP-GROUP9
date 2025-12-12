@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý đánh giá - Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/reviews-list.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png" alt="logo">
+                LightAdmin
+            </div>
+            <a href="../admin/dashboard.html" class="menu-item">
+                📊 Tổng Quan
+            </a>
+            <a href="../admin/product_admin.html" class="menu-item">
+                📦 Sản Phẩm
+            </a>
+            <a href="../admin/orders-admin.html" class="menu-item">
+                🛒 Đơn Hàng
+            </a>
+            <a href="../admin/customers.html" class="menu-item">
+                👥 Khách Hàng
+            </a>
+            <a href="../admin/news-admin.html" class="menu-item">
+                📰 Tin Tức
+            </a>
+            <a href="../admin/review.html" class="menu-item active">
+                ⭐ Đánh Giá
+            </a>
+            <a href="../admin/analytics.html" class="menu-item">
+                📈 Thống Kê
+            </a>
+
+            <button type="button" class="logout-btn" onclick="window.location.href='../index.html'">Đăng xuất</button>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>Quản lý đánh giá</h1>
+                <div class="user-info">
+                    <div class="avatar">Q</div>
+                    <div>
+                        <div style="font-weight: 600;">Admin</div>
+                        <div style="font-size: 12px; color: #718096;">Quản trị viên</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Tổng đánh giá</div>
+                    <div class="stat-value">487</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Điểm trung bình</div>
+                    <div class="stat-value" style="color: #f39c12;">4.3 ⭐</div>
+                </div>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <form class="filter-form">
+                    <div class="search-wrapper">
+                        <i class="fas fa-search"></i>
+                        <input type="text" class="search-input" placeholder="Tìm kiếm đánh giá...">
+                    </div>
+                    <div class="filter-group">
+                        <select>
+                            <option value="">Tất cả sao</option>
+                            <option value="5">5 sao</option>
+                            <option value="4">4 sao</option>
+                            <option value="3">3 sao</option>
+                            <option value="2">2 sao</option>
+                            <option value="1">1 sao</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <select>
+                            <option value="">Tất cả danh mục</option>
+                            <option value="chen">Đèn Bàn</option>
+                            <option value="bat">Đèn Chùm</option>
+                            <option value="binh">Đèn Ốp Trần </option>
+                            <option value="dia">Đèn Vách</option>
+                            <option value="bat">Đèn Thả</option>
+                            <option value="binh">Đèn Quạt</option>
+                            <option value="dia">Bóng Đèn</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-filter">
+                        <i class="fas fa-filter"></i> Lọc
+                    </button>
+                </form>
+            </div>
+
+            <!-- Reviews List -->
+            <div class="reviews-list-section">
+                <!-- Review Item 1 -->
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="review-customer">
+                            <div class="customer-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="customer-info">
+                                <h4>Nguyễn Văn A</h4>
+                                <p>nguyenvana@email.com</p>
+                            </div>
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="rating-number">5.0</span>
+                            </div>
+                            <span class="review-date">10/11/2025</span>
+                        </div>
+                    </div>
+                    <div class="review-product">
+                        <div class="product-image">
+                            <img src="https://flexhouse.vn/wp-content/uploads/2021/09/Den-ban-bang-dong-nguyen-chat-MC311-1T-2-430x430.jpg" alt="Product">
+                        </div>
+                        <div class="product-info">
+                            <h5>Đèn bàn bằng đồng nguyên chât</h5>
+                            <p>Mã: MC311-1T</p>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>Sản phẩm rất đẹp và chất lượng, đúng như mô tả. Giao hàng nhanh, đóng gói cẩn thận. Mình rất
+                            hài lòng với lần mua hàng này.</p>
+                    </div>
+                    <div class="review-actions">
+                        <button class="btn-action btn-reply">
+                            <i class="fas fa-reply"></i> Trả lời
+                        </button>
+
+                    </div>
+                </div>
+
+                <!-- Review Item 2 -->
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="review-customer">
+                            <div class="customer-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="customer-info">
+                                <h4>Trần Thị B</h4>
+                                <p>tranthib@email.com</p>
+                            </div>
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span class="rating-number">4.0</span>
+                            </div>
+                            <span class="review-date">09/11/2025</span>
+                        </div>
+                    </div>
+                    <div class="review-product">
+                        <div class="product-image">
+                            <img src="https://flexhouse.vn/wp-content/uploads/2025/05/Den-op-tran-dong-chau-Au-Retro-OD05-7-1.jpg" alt="Product">
+                        </div>
+                        <div class="product-info">
+                            <h5>Đèn ốp trần đông châu âu RETRO</h5>
+                            <p>Mã: OD50</p>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>Bát đẹp, chất lượng tốt. Màu sắc hơi khác ảnh một chút nhưng vẫn đẹp. Giá cả hợp lý, đáng
+                            mua!</p>
+                    </div>
+                    <div class="review-actions">
+                        <button class="btn-action btn-reply">
+                            <i class="fas fa-reply"></i> Trả lời
+                        </button>
+
+                    </div>
+                </div>
+
+                <!-- Review Item 3 -->
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="review-customer">
+                            <div class="customer-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="customer-info">
+                                <h4>Lê Văn C</h4>
+                                <p>levanc@email.com</p>
+                            </div>
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span class="rating-number">1.0</span>
+                            </div>
+                            <span class="review-date">08/11/2025</span>
+                        </div>
+                    </div>
+                    <div class="review-product">
+                        <div class="product-image">
+                            <img src="https://flexhouse.vn/wp-content/uploads/2022/07/Bong-den-trang-tri-ngoai-troi-chong-nuoc-PD3261-7.jpg" alt="Product">
+                        </div>
+                        <div class="product-info">
+                            <h5>Bóng đèn trang trí ngoài trời chống nước</h5>
+                            <p>Mã: PD3261</p>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>Sản phẩm kém chất lượng, giá quá đắt. Không recommend!</p>
+                    </div>
+                    <div class="review-actions">
+                        <button class="btn-action btn-reply">
+                            <i class="fas fa-reply"></i> Trả lời
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination-section">
+                <div class="pagination-info">
+                    Hiển thị <strong>1-3</strong> trong tổng số <strong>487</strong> đánh giá
+                </div>
+                <div class="pagination">
+                    <button class="page-link disabled">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="page-link active">1</button>
+                    <button class="page-link">2</button>
+                    <button class="page-link">3</button>
+                    <span style="color: #718096;">...</span>
+                    <button class="page-link">6</button>
+                    <button class="page-link">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

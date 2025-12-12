@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png">
+    <link rel="stylesheet" href="./CSS/login.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Form Login -->
+        <div class="form-container login-container">
+            <form>
+                <h1>Đăng Nhập</h1>
+
+                <div class="input-group">
+                    <label for="email" class="label"><i class="bi bi-envelope-fill"></i> Email</label>
+                    <input id="email" type="email" placeholder="Nhập email">
+
+                </div>
+
+                <div class="input-group">
+                    <label for="password"><i class="bi bi-key-fill"></i>Mật khẩu</label>
+                    <input id="password" type="password" placeholder="Nhập mật khẩu">
+
+                </div>
+
+                <div class="content">
+                    <div class="checkbox">
+                        <input type="checkbox" id="checkbox">
+                        <label for="checkbox">Ghi Nhớ </label>
+                    </div>
+                    <div class="pass-link"><a href="./forgot_pass.html">Quên mật khẩu?</a></div>
+                </div>
+
+                <button type="button" onclick="window.location.href='./index_login.html'">Đăng nhập</button>
+
+                <span>Hoặc đăng nhập bằng</span>
+                <div class="social-container">
+                    <a class="social"><i class="bi bi-facebook"></i></a>
+                    <a class="social"><i class="bi bi-google"></i></a>
+                    <a href="./admin/dashboard.html" class="social"><i class="bi bi-person-fill-gear"></i></a>
+                </div>
+            </form>
+
+        </div>
+
+
+        <!-- Overlay phải -->
+        <div class="overlay-container">
+            <div class="overlay">
+                <button class="close-btn" onclick="window.location.href='index.html'" title="Đóng">
+                    <i class="bi bi-x"></i>
+                </button>
+                <div class="overlay-panel overlay-right">
+                    <img src="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png" alt="">
+                    <h1>Bắt đầu
+                        mua sắm của bạn ngay bây giờ</h1>
+                    <p>Nếu bạn chưa có tài khoản?</p>
+
+                    <a href="register.html">
+                        <button class="ghost" id="register">Đăng Ký Ngay <i class="bi bi-arrow-right"></i></i></button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

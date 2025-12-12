@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Đơn Hàng - Quản Lý Đèn</title>
+    <link rel="stylesheet" href="../CSS/admin.css">
+    <link rel="stylesheet" href="../CSS/order-admin.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png" alt="logo">
+                LightAdmin
+            </div>
+            <a href="../admin/dashboard.html" class="menu-item ">
+                📊 Tổng Quan
+            </a>
+            <a href="../admin/product_admin.html" class="menu-item">
+                📦 Sản Phẩm
+            </a>
+            <a href="../admin/orders-admin.html" class="menu-item active">
+                🛒 Đơn Hàng
+            </a>
+            <a href="../admin/customers.html" class="menu-item">
+                👥 Khách Hàng
+            </a>
+            <a href="../admin/news-admin.html" class="menu-item">
+                📰 Tin Tức
+            </a>
+            <a href="../admin/review.html" class="menu-item ">
+                ⭐ Đánh Giá
+            </a>
+            <a href="../admin/analytics.html" class="menu-item">
+                📈 Thống Kê
+            </a>
+            <button type="button" class="logout-btn" onclick="window.location.href='../index.html'">Đăng xuất</button>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>Quản Lý Đơn Hàng</h1>
+                <div class="user-info">
+                    <div class="avatar">Q</div>
+                    <div>
+                        <div style="font-weight: 600;">Admin</div>
+                        <div style="font-size: 12px; color: #718096;">Quản trị viên</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <h2>Quản Lý Đơn Hàng</h2>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã ĐH</th>
+                            <th>Mã KH</th>
+                            <th>Khách Hàng</th>
+                            <th>Ngày</th>
+                            <th>Tổng Tiền</th>
+                            <th>Trạng Thái</th>
+                            <th>Cập nhật</th>
+
+                            <th>Đánh giá đơn hàng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#DH001</td>
+                            <td>#KH01</td>
+                            <td>Nguyễn Văn A</td>
+                            <td>10/11/2025</td>
+                            <td style="font-weight: 600;">2.5M VNĐ</td>
+                            <td><span class="badge badge-success">Đã giao</span></td>
+                            <td><button class="btn btn-sm btn-update" onclick="updateStatus('DH002', 'Đang xử lý')">
+                                    <i class="fas fa-edit"></i> Cập Nhật
+                                </button>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-view" onclick="viewReview()">
+                                    <i class="fas fa-eye"></i> Xem
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#DH002</td>
+                            <td>#KH02</td>
+                            <td>Trần Thị B</td>
+                            <td>09/11/2025</td>
+                            <td style="font-weight: 600;">1.2M VNĐ</td>
+                            <td><span class="badge badge-warning">Đang xử lý</span></td>
+                            <td><button class="btn btn-sm btn-update" onclick="updateStatus('DH002', 'Đang xử lý')">
+                                    <i class="fas fa-edit"></i> Cập Nhật
+                                </button>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-view" disabled style="opacity: 0.5; cursor: not-allowed;">
+                                    <i class="fas fa-eye"></i> chưa có đánh giá</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="reviewModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-star" style="color: #f39c12;"></i> Chi Tiết Đánh Giá</h3>
+                    <span class="close" onclick="closeModal()">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="review-detail">
+                        <div class="review-detail-label">Mã đơn hàng</div>
+                        <div class="review-detail-content" id="modalOrderId">#DH01</div>
+                    </div>
+                    <div class="review-detail">
+                        <div class="review-detail-label">Khách hàng</div>
+                        <div class="review-detail-content" id="modalCustomer">Nguyễn Văn A</div>
+                    </div>
+                    <div class="review-detail">
+                        <div class="review-detail-label">Đánh giá</div>
+                        <div class="review-stars" id="modalRating">
+                            <div class="rating-display">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-detail">
+                        <div class="review-detail-label">Ghi chú từ khách hàng</div>
+                        <div class="review-note-box" id="modalNote">Sản phẩm rất đẹp và chất lượng. Giao hàng nhanh,
+                            đóng gói cẩn thận.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="statusModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-edit"></i> Cập Nhật Trạng Thái Đơn Hàng</h3>
+                    <span class="close" onclick="closeStatusModal()">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="review-detail">
+                        <div class="review-detail-label">Mã đơn hàng</div>
+                        <div class="review-detail-content" id="statusOrderId">#DH001</div>
+                    </div>
+                    <div class="review-detail">
+                        <div class="review-detail-label">Trạng thái hiện tại</div>
+                        <div class="review-detail-content" id="statusCurrent">Đang xử lý</div>
+                    </div>
+                    <div class="review-detail">
+                        <div class="review-detail-label">Chọn trạng thái mới</div>
+                        <select id="statusSelect" class="status-dropdown">
+                            <option value="">-- Chọn trạng thái --</option>
+                            <option value="Chờ xác nhận">Chờ xác nhận</option>
+                            <option value="Đang xử lý">Đang xử lý</option>
+                            <option value="Đang giao">Đang giao</option>
+                            <option value="Đã giao">Đã giao</option>
+                            <option value="Hủy">Hủy</option>
+                        </select>
+                    </div>
+                    <div class="modal-actions">
+                        <button class="btn-cancel" onclick="closeStatusModal()">Hủy</button>
+                        <button class="btn-confirm" onclick="closeStatusModal()">Cập Nhật</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+<script>
+    function viewReview(orderId, customer, rating, note) {
+
+        document.getElementById('reviewModal').style.display = 'block';
+    }
+    function closeModal() {
+        document.getElementById('reviewModal').style.display = 'none';
+    }
+
+    window.onclick = function (event) {
+        const modal = document.getElementById('reviewModal');
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+    function updateStatus(orderId, currentStatus) {
+        currentOrderId = orderId;
+        document.getElementById('statusOrderId').textContent = '#' + orderId;
+        document.getElementById('statusCurrent').textContent = currentStatus;
+        document.getElementById('statusSelect').value = '';
+        document.getElementById('statusModal').style.display = 'block';
+    }
+
+    function closeStatusModal() {
+        document.getElementById('statusModal').style.display = 'none';
+    }
+</script>
+
+</html>

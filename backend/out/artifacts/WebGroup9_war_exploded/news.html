@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png">
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./CSS/news.css">
+    <link rel="stylesheet" href="./CSS/sub_login.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link href='https://fonts.googleapis.com/css?family=Monsieur La Doulaise' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Literata' rel='stylesheet'>
+    <title>Tin Tức</title>
+</head>
+
+<body>
+    <main>
+        <nav>
+            <div class="nav_head ">
+                <a href="./index.html">
+                    <div class="logo">
+                        <img src="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png" alt="Logo">
+                    </div>
+                </a>
+
+                <div class="nav-container">
+                    <ul class="nav-links">
+                        <li><a href="./index.html">TRANG CHỦ</a></li>
+                        <li><a href="./about.html">GIỚI THIỆU</a></li>
+                        <li><a href="./products.html">SẢN PHẨM <i class="bi bi-caret-down-fill"></i></a>
+
+                            <div class="sub-item">
+                                <div class="contant-sub">
+                                    <h2>Danh mục sản phẩm</h2>
+                                    <div class="cont-item">
+                                        <div class="product_item">
+                                            <div class="product_cont">
+                                                <img src="https://cdn-icons-png.freepik.com/512/4452/4452959.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                                    alt="">
+                                                <a class="item" href="./products.html#denban-section">Đèn Bàn</a>
+                                            </div>
+                                            <span class="arrow">›</span>
+                                        </div>
+                                        <div class="product_item">
+                                            <div class="product_cont">
+                                                <img src="https://cdn-icons-png.freepik.com/512/1237/1237786.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                                    alt="">
+                                                <a class="item" href="./products.html#denchum-section">Đèn Chùm</a>
+                                            </div>
+                                            <span class="arrow">›</span>
+                                        </div>
+                                        <div class="product_item">
+                                            <div class="product_cont">
+                                                <img src="https://cdn-icons-png.freepik.com/512/18200/18200846.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                                    alt="">
+                                                <a class="item" href="./products.html#denoptran-section">Đèn Ốp Trần</a>
+                                            </div>
+                                            <span class="arrow">›</span>
+                                        </div>
+                                        <div class="product_item">
+                                            <div class="product_cont">
+                                                <img src="https://cdn-icons-png.freepik.com/512/6202/6202698.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                                    alt="">
+                                                <a class="item" href="./products.html#denvach-section">Đèn Vách</a>
+                                            </div>
+                                            <span class="arrow">›</span>
+                                        </div>
+                                        <div class="product_item">
+                                            <div class="product_cont">
+                                                <img src="https://cdn-icons-png.freepik.com/512/3719/3719943.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                                    alt="">
+                                                <a class="item" href="./products.html#dentha-section">Đèn Thả</a>
+                                            </div>
+                                            <span class="arrow">›</span>
+                                        </div>
+                                        <div class="product_item">
+                                            <div class="product_cont">
+                                                <img src="https://cdn-icons-png.freepik.com/512/896/896351.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                                    alt="">
+                                                <a class="item" href="./products.html#dencay-section">Đèn Cây</a>
+                                            </div>
+                                            <span class="arrow">›</span>
+                                        </div>
+                                        <div class="product_item">
+                                            <div class="product_cont">
+                                                <img src="https://cdn-icons-png.freepik.com/512/3724/3724416.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                                    alt="">
+                                                <a class="item" href="./products.html#denquat-section">Đèn Quạt</a>
+                                            </div>
+                                            <span class="arrow">›</span>
+                                        </div>
+                                        <div class="product_item">
+                                            <div class="product_cont">
+                                                <img src="https://cdn-icons-png.freepik.com/512/7402/7402062.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                                    alt="">
+                                                <a class="item" href="./products.html#bongden-section">Bóng Đèn</a>
+                                            </div>
+                                            <span class="arrow">›</span>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </li>
+                        <li><a href="./news.html" class="active">TIN TỨC</a></li>
+                        <li><a href="./contact.html">LIÊN HỆ</a></li>
+                    </ul>
+                    <div class="nav_r" id="nav_r">
+                        <!-- Ô SEARCH TRÊN NAV -->
+                        <div class="search-icon" onclick="openSearchBar()">
+                            <input type="text" placeholder="Tìm kiếm ">
+                            <i class="bi bi-search"></i>
+                        </div>
+
+                        <!-- NÚT QUAY LẠI ẨN LÚC BÌNH THƯỜNG -->
+                        <i class="bi bi-x back-button-nav" onclick="closeSearchBar()"></i>
+
+
+                        <!-- khung tìm kiếm -->
+                        <div class="search-panel" id="searchPanel">
+                            <div class="search-content">
+                                <div class="section-header_search">
+                                    <h2 class="section-title-search">Gợi ý tìm kiếm</h2>
+                                </div>
+
+                                <a href="./product-detail.html" class="search-item">
+                                    <span class="arrow-icon"><i class="bi bi-search"></i></span>
+                                    <div class="item-content">
+                                        <div class="item-name">Đèn để bàn phòng khách phong cách tối giản KLS0049</div>
+                                    </div>
+                                </a>
+
+                                <a href="./product-detail.html" class="search-item">
+                                    <span class="arrow-icon"><i class="bi bi-search"></i></span>
+                                    <div class="item-content">
+                                        <div class="item-name">Đèn bàn đọc sách làm việc hiện đại tối giản FLM5145</div>
+                                    </div>
+                                </a>
+
+                                <a href="./product-detail.html" class="search-item">
+                                    <span class="arrow-icon"><i class="bi bi-search"></i></span>
+                                    <div class="item-content">
+                                        <div class="item-name">Đèn bàn bằng gốm sứ nhiều màu HYJ0029</div>
+                                    </div>
+                                </a>
+
+                            </div>
+                        </div>
+
+                        <!-- ICON SHOP -->
+                        <div class="icon-group">
+                            <div class="shop" id="shop">
+                                <a href="cart_detail.html"><i class="bi bi-cart-check" title="Giỏ hàng"></i></a>
+                                <div class="item-quantity">2</div>
+
+                            </div>
+
+                            <!-- ICON LOGIN -->
+                            <div class="login" id="login">
+                                <a href="./login.html"><i class="bi bi-person-circle" title="Tài Khoản"></i></a>
+                                <div class="sub_login">
+                                    <div class="container-sub-login">
+                                        <a href="./profile.html"><i class="bi bi-person"></i> Tài khoản</a>
+                                        <a href="./order.html"><i class="bi bi-clipboard-check"></i>Đơn Hàng</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+        <div class="link-page" id="up">
+            <div class="containt_link">
+                <a href="./index.html"><i class="bi bi-house"></i> Trang chủ </a>
+                <span> /</span>
+                <a href="">Tin tức</a>
+            </div>
+        </div>
+        <div class="search-overlay" id="searchOverlay" onclick="closeSearchPanel()"></div>
+
+        <section class="section_1_news" id="home">
+            <div class="cont">
+                <div class="section_1_content">
+                    <h1>
+                        Lightup
+                    </h1>
+                    <span class="highlight">TIN TỨC</span>
+                </div>
+            </div>
+            <!-- Divider với SVG -->
+            <div class="ux-shape-divider ux-shape-divider--bottom">
+                <svg viewBox="0 0 1000 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                    <path class="ux-shape-fill"
+                        d="M1000 100H0V80H479.686C481.808 80 483.843 80.8429 485.343 82.3432L497.879 94.8787C499.05 96.0503 500.95 96.0503 502.121 94.8787L514.657 82.3431C516.157 80.8428 518.192 80 520.314 80H1000V100Z">
+                    </path>
+                </svg>
+            </div>
+        </section>
+        <div class="section_2_news">
+            <div class="section-header">
+                <h2>Bài viết nổi bậc</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="new_1">
+                <div class="cont">
+                    <img src="https://file.hstatic.net/200000065946/article/sam-noi-that-thang-7-am_05b9e647c56e4f308aafea72ed3ad916_1024x1024.jpg"
+                        alt="bản tin">
+                    <div class="title">
+                        <div class="title_r">
+                            <div class="title_last"><span>Bản tin LightUP</span>
+                                <li>20/10/2025</li>
+                            </div>
+                            <div class="name">
+                                <a href="news_details.html">Mua sắm nội thất tháng 7 âm - Ngỡ vô lý nhưng vô cùng hợp
+                                    lý. Đây là lý do</a>
+                            </div>
+                        </div>
+                        <div class="title_l">
+                            <a href="news_details.html"> <i class="bi bi-arrow-up-right"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="new_2">
+                <div class="container">
+                    <div class="card">
+                        <div class="card_img">
+                            <img src="https://i1-kinhdoanh.vnecdn.net/2021/01/28/denled.jpg?w=500&h=300&q=100&dpr=2&fit=crop&s=7cxAg--6TFipGNaVLr2dxA"
+                                alt="bản tin">
+                        </div>
+                        <div class="title">
+                            <div class="title_r">
+                                <div class="title_last"><span>Bản tin LightUP</span>
+                                    <li>News</li>
+                                </div>
+                                <div class="name">
+                                    <a href="news_details.html">7 điểm khác biệt của đèn Led Rạng Đông</a>
+                                </div>
+                            </div>
+                            <div class="title_l">
+                                <a href="news_details.html"> <i class="bi bi-arrow-up-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card_img">
+                            <img src="https://i1-kinhdoanh.vnecdn.net/2017/11/15/-5363-1510707033.jpg?w=500&h=300&q=100&dpr=2&fit=crop&s=dEtEUI9FYQCXcPGj-xv9hQ"
+                                alt="bản tin">
+                        </div>
+                        <div class="title">
+                            <div class="title_r">
+                                <div class="title_last"><span>Bản tin LightUP</span>
+                                    <li>20/1/2025</li>
+                                </div>
+                                <div class="name">
+                                    <a href="news_details.html">Sử dụng đèn Led trong chiếu sáng nội thất</a>
+                                </div>
+                            </div>
+                            <div class="title_l">
+                                <a href="news_details.html"> <i class="bi bi-arrow-up-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card_img">
+                            <img src="https://i1-kinhdoanh.vnecdn.net/2015/01/13/13-1-20156-3406-1421143222.jpeg?w=500&h=300&q=100&dpr=2&fit=crop&s=k6GYatkzvBZVikRXkKZpYw"
+                                alt="bản tin">
+                        </div>
+                        <div class="title">
+                            <div class="title_r">
+                                <div class="title_last"><span>Bản tin LightUP</span>
+                                    <li>20/7/2025</li>
+                                </div>
+                                <div class="name">
+                                    <a href="news_details.html">Đèn Led tiết kiệm điện và có độ bền cao</a>
+                                </div>
+                            </div>
+                            <div class="title_l">
+                                <a href="news_details.html"> <i class="bi bi-arrow-up-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+        <section class="section_3_news">
+            <div class="container">
+                <div class="header">
+                    <h1>Bài viết</h1>
+                    <div class="sort-dropdown">
+                        <label>Sắp xếp theo:</label>
+                        <select>
+                            <option>Mới nhất</option>
+                            <option>Cũ nhất</option>
+                            <option>Phổ biến nhất</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="articles-list">
+                    <!-- Trang 1 -->
+                    <div class="article-card" data-page="1">
+                        <div class="article-image">
+                            <img src="https://i1-giadinh.vnecdn.net/2023/03/02/setop-1677718671-1677718682-6756-1677718754.jpg?w=500&h=300&q=100&dpr=2&fit=crop&s=oe9JH4fyZe2kF7EJumgLxA"
+                                alt="Bản tin 1">
+                        </div>
+                        <div class="article-content">
+                            <h2 class="article-title"><a href="news_details.html">Lumi ra mắt bộ sưu tập đèn Lumi
+                                    Lighting</a> </h2>
+                            <p class="article-description">Với gần 30 mẫu thiết kế đèn, Lumi Lighting ứng dụng được vào
+                                hầu hết không gian nội thất và ngoại thất, phù hợp nhiều phong cách kiến trúc. </p>
+                            <div class="article-meta">
+                                <strong>Tin tức LightUP</strong>
+                                <span>•</span>
+                                <span>25/10/2025</span>
+                            </div>
+                        </div>
+                        <div class="title_l">
+                            <a href="news_details.html"> <i class="bi bi-arrow-up-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="article-card" data-page="1">
+                        <div class="article-image">
+                            <img src="https://i1-vnexpress.vnecdn.net/2023/01/05/z4013744576370-0199913729dfb6e-3246-8552-1672900994.jpg?w=500&h=300&q=100&dpr=2&fit=crop&s=YL7Ei5ng4fkSmixCev5agg"
+                                alt="MPE khởi động">
+                        </div>
+                        <div class="article-content">
+                            <h2 class="article-title"><a href="news_details.html">Lắp hệ thống đèn cho 80 cầu tại TP
+                                    HCM</a></h2>
+                            <p class="article-description">Gần 350 bộ đèn led chiếu sáng được lắp đặt dưới 78 cầu vượt
+                                sông, kênh rạch ở thành phố, giúp tàu thuyền chạy ban đêm an toàn hơn. </p>
+                            <div class="article-meta">
+                                <strong>Tin tức LightUP</strong>
+                                <span>•</span>
+                                <span>09/08/2025</span>
+                            </div>
+                        </div>
+                        <div class="title_l">
+                            <a href="news_details.html"> <i class="bi bi-arrow-up-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="article-card" data-page="1">
+                        <div class="article-image">
+                            <img src="https://i1-sohoa.vnecdn.net/2022/05/23/VNExpressthumbnail-1653287539-3758-1653288281.jpg?w=500&h=300&q=100&dpr=2&fit=crop&s=wf4wyyZhUk_VPJYDks7Riw"
+                                alt="Chuyển đổi số">
+                        </div>
+                        <div class="article-content">
+                            <h2 class="article-title"><a href="news_details.html">Signify ra mắt loạt giải pháp chiếu
+                                    sáng mới</a></h2>
+                            <p class="article-description">Signify Việt Nam ra mắt đa dạng giải pháp chiếu sáng cho
+                                nhiều lĩnh vực như nông nghiệp, gia đình; mở rộng mạng lưới đối tác trong quý I/2022.
+                            </p>
+                            <div class="article-meta">
+                                <strong>Tin tức LightUP</strong>
+                                <span>•</span>
+                                <span>03/04/2025</span>
+                            </div>
+                        </div>
+                        <div class="title_l">
+                            <a href="news_details.html"> <i class="bi bi-arrow-up-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="article-card" data-page="1">
+                        <div class="article-image">
+                            <img src="https://i1-vnexpress.vnecdn.net/2021/06/07/195759725951638552268196211975-6654-4059-1623034032.jpg?w=500&h=300&q=100&dpr=2&fit=crop&s=ZfLGeYI6N0LGM1opBI4mGQ"
+                                alt="Sản phẩm mới">
+                        </div>
+                        <div class="article-content">
+                            <h2 class="article-title"><a href="news_details.html">Đèn xe máy bật cả ngày khiến tôi ức
+                                    chế</a>></h2>
+                            <p class="article-description">Trời ngày hè nắng nóng, đèn xe máy góp phần làm tăng nhiệt độ
+                                và thêm chói chang mọi nẻo đường.</p>
+                            <div class="article-meta">
+                                <strong>Tin tức LightUP</strong>
+
+                                <span>•</span>
+                                <span>15/03/2025</span>
+                            </div>
+                        </div>
+                        <div class="title_l">
+                            <a href="news_details.html"> <i class="bi bi-arrow-up-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Trang 2 -->
+                    <div class="article-card hidden" data-page="2">
+                        <div class="article-image">
+                            <img src="https://i1-vnexpress.vnecdn.net/2019/04/12/2-1555079901.jpg?w=500&h=300&q=100&dpr=2&fit=crop&s=ndvGI_yFKFgdsurPvK1knQ"
+                                alt="Thành tựu">
+                        </div>
+                        <div class="article-content">
+                            <h2 class="article-title">Cầu Trường Tiền huyền ảo với hệ thống đèn 10 tỷ đồng</h2>
+                            <p class="article-description">Cầu Trường Tiền bắc qua sông Hương vừa được thay hệ thống đèn
+                                hiệu ứng màu theo công nghệ Italy với tổng kinh phí 10 tỷ đồng.</p>
+                            <div class="article-meta">
+                                <strong>Tin tức LightUP</strong>
+
+                                <span>•</span>
+                                <span>28/12/2024</span>
+                            </div>
+                        </div>
+                        <div class="title_l">
+                            <a href="news_details.html"> <i class="bi bi-arrow-up-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="article-card hidden" data-page="2">
+                        <div class="article-image">
+                            <img src="https://i1-sohoa.vnecdn.net/2018/03/21/20-3-201822-677670938-8911-1521610635.jpeg?w=500&h=300&q=100&dpr=2&fit=crop&s=KyT9PCPNIf7zyTYVY5KHUg"
+                                alt="tin tức 5">
+                        </div>
+                        <div class="article-content">
+                            <h2 class="article-title">Solar LED - giải pháp chiếu sáng cho cộng đồng vùng xa</h2>
+                            <p class="article-description">Solar LED đã được triển khai tại Việt Nam và Campuchia, hướng
+                                tới những vùng quê chưa được chiếu sáng bằng đèn điện. </p>
+                            <div class="article-meta">
+                                <strong>Tin tức LightUP</strong>
+
+                                <span>•</span>
+                                <span>10/11/2024</span>
+                            </div>
+                        </div>
+                        <div class="title_l">
+                            <a href="news_details.html"> <i class="bi bi-arrow-up-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="article-card hidden" data-page="2">
+                        <div class="article-image">
+                            <img src="https://i1-giadinh.vnecdn.net/2018/12/03/den-sac-led-dien-quang-dq-prl0-4027-2771-1543832593.jpg?w=500&h=300&q=100&dpr=2&fit=crop&s=GNSsJ4d-nV3tuiOS7B_NFw"
+                                alt="Môi trường">
+                        </div>
+                        <div class="article-content">
+                            <h2 class="article-title">Thiết bị chiếu sáng ưu đãi lớn trong tuần lễ Online Friday</h2>
+                            <p class="article-description">Từ 1/12 - 16/12, Shop VnExpress giảm 30% tất cả sản phẩm
+                                thiết bị điện Điện Quang. </p>
+                            <div class="article-meta">
+                                <strong>Tin tức LightUP</strong>
+
+                                <span>•</span>
+                                <span>22/10/2024</span>
+                            </div>
+                        </div>
+                        <div class="title_l">
+                            <a href="news_details.html"> <i class="bi bi-arrow-up-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="article-card hidden" data-page="2">
+                        <div class="article-image">
+                            <img src="https://i1-giadinh.vnecdn.net/2017/11/06/Image-169444693-ExtractWord-0-4332-6770-1509935698.png?w=500&h=300&q=100&dpr=2&fit=crop&s=oMHD6x35rn5f7ouioF-ESw"
+                                alt="bản tin 8">
+                        </div>
+                        <div class="article-content">
+                            <h2 class="article-title">Chọn đèn phù hợp cho không gian sống</h2>
+                            <p class="article-description">Phòng ngủ, phòng ăn cần những màu có sắc ấm như các tông màu
+                                vàng giúp ngủ ngon hoặc kích thích vị giác thì đèn LED là một gợi ý. </p>
+                            <div class="article-meta">
+                                <strong>Tin tức LightUP</strong>
+
+                                <span>•</span>
+                                <span>05/10/2024</span>
+                            </div>
+                        </div>
+                        <div class="title_l">
+                            <a href="news_details.html"> <i class="bi bi-arrow-up-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Trang 3 -->
+                    <div class="article-card hidden" data-page="3">
+                        <div class="article-image">
+                            <img src="https://i1-kinhdoanh.vnecdn.net/2017/10/23/Image-905444629-ExtractWord-0-7629-5092-1508741466.jpeg?w=500&h=300&q=100&dpr=2&fit=crop&s=kR5NX-oNQJv8k4vJ-xEBTw"
+                                alt="bản tin 9">
+                        </div>
+                        <div class="article-content">
+                            <h2 class="article-title">Không gian sống bừng sáng với bộ sưu tập đèn Panasonic</h2>
+                            <p class="article-description">Các sản phẩm đèn trần được trang bị công nghệ chiếu sáng hiện
+                                đại, tạo cảm giác thoải mái cho người dùng. </p>
+                            <div class="article-meta">
+                                <strong>Tin tức LightUP</strong>
+
+                                <span>•</span>
+                                <span>18/09/2024</span>
+                            </div>
+                        </div>
+                        <div class="title_l">
+                            <a href="news_details.html"> <i class="bi bi-arrow-up-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="article-card hidden" data-page="3">
+                        <div class="article-image">
+                            <img src="https://i1-vnexpress.vnecdn.net/2017/10/07/Anh-1507347227-7592-1507347376.jpg?w=500&h=300&q=100&dpr=2&fit=crop&s=iqCFM6_CgVKS_5LbeRUVng"
+                                alt="Bản tin 10">
+                        </div>
+                        <div class="article-content">
+                            <h2 class="article-title">Đèn hút CO2 và thải khí oxy như cây xanh</h2>
+                            <p class="article-description">Một chiếc đèn chùm độc đáo có khả năng hấp thụ CO2 đồng thời
+                                thải ra khí oxy giống như cây làm sạch không khí trong nhà. </p>
+                            <div class="article-meta">
+                                <strong>Tin tức LightUP</strong>
+
+                                <span>•</span>
+                                <span>02/08/2024</span>
+                            </div>
+                        </div>
+                        <div class="title_l">
+                            <a href="news_details.html"> <i class="bi bi-arrow-up-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="article-card hidden" data-page="3">
+                        <div class="article-image">
+                            <img src="https://i1-vnexpress.vnecdn.net/2017/06/26/st1-1498464275.jpg?w=500&h=300&q=100&dpr=2&fit=crop&s=p15IO_p1qd295eJY8i1Sww"
+                                alt="Bản tin 11">
+                        </div>
+                        <div class="article-content">
+                            <h2 class="article-title">Tài xế ôtô không bật đèn buổi tối bị phạt 800.000 đồng</h2>
+                            <p class="article-description">Tôi muốn biết có luật nào quy định về thời gian phải bật đèn
+                                chiếu sáng với các phương tiện tham gia giao thông không? </p>
+                            <div class="article-meta">
+                                <strong>Tin tức LightUP</strong>
+
+                                <span>•</span>
+                                <span>15/07/2024</span>
+                            </div>
+                        </div>
+                        <div class="title_l">
+                            <a href="news_details.html"> <i class="bi bi-arrow-up-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="article-card hidden" data-page="3">
+                        <div class="article-image">
+                            <img src="https://i1-giadinh.vnecdn.net/2013/03/12/sang-3-458084-1388741779.jpg?w=500&h=300&q=100&dpr=2&fit=crop&s=bQfGQcASx-10ZpjFkDTZ_A"
+                                alt="Bản tin 12">
+                        </div>
+                        <div class="article-content">
+                            <h2 class="article-title">
+                                Mắt kém vì thừa ánh sáng</h2>
+                            <p class="article-description">Theo tài liệu của Tổ chức y tế thế giới, ánh sáng nếu không
+                                cần thiết và được thiết kế thiếu hợp lý cũng là một dạng ô nhiễm. Đây là nguyên nhân
+                                khiến nhiều người bị giảm thị lực. </p>
+                            <div class="article-meta">
+                                <strong>Tin tức LightUP</strong>
+
+                                <span>•</span>
+                                <span>28/06/2024</span>
+                            </div>
+                        </div>
+                        <div class="title_l">
+                            <a href="news_details.html"> <i class="bi bi-arrow-up-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pagination">
+                    <a href="#page1" class="prev-btn disabled">← Trước</a>
+                    <a href="#page1" class="page-btn active">1</a>
+                    <a href="#page2" class="page-btn">2</a>
+                    <a href="#page3" class="page-btn">3</a>
+                    <a href="#page2" class="next-btn">Sau →</a>
+                </div>
+            </div>
+        </section>
+        <footer class="footer-main">
+            <div class="footer-container">
+                <div class="footer-column company-info">
+                    <h3>THÔNG TIN CHUNG</h3>
+                    <h2>ĐÈN VÀ THIẾT BỊ CHIẾU SÁNG</h2>
+
+                    <div class="contact-item">
+                        <i class="bi bi-telephone-fill"></i>
+                        <a href="tel:0999999999"> (84-28)-38966780</a>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="bi bi-envelope-fill"></i>
+                        <a href="mailto:cskh@hoanghoavn.vn">vphanhchinh@hcmuaf.edu.vn; ico@hcmuaf.edu.vn</a>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <a href="https://www.hcmuaf.edu.vn/map.html">Khu Phố 33, Phường Linh Xuân, TP. Hồ Chí Minh,
+                            Việt
+                            Nam</a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>VỀ CHÚNG TÔI</h3>
+                    <ul class="footer-links">
+                        <li><a href="./about.html">Giới thiệu</a></li>
+                        <li><a href="./products.html">Sản phẩm</a></li>
+                        <li><a href="./news.html">Tin tức</a></li>
+                        <li><a href="./contact.html">Liên hệ</a></li>
+                    </ul>
+                </div>
+
+
+                <div class="footer-column social-section">
+                    <h3>KẾT NỐI VỚI CHÚNG TÔI</h3>
+                    <div class="social-icons">
+                        <div class="social-icon">
+                            <i class="bi bi-facebook"></i>
+                        </div>
+                        <div class="social-icon">
+                            <i class="bi bi-twitter"></i>
+                        </div>
+                        <div class="social-icon">
+                            <i class="bi bi-envelope-fill"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-cont">
+                    <div class="footer-text">
+                        <p>Copyright &copy;2025 by LightUP | All Right Reserves</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <a href="#up">
+            <button id="scrollToTopBtn">
+                <i class="bi bi-chevron-up"></i>
+            </button>
+        </a>
+    </main>
+    <script src="./JS/index.js"></script>
+
+
+
+</body>
+
+</html>

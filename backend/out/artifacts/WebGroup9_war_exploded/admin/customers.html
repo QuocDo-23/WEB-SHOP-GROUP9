@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png">
+    <title>Khách Hàng - Quản Lý Đèn</title>
+    <link rel="stylesheet" href="../CSS/admin.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png" alt="logo">
+                LightAdmin
+            </div>
+            <a href="../admin/dashboard.html" class="menu-item ">
+                📊 Tổng Quan
+            </a>
+            <a href="../admin/product_admin.html" class="menu-item">
+                📦 Sản Phẩm
+            </a>
+            <a href="../admin/orders-admin.html" class="menu-item">
+                🛒 Đơn Hàng
+            </a>
+            <a href="../admin/customers.html" class="menu-item active">
+                👥 Khách Hàng
+            </a>
+            <a href="../admin/news-admin.html" class="menu-item">
+                📰 Tin Tức
+            </a>
+            <a href="../admin/review.html" class="menu-item ">
+                ⭐ Đánh Giá
+            </a>
+            <a href="../admin/analytics.html" class="menu-item">
+                📈 Thống Kê
+            </a>
+            <button type="button" class="logout-btn" onclick="window.location.href='../index.html'">Đăng xuất</button>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>Danh Sách Khách Hàng</h1>
+                <div class="user-info">
+                    <div class="avatar">Q</div>
+                    <div>
+                        <div style="font-weight: 600;">Admin</div>
+                        <div style="font-size: 12px; color: #718096;">Quản trị viên</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <h2>Danh Sách Khách Hàng</h2>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã KH</th>
+                            <th>Khách Hàng</th>
+                            <th>Email</th>
+                            <th>Số ĐT</th>
+                            <th>Đơn Hàng</th>
+                            <th>Tổng Chi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#KH01</td>
+                            <td>
+                                <div class="product-info">
+                                    <div>Nguyễn Văn A</div>
+                                </div>
+                            </td>
+                            <td>nguyenvana@email.com</td>
+                            <td>0912345678</td>
+                            <td>12</td>
+                            <td style="font-weight: 600; color: #319795;">15.6M VNĐ</td>
+                        </tr>
+                        <tr>
+                            <td>#KH02</td>
+                            <td>
+                                <div class="product-info">
+                                    <div>Trần Thị B</div>
+                                </div>
+                            </td>
+                            <td>tranthib@email.com</td>
+                            <td>0987654321</td>
+                            <td>8</td>
+                            <td style="font-weight: 600; color: #319795;">8.2M VNĐ</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

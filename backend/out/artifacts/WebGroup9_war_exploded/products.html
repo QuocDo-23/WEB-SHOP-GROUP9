@@ -1,0 +1,1692 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png">
+    <link rel="stylesheet" href="CSS/cart.css">
+    <link rel="stylesheet" href="./CSS/products.css">
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./CSS/sub_login.css">
+    <title>Sản Phẩm</title>
+
+
+    <!-- Thư viện Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+
+<body>
+    <main>
+        <nav>
+            <div class="nav_head">
+                <a href="./index.html">
+                    <div class="logo">
+                        <img src="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png" alt="Logo">
+                    </div>
+                </a>
+
+                <div class="nav-container">
+                    <ul class="nav-links">
+                        <li><a href="./index.html">TRANG CHỦ</a></li>
+                        <li><a href="./about.html">GIỚI THIỆU</a></li>
+                        <li><a href="./products.html" class="active">SẢN PHẨM <i class="bi bi-caret-down-fill"></i></a>
+
+                            <div class="sub-item">
+                                <div class="contant-sub">
+                                    <h2>Danh mục sản phẩm</h2>
+                                    <div class="cont-item">
+                                        <div class="product_item">
+                                            <div class="product_cont">
+                                                <img src="https://cdn-icons-png.freepik.com/512/4452/4452959.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                                    alt="">
+                                                <a class="item" href="#denban-section">Đèn Bàn</a>
+                                            </div>
+                                            <span class="arrow">›</span>
+                                        </div>
+                                        <div class="product_item">
+                                            <div class="product_cont">
+                                                <img src="https://cdn-icons-png.freepik.com/512/1237/1237786.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                                    alt="">
+                                                <a class="item" href="#denchum-section">Đèn Chùm</a>
+                                            </div>
+                                            <span class="arrow">›</span>
+                                        </div>
+                                        <div class="product_item">
+                                            <div class="product_cont">
+                                                <img src="https://cdn-icons-png.freepik.com/512/18200/18200846.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                                    alt="">
+                                                <a class="item" href="#denoptran-section">Đèn Ốp Trần</a>
+                                            </div>
+                                            <span class="arrow">›</span>
+                                        </div>
+                                        <div class="product_item">
+                                            <div class="product_cont">
+                                                <img src="https://cdn-icons-png.freepik.com/512/6202/6202698.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                                    alt="">
+                                                <a class="item" href="#denvach-section">Đèn Vách</a>
+                                            </div>
+                                            <span class="arrow">›</span>
+                                        </div>
+                                        <div class="product_item">
+                                            <div class="product_cont">
+                                                <img src="https://cdn-icons-png.freepik.com/512/3719/3719943.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                                    alt="">
+                                                <a class="item" href="#dentha-section">Đèn Thả</a>
+                                            </div>
+                                            <span class="arrow">›</span>
+                                        </div>
+                                        <div class="product_item">
+                                            <div class="product_cont">
+                                                <img src="https://cdn-icons-png.freepik.com/512/896/896351.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                                    alt="">
+                                                <a class="item" href="#dencay-section">Đèn Cây</a>
+                                            </div>
+                                            <span class="arrow">›</span>
+                                        </div>
+                                        <div class="product_item">
+                                            <div class="product_cont">
+                                                <img src="https://cdn-icons-png.freepik.com/512/3724/3724416.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                                    alt="">
+                                                <a class="item" href="#denquat-section">Đèn Quạt</a>
+                                            </div>
+                                            <span class="arrow">›</span>
+                                        </div>
+                                        <div class="product_item">
+                                            <div class="product_cont">
+                                                <img src="https://cdn-icons-png.freepik.com/512/7402/7402062.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                                    alt="">
+                                                <a class="item" href="#bongden-section">Bóng Đèn</a>
+                                            </div>
+                                            <span class="arrow">›</span>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </li>
+                        <li><a href="./news.html">TIN TỨC</a></li>
+                        <li><a href="./contact.html">LIÊN HỆ</a></li>
+                    </ul>
+                    <div class="nav_r" id="nav_r">
+                        <!-- Ô SEARCH TRÊN NAV -->
+                        <div class="search-icon" onclick="openSearchBar()">
+                            <input type="text" placeholder="Tìm kiếm ">
+                            <i class="bi bi-search"></i>
+                        </div>
+
+                        <!-- NÚT QUAY LẠI ẨN LÚC BÌNH THƯỜNG -->
+                        <i class="bi bi-x back-button-nav" onclick="closeSearchBar()"></i>
+
+
+                        <!-- khung tìm kiếm -->
+                        <div class="search-panel" id="searchPanel">
+                            <div class="search-content">
+                                <div class="section-header_search">
+                                    <h2 class="section-title-search">Gợi ý tìm kiếm</h2>
+                                </div>
+
+                                <a href="./product-detail.html" class="search-item">
+                                    <span class="arrow-icon"><i class="bi bi-search"></i></span>
+                                    <div class="item-content">
+                                        <div class="item-name">Đèn để bàn phòng khách phong cách tối giản KLS0049</div>
+                                    </div>
+                                </a>
+
+                                <a href="./product-detail.html" class="search-item">
+                                    <span class="arrow-icon"><i class="bi bi-search"></i></span>
+                                    <div class="item-content">
+                                        <div class="item-name">Đèn bàn đọc sách làm việc hiện đại tối giản FLM5145</div>
+                                    </div>
+                                </a>
+
+                                <a href="./product-detail.html" class="search-item">
+                                    <span class="arrow-icon"><i class="bi bi-search"></i></span>
+                                    <div class="item-content">
+                                        <div class="item-name">Đèn bàn bằng gốm sứ nhiều màu HYJ0029</div>
+                                    </div>
+                                </a>
+
+                            </div>
+                        </div>
+
+                        <!-- ICON SHOP -->
+                        <div class="icon-group">
+                            <div class="shop" id="shop">
+                                <a href="cart_detail.html"><i class="bi bi-cart-check" title="Giỏ hàng"></i></a>
+                                <div class="item-quantity">2</div>
+                            </div>
+
+                            <!-- ICON LOGIN -->
+                            <div class="login" id="login">
+                                <a href="./login.html"><i class="bi bi-person-circle" title="Tài Khoản"></i></a>
+                                <div class="sub_login">
+                                    <div class="container-sub-login">
+                                        <a href="./profile.html"><i class="bi bi-person"></i> Tài khoản</a>
+                                        <a href="./order.html"><i class="bi bi-clipboard-check"></i>Đơn Hàng</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="link-page">
+            <div class="containt_link">
+                <a href="./index.html"><i class="bi bi-house"></i> Trang chủ </a>
+                <span> /</span>
+                <a href="">Sản Phẩm</a>
+            </div>
+
+        </div>
+        <div class="filter-sort-bar">
+            <!-- Bộ lọc bên trái -->
+            <div class="filter-container">
+                <div class="filter-dropdown">
+                    <div class="filter-toggle">
+                        <i class="bi bi-funnel-fill"></i>
+                        <span>Bộ lọc</span>
+                    </div>
+
+                    <!--                    <ul class="filter-list combined">-->
+                    <!--                        <li class="combined-group">-->
+                    <!--                            <div class="group-item">-->
+                    <!--                                <h5>Giá</h5>-->
+                    <!--                                <ul>-->
+                    <!--                                    <li><label><input type="checkbox"> Dưới 1.000.000₫</label></li>-->
+                    <!--                                    <li><label><input type="checkbox"> 1.000.000₫ – 5.000.000₫</label></li>-->
+                    <!--                                    <li><label><input type="checkbox"> 5.000.000₫ – 7.500.000₫</label></li>-->
+                    <!--                                    <li><label><input type="checkbox"> 7.500.000₫ – 10.000.000₫</label></li>-->
+                    <!--                                    <li><label><input type="checkbox"> Trên 10.000.000₫</label></li>-->
+                    <!--                                </ul>-->
+                    <!--                            </div>-->
+
+                    <!--                            <div class="group-item">-->
+                    <!--                                <h5>Chất liệu</h5>-->
+                    <!--                                <ul>-->
+                    <!--                                    <li><label><input type="checkbox"> Nhựa</label></li>-->
+                    <!--                                    <li><label><input type="checkbox"> Thủy Tinh</label></li>-->
+                    <!--                                    <li><label><input type="checkbox"> Kim Loại</label></li>-->
+                    <!--                                    <li><label><input type="checkbox"> Hợp kim</label></li>-->
+                    <!--                                </ul>-->
+                    <!--                            </div>-->
+
+                    <!--                            <div class="group-item">-->
+                    <!--                                <h5>Phong Cách</h5>-->
+                    <!--                                <ul>-->
+                    <!--                                    <li><label><input type="checkbox"> Hiện đại</label></li>-->
+                    <!--                                    <li><label><input type="checkbox"> Cổ điển</label></li>-->
+                    <!--                                </ul>-->
+                    <!--                            </div>-->
+
+                    <!--                            <div class="group-item">-->
+                    <!--                                <h5>Loại đèn</h5>-->
+                    <!--                                <ul>-->
+                    <!--                                    <li><label><input type="checkbox"> Đèn Bàn</label></li>-->
+                    <!--                                    <li><label><input type="checkbox"> Đèn Chùm</label></li>-->
+                    <!--                                    <li><label><input type="checkbox"> Đèn Ốp Trần</label></li>-->
+                    <!--                                    <li><label><input type="checkbox"> Đèn Vách</label></li>-->
+                    <!--                                    <li><label><input type="checkbox"> Đèn Thả</label></li>-->
+                    <!--                                    <li><label><input type="checkbox"> Đèn Cây</label></li>-->
+                    <!--                                    <li><label><input type="checkbox"> Đèn Quạt</label></li>-->
+                    <!--                                    <li><label><input type="checkbox"> Bóng Đèn</label></li>-->
+                    <!--                                </ul>-->
+                    <!--                            </div>-->
+                    <!--                        </li>-->
+                    <!--                    </ul>-->
+                </div>
+
+                <!-- Bộ lọc dạng dropdown riêng lẻ -->
+                <div class="filter-dropdown">
+                    <div class="filter-toggle">
+                        <span>Giá</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <ul class="filter-list">
+                        <li><label><input type="checkbox"> Dưới 1.000.000₫</label></li>
+                        <li><label><input type="checkbox"> 1.000.000₫ – 5.000.000₫</label></li>
+                        <li><label><input type="checkbox"> 5.000.000₫ – 7.500.000₫</label></li>
+                        <li><label><input type="checkbox"> 7.500.000₫ – 10.000.000₫</label></li>
+                        <li><label><input type="checkbox"> Trên 10.000.000₫</label></li>
+                    </ul>
+                </div>
+
+                <div class="filter-dropdown">
+                    <div class="filter-toggle">
+                        <span>Chất liệu</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <ul class="filter-list">
+                        <li><label><input type="checkbox"> Nhựa</label></li>
+                        <li><label><input type="checkbox"> Thủy Tinh</label></li>
+                        <li><label><input type="checkbox"> Kim Loại</label></li>
+                        <li><label><input type="checkbox"> Hợp kim</label></li>
+                    </ul>
+                </div>
+
+                <div class="filter-dropdown">
+                    <div class="filter-toggle">
+                        <span>Phong Cách</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <ul class="filter-list">
+                        <li><label><input type="checkbox"> Hiện đại</label></li>
+                        <li><label><input type="checkbox"> Cổ điển</label></li>
+                    </ul>
+                </div>
+
+                <div class="filter-dropdown">
+                    <div class="filter-toggle">
+                        <span>Loại đèn</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <ul class="filter-list">
+                        <li><label><input type="checkbox"> Đèn Bàn</label></li>
+                        <li><label><input type="checkbox"> Đèn Chùm</label></li>
+                        <li><label><input type="checkbox"> Đèn Ốp Trần</label></li>
+                        <li><label><input type="checkbox"> Đèn Vách</label></li>
+                        <li><label><input type="checkbox"> Đèn Thả</label></li>
+                        <li><label><input type="checkbox"> Đèn Cây</label></li>
+                        <li><label><input type="checkbox"> Đèn Quạt</label></li>
+                        <li><label><input type="checkbox"> Bóng Đèn</label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Sắp xếp bên phải -->
+            <div class="sort-box">
+                <div class="sort-toggle">
+                    <span>Sắp xếp</span>
+                    <i class="bi bi-chevron-down"></i>
+                </div>
+                <ul class="sort-list">
+                    <li>Bán chạy</li>
+                    <li>Giá thấp → cao</li>
+                    <li>Giá cao → thấp</li>
+                </ul>
+            </div>
+        </div>
+
+        </div>
+        <div class="search-overlay" id="searchOverlay" onclick="closeSearchPanel()"></div>
+
+
+        <div class="container product-section">
+            <div id="denban-section" class="product-section">
+                <h3 class="sub-title">Đèn Bàn</h3>
+
+                <div class="product-grid" id="productGrid">
+                    <!-- ===== SẢN PHẨM 1 ===== -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <div class="product-sale">-18%</div>
+                            <a href="product-detail.html">
+                                <img src="https://flexhouse.vn/wp-content/uploads/2022/12/Den-de-ban-phong-khach-phong-cach-toi-gian-KLS0049-1-430x430.jpg"
+                                    alt="Đèn để bàn phòng khách phong cách tối giản KLS0049" class="img-main">
+                                <img src="https://flexhouse.vn/wp-content/uploads/2022/12/Den-de-ban-phong-khach-phong-cach-toi-gian-KLS0049-4.jpg"
+                                    alt="Đèn để bàn phòng khách phong cách tối giản KLS0049" class="img-hover">
+                            </a>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name"><a href="product-detail.html">Đèn để bàn phòng khách phong cách tối
+                                    giản KLS0049</a>
+                            </h3>
+                            <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                            <div class="star-rating">
+                                <span style="width:100%"></span>
+                            </div>
+                            <div class="product-action">
+                                <div class="product-prices">
+                                    <span class="current-price">3.900.000₫</span>
+                                    <span class="old-price"><del>4.778.000₫</del></span>
+                                </div>
+                                <div class="cart-icon">
+                                    <a href="" class="open-cart">
+                                        <i class="bi bi-cart-check"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="product-meta"><span class="sold">Đã bán: 60</span></div>
+                        </div>
+
+                    </div>
+
+                    <!-- ===== SẢN PHẨM 2 ===== -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <div class="product-sale">-26%</div>
+                            <a href="product-detail.html">
+                                <img src="https://flexhouse.vn/wp-content/uploads/2021/09/Den-ban-bang-dong-nguyen-chat-MC311-1T-2-430x430.jpg"
+                                    alt="Đèn bàn vàng ấm 2" class="img-main">
+                                <img src="https://flexhouse.vn/wp-content/uploads/2021/09/Den-ban-bang-dong-nguyen-chat-MC311-1T.jpg"
+                                    alt="Đèn bàn vàng ấm 2 góc khác" class="img-hover">
+                            </a>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name"><a href="product-detail.html">Đèn bàn bằng đồng nguyên chất
+                                    MC311-1T</a></h3>
+                            <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                            <div class="star-rating">
+                                <span style="width:100%"></span>
+                            </div>
+                            <div class="product-action">
+                                <div class="product-prices">
+                                    <span class="current-price">5.011.000₫</span>
+                                    <span class="old-price"><del>6.753.000₫</del></span>
+                                </div>
+                                <div class="cart-icon">
+                                    <a href="" class="open-cart">
+                                        <i class="bi bi-cart-check"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-meta"><span class="sold">Đã bán: 36</span></div>
+                        </div>
+                    </div>
+                    <!-- ===== SẢN PHẨM 3 ===== -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <div class="product-sale">-15%</div>
+                            <a href="product-detail.html">
+                                <img src="https://flexhouse.vn/wp-content/uploads/2024/07/Den-ban-doc-sach-lam-viec-hien-dai-toi-gian-FLM5145-6-430x430.jpg"
+                                    alt="Đèn bàn tròn trang trí 3" class="img-main">
+                                <img src="https://flexhouse.vn/wp-content/uploads/2024/07/Den-ban-doc-sach-lam-viec-hien-dai-toi-gian-FLM5145-4.jpg"
+                                    alt="Đèn bàn tròn trang trí 3 góc khác" class="img-hover">
+                            </a>
+                        </div>
+                        <div class="product-info">
+
+                            <h3 class="product-name"><a href="product-detail.html">Đèn bàn đọc sách làm việc hiện đại
+                                    tối giản FLM5145</a>
+                            </h3>
+                            <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                            <div class="star-rating">
+                                <span style="width:100%"></span>
+                            </div>
+                            <div class="product-action">
+                                <div class="product-prices">
+                                    <span class="current-price">3.825.000₫</span>
+                                    <span class="old-price"><del>4.500.000₫</del></span>
+                                </div>
+                                <div class="cart-icon">
+                                    <a href="" class="open-cart">
+                                        <i class="bi bi-cart-check"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-meta"><span class="sold">Đã bán: 62</span></div>
+                        </div>
+                    </div>
+
+                    <!-- ===== SẢN PHẨM 4 ===== -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <div class="product-sale">-10%</div>
+                            <a href="product-detail.html">
+                                <img src="https://flexhouse.vn/wp-content/uploads/2021/08/Den-ban-bang-gom-su-nhieu-mau-HYJ0029-12.jpg"
+                                    alt="Đèn bàn học sinh 4" class="img-main">
+                                <img src="https://flexhouse.vn/wp-content/uploads/2021/08/Den-ban-bang-gom-su-nhieu-mau-HYJ0029-10.jpg"
+                                    alt="Đèn bàn học sinh 4 góc khác" class="img-hover">
+                            </a>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name"><a href="product-detail.html">Đèn bàn bằng gốm sứ nhiều màu
+                                    HYJ0029</a></h3>
+                            <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                            <div class="star-rating">
+                                <span style="width:100%"></span>
+                            </div>
+                            <div class="product-action">
+                                <div class="product-prices">
+                                    <span class="current-price">1.629.000₫</span>
+                                    <span class="old-price"><del>1.810.000₫</del></span>
+                                </div>
+                                <div class="cart-icon">
+                                    <a href="" class="open-cart">
+                                        <i class="bi bi-cart-check"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-meta"><span class="sold">Đã bán: 39</span></div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- ====================== ĐÈN CHÙM ====================== -->
+                <div id="denchum-section" class="product-section">
+                    <h3 class="sub-title">Đèn Chùm</h3>
+                    <div class="product-grid">
+                        <!-- ===== SẢN PHẨM 1 ===== -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <div class="product-sale">-10%</div>
+                                <a href="product-detail.html">
+                                    <img src="https://flexhouse.vn/wp-content/uploads/2023/07/den-chum-pha-le-thong-tang-nghe-thuat-an-tuong-zyl9820-5.jpg"
+                                        alt="Đèn chùm pha lê 1" class="img-main">
+                                    <img src="https://flexhouse.vn/wp-content/uploads/2023/07/den-chum-pha-le-thong-tang-nghe-thuat-an-tuong-zyl9820-2.jpg"
+                                        alt="Đèn chùm pha lê 1 góc khác" class="img-hover">
+                                </a>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name"><a href="product-detail.html">Đèn chùm pha lê thông tầng nghệ
+                                        thuật ấn tượng
+                                        ZYL9820</a></h3>
+                                <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                <div class="star-rating">
+                                    <span style="width:100%"></span>
+                                </div>
+                                <div class="product-action">
+                                    <div class="product-prices">
+                                        <span class="current-price">6.500.000₫</span>
+                                        <span class="old-price"><del>5.850.000₫</del></span>
+                                    </div>
+                                    <div class="cart-icon">
+                                        <a href="" class="open-cart">
+                                            <i class="bi bi-cart-check"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-meta"><span class="sold">Đã bán: 60</span></div>
+                            </div>
+                        </div>
+
+                        <!-- ===== SẢN PHẨM 2 ===== -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <div class="product-sale">-26%</div>
+                                <a href="product-detail.html">
+                                    <img src="https://flexhouse.vn/wp-content/uploads/2025/06/Den-chum-pha-le-phong-khach-sang-trong-ZGL6939-2.jpg"
+                                        alt="Đèn chùm tròn 2" class="img-main">
+                                    <img src="https://flexhouse.vn/wp-content/uploads/2025/06/Den-chum-pha-le-phong-khach-sang-trong-ZGL6939-3.jpg"
+                                        alt="Đèn chùm tròn 2 góc khác" class="img-hover">
+                                </a>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name"><a href="product-detail.html">Đèn chùm phòng khách sang trọng
+                                        ZGL6939</a></h3>
+                                <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                <div class="star-rating">
+                                    <span style="width:100%"></span>
+                                </div>
+                                <div class="product-action">
+                                    <div class="product-prices">
+                                        <span class="current-price">11.038.000₫</span>
+                                        <span class="old-price"><del>8.190.000₫</del></span>
+                                    </div>
+                                    <div class="cart-icon">
+                                        <a href="" class="open-cart">
+                                            <i class="bi bi-cart-check"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-meta"><span class="sold">Đã bán: 72</span></div>
+                            </div>
+                        </div>
+
+                        <!-- ===== SẢN PHẨM 3 ===== -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <a href="product-detail.html">
+                                    <img src="https://flexhouse.vn/wp-content/uploads/2024/05/den-chum-pha-le-nha-hang-dan-buom-bay-luon-dz2042-3.jpg"
+                                        alt="Đèn chùm hiện đại 3" class="img-main">
+                                    <img src="https://flexhouse.vn/wp-content/uploads/2024/05/den-chum-pha-le-nha-hang-dan-buom-bay-luon-dz2042-7.jpg"
+                                        alt="Đèn chùm hiện đại 3 góc khác" class="img-hover">
+                                </a>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name"><a href="product-detail.html">Đèn chùm pha lê nhà hàng đàn bướm
+                                        bay lượn
+                                        DZ2042</a></h3>
+                                <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                <div class="star-rating">
+                                    <span style="width:100%"></span>
+                                </div>
+                                <div class="product-action">
+                                    <div class="product-prices">
+                                        <span class="current-price">25.990.000₫</span>
+                                    </div>
+                                    <div class="cart-icon">
+                                        <a href="" class="open-cart">
+                                            <i class="bi bi-cart-check"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-meta"><span class="sold">Đã bán: 57</span></div>
+                            </div>
+                        </div>
+                        <!-- ===== SẢN PHẨM 4 ===== -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <div class="product-sale">-36%</div>
+                                <a href="product-detail.html">
+                                    <img src="https://flexhouse.vn/wp-content/uploads/2023/03/Den-chum-tha-tran-pha-le-sang-trong-cao-cap-XF113-12.jpg"
+                                        alt="Đèn chùm nghệ thuật 4" class="img-main">
+                                    <img src="https://flexhouse.vn/wp-content/uploads/2023/03/Den-chum-tha-tran-pha-le-sang-trong-cao-cap-XF113-6.jpg"
+                                        alt="Đèn chùm nghệ thuật 4 góc khác" class="img-hover">
+                                </a>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name"><a href="product-detail.html">Đèn chùm thả trần pha lê sang
+                                        trọng cao cấp
+                                        XF113</a></h3>
+                                <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                <div class="star-rating">
+                                    <span style="width:100%"></span>
+                                </div>
+                                <div class="product-action">
+                                    <div class="product-prices">
+                                        <span class="current-price">17.280.000₫</span>
+                                        <span class="old-price"><del>27.000.000₫</del></span>
+                                    </div>
+                                    <div class="cart-icon">
+                                        <a href="" class="open-cart">
+                                            <i class="bi bi-cart-check"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-meta"><span class="sold">Đã bán: 25</span></div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <!-- ====================== ĐÈN ỐP TRẦN ====================== -->
+                <div id="denoptran-section" class="product-section">
+                    <h3 class="sub-title">Đèn Ốp Trần</h3>
+                    <div class="product-grid">
+                        <!-- ===== SẢN PHẨM 1 ===== -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <div class="product-sale">-15%</div>
+                                <a href="product-detail.html">
+                                    <img src="https://flexhouse.vn/wp-content/uploads/2025/05/Den-op-tran-dong-chau-Au-Retro-OD05-7-1.jpg"
+                                        alt="Đèn ốp trần tròn 1" class="img-main">
+                                    <img src="https://flexhouse.vn/wp-content/uploads/2025/05/Den-op-tran-dong-chau-Au-Retro-OD05-10.jpg"
+                                        alt="Đèn ốp trần tròn 1 góc khác" class="img-hover">
+                                </a>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name"><a href="product-detail.html">Đèn ốp trần đồng châu Âu Retro
+                                        OD05</a></h3>
+                                <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                <div class="star-rating">
+                                    <span style="width:100%"></span>
+                                </div>
+                                <div class="product-action">
+                                    <div class="product-prices">
+                                        <span class="current-price">2.308.000₫</span>
+                                        <span class="old-price"><del>2.715.000₫</del></span>
+                                    </div>
+                                    <div class="cart-icon">
+                                        <a href="" class="open-cart">
+                                            <i class="bi bi-cart-check"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-meta"><span class="sold">Đã bán: 78</span></div>
+                            </div>
+                        </div>
+                        <!-- ===== SẢN PHẨM 2 ===== -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <div class="product-sale">-20%</div>
+                                <a href="product-detail.html">
+                                    <img src="https://flexhouse.vn/wp-content/uploads/2024/01/Den-op-tran-dieu-khac-hoa-cham-pa-nghe-thuat-ND6725-2.jpg"
+                                        alt="Đèn ốp trần vuông 2" class="img-main">
+                                    <img src="https://flexhouse.vn/wp-content/uploads/2024/01/Den-op-tran-dieu-khac-hoa-cham-pa-nghe-thuat-ND6725-1.jpg"
+                                        alt="Đèn ốp trần vuông 2 góc khác" class="img-hover">
+                                </a>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name"><a href="product-detail.html">Đèn ốp trần điêu khắc hoa Chăm Pa
+                                        nghệ thuật
+                                        ND6725</a></h3>
+                                <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                <div class="star-rating">
+                                    <span style="width:100%"></span>
+                                </div>
+                                <div class="product-action">
+                                    <div class="product-prices">
+                                        <span class="current-price">6.080.000₫</span>
+                                        <span class="old-price"><del>7.600.000₫</del></span>
+                                    </div>
+                                    <div class="cart-icon">
+                                        <a href="" class="open-cart">
+                                            <i class="bi bi-cart-check"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-meta"><span class="sold">Đã bán: 95</span></div>
+                            </div>
+                        </div>
+                        <!-- ===== SẢN PHẨM 3 ===== -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <div class="product-sale">-20%</div>
+                                <a href="product-detail.html">
+                                    <img src="https://flexhouse.vn/wp-content/uploads/2024/10/den-op-tran-sunflower-decor-phong-tre-nvc652-4.jpg"
+                                        alt="Đèn ốp trần vuông 2" class="img-main">
+                                    <img src="https://flexhouse.vn/wp-content/uploads/2024/10/den-op-tran-sunflower-decor-phong-tre-nvc652-1.jpg"
+                                        alt="Đèn ốp trần vuông 2 góc khác" class="img-hover">
+                                </a>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name"><a href="product-detail.html">Đèn ốp trần Sunflower decor phòng
+                                        trẻ NVC652</a>
+                                </h3>
+                                <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                <div class="star-rating">
+                                    <span style="width:100%"></span>
+                                </div>
+                                <div class="product-action">
+                                    <div class="product-prices">
+                                        <span class="current-price">3.470.000₫</span>
+                                        <span class="old-price"><del>4.340.000₫</del></span>
+                                    </div>
+                                    <div class="cart-icon">
+                                        <a href="" class="open-cart">
+                                            <i class="bi bi-cart-check"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-meta"><span class="sold">Đã bán: 95</span></div>
+                            </div>
+                        </div>
+                        <!-- ===== SẢN PHẨM 4 ===== -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <div class="product-sale">-20%</div>
+                                <a href="product-detail.html">
+                                    <img src="https://flexhouse.vn/wp-content/uploads/2023/11/den-op-tran-tu-giac-trang-tri-phong-ngu-cao-cap-sb6139-7.jpg"
+                                        alt="Đèn ốp trần vuông 2" class="img-main">
+                                    <img src="https://flexhouse.vn/wp-content/uploads/2023/11/den-op-tran-tu-giac-trang-tri-phong-ngu-cao-cap-sb6139-10.jpg"
+                                        alt="Đèn ốp trần vuông 2 góc khác" class="img-hover">
+                                </a>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name"><a href="product-detail.html">Đèn ốp trần tứ giác trang trí
+                                        phòng ngủ cao cấp
+                                        SB6139</a></h3>
+                                <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                <div class="star-rating">
+                                    <span style="width:100%"></span>
+                                </div>
+                                <div class="product-action">
+                                    <div class="product-prices">
+                                        <span class="current-price">4.685.000₫</span>
+                                        <span class="old-price"><del>5.856.000₫</del></span>
+                                    </div>
+                                    <div class="cart-icon">
+                                        <a href="" class="open-cart">
+                                            <i class="bi bi-cart-check"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-meta"><span class="sold">Đã bán: 95</span></div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+
+                <!-- ====================== ĐÈN VÁCH ====================== -->
+                <div id="denvach-section" class="product-section">
+                    <h3 class="sub-title">Đèn Vách</h3>
+                    <div class="product-grid">
+                        <!-- ===== SẢN PHẨM 1 ===== -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <div class="product-sale">-20%</div>
+                                <a href="product-detail.html">
+                                    <img src="https://flexhouse.vn/wp-content/uploads/2023/12/Den-vach-trang-tri-ngoai-that-phong-cach-Trung-Hoa-LY6704-1.jpg"
+                                        alt="Đèn vách cổ điển 1" class="img-main">
+                                    <img src="https://flexhouse.vn/wp-content/uploads/2023/12/Den-vach-trang-tri-ngoai-that-phong-cach-Trung-Hoa-LY6704-3.jpg"
+                                        alt="Đèn vách cổ điển 1 góc khác" class="img-hover">
+                                </a>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name"><a href="product-detail.html">Đèn vách trang trí ngoại thất
+                                        phong cách Trung Hoa LY6704</a></h3>
+                                <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                <div class="star-rating">
+                                    <span style="width:100%"></span>
+                                </div>
+                                <div class="product-action">
+                                    <div class="product-prices">
+                                        <span class="current-price">2.310.000₫</span>
+                                        <span class="old-price"><del>2.890.000₫</del></span>
+                                    </div>
+                                    <div class="cart-icon">
+                                        <a href="" class="open-cart">
+                                            <i class="bi bi-cart-check"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-meta"><span class="sold">Đã bán: 50</span></div>
+                            </div>
+                        </div>
+
+                        <!-- ===== SẢN PHẨM 2 ===== -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <div class="product-sale">-10%</div>
+                                <a href="product-detail.html">
+                                    <img src="https://flexhouse.vn/wp-content/uploads/2023/10/Den-tuong-hinh-khoi-vuong-don-gian-hien-dai-GY4182-7.png"
+                                        alt="Đèn vách pha lê 2" class="img-main">
+                                    <img src="https://flexhouse.vn/wp-content/uploads/2023/10/Den-tuong-hinh-khoi-vuong-don-gian-hien-dai-GY4182-9.png"
+                                        alt="Đèn vách pha lê 2 góc khác" class="img-hover">
+                                </a>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name"><a href="product-detail.html">Đèn vách ngoài trời tối giản hiện
+                                        đại GY4182</a>
+                                </h3>
+                                <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                <div class="star-rating">
+                                    <span style="width:100%"></span>
+                                </div>
+                                <div class="product-action">
+                                    <div class="product-prices">
+                                        <span class="current-price">2.691.000₫</span>
+                                        <span class="old-price"><del>2.980.000₫</del></span>
+                                    </div>
+                                    <div class="cart-icon">
+                                        <a href="" class="open-cart">
+                                            <i class="bi bi-cart-check"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-meta"><span class="sold">Đã bán: 45</span></div>
+                            </div>
+                        </div>
+
+                        <!-- ===== SẢN PHẨM 3 ===== -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <div class="product-sale">-10%</div>
+                                <a href="product-detail.html">
+                                    <img src="https://flexhouse.vn/wp-content/uploads/2023/05/Den-vach-tuong-trang-tri-canh-quan-ngoai-troi-JJ7118-11.jpeg"
+                                        alt="Đèn vách trang trí 3" class="img-main">
+                                    <img src="https://flexhouse.vn/wp-content/uploads/2023/05/Den-vach-tuong-trang-tri-canh-quan-ngoai-troi-JJ7118-1.jpeg"
+                                        alt="Đèn vách trang trí 3 góc khác" class="img-hover">
+                                </a>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name"><a href="product-detail.html">Đèn vách tường trang trí cảnh
+                                        quan ngoài trời
+                                        JJ7118</a></h3>
+                                <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                <div class="star-rating">
+                                    <span style="width:100%"></span>
+                                </div>
+                                <div class="product-action">
+                                    <div class="product-prices">
+                                        <span class="current-price">3.330.000₫</span>
+                                        <span class="old-price"><del>3.700.000₫</del></span>
+                                    </div>
+                                    <div class="cart-icon">
+                                        <a href="" class="open-cart">
+                                            <i class="bi bi-cart-check"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-meta"><span class="sold">Đã bán: 39</span></div>
+                            </div>
+                        </div>
+
+                        <!-- ===== SẢN PHẨM 4 ===== -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <div class="product-sale">-8%</div>
+                                <a href="product-detail.html">
+                                    <img src="https://flexhouse.vn/wp-content/uploads/2023/09/Den-tuong-mo-hinh-kim-cuong-nang-luong-mat-troi-TM9309-12.png"
+                                        alt="Đèn vách hiện đại 4" class="img-main">
+                                    <img src="https://flexhouse.vn/wp-content/uploads/2023/09/Den-tuong-mo-hinh-kim-cuong-nang-luong-mat-troi-TM9309-9.png"
+                                        alt="Đèn vách hiện đại 4 góc khác" class="img-hover">
+                                </a>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name"><a href="product-detail.html">Đèn tường mô hình kim cương năng
+                                        lượng mặt trời
+                                        TM9309</a></h3>
+                                <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                <div class="star-rating">
+                                    <span style="width:100%"></span>
+                                </div>
+                                <div class="product-action">
+                                    <div class="product-prices">
+                                        <span class="current-price">1.748.000₫</span>
+                                        <span class="old-price"><del>1.900.000₫</del></span>
+                                    </div>
+                                    <div class="cart-icon">
+                                        <a href="" class="open-cart">
+                                            <i class="bi bi-cart-check"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-meta"><span class="sold">Đã bán: 65</span></div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <!-- ====================== ĐÈN THẢ ====================== -->
+                    <div id="dentha-section" class="product-section">
+                        <h3 class="sub-title">Đèn Thả</h3>
+                        <div class="product-grid">
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <div class="product-sale">-12%</div>
+                                    <a href="product-detail.html">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2025/05/Den-tha-thuy-tinh-trang-tri-khong-gian-sang-trong-TT52-7.jpg"
+                                            alt="Đèn thả pha lê 1" class="img-main">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2025/05/Den-tha-thuy-tinh-trang-tri-khong-gian-sang-trong-TT52-8.jpg"
+                                            alt="Đèn thả pha lê 1 góc khác" class="img-hover">
+                                    </a>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name"><a href="product-detail.html">Đèn thả thủy tinh trang trí
+                                            không gian sang
+                                            trọng TT52</a></h3>
+                                    <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                    <div class="star-rating">
+                                        <span style="width:100%"></span>
+                                    </div>
+                                    <div class="product-action">
+                                        <div class="product-prices">
+                                            <span class="current-price">1.056.000₫</span>
+                                            <span class="old-price"><del>1.200.000₫</del></span>
+                                        </div>
+                                        <div class="cart-icon">
+                                            <a href="" class="open-cart">
+                                                <i class="bi bi-cart-check"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-meta"><span class="sold">Đã bán: 49</span></div>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <a href="product-detail.html">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2025/05/Den-tha-tran-mat-trang-decor-khong-gian-THD20-2.jpg"
+                                            alt="Đèn thả tròn 2" class="img-main">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2025/05/Den-tha-tran-mat-trang-decor-khong-gian-THD20-11.jpg"
+                                            alt="Đèn thả tròn 2 góc khác" class="img-hover">
+                                    </a>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name"><a href="product-detail.html">Đèn thả trần mặt trăng decor
+                                            không gian
+                                            THD20</a></h3>
+                                    <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                    <div class="star-rating">
+                                        <span style="width:100%"></span>
+                                    </div>
+                                    <div class="product-action">
+                                        <div class="product-prices">
+                                            <span class="current-price">535.000₫</span>
+
+                                        </div>
+                                        <div class="cart-icon">
+                                            <a href="" class="open-cart">
+                                                <i class="bi bi-cart-check"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-meta"><span class="sold">Đã bán: 47</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <div class="product-sale">-25%</div>
+                                    <a href="product-detail.html">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2025/07/Den-tha-Tiffany-kinh-mau-chau-Au-co-dien-JGW185-5.jpg"
+                                            alt="Đèn thả Tiffany kính màu châu Âu cổ điển JGW185" class="img-main">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2025/07/Den-tha-Tiffany-kinh-mau-chau-Au-co-dien-JGW185-7.jpg"
+                                            alt="Đèn thả Tiffany kính màu châu Âu cổ điển JGW185 góc khác"
+                                            class="img-hover">
+                                    </a>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name"><a href="product-detail.html">Đèn thả Tiffany kính màu châu
+                                            Âu cổ điển JGW185</a></h3>
+                                    <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                    <div class="star-rating">
+                                        <span style="width:100%"></span>
+                                    </div>
+                                    <div class="product-action">
+                                        <div class="product-prices">
+                                            <span class="current-price">8.415.000₫</span>
+                                            <span class="old-price"><del>11.220.000₫</del></span>
+                                        </div>
+                                        <div class="cart-icon">
+                                            <a href="" class="open-cart">
+                                                <i class="bi bi-cart-check"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-meta"><span class="sold">Đã bán: 51</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <div class="product-sale">-20%</div>
+                                    <a href="product-detail.html">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2025/06/Den-tha-tran-nha-hang-decor-con-ca-MD0431-1-1.jpg"
+                                            alt="Đèn thả nghệ thuật 4" class="img-main">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2025/06/Den-tha-tran-nha-hang-decor-con-ca-MD0431-4.jpg"
+                                            alt="Đèn thả nghệ thuật 4 góc khác" class="img-hover">
+                                    </a>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name"><a href="product-detail.html">Đèn thả trần nhà hàng decor
+                                            con cá MD0431</a>
+                                    </h3>
+                                    <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                    <div class="star-rating">
+                                        <span style="width:100%"></span>
+                                    </div>
+                                    <div class="product-action">
+                                        <div class="product-prices">
+                                            <span class="current-price">696.000₫</span>
+                                            <span class="old-price"><del>870.000₫</del></span>
+                                        </div>
+                                        <div class="cart-icon">
+                                            <a href="" class="open-cart">
+                                                <i class="bi bi-cart-check"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-meta"><span class="sold">Đã bán: 43</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <!-- ====================== ĐÈN CÂY ====================== -->
+                    <div id="dencay-section" class="product-section">
+                        <h3 class="sub-title">Đèn Cây</h3>
+                        <div class="product-grid">
+                            <!-- ===== SẢN PHẨM 1 ===== -->
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <div class="product-sale">-20%</div>
+                                    <a href="product-detail.html">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2023/03/Den-san-dang-cong-can-cau-vong-tron-hien-dai-HX5563-8-430x430.jpg"
+                                            alt="Đèn cây đọc sách 1" class="img-main">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2025/10/den-cay-trang-tri-goc-sofa-chao-xuyen-thau-dd22-3.jpg"
+                                            alt="Đèn cây đọc sách 1 góc khác" class="img-hover">
+                                    </a>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name"><a href="product-detail.html">Đèn cây trang trí góc sofa
+                                            chao xuyên thấu
+                                            DD22</a></h3>
+                                    <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                    <div class="star-rating">
+                                        <span style="width:100%"></span>
+                                    </div>
+                                    <div class="product-action">
+                                        <div class="product-prices">
+                                            <span class="current-price">6.860.000₫</span>
+                                            <span class="old-price"><del>8.575.000₫</del></span>
+                                        </div>
+                                        <div class="cart-icon">
+                                            <a href="" class="open-cart">
+                                                <i class="bi bi-cart-check"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-meta"><span class="sold">Đã bán: 45</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ===== SẢN PHẨM 2 ===== -->
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <div class="product-sale">-20%</div>
+                                    <a href="product-detail.html">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2024/01/Den-cay-dung-phoi-chau-trang-tri-khuon-vien-san-vuon-C1270-4.jpg"
+                                            alt="Đèn cây cổ điển 2" class="img-main">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2024/01/Den-cay-dung-phoi-chau-trang-tri-khuon-vien-san-vuon-C1270-9.jpg"
+                                            alt="Đèn cây cổ điển 2 góc khác" class="img-hover">
+                                    </a>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name"><a href="product-detail.html">Đèn cây đứng phối chậu trang
+                                            trí khuôn viên sân
+                                            vườn C1270</a></h3>
+                                    <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                    <div class="star-rating">
+                                        <span style="width:100%"></span>
+                                    </div>
+                                    <div class="product-action">
+                                        <div class="product-prices">
+                                            <span class="current-price">6.240.000₫</span>
+                                            <span class="old-price"><del>7.790.000₫</del></span>
+                                        </div>
+                                        <div class="cart-icon">
+                                            <a href="" class="open-cart">
+                                                <i class="bi bi-cart-check"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-meta"><span class="sold">Đã bán: 52</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ===== SẢN PHẨM 3 ===== -->
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <div class="product-sale">-20%</div>
+                                    <a href="product-detail.html">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2023/12/den-cay-dung-kieu-dang-sang-tao-phong-cach-nhat-hx2149-4.jpg"
+                                            alt="Đèn cây hiện đại 3" class="img-main">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2023/12/den-cay-dung-kieu-dang-sang-tao-phong-cach-nhat-hx2149-5.jpg"
+                                            alt="Đèn cây hiện đại 3 góc khác" class="img-hover">
+                                    </a>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name"><a href="product-detail.html">Đèn cây đứng kiểu dáng sáng
+                                            tạo phong cách Nhật
+                                            HX2149</a></h3>
+                                    <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                    <div class="star-rating">
+                                        <span style="width:100%"></span>
+                                    </div>
+                                    <div class="product-action">
+                                        <div class="product-prices">
+                                            <span class="current-price">4.760.000 ₫</span>
+                                            <span class="old-price"><del>5.950.000₫</del></span>
+                                        </div>
+                                        <div class="cart-icon">
+                                            <a href="" class="open-cart">
+                                                <i class="bi bi-cart-check"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-meta"><span class="sold">Đã bán: 48</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ===== SẢN PHẨM 4 ===== -->
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <div class="product-sale">-20%</div>
+                                    <a href="product-detail.html">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2024/04/den-cay-trang-tri-goc-sofa-kieu-dang-can-cau-hx5346-7.jpg"
+                                            alt="Đèn cây nghệ thuật 4" class="img-main">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2024/04/den-cay-trang-tri-goc-sofa-kieu-dang-can-cau-hx5346-3.jpg"
+                                            alt="Đèn cây nghệ thuật 4 góc khác" class="img-hover">
+                                    </a>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name"><a href="product-detail.html">Đèn cây trang trí góc sofa
+                                            kiểu dáng cần câu
+                                            HX5346</a>
+                                    </h3>
+                                    <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                    <div class="star-rating">
+                                        <span style="width:100%"></span>
+                                    </div>
+                                    <div class="product-action">
+                                        <div class="product-prices">
+                                            <span class="current-price">2.800.000₫</span>
+                                            <span class="old-price"><del>3.490.000₫</del></span>
+                                        </div>
+                                        <div class="cart-icon">
+                                            <a href="" class="open-cart">
+                                                <i class="bi bi-cart-check"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-meta"><span class="sold">Đã bán: 61</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ====================== ĐÈN QUẠT ====================== -->
+                    <div id="denquat-section" class="product-section">
+                        <h3 class="sub-title">Đèn Quạt</h3>
+                        <div class="product-grid">
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <div class="product-sale">-10%</div>
+                                    <a href="product-detail.html">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2023/01/Den-quat-op-tran-hien-dai-2-cap-do-gio-GAT9377B-14.jpg"
+                                            alt="Đèn quạt trần 1" class="img-main">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2023/01/Den-quat-op-tran-hien-dai-2-cap-do-gio-GAT9377B-3.jpg"
+                                            alt="Đèn quạt trần 1 góc khác" class="img-hover">
+                                    </a>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name"><a href="product-detail.html">Đèn quạt ốp trần hiện đại 2
+                                            cấp độ gió
+                                            GAT9377B</a></h3>
+                                    <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                    <div class="star-rating">
+                                        <span style="width:100%"></span>
+                                    </div>
+                                    <div class="product-action">
+                                        <div class="product-prices">
+                                            <span class="current-price">3.537.000₫</span>
+                                            <span class="old-price"><del>3.930.000₫</del></span>
+                                        </div>
+                                        <div class="cart-icon">
+                                            <a href="" class="open-cart">
+                                                <i class="bi bi-cart-check"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-meta"><span class="sold">Đã bán: 18</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <a href="product-detail.html">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2022/10/Den-quat-tran-da-sac-mau-hien-dai-tuoi-sang-FS86-9.jpg"
+                                            alt="Đèn quạt trần gỗ 2" class="img-main">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2022/10/Den-quat-tran-da-sac-mau-hien-dai-tuoi-sang-FS86-7.jpg"
+                                            alt="Đèn quạt trần gỗ 2 góc khác" class="img-hover">
+                                    </a>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name"><a href="product-detail.html">Đèn quạt trần đa sắc màu hiện
+                                            đại tươi sáng
+                                            FS86</a></h3>
+                                    <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                    <div class="star-rating">
+                                        <span style="width:100%"></span>
+                                    </div>
+                                    <div class="product-action">
+                                        <div class="product-prices">
+                                            <span class="current-price">5.200.000₫</span>
+                                        </div>
+                                        <div class="cart-icon">
+                                            <a href="" class="open-cart">
+                                                <i class="bi bi-cart-check"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-meta"><span class="sold">Đã bán: 24</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <div class="product-sale">-10%</div>
+                                    <a href="product-detail.html">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2025/05/Quat-den-tran-3-canh-go-kieu-My-ESC332-4-1-e1748490311950.jpg"
+                                            alt="Đèn quạt pha lê 3" class="img-main">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2025/05/Quat-den-tran-3-canh-go-kieu-My-ESC332-1-e1748490465663.jpg"
+                                            alt="Đèn quạt pha lê 3 góc khác" class="img-hover">
+                                    </a>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name"><a href="product-detail.html">Quạt đèn trần 3 cánh gỗ kiểu
+                                            Mỹ ESC332</a></h3>
+                                    <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                    <div class="star-rating">
+                                        <span style="width:100%"></span>
+                                    </div>
+                                    <div class="product-action">
+                                        <div class="product-prices">
+                                            <span class="current-price">5.490.000₫</span>
+                                            <span class="old-price"><del>6.100.000₫</del></span>
+                                        </div>
+                                        <div class="cart-icon">
+                                            <a href="" class="open-cart">
+                                                <i class="bi bi-cart-check"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-meta"><span class="sold">Đã bán: 39</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <a href="product-detail.html">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2022/10/Den-quat-tran-mau-dong-vang-co-dien-sang-trong-YX0034-3.jpg"
+                                            alt="Đèn quạt hiện đại 4" class="img-main">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2022/10/Den-quat-tran-mau-dong-vang-co-dien-sang-trong-YX0034-4.jpg"
+                                            alt="Đèn quạt hiện đại 4 góc khác" class="img-hover">
+                                    </a>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name"><a href="product-detail.html">Đèn quạt trần cổ điển bằng
+                                            đồng cao cấp
+                                            YX0034</a>
+                                    </h3>
+                                    <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                    <div class="star-rating">
+                                        <span style="width:100%"></span>
+                                    </div>
+                                    <div class="product-action">
+                                        <div class="product-prices">
+                                            <span class="current-price">5.199.000₫</span>
+                                        </div>
+                                        <div class="cart-icon">
+                                            <a href="" class="open-cart">
+                                                <i class="bi bi-cart-check"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-meta"><span class="sold">Đã bán: 11</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <!-- ====================== BÓNG ĐÈN ====================== -->
+                    <div id="bongden-section" class="product-section">
+                        <h3 class="sub-title">Bóng Đèn</h3>
+                        <div class="product-grid">
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <div class="product-sale">-20%</div>
+                                    <a href="product-detail.html">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2023/05/Den-san-vuon-nang-luong-mat-troi-hien-dai-CB3075-15.jpg"
+                                            alt="Bóng đèn LED 1" class="img-main">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2023/05/Den-san-vuon-nang-luong-mat-troi-hien-dai-CB3075-3.jpg"
+                                            alt="Bóng đèn LED 1 góc khác" class="img-hover">
+                                    </a>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name"><a href="product-detail.html">Bóng đèn decor sân vườn năng
+                                            lượng mặt trời
+                                            CB3075</a></h3>
+                                    <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                    <div class="star-rating">
+                                        <span style="width:100%"></span>
+                                    </div>
+                                    <div class="product-action">
+                                        <div class="product-prices">
+                                            <span class="current-price">4.423.000₫</span>
+                                            <span class="old-price"><del>5.5285.000₫</del></span>
+                                        </div>
+                                        <div class="cart-icon">
+                                            <a href="" class="open-cart">
+                                                <i class="bi bi-cart-check"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-meta"><span class="sold">Đã bán: 140</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <a href="product-detail.html">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2022/08/Den-led-cam-trai-chong-nuoc-nho-gon-PD3314-1.jpg"
+                                            alt="Bóng đèn tròn 2" class="img-main">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2022/08/Den-led-cam-trai-chong-nuoc-nho-gon-PD3314-6.jpg"
+                                            alt="Bóng đèn tròn 2 góc khác" class="img-hover">
+                                    </a>
+                                </div>
+
+                                <div class="product-info">
+                                    <h3 class="product-name"><a href="product-detail.html">Bóng đèn led cắm trại chống
+                                            nước nhỏ gọn
+                                            PD3314</a></h3>
+
+                                    <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                    <div class="star-rating">
+                                        <span style="width:100%"></span>
+                                    </div>
+
+                                    <div class="product-action">
+                                        <div class="product-prices">
+                                            <span class="current-price">142.000₫</span>
+
+                                        </div>
+                                        <div class="cart-icon">
+                                            <a href="" class="open-cart">
+                                                <i class="bi bi-cart-check"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-meta">
+                                        <span class="sold">Đã bán: 120</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <div class="product-sale">-20%</div>
+                                    <a href="product-detail.html">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2022/07/Bong-den-trang-tri-ngoai-troi-chong-nuoc-PD3261-7.jpg"
+                                            alt="Bóng đèn năng lượng 3" class="img-main">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2022/07/Bong-den-trang-tri-ngoai-troi-chong-nuoc-PD3261-3.jpg"
+                                            alt="Bóng đèn năng lượng 3 góc khác" class="img-hover">
+                                    </a>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name"><a href="product-detail.html">Bóng đèn trang trí ngoài trời
+                                            chống nước
+                                            PD3261</a>
+                                    </h3>
+                                    <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                    <div class="star-rating">
+                                        <span style="width:100%"></span>
+                                    </div>
+                                    <div class="product-action">
+                                        <div class="product-prices">
+                                            <span class="current-price">281.000₫</span>
+                                            <span class="old-price"><del>351.000₫</del></span>
+                                        </div>
+                                        <div class="cart-icon">
+                                            <a href="" class="open-cart">
+                                                <i class="bi bi-cart-check"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-meta"><span class="sold">Đã bán: 38</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <a href="product-detail.html">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2023/06/Den-LED-bong-bong-trang-tri-cong-vien-canh-quan-MT6720-15.jpg"
+                                            alt="Bóng đèn Edison 4" class="img-main">
+                                        <img src="https://flexhouse.vn/wp-content/uploads/2023/06/Den-LED-bong-bong-trang-tri-cong-vien-canh-quan-MT6720-16.jpg"
+                                            alt="Bóng đèn Edison 4 góc khác" class="img-hover">
+                                    </a>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name"><a href="product-detail.html">Bóng đèn LED bông bồng trang
+                                            trí công viên
+                                            MT6720</a></h3>
+                                    <!-- ⭐ ĐÁNH GIÁ 5 SAO ⭐ -->
+                                    <div class="star-rating">
+                                        <span style="width:100%"></span>
+                                    </div>
+                                    <div class="product-action">
+                                        <div class="product-prices">
+                                            <span class="current-price">1.400.000₫</span>
+                                        </div>
+                                        <div class="cart-icon">
+                                            <a href="" class="open-cart">
+                                                <i class="bi bi-cart-check"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-meta"><span class="sold">Đã bán: 27</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+
+                    </div>
+
+
+                    <!-- PHÂN TRANG -->
+                    <div class="pagination" id="pagination"></div>
+                </div> <!-- Đóng container product-section -->
+
+            </div>
+        </div>
+        <footer class="footer-main">
+            <div class="footer-container">
+                <div class="footer-column company-info">
+                    <h3>THÔNG TIN CHUNG</h3>
+                    <h2>ĐÈN VÀ THIẾT BỊ CHIẾU SÁNG</h2>
+
+                    <div class="contact-item">
+                        <i class="bi bi-telephone-fill"></i>
+                        <a href="tel:0999999999"> (84-28)-38966780</a>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="bi bi-envelope-fill"></i>
+                        <a href="mailto:cskh@hoanghoavn.vn">vphanhchinh@hcmuaf.edu.vn; ico@hcmuaf.edu.vn</a>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <a href="https://www.hcmuaf.edu.vn/map.html">Khu Phố 33, Phường Linh Xuân, TP. Hồ Chí Minh,
+                            Việt
+                            Nam</a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>VỀ CHÚNG TÔI</h3>
+                    <ul class="footer-links">
+                        <li><a href="./about.html">Giới thiệu</a></li>
+                        <li><a href="./products.html">Sản phẩm</a></li>
+                        <li><a href="./news.html">Tin tức</a></li>
+                        <li><a href="./contact.html">Liên hệ</a></li>
+                    </ul>
+                </div>
+
+
+                <div class="footer-column social-section">
+                    <h3>KẾT NỐI VỚI CHÚNG TÔI</h3>
+                    <div class="social-icons">
+                        <div class="social-icon">
+                            <i class="bi bi-facebook"></i>
+                        </div>
+                        <div class="social-icon">
+                            <i class="bi bi-twitter"></i>
+                        </div>
+                        <div class="social-icon">
+                            <i class="bi bi-envelope-fill"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-cont">
+                    <div class="footer-text">
+                        <p>Copyright &copy;2024 by LightUP | All Right Reserves</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <a href="#">
+            <button id="scrollToTopBtn">
+                <i class="bi bi-chevron-up"></i>
+            </button>
+        </a>
+
+
+        <!-- Giỏ hàng bên cạnh -->
+        <div id="khunggiohang" class="cart-widget-side wd-right">
+            <!-- Tiêu đề và nút đóng -->
+            <div class="wd-heading">
+                <span class="title">Giỏ hàng</span>
+                <div class="close-side-widget wd-action-btn wd-style-text wd-cross-icon">
+                    <!-- Nút xóa -->
+
+                    <a href="#" class="close-cart" rel="nofollow">× Đóng</a>
+                </div>
+            </div>
+            <!-- Nội dung widget giỏ hàng -->
+            <div class="woocommerce-cart-widget">
+                <div class="widget_shopping_cart_content">
+                    <!-- Phần thân giỏ hàng với cuộn -->
+                    <div class="shopping-cart-widget-body wd-scroll">
+                        <div class="wd-scroll-content">
+                            <!-- Danh sách sản phẩm -->
+                            <ul class="cart_list product_list_widget woocommerce-mini-cart">
+                                <li class="woocommerce-mini-cart-item mini_cart_item"
+                                    data-key="afd9aae7ea73221ba1c2b2af3ea1cb61">
+                                    <!-- Khung chung dẫn đến chi tiết sản phẩm -->
+                                    <a href="./product-detail.html" class="cart-item-link"
+                                        style=" text-decoration: none; color: inherit;">
+                                        <!-- Ảnh sản phẩm -->
+                                        <div class="cart-item-image">
+                                            <img src="https://flexhouse.vn/wp-content/uploads/2023/06/Den-LED-bong-bong-trang-tri-cong-vien-canh-quan-MT6720-16.jpg"
+                                                alt="Đèn thả bàn ăn hậu hiện đại XY3122">
+                                        </div>
+
+                                        <!-- Thông tin sản phẩm -->
+                                        <div class="cart-info">
+                                            <div class="cart-info-top" style="display: flex;  align-items: center;">
+                                                <span class="wd-entities-title">Đèn thả bàn ăn hậu hiện đại
+                                                    XY3122</span>
+                                                <!-- Nút xóa -->
+                                                <a href="#" class="remove remove_from_cart_button"
+                                                    data-product_id="501425"
+                                                    data-cart_item_key="afd9aae7ea73221ba1c2b2af3ea1cb61"
+                                                    data-product_sku="XY3122">×</a>
+                                            </div>
+                                            <span class="quantity">
+                                                <button type="submit">-</button>
+                                                <span class="qty">1</span>
+                                                <button type="submit">+</button>v<span
+                                                    class="woocommerce-Price-amount amount"><bdi>5,403,000&nbsp;<span
+                                                            class="woocommerce-Price-currencySymbol">₫</span></bdi></span></span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul><!-- Kết thúc danh sách sản phẩm -->
+                        </div>
+                        <div class="wd-scroll-content">
+                            <!-- Danh sách sản phẩm -->
+                            <ul class="cart_list product_list_widget woocommerce-mini-cart">
+                                <li class="woocommerce-mini-cart-item mini_cart_item"
+                                    data-key="afd9aae7ea73221ba1c2b2af3ea1cb61">
+                                    <!-- Khung chung dẫn đến chi tiết sản phẩm -->
+                                    <a href="./product-detail.html" class="cart-item-link"
+                                        style=" text-decoration: none; color: inherit;">
+                                        <!-- Ảnh sản phẩm -->
+                                        <div class="cart-item-image">
+                                            <img src="https://flexhouse.vn/wp-content/uploads/2023/06/Den-LED-bong-bong-trang-tri-cong-vien-canh-quan-MT6720-16.jpg"
+                                                alt="Đèn thả bàn ăn hậu hiện đại XY3122">
+                                        </div>
+
+                                        <!-- Thông tin sản phẩm -->
+                                        <div class="cart-info">
+                                            <div class="cart-info-top" style="display: flex;  align-items: center;">
+                                                <span class="wd-entities-title">Đèn thả bàn ăn hậu hiện đại
+                                                    XY3122</span>
+                                                <!-- Nút xóa -->
+                                                <a href="#" class="remove remove_from_cart_button"
+                                                    data-product_id="501425"
+                                                    data-cart_item_key="afd9aae7ea73221ba1c2b2af3ea1cb61"
+                                                    data-product_sku="XY3122">×</a>
+                                            </div>
+                                            <span class="quantity">
+                                                <button type="submit">-</button>
+                                                <span class="qty">1</span>
+                                                <button type="submit">+</button><span
+                                                    class="woocommerce-Price-amount amount"><bdi>5,403,000&nbsp;<span
+                                                            class="woocommerce-Price-currencySymbol">₫</span></bdi></span></span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul><!-- Kết thúc danh sách sản phẩm -->
+                        </div>
+                        <div class="wd-scroll-content">
+                            <!-- Danh sách sản phẩm -->
+                            <ul class="cart_list product_list_widget woocommerce-mini-cart">
+                                <li class="woocommerce-mini-cart-item mini_cart_item"
+                                    data-key="afd9aae7ea73221ba1c2b2af3ea1cb61">
+                                    <!-- Khung chung dẫn đến chi tiết sản phẩm -->
+                                    <a href="./product-detail.html" class="cart-item-link"
+                                        style=" text-decoration: none; color: inherit;">
+                                        <!-- Ảnh sản phẩm -->
+                                        <div class="cart-item-image">
+                                            <img src="https://flexhouse.vn/wp-content/uploads/2023/06/Den-LED-bong-bong-trang-tri-cong-vien-canh-quan-MT6720-16.jpg"
+                                                alt="Đèn thả bàn ăn hậu hiện đại XY3122">
+                                        </div>
+
+                                        <!-- Thông tin sản phẩm -->
+                                        <div class="cart-info">
+                                            <div class="cart-info-top" style="display: flex;  align-items: center;">
+                                                <span class="wd-entities-title">Đèn thả bàn ăn hậu hiện đại
+                                                    XY3122</span>
+                                                <!-- Nút xóa -->
+                                                <a href="#" class="remove remove_from_cart_button"
+                                                    data-product_id="501425"
+                                                    data-cart_item_key="afd9aae7ea73221ba1c2b2af3ea1cb61"
+                                                    data-product_sku="XY3122">×</a>
+                                            </div>
+                                            <span class="quantity">
+                                                <button type="submit">-</button>
+                                                <span class="qty">1</span>
+                                                <button type="submit">+</button><span
+                                                    class="woocommerce-Price-amount amount"><bdi>5,403,000&nbsp;<span
+                                                            class="woocommerce-Price-currencySymbol">₫</span></bdi></span></span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul><!-- Kết thúc danh sách sản phẩm -->
+                        </div>
+
+
+
+
+                    </div>
+
+                    <!-- Phần chân giỏ hàng -->
+                    <div class="shopping-cart-widget-footer">
+                        <!-- Tổng phụ -->
+                        <p class="woocommerce-mini-cart__total total">
+                            <strong>Tổng tiền :</strong> <span
+                                class="woocommerce-Price-amount amount"><bdi>10,806,000&nbsp;<span
+                                        class="woocommerce-Price-currencySymbol">₫</span></bdi></span>
+                        </p>
+                        <!-- Nút hành động -->
+                        <p class="woocommerce-mini-cart__buttons buttons">
+                            <a href="./cart_detail.html" class="button btn-cart wc-forward">Xem giỏ hàng</a>
+                            <a href="./order.html" class="button checkout wc-forward">Thanh toán</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="cart-overlay"></div>
+    </main>
+    <script src="./JS/products.js"></script>
+    <!-- <script src="./JS/index.js"></script> -->
+
+
+
+</body>
+
+</html>
