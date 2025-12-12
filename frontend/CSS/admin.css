@@ -377,7 +377,7 @@ tr:hover {
   padding: 30px;
   border-radius: 12px;
   width: 90%;
-  max-width: 500px;
+  max-width: 900px;
   max-height: 90vh;
   overflow-y: auto;
 }
@@ -386,23 +386,55 @@ tr:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #e2e8f0;
 }
 
 .modal-header h3 {
-  font-size: 20px;
+  font-size: 24px;
+  color: #1a202c;
 }
 
 .close-btn {
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 28px;
   cursor: pointer;
   color: #718096;
+  transition: color 0.3s;
+}
+
+.close-btn:hover {
+  color: #f56565;
+}
+
+.form-section {
+  margin-bottom: 30px;
+}
+
+.form-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.form-row.full {
+  grid-template-columns: 1fr;
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 
 .form-group label {
@@ -410,36 +442,88 @@ tr:hover {
   margin-bottom: 8px;
   font-weight: 500;
   color: #4a5568;
+  font-size: 14px;
+}
+
+.form-group label span.required {
+  color: #f56565;
+  margin-left: 3px;
 }
 
 .form-group input,
-.form-group select {
+.form-group select,
+.form-group textarea {
   width: 100%;
   padding: 10px 15px;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
   font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #a0826d;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
 }
 
 .form-actions {
   display: flex;
   gap: 10px;
   justify-content: flex-end;
-  margin-top: 25px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 2px solid #e2e8f0;
 }
 
-.btn-secondary {
-  background: #e2e8f0;
-  color: #4a5568;
+.image-preview {
+  width: 100%;
+  max-width: 200px;
+  height: 200px;
+  border: 2px dashed #e2e8f0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  overflow: hidden;
 }
 
-.content-section {
-  display: none;
+.image-preview img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
 }
 
-.content-section.active {
-  display: block;
+.image-preview.empty {
+  color: #cbd5e0;
+  font-size: 14px;
 }
-.sidebar a {
-  text-decoration: none;
+
+.badge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.badge-success {
+  background: #c6f6d5;
+  color: #22543d;
+}
+
+.badge-warning {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badge-danger {
+  background: #fee2e2;
+  color: #991b1b;
 }
