@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tổng hợp các loại đèn chiếu sáng thông dụng nhất hiện nay</title>
+    <link rel="stylesheet" href="CSS/news_details.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png">
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/sub_login.css">
+
+</head>
+
+<body>
+    <!--Header của trang web-->
+    <nav>
+        <div class="nav_head ">
+            <a href="./index.html">
+                <div class="logo">
+                    <img src="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png" alt="Logo">
+                </div>
+            </a>
+
+            <div class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="./index.html">TRANG CHỦ</a></li>
+                    <li><a href="./about.html">GIỚI THIỆU</a></li>
+                    <li><a href="./products.html">SẢN PHẨM <i class="bi bi-caret-down-fill"></i></a>
+
+                        <div class="sub-item">
+                            <div class="contant-sub">
+                                <h2>Danh mục sản phẩm</h2>
+                                <div class="cont-item">
+                                    <div class="product_item">
+                                        <div class="product_cont">
+                                            <img src="https://cdn-icons-png.freepik.com/512/4452/4452959.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                                alt="">
+                                            <a class="item" href="./products.html#denban-section">Đèn Bàn</a>
+                                        </div>
+                                        <span class="arrow">›</span>
+                                    </div>
+                                    <div class="product_item">
+                                        <div class="product_cont">
+                                            <img src="https://cdn-icons-png.freepik.com/512/1237/1237786.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                                alt="">
+                                            <a class="item" href="./products.html#denchum-section">Đèn Chùm</a>
+                                        </div>
+                                        <span class="arrow">›</span>
+                                    </div>
+                                    <div class="product_item">
+                                        <div class="product_cont">
+                                            <img src="https://cdn-icons-png.freepik.com/512/18200/18200846.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                                alt="">
+                                            <a class="item" href="./products.html#denoptran-section">Đèn Ốp Trần</a>
+                                        </div>
+                                        <span class="arrow">›</span>
+                                    </div>
+                                    <div class="product_item">
+                                        <div class="product_cont">
+                                            <img src="https://cdn-icons-png.freepik.com/512/6202/6202698.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                                alt="">
+                                            <a class="item" href="./products.html#denvach-section">Đèn Vách</a>
+                                        </div>
+                                        <span class="arrow">›</span>
+                                    </div>
+                                    <div class="product_item">
+                                        <div class="product_cont">
+                                            <img src="https://cdn-icons-png.freepik.com/512/3719/3719943.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                                alt="">
+                                            <a class="item" href="./products.html#dentha-section">Đèn Thả</a>
+                                        </div>
+                                        <span class="arrow">›</span>
+                                    </div>
+                                    <div class="product_item">
+                                        <div class="product_cont">
+                                            <img src="https://cdn-icons-png.freepik.com/512/896/896351.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                                alt="">
+                                            <a class="item" href="./products.html#dencay-section">Đèn Cây</a>
+                                        </div>
+                                        <span class="arrow">›</span>
+                                    </div>
+                                    <div class="product_item">
+                                        <div class="product_cont">
+                                            <img src="https://cdn-icons-png.freepik.com/512/3724/3724416.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                                alt="">
+                                            <a class="item" href="./products.html#denquat-section">Đèn Quạt</a>
+                                        </div>
+                                        <span class="arrow">›</span>
+                                    </div>
+                                    <div class="product_item">
+                                        <div class="product_cont">
+                                            <img src="https://cdn-icons-png.freepik.com/512/7402/7402062.png?uid=R166547988&ga=GA1.1.166031633.1762096545"
+                                                alt="">
+                                            <a class="item" href="./products.html#bongden-section">Bóng Đèn</a>
+                                        </div>
+                                        <span class="arrow">›</span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </li>
+                    <li><a href="./news.html" class="active">TIN TỨC</a></li>
+                    <li><a href="./contact.html">LIÊN HỆ</a></li>
+                </ul>
+                <div class="nav_r" id="nav_r">
+                    <!-- Ô SEARCH TRÊN NAV -->
+                    <div class="search-icon" onclick="openSearchBar()">
+                        <input type="text" placeholder="Tìm kiếm ">
+                        <i class="bi bi-search"></i>
+                    </div>
+
+                    <!-- NÚT QUAY LẠI ẨN LÚC BÌNH THƯỜNG -->
+                    <i class="bi bi-x back-button-nav" onclick="closeSearchBar()"></i>
+
+
+                    <!-- khung tìm kiếm -->
+                    <div class="search-panel" id="searchPanel">
+                        <div class="search-content">
+                            <div class="section-header_search">
+                                <h2 class="section-title-search">Gợi ý tìm kiếm</h2>
+                            </div>
+
+                            <a href="./product-detail.html" class="search-item">
+                                <span class="arrow-icon"><i class="bi bi-search"></i></span>
+                                <div class="item-content">
+                                    <div class="item-name">Đèn để bàn phòng khách phong cách tối giản KLS0049</div>
+                                </div>
+                            </a>
+
+                            <a href="./product-detail.html" class="search-item">
+                                <span class="arrow-icon"><i class="bi bi-search"></i></span>
+                                <div class="item-content">
+                                    <div class="item-name">Đèn bàn đọc sách làm việc hiện đại tối giản FLM5145</div>
+                                </div>
+                            </a>
+
+                            <a href="./product-detail.html" class="search-item">
+                                <span class="arrow-icon"><i class="bi bi-search"></i></span>
+                                <div class="item-content">
+                                    <div class="item-name">Đèn bàn bằng gốm sứ nhiều màu HYJ0029</div>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <!-- ICON SHOP -->
+                    <div class="icon-group">
+                        <div class="shop" id="shop">
+                            <a href="cart_detail.html"><i class="bi bi-cart-check" title="Giỏ hàng"></i></a>
+                            <div class="item-quantity">2</div>
+
+                        </div>
+
+                        <!-- ICON LOGIN -->
+                        <div class="login" id="login">
+                            <a href="./login.html"><i class="bi bi-person-circle" title="Tài Khoản"></i></a>
+                            <div class="sub_login">
+                                <div class="container-sub-login">
+                                    <a href="./profile.html"><i class="bi bi-person"></i> Tài khoản</a>
+                                    <a href="./order.html"><i class="bi bi-clipboard-check"></i>Đơn Hàng</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+    <div class="link-page" id="up">
+        <div class="containt_link">
+            <a href="./index.html"><i class="bi bi-house"></i> Trang chủ </a>
+            <span> /</span>
+            <a href="news.html">Tin tức</a>
+            <span> /</span>
+            <b>Tổng hợp các loại đèn chiếu sáng thông dụng nhất hiện nay</b>
+        </div>
+    </div>
+    <main>
+        <section class="container_1">
+            <div class="title">
+
+                <h1>Tổng hợp các loại đèn chiếu sáng thông dụng nhất hiện nay</h1>
+                <i>Khởi nguồn từ chiếc bóng đèn sợi đốt đầu tiên được ra đời vào <b>thế kỉ 19</b>
+                    , ngày nay đã có rất nhiều cải tiến, cho sự ra đời <b>các loại đèn chiếu sáng</b> khác nhau.
+                    Mỗi dòng đèn đặc điểm nguồn sáng và hiệu suất hoạt động khác nhau.
+                    Vậy đâu là những loại đèn chiếu sáng thông dụng, được sử dụng phổ biến nhất hiện nay?</i>
+
+                <div class="img">
+                    <img src="https://i.postimg.cc/ZRxqrLPz/tong-hop-cac-loai-den-led-pho-bien-hien-nay-1.jpg"
+                        alt="Đèn chiếu sáng">
+                </div>
+
+                <div class="content_1">
+                    <h2>Đôi nét về các loại đèn chiếu sáng</h2>
+                    <p>Đèn điện là một trong những phát minh có tính đột phá trong lịch sử loài người.
+                        Sự ra đời của chúng đã mang tới nguồn ánh sáng nhân tạo, chiếu sáng mọi công trình,
+                        phục vụ cho hoạt động sinh hoạt, sản xuất, kinh doanh,... khác nhau của con người.<br><br>
+                        Trải qua nhiều giai đoạn phát triển của khoa học công nghệ, công nghệ chiếu sáng ngày càng
+                        có những biến chuyển tích cực. Các nhà sản xuất đã đưa ra nhiều loại đèn chiếu sáng có tính
+                        năng mới và hiện đại hơn. Chúng dần thay thế cho những thiết bị chiếu sáng cũ, hiệu suất thấp,
+                        tốn điện mà không an toàn.</p>
+                </div>
+
+                <div class="content_1">
+                    <h2>Phân loại các loại đèn chiếu sáng theo nguồn sáng</h2>
+                    <p>Xét theo nguồn sáng, các loại đèn được sử dụng phổ biến gồm có: đèn sợi đốt, đèn Sodium,
+                        đèn Metal, đèn huỳnh quang và đèn led.</p>
+
+                    <div class="content_2">
+                        <h3>Đèn sợi đốt</h3>
+                        <p>Đèn sợi đốt (đèn dây tóc) là loại đèn điện ra đời sớm nhất. chúng hoạt động theo nguyên lý
+                            dùng điện để đốt nóng sợi vonfram để nó phát sáng. Loai đèn này mang tới nguồn ánh sáng tự
+                            nhiên,
+                            đồng đều với độ hoàn màu cao, có thể đạt CRI = 100 nên không gây ảnh hưởng xấu tới thị lực.
+                            Tuy nhiên,
+                            do dòng đèn này tiêu tốn khá nhiều năng lượng, tỏa nhiệt cao, tuổi thọ ngắn nên ngày nay ít
+                            được sử dụng hơn.</p>
+
+                        <div class="img">
+                            <img src="https://i.postimg.cc/3rbTz6ww/dieu-thu-vi-ve-bong-den-day-toc-ban-chua-biet.png"
+                                alt="Đèn sợi đốt">
+                        </div>
+                    </div>
+
+                    <div class="content_2">
+                        <h3>Đèn Sodium</h3>
+                        <p>Đèn Sodium là loại đèn cao áp được sản xuất theo công nghệ 3 dãy sóng sử dụng 3 hỗn hợp muối
+                            Natri,
+                            Indium, Thallium cùng với thủy ngân. Loại đèn này thường phát ra ánh sáng màu vàng đặc trưng
+                            3000K.
+                            So với đèn sợi đốt, đèn Sodium có hiệu năng cao gấp 7 lần. Thế nhưng, loại đèn này lại cần
+                            có chấn lưu
+                            để hoạt động, trong thành phần chứa hóa chất độc hại và phải mất 5 - 10 phút mới đạt được độ
+                            sáng cao nhất.</p>
+
+                        <div class="img">
+                            <img src="https://i.postimg.cc/tR1qRywF/den-sodium-la-gi-2-a750f003ad.png" alt="Đèn cao áp">
+                        </div>
+                    </div>
+
+                    <div class="content_2">
+                        <h3>Đèn Metal</h3>
+                        <p>Đèn Metal là đèn tạo ra ánh sáng bằng cách cho dòng điện đi qua hỗn hợp khí metan và khí
+                            metal halide.
+                            Do đó, cường độ ánh sáng của chúng cao hơn so với Sodium, quang thông không bị giảm theo
+                            thời gian. Nhưng,
+                            do có chứa chất hóa học độc hại bên trong nên đèn chủ yếu dùng để chiếu sáng không gian
+                            rộng, ngoài trời.</p>
+
+                        <div class="img">
+                            <img src="https://i.postimg.cc/NjdSr22n/metal.webp" alt="Đèn metal">
+                        </div>
+
+                        <div class="extend">
+                            <b>Xem thêm: </b> <a href="#"><b>Đèn lá 100w - Thiết bị chiếu sáng hiện đại chất lượng
+                                    cao</b></a>
+                        </div>
+                    </div>
+
+                    <div class="content_2">
+                        <h3>Đèn huỳnh quang</h3>
+                        <p>Đèn huỳnh quang có 2 dạng: đèn tuýp và đèn huỳnh quang compact. Loại đèn này phát ra ánh sáng
+                            trông
+                            giống như bóng đèn sợi đốt nhưng chỉ tiêu thụ 1/4 năng lượng, tuổi thọ tăng hơn gấp 10 lần.
+                            Tuy nhiên,
+                            bóng đèn này vẫn không được khuyến khích bởi ánh sáng phát ra là từ tia cực tím, gây hại cho
+                            con người
+                            và làm ô nhiễm môi trường.</p>
+
+                        <div class="img">
+                            <img src="https://i.postimg.cc/mgpprxK6/huynh-quang.jpg" alt="Đèn huỳnh quang">
+                        </div>
+                    </div>
+
+                    <div class="content_2">
+                        <h3>Đèn led</h3>
+                        <p>Trong số các loại đèn chiếu sáng, đèn led được làm từ diot phát quang được coi là ưu việt hơn
+                            cả.
+                            Đèn tạo ra ánh sáng với cường độ trung thực màu sắc cao (>84%), không phát ra tia cực tím,
+                            tia hồng
+                            ngoại, không chứa chất độc hại mà tuổi thọ lớn. Cũng chính vì sở hữu nhiều ưu điểm tuyệt vời
+                            nên dù
+                            giá thành cao nhưng chúng vẫn được sử dụng rộng rãi.</p>
+
+                        <div class="img">
+                            <img src="https://i.postimg.cc/QxXfkx3n/led-day-nanoco.webp" alt="Đèn led">
+                        </div>
+
+                        <div class="extend">
+                            <b>Xem thêm: </b> <a href="#"><b>Cách chọn đèn led chiếu sáng cho đường phố chuẩn
+                                    nhất</b></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content_1">
+                    <h2>Các loại đèn chiếu sáng phổ biến hiện nay</h2>
+                    <p>Ngoài phân cách chia theo nguồn sáng, đèn điện còn được phân loại theo khu vực sử dụng: đèn chiếu
+                        sáng
+                        trong nhà, đèn chiếu sáng ngoài trời, đèn chiếu sáng dưới nước.</p>
+
+                    <div class="content_2">
+                        <h3>Đèn chiếu sáng trong nhà</h3>
+                        <p>Hệ thống đèn chiếu sáng trong nhà được lắp đặt ở nhiều vị trí khác nhau, từ phòng khách cho
+                            tới
+                            phòng ngủ, nhà bếp, cầu thang,... Chúng tạo ra môi trường sống thoải mái vừa góp phần tô
+                            điểm cho
+                            không gian sống, thể hiện cá tính của gia chủ.<br><br>Một số mẫu đèn chiếu sáng sử dụng phổ
+                            biến
+                            trong nhà, bạn có thể tham khảo:</p>
+
+                        <ul>
+                            <li>Đèn tuýp led.</li>
+                            <li>Đèn led âm trần.</li>
+                            <li>Đèn led ốp nổi.</li>
+                            <li>Đèn led panel.</li>
+                            <li>Đèn compact.</li>
+                        </ul>
+
+                        <div class="img">
+                            <img src="https://i.postimg.cc/76N5mbZB/den-trong-nha.png" alt="Đèn chiếu sáng trong nhà">
+                        </div>
+                    </div>
+
+                    <div class="content_2">
+                        <h3>Đèn chiếu sáng ngoài trời</h3>
+                        <p>Do chịu ảnh hưởng trực tiếp từ môi trường khắc nghiệt nên đèn chiếu sáng ngoài trời thường
+                            được
+                            làm từ chất liệu có độ bền cao, khả năng chống nước, bụi, va đập tốt. Dưới đây là mẫu đèn
+                            chiếu sáng
+                            ngoài trời bạn có thể tham khảo qua:</p>
+
+                        <ul>
+                            <li>Đèn cao áp Sodium.</li>
+                            <li>Đèn cao áp Metal.</li>
+                            <li>Đèn cao áp Led.</li>
+                            <li>Các loại đèn trang trí ngoài trời: đèn sân vườn, đèn gắn tường, đèn âm đất,...</li>
+                        </ul>
+
+                        <div class="img">
+                            <img src="https://i.postimg.cc/GtYnF3nY/Den-led-chieu-sang-hieu-qua-nhat-hien-nay.jpg"
+                                alt="Đèn chiếu sáng ngoài trời">
+                        </div>
+                    </div>
+
+                    <div class="content_2">
+                        <h3>Đèn chiếu sáng dưới nước</h3>
+                        <p>Đây là loại đèn chiếu sáng đặt biệt, có khả năng hoạt động trong môi trường nước. Toàn bộ
+                            thân
+                            đèn sẽ chìm trong nước, chiếu sáng trang trí cho bể cá, bể bơi, đài phun nước. Các loại đèn
+                            âm nước
+                            phổ biến có thể kể đến như:</p>
+
+                        <ul>
+                            <li>Đèn âm nước dạng đế.</li>
+                            <li>Đèn âm nước dạng bánh xe.</li>
+                            <li>Đèn led dây dưới nước.</li>
+                            <li>Đèn led âm nước chiếu rọi.</li>
+                        </ul>
+
+                        <div class="img">
+                            <img src="https://i.postimg.cc/0yhG39TP/denduoinuoc.jpg" alt="Đèn chiếu sáng dưới nước">
+                        </div>
+
+                        <div class="extend">
+                            <b>Xem thêm: </b> <a href="#"><b>Cách thiết kế hệ thống chiếu sáng đường phố tiết kiệm điện
+                                    năng</b></a>
+                        </div>
+                    </div>
+
+                    <p>Trên đây là các loại đèn chiếu sáng thông dụng nhất hiện nay. Mong rằng qua đó, bạn sẽ hiểu rõ
+                        hơn về
+                        thế giới đèn điện, chọn được sản phẩm phù hợp với mục đích, nhu cầu sử dụng.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="container_2">
+            <div class="news">
+                <h2>Tin liên quan</h2>
+
+                <div class="article-card" data-page="1">
+                    <div class="article-image">
+                        <img src="https://i1-giadinh.vnecdn.net/2023/03/02/setop-1677718671-1677718682-6756-1677718754.jpg?w=500&h=300&q=100&dpr=2&fit=crop&s=oe9JH4fyZe2kF7EJumgLxA"
+                            alt="Bản tin 1">
+                    </div>
+                    <div class="article-content">
+                        <h2 class="article-title"><a href="news_details.html">Lumi ra mắt bộ sưu tập đèn Lumi
+                                Lighting</a> </h2>
+                        <p class="article-description">Với gần 30 mẫu thiết kế đèn, Lumi Lighting ứng dụng được vào
+                            hầu hết không gian nội thất và ngoại thất, phù hợp nhiều phong cách kiến trúc. </p>
+                        <div class="article-meta">
+                            <strong>Tin tức LightUP</strong>
+                            <span>•</span>
+                            <span>25/10/2025</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="article-card" data-page="1">
+                    <div class="article-image">
+                        <img src="https://i1-giadinh.vnecdn.net/2023/03/02/setop-1677718671-1677718682-6756-1677718754.jpg?w=500&h=300&q=100&dpr=2&fit=crop&s=oe9JH4fyZe2kF7EJumgLxA"
+                            alt="Bản tin 1">
+                    </div>
+                    <div class="article-content">
+                        <h2 class="article-title"><a href="news_details.html">Lumi ra mắt bộ sưu tập đèn Lumi
+                                Lighting</a> </h2>
+                        <p class="article-description">Với gần 30 mẫu thiết kế đèn, Lumi Lighting ứng dụng được vào
+                            hầu hết không gian nội thất và ngoại thất, phù hợp nhiều phong cách kiến trúc. </p>
+                        <div class="article-meta">
+                            <strong>Tin tức LightUP</strong>
+                            <span>•</span>
+                            <span>25/10/2025</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="article-card" data-page="1">
+                    <div class="article-image">
+                        <img src="https://i1-giadinh.vnecdn.net/2023/03/02/setop-1677718671-1677718682-6756-1677718754.jpg?w=500&h=300&q=100&dpr=2&fit=crop&s=oe9JH4fyZe2kF7EJumgLxA"
+                            alt="Bản tin 1">
+                    </div>
+                    <div class="article-content">
+                        <h2 class="article-title"><a href="news_details.html">Lumi ra mắt bộ sưu tập đèn Lumi
+                                Lighting</a> </h2>
+                        <p class="article-description">Với gần 30 mẫu thiết kế đèn, Lumi Lighting ứng dụng được vào
+                            hầu hết không gian nội thất và ngoại thất, phù hợp nhiều phong cách kiến trúc. </p>
+                        <div class="article-meta">
+                            <strong>Tin tức LightUP</strong>
+                            <span>•</span>
+                            <span>25/10/2025</span>
+                        </div>
+                    </div>
+                </div>
+
+        </section>
+    </main>
+
+    <!--Chân trang chứa thông tin liên hệ-->
+    <footer class="footer-main">
+        <div class="footer-container">
+            <div class="footer-column company-info">
+                <h3>THÔNG TIN CHUNG</h3>
+                <h2>ĐÈN VÀ THIẾT BỊ CHIẾU SÁNG</h2>
+
+                <div class="contact-item">
+                    <i class="bi bi-telephone-fill"></i>
+                    <a href="tel:0999999999"> (84-28)-38966780</a>
+                </div>
+
+                <div class="contact-item">
+                    <i class="bi bi-envelope-fill"></i>
+                    <a href="mailto:cskh@hoanghoavn.vn">vphanhchinh@hcmuaf.edu.vn; ico@hcmuaf.edu.vn</a>
+                </div>
+
+                <div class="contact-item">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    <a href="https://www.hcmuaf.edu.vn/map.html">Khu Phố 33, Phường Linh Xuân, TP. Hồ Chí Minh, Việt
+                        Nam</a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>VỀ CHÚNG TÔI</h3>
+                <ul class="footer-links">
+                    <li><a href="about.html">Giới thiệu</a></li>
+                    <li><a href="products.html">Sản phẩm</a></li>
+                    <li><a href="news.html">Tin tức</a></li>
+                    <li><a href="#">Liên hệ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column social-section">
+                <h3>KẾT NỐI VỚI CHÚNG TÔI</h3>
+                <div class="social-icons">
+                    <div class="social-icon">
+                        <i class="bi bi-facebook"></i>
+                    </div>
+                    <div class="social-icon">
+                        <i class="bi bi-twitter"></i>
+                    </div>
+                    <div class="social-icon">
+                        <i class="bi bi-envelope-fill"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="footer">
+        <div class="footer-cont">
+            <div class="footer-text">
+                <p>Copyright &copy;2025 by Quoc | All Right Reserves</p>
+            </div>
+        </div>
+    </div>
+    <script src="./JS/index.js"></script>
+</body>
+
+</html>

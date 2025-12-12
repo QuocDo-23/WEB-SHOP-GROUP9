@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png">
+    <title>Thống Kê - Quản Lý Đèn</title>
+    <link rel="stylesheet" href="../CSS/admin.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png" alt="logo">
+                LightAdmin
+            </div>
+            <a href="../admin/dashboard.html" class="menu-item ">
+                📊 Tổng Quan
+            </a>
+            <a href="../admin/product_admin.html" class="menu-item">
+                📦 Sản Phẩm
+            </a>
+            <a href="../admin/orders-admin.html" class="menu-item">
+                🛒 Đơn Hàng
+            </a>
+            <a href="../admin/customers.html" class="menu-item">
+                👥 Khách Hàng
+            </a>
+            <a href="../admin/news-admin.html" class="menu-item">
+                📰 Tin Tức
+            </a>
+            <a href="../admin/review.html" class="menu-item ">
+                ⭐ Đánh Giá
+            </a>
+            <a href="../admin/analytics.html" class="menu-item active">
+                📈 Thống Kê
+            </a>
+            <button type="button" class="logout-btn" onclick="window.location.href='../index.html'">Đăng xuất</button>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>Báo Cáo Thống Kê</h1>
+                <div class="user-info">
+                    <div class="avatar">Q</div>
+                    <div>
+                        <div style="font-weight: 600;">Admin</div>
+                        <div style="font-size: 12px; color: #718096;">Quản trị viên</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <h2 style="margin-bottom: 20px;">Báo Cáo Thống Kê</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">Tổng Doanh Thu Năm</div>
+                        <div class="stat-value" style="color: #319795;">2.8B VNĐ</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Tăng Trưởng</div>
+                        <div class="stat-value" style="color: #48bb78;">+24.5%</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Đơn Hàng Trung Bình</div>
+                        <div class="stat-value">2.8M VNĐ</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Tỷ Lệ Hoàn Thành</div>
+                        <div class="stat-value" style="color: #667eea;">94.2%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

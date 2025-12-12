@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theo dõi đơn hàng</title>
+    <link rel="stylesheet" href="CSS/order_tracking.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png">
+</head>
+
+<body>
+    <main>
+        <section class="od-track">
+            <button class="close-btn" onclick="window.location.href='index.html'" title="Đóng">
+                <i class="bi bi-x"></i>
+            </button>
+            <!--Phần đầu trang-->
+            <div class="container">
+
+                <!--Các trạng thái cập nhật của đơn hàng-->
+                <div class="order-status">
+                    <h2>Trạng thái đơn hàng</h2>
+
+                    <div class="progress-bar">
+                        <div class="step_complete">
+                            <i class="bi bi-cart-check"></i>
+                            <p>Đã nhận đơn</p>
+                        </div>
+
+                        <div class="step_complete">
+                            <i class="bi bi-box2-heart"></i>
+                            <p>Chờ vận chuyển</p>
+                        </div>
+
+                        <div class="step_complete">
+                            <i class="bi bi-truck"></i>
+                            <p>Đang vận chuyển</p>
+                        </div>
+
+                        <div class="step_complete">
+                            <i class="bi bi-check2-square"></i>
+                            <div class="item-quantity">1</div>
+                            <p>Đã giao hàng</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Thông tin đơn hàng-->
+                <div class="order-inf">
+                    <h2>Thông tin đơn hàng</h2>
+
+                    <div class="information">
+                        <p class="odc">Mã đơn hàng: <strong>#LU-11102025-22095</strong></p>
+                        <p class="date">Ngày đặt hàng: 11/10/2025</p>
+                        <p class="name">Người nhận hàng: Trần Văn A</p>
+                        <p class="addr">Địa chỉ: 123 đường 456, phường Thủ Đức, TPHCM</p>
+                        <p class="price">Tổng tiền: <strong>7.230.000 VND</strong></p>
+                    </div>
+                </div>
+
+                <!--Nút đánh giá-->
+                <div class="review-section">
+                    <a href="order_review.html" class="review-btn">
+                        <i class="bi bi-star-fill"></i> Đánh giá đơn hàng
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

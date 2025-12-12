@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png">
+    <title>Tổng Quan - Quản Lý Đèn</title>
+    <link rel="stylesheet" href="../CSS/admin.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png" alt="logo">
+                LightAdmin
+            </div>
+            <a href="../admin/dashboard.html" class="menu-item active">
+                📊 Tổng Quan
+            </a>
+            <a href="../admin/product_admin.html" class="menu-item">
+                📦 Sản Phẩm
+            </a>
+            <a href="../admin/orders-admin.html" class="menu-item">
+                🛒 Đơn Hàng
+            </a>
+            <a href="../admin/customers.html" class="menu-item">
+                👥 Khách Hàng
+            </a>
+            <a href="../admin/news-admin.html" class="menu-item">
+                📰 Tin Tức
+            </a>
+            <a href="../admin/review.html" class="menu-item ">
+                ⭐ Đánh Giá
+            </a>
+            <a href="../admin/analytics.html" class="menu-item">
+                📈 Thống Kê
+            </a>
+            <button type="button" class="logout-btn" onclick="window.location.href='../index.html'">Đăng xuất</button>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>Tổng Quan</h1>
+                <div class="user-info">
+                    <div class="avatar">Q</div>
+                    <div>
+                        <div style="font-weight: 600;">Admin</div>
+                        <div style="font-size: 12px; color: #718096;">Quản trị viên</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon" style="background: #e6fffa; color: #319795;">💰</div>
+                    </div>
+                    <div class="stat-value">245.8M</div>
+                    <div class="stat-label">Doanh Thu Tháng</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon" style="background: #fef5e7; color: #d69e2e;">📦</div>
+                    </div>
+                    <div class="stat-value">1,234</div>
+                    <div class="stat-label">Sản Phẩm</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon" style="background: #e9d5ff; color: #7c3aed;">🛒</div>
+                    </div>
+                    <div class="stat-value">856</div>
+                    <div class="stat-label">Đơn Hàng</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon" style="background: #dbeafe; color: #3b82f6;">👥</div>
+                    </div>
+                    <div class="stat-value">3,421</div>
+                    <div class="stat-label">Khách Hàng</div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <h2>Sản Phẩm Bán Chạy</h2>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hình Ảnh</th>
+                            <th>Sản Phẩm</th>
+                            <th>Danh Mục</th>
+                            <th>Đã Bán</th>
+                            <th>Doanh Thu</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="product-img">
+                                    <img src="https://flexhouse.vn/wp-content/uploads/2023/05/Den-san-vuon-nang-luong-mat-troi-hien-dai-CB3075-15.jpg"
+                                        alt="Bóng đèn LED 1">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="products-name">Bóng đèn decor sân vườn năng lượng mặt trời CB3075</div>
+                            </td>
+                            <td>Bóng Đèn</td>
+                            <td>140</td>
+                            <td class="cost-products">619.220.000₫</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-img">
+                                    <img src="https://flexhouse.vn/wp-content/uploads/2024/01/Den-op-tran-dieu-khac-hoa-cham-pa-nghe-thuat-ND6725-2.jpg"
+                                        alt="">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="products-name">Đèn ốp trần điêu khác hoa Chăm Pa Nghệ thuật ND6725</div>
+                            </td>
+                            <td>Đèn Ốp Trần</td>
+                            <td>95</td>
+                            <td class="cost-products">577.600.000₫</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-img">
+                                    <img src="https://flexhouse.vn/wp-content/uploads/2025/06/Den-chum-pha-le-phong-khach-sang-trong-ZGL6939-2.jpg"
+                                        alt="Đèn chùm tròn 2">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="products-name">Đèn chùm phòng khách sang trọng ZGL6939</div>
+                            </td>
+                            <td>Đèn chùm</td>
+                            <td>72</td>
+                            <td class="cost-products">794.736.000₫</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
