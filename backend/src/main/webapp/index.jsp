@@ -58,74 +58,7 @@
 <body>
 <main>
     <!-- Navigation -->
-    <nav>
-        <div class="nav_head">
-            <a href="./index.jsp">
-                <div class="logo">
-                    <img src="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png" alt="Logo">
-                </div>
-            </a>
-
-            <div class="nav-container">
-                <ul class="nav-links">
-                    <li><a href="./index.jsp" class="active">TRANG CHỦ</a></li>
-                    <li><a href="./about.jsp">GIỚI THIỆU</a></li>
-                    <li><a href="./products.jsp">SẢN PHẨM <i class="bi bi-caret-down-fill"></i></a>
-                        <div class="sub-item">
-                            <div class="contant-sub">
-                                <h2>Danh mục sản phẩm</h2>
-                                <div class="cont-item">
-                                    <c:forEach var="category" items="${categories}">
-                                        <div class="product_item">
-                                            <div class="product_cont">
-                                                <img src="${category.imgCate}" alt="${category.name}" />
-                                                <a class="item" href="./products.jsp#section-${category.id}">${category.name}</a>
-                                            </div>
-                                            <span class="arrow">›</span>
-                                        </div>
-                                    </c:forEach>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li><a href="./news.jsp">TIN TỨC</a></li>
-                    <li><a href="./contact.jsp">LIÊN HỆ</a></li>
-                </ul>
-
-                <div class="nav_r" id="nav_r">
-                    <!-- Search Box -->
-                    <div class="search-icon" onclick="openSearchBar()">
-                        <input type="text" placeholder="Tìm kiếm " id="searchInput">
-                        <i class="bi bi-search"></i>
-                    </div>
-                    <i class="bi bi-x back-button-nav" onclick="closeSearchBar()"></i>
-
-                    <!-- Search Panel -->
-                    <div class="search-panel" id="searchPanel">
-                        <div class="search-content" id="searchResults">
-                            <div class="section-header_search">
-                                <h2 class="section-title-search">Gợi ý tìm kiếm</h2>
-                            </div>
-                            <!-- Search results will be loaded here via AJAX -->
-                        </div>
-                    </div>
-
-                    <!-- Icons -->
-                    <div class="icon-group">
-                        <div class="shop" id="shop">
-                            <a href="cart-detail.jsp">
-                                <i class="bi bi-cart-check" title="Giỏ hàng"></i>
-                                <div class="item-quantity" id="cartCount">0</div>
-                            </a>
-                        </div>
-                        <div class="login" id="login">
-                            <a href="./login.jsp"><i class="bi bi-person-circle" title="Tài Khoản"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <jsp:include page="header.jsp"/>
 
     <div class="search-overlay" id="searchOverlay" onclick="closeSearchPanel()"></div>
 
@@ -396,7 +329,7 @@
     </section>
 
     <!-- Footer -->
-<%--    <jsp:include page="footer.jsp" />--%>
+    <jsp:include page="footer.jsp" />
 
     <!-- Scroll to Top -->
     <a href="#">
