@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <nav>
@@ -11,21 +11,24 @@
 
         <div class="nav-container">
             <ul class="nav-links">
-                <li><a href="./index.jsp" class="${pageContext.request.servletPath == '/index.jsp' ? 'active' : ''}">TRANG CHỦ</a></li>
-                <li><a href="./about.jsp" class="${pageContext.request.servletPath == '/about.jsp' ? 'active' : ''}">GIỚI THIỆU</a></li>
+                <li><a href="./index.jsp" class="${pageContext.request.servletPath == '/index.jsp' ? 'active' : ''}">TRANG
+                    CHỦ</a></li>
+                <li><a href="./about.jsp" class="${pageContext.request.servletPath == '/about.jsp' ? 'active' : ''}">GIỚI
+                    THIỆU</a></li>
                 <li>
-                    <a href="./products.jsp" class="${pageContext.request.servletPath == '/products.jsp' ? 'active' : ''}">
+                    <a href="./products.jsp"
+                       class="${pageContext.request.servletPath == '/products.jsp' ? 'active' : ''}">
                         SẢN PHẨM <i class="bi bi-caret-down-fill"></i>
                     </a>
                     <div class="sub-item">
                         <div class="contant-sub">
                             <h2>Danh mục sản phẩm</h2>
-                            <div class="cont-item" >
+                            <div class="cont-item">
                                 <c:forEach var="category" items="${categories}">
                                     <a href="./products.jsp#section-${category.id}" class="product_item">
                                         <div class="product_cont">
-                                            <img src="${category.imgCate}" alt="${category.name}" />
-                                            <div class="item" >${category.name}</div>
+                                            <img src="${category.imgCate}" alt="${category.name}"/>
+                                            <div class="item">${category.name}</div>
                                         </div>
                                         <span class="arrow">›</span>
                                     </a>
@@ -34,8 +37,10 @@
                         </div>
                     </div>
                 </li>
-                <li><a href="./news.jsp" class="${pageContext.request.servletPath == '/news.jsp' ? 'active' : ''}">TIN TỨC</a></li>
-                <li><a href="./contact.jsp" class="${pageContext.request.servletPath == '/contact.jsp' ? 'active' : ''}">LIÊN HỆ</a></li>
+                <li><a href="./news.jsp" class="${pageContext.request.servletPath == '/news.jsp' ? 'active' : ''}">TIN
+                    TỨC</a></li>
+                <li><a href="./contact.jsp"
+                       class="${pageContext.request.servletPath == '/contact.jsp' ? 'active' : ''}">LIÊN HỆ</a></li>
             </ul>
 
             <div class="nav_r" id="nav_r">

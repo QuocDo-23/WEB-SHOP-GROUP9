@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.*, java.text.*, code.web.webgroup9.dao.*,code.web.webgroup9.model.*" %>
 <%@ page import="code.web.webgroup9.model.ProductWithDetails" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -57,7 +57,7 @@
 
 <body>
 <main>
-    <!-- Navigation -->
+    <!-- header -->
     <jsp:include page="header.jsp"/>
 
     <div class="search-overlay" id="searchOverlay" onclick="closeSearchPanel()"></div>
@@ -66,7 +66,8 @@
     <div class="carousel-container" id="carouselContainer">
         <!-- Slide 1 -->
         <div class="carousel-slide active">
-            <div class="section_1" style="background-image: url('https://anhsanghoanglam.vn/wp-content/uploads/2022/05/z2483765420178_66b758a5966fe34dd8e7e861b837681d-scaled-1.jpg');">
+            <div class="section_1"
+                 style="background-image: url('https://anhsanghoanglam.vn/wp-content/uploads/2022/05/z2483765420178_66b758a5966fe34dd8e7e861b837681d-scaled-1.jpg');">
                 <div class="cont">
                     <div class="section_1-content">
                         <h1>Lightup</h1>
@@ -81,7 +82,8 @@
 
         <!-- Slide 2 -->
         <div class="carousel-slide">
-            <div class="section_2" style="background-image: url('https://denchum.mauthemewp.com/wp-content/uploads/2022/05/artglass-particles06.igallery.image0000007.jpg');">
+            <div class="section_2"
+                 style="background-image: url('https://denchum.mauthemewp.com/wp-content/uploads/2022/05/artglass-particles06.igallery.image0000007.jpg');">
                 <div class="cont1">
                     <div class="section_2-content p2">
                         <div class="p2-r">
@@ -103,9 +105,15 @@
                                             <span>0937.94.94.88</span>
                                         </div>
                                         <div class="addresses">
-                                            <div class="address-item"><strong>CN1:</strong> Khu Phố 33, Phường Linh Xuân, TP.HCM</div>
-                                            <div class="address-item"><strong>CN2:</strong> Đường Trần Nhật Duật, Phường Diên Hồng, Tỉnh Gia Lai</div>
-                                            <div class="address-item"><strong>CN3:</strong> Số 8 Yên Ninh, Phường Ninh Chữ, Tỉnh Ninh Thuận</div>
+                                            <div class="address-item"><strong>CN1:</strong> Khu Phố 33, Phường Linh
+                                                Xuân, TP.HCM
+                                            </div>
+                                            <div class="address-item"><strong>CN2:</strong> Đường Trần Nhật Duật, Phường
+                                                Diên Hồng, Tỉnh Gia Lai
+                                            </div>
+                                            <div class="address-item"><strong>CN3:</strong> Số 8 Yên Ninh, Phường Ninh
+                                                Chữ, Tỉnh Ninh Thuận
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -140,7 +148,7 @@
                 <a href="./products.jsp?action=category&id=${category.id}">
                     <div class="product-card-2">
                         <div class="product-image-2">
-                            <img src="${category.imgCate}" alt="${category.name}" />
+                            <img src="${category.imgCate}" alt="${category.name}"/>
                         </div>
                         <div class="product-name-2">${category.name}</div>
                     </div>
@@ -163,11 +171,11 @@
                 <c:forEach var="product" items="${featuredProducts}">
                     <div class="product-card">
                         <div class="product-image">
-                            <c:if test="${product.hasDiscount()}">
-                                <div class="product-sale">
-                                    -<fmt:formatNumber value="${product.discountRate}" maxFractionDigits="0"/>%
-                                </div>
-                            </c:if>
+<%--                            <c:if test="${product.hasDiscount()}">--%>
+<%--                                <div class="product-sale">--%>
+<%--                                    -<fmt:formatNumber value="${product.discountRate}" maxFractionDigits="0"/>%--%>
+<%--                                </div>--%>
+<%--                            </c:if>--%>
                             <a href="product-detail.jsp?id=${product.id}">
                                 <img src="${product.mainImage}"
                                      alt="${product.description}" class="img-main">
@@ -183,7 +191,7 @@
                                 <a href="product-detail.jsp?id=${product.id}">${product.description}</a>
                             </h3>
 
-                            <c:set var="rating" value="${product.review}" />
+                            <c:set var="rating" value="${product.review}"/>
 
                             <div class="rating-box">
                                 <div class="star-rating">
@@ -193,14 +201,16 @@
 
                             <div class="product-action">
                                 <div class="product-prices">
-                                            <span class="current-price">
-                                                <fmt:formatNumber value="${product.getDiscountedPrice()}" type="currency" currencySymbol="" />₫
-                                            </span>
-                                    <c:if test="${product.hasDiscount()}">
-                                                <span class="old-price">
-                                                    <del><fmt:formatNumber value="${product.getPrice()}" type="currency" currencySymbol="" />₫</del>
-                                                </span>
-                                    </c:if>
+<%--                                            <span class="current-price">--%>
+<%--                                                <fmt:formatNumber value="${product.getDiscountedPrice()}"--%>
+<%--                                                                  type="currency" currencySymbol=""/>₫--%>
+<%--                                            </span>--%>
+<%--                                    <c:if test="${product.hasDiscount()}">--%>
+<%--                                                <span class="old-price">--%>
+<%--                                                    <del><fmt:formatNumber value="${product.getPrice()}" type="currency"--%>
+<%--                                                                           currencySymbol=""/>₫</del>--%>
+<%--                                                </span>--%>
+<%--                                    </c:if>--%>
                                 </div>
                                 <div class="cart-icon">
                                     <a href="#" class="open-cart" onclick="addToCart(${product.id}); return false;">
@@ -233,9 +243,11 @@
                     <img src="./IMG/tải xuống.webp" alt="">
                     <div class="cont-r">
                         <h2>LightUP được thành lập với niềm đam mê mang ánh sáng và sự ấm áp đến mọi không gian sống.
-                            Chúng tôi hiểu rằng ánh sáng không đơn thuần là một nhu cầu thiết yếu, mà còn là yếu tố quan trọng
+                            Chúng tôi hiểu rằng ánh sáng không đơn thuần là một nhu cầu thiết yếu, mà còn là yếu tố quan
+                            trọng
                             tạo nên không khí, phong cách và cảm xúc cho ngôi nhà của bạn.</h2>
-                        <p><b>SỨ MỆNH</b>: Mang đến những giải pháp chiếu sáng thông minh, tiết kiệm năng lượng và thẩm mỹ cao,
+                        <p><b>SỨ MỆNH</b>: Mang đến những giải pháp chiếu sáng thông minh, tiết kiệm năng lượng và thẩm
+                            mỹ cao,
                             giúp khách hàng tạo nên không gian sống hoàn hảo với chi phí hợp lý nhất.</p>
                         <p><b>TẦM NHÌN</b>: Trở thành thương hiệu thiết bị chiếu sáng được tin dùng nhất tại Việt Nam,
                             nơi khách hàng tìm thấy sự kết hợp hoàn hảo giữa chất lượng, thiết kế và công nghệ.</p>
@@ -311,8 +323,10 @@
                     <img src="https://duhal.com.vn/image-news/small/ung-dung-bong-led-bulb-duhal-trong-chieu-sang-gia-dinh-van-phong-va-cua-hang-51306.jpg"
                          alt="Tin tức" class="featured-image">
                     <div class="featured-content">
-                        <h3><a href="news-detail.jsp">Ứng dụng bóng LED bulb Duhal trong chiếu sáng gia đình, văn phòng và cửa hàng</a></h3>
-                        <p>Bóng LED bulb Duhal ngày càng trở thành lựa chọn quen thuộc trong nhiều không gian nhờ ánh sáng dễ chịu,
+                        <h3><a href="news-detail.jsp">Ứng dụng bóng LED bulb Duhal trong chiếu sáng gia đình, văn phòng
+                            và cửa hàng</a></h3>
+                        <p>Bóng LED bulb Duhal ngày càng trở thành lựa chọn quen thuộc trong nhiều không gian nhờ ánh
+                            sáng dễ chịu,
                             tiết kiệm điện năng và độ bền cao...</p>
                     </div>
                 </div>
@@ -329,7 +343,7 @@
     </section>
 
     <!-- Footer -->
-    <jsp:include page="footer.jsp" />
+    <jsp:include page="footer.jsp"/>
 
     <!-- Scroll to Top -->
     <a href="#">
@@ -339,7 +353,7 @@
     </a>
 
     <!-- Cart Sidebar -->
-<%--    <jsp:include page="cart-sidebar.jsp" />--%>
+    <%--    <jsp:include page="cart-sidebar.jsp" />--%>
 
     <div id="cart-overlay"></div>
 </main>
@@ -347,7 +361,7 @@
 <!-- JavaScript -->
 <script>
     // Search functionality
-    document.getElementById('searchInput').addEventListener('input', function() {
+    document.getElementById('searchInput').addEventListener('input', function () {
         const keyword = this.value.trim();
         if (keyword.length >= 2) {
             searchProducts(keyword);

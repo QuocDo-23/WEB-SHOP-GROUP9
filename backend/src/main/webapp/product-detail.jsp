@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.*, java.text.*, code.web.webgroup9.dao.*, code.web.webgroup9.model.*" %>
 <%@ page import="code.web.webgroup9.model.ReviewStatistics" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -72,7 +72,7 @@
 </head>
 <body>
 <!-- Navigation -->
-<jsp:include page="header.jsp" />
+<jsp:include page="header.jsp"/>
 
 <!-- Breadcrumb -->
 <div class="link-page" id="up">
@@ -111,20 +111,20 @@
                 <h1 class="product_title">${product.description}</h1>
 
                 <div class="product-rating">
-                    <c:set var="rating" value="${product.review}" />
-                        <div class="star-rating">
-                            <span style="width:${rating * 20}%;"></span>
-                        </div>
+                    <c:set var="rating" value="${product.review}"/>
+                    <div class="star-rating">
+                        <span style="width:${rating * 20}%;"></span>
+                    </div>
 
                     <div class="product-prices">
-                            <span class="current-price">
-                                <%= vndFormat.format(product.getDiscountedPrice()) %>₫
-                            </span>
-                        <% if (product.hasDiscount()) { %>
-                        <span class="old-price">
-                                    <del><%= vndFormat.format(product.getPrice()) %>₫</del>
-                                </span>
-                        <% } %>
+<%--                            <span class="current-price">--%>
+<%--                                <%= vndFormat.format(product.getDiscountedPrice()) %>₫--%>
+<%--                            </span>--%>
+<%--                        <% if (product.hasDiscount()) { %>--%>
+<%--                        <span class="old-price">--%>
+<%--                                    <del><%= vndFormat.format(product.getPrice()) %>₫</del>--%>
+<%--                                </span>--%>
+<%--                        <% } %>--%>
                     </div>
 
                     <!-- Product Attributes Table -->
@@ -289,7 +289,8 @@
                                     <div class="star-average">
                                         <div class="product-rating">
                                                 <span class="star_average">
-                                                    <fmt:formatNumber value="${stats.averageRating}" maxFractionDigits="1"/>
+                                                    <fmt:formatNumber value="${stats.averageRating}"
+                                                                      maxFractionDigits="1"/>
                                                     <i class="devvn-star">★</i>
                                                 </span>
                                             <div class="star-rating">
@@ -304,15 +305,19 @@
                                             <c:forEach var="star" begin="1" end="5">
                                                 <c:set var="starReversed" value="${6 - star}"/>
                                                 <div class="devvn_review_row">
-                                                    <span class="devvn_stars_value">${starReversed}<i class="devvn-star">★</i></span>
+                                                    <span class="devvn_stars_value">${starReversed}<i
+                                                            class="devvn-star">★</i></span>
                                                     <span class="devvn_rating_bar">
-                                                            <span style="background-color: #eee" class="devvn_scala_rating">
+                                                            <span style="background-color: #eee"
+                                                                  class="devvn_scala_rating">
                                                                 <span class="devvn_perc_rating"
                                                                       style="width: ${stats.getPercentage(starReversed)}%; background-color: #f5a623"></span>
                                                             </span>
                                                         </span>
                                                     <span class="devvn_num_reviews">
-                                                            <b><fmt:formatNumber value="${stats.getPercentage(starReversed)}" maxFractionDigits="0"/>%</b>
+                                                            <b><fmt:formatNumber
+                                                                    value="${stats.getPercentage(starReversed)}"
+                                                                    maxFractionDigits="0"/>%</b>
                                                         </span>
                                                 </div>
                                             </c:forEach>
@@ -333,7 +338,8 @@
                                                     <div class="devvn_review_top">
                                                         <p class="meta">
                                                             <strong class="woocommerce-review__author">${review.userName}</strong>
-                                                            <em class="woocommerce-review__verified verified">Đã mua tại LightUp</em>
+                                                            <em class="woocommerce-review__verified verified">Đã mua tại
+                                                                LightUp</em>
                                                         </p>
                                                     </div>
 
@@ -349,7 +355,8 @@
                                                     <div class="devvn_review_bottom">
                                                         <time class="woocommerce-review__published-date"
                                                               datetime="${review.date}">
-                                                            <fmt:formatDate value="${review.date}" pattern="dd/MM/yyyy"/>
+                                                            <fmt:formatDate value="${review.date}"
+                                                                            pattern="dd/MM/yyyy"/>
                                                         </time>
                                                     </div>
                                                 </div>
@@ -369,11 +376,12 @@
                             <c:forEach var="relatedProduct" items="${relatedProducts}">
                                 <div class="product-card">
                                     <div class="product-image">
-                                        <c:if test="${relatedProduct.hasDiscount()}">
-                                            <div class="product-sale">
-                                                -<fmt:formatNumber value="${relatedProduct.discountRate}" maxFractionDigits="0"/>%
-                                            </div>
-                                        </c:if>
+<%--                                        <c:if test="${relatedProduct.hasDiscount()}">--%>
+<%--                                            <div class="product-sale">--%>
+<%--                                                -<fmt:formatNumber value="${relatedProduct.discountRate}"--%>
+<%--                                                                   maxFractionDigits="0"/>%--%>
+<%--                                            </div>--%>
+<%--                                        </c:if>--%>
                                         <a href="product-detail.jsp?id=${relatedProduct.id}">
                                             <img src="${relatedProduct.mainImage}"
                                                  alt="${relatedProduct.description}" class="img-main">
@@ -391,7 +399,7 @@
                                             </a>
                                         </h3>
 
-                                        <c:set var="rating" value="${product.review}" />
+                                        <c:set var="rating" value="${product.review}"/>
 
                                         <div class="rating-box">
                                             <div class="star-rating">
@@ -401,17 +409,20 @@
 
                                         <div class="product-action">
                                             <div class="product-prices">
-                                            <span class="current-price">
-                                                <fmt:formatNumber value="${product.getDiscountedPrice()}" type="currency" currencySymbol="" />₫
-                                            </span>
-                                                <c:if test="${product.hasDiscount()}">
-                                                <span class="old-price">
-                                                    <del><fmt:formatNumber value="${product.getPrice()}" type="currency" currencySymbol="" />₫</del>
-                                                </span>
-                                                </c:if>
+<%--                                            <span class="current-price">--%>
+<%--                                                <fmt:formatNumber value="${product.getDiscountedPrice()}"--%>
+<%--                                                                  type="currency" currencySymbol=""/>₫--%>
+<%--                                            </span>--%>
+<%--                                                <c:if test="${product.hasDiscount()}">--%>
+<%--                                                <span class="old-price">--%>
+<%--                                                    <del><fmt:formatNumber value="${product.getPrice()}" type="currency"--%>
+<%--                                                                           currencySymbol=""/>₫</del>--%>
+<%--                                                </span>--%>
+<%--                                                </c:if>--%>
                                             </div>
                                             <div class="cart-icon">
-                                                <a href="cart?action=add&productId=${product.getId()}" class="open-cart">
+                                                <a href="cart?action=add&productId=${product.getId()}"
+                                                   class="open-cart">
                                                     <i class="bi bi-cart-check"></i>
                                                 </a>
                                             </div>
@@ -432,7 +443,7 @@
 </div>
 
 <!-- Footer -->
-<jsp:include page="footer.jsp" />
+<jsp:include page="footer.jsp"/>
 
 <!-- Scroll to Top Button -->
 <a href="#up">
@@ -515,13 +526,13 @@
     }
 
     // Review box
-    document.querySelector('.btn-reviews-now').addEventListener('click', function(e) {
+    document.querySelector('.btn-reviews-now').addEventListener('click', function (e) {
         e.preventDefault();
         document.querySelector('.overlay').classList.add('active');
         document.querySelector('.review-box').classList.add('active');
     });
 
-    document.querySelector('.close-btn').addEventListener('click', function() {
+    document.querySelector('.close-btn').addEventListener('click', function () {
         document.querySelector('.overlay').classList.remove('active');
         document.querySelector('.review-box').classList.remove('active');
     });

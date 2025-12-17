@@ -1,9 +1,9 @@
 // active menu
 document.querySelectorAll(".nav-links a").forEach((link) => {
-  link.addEventListener("click", () => {
-    document.querySelector(".nav-links a.active")?.classList.remove("active");
-    link.classList.add("active");
-  });
+    link.addEventListener("click", () => {
+        document.querySelector(".nav-links a.active")?.classList.remove("active");
+        link.classList.add("active");
+    });
 });
 
 // phân trang
@@ -15,30 +15,30 @@ const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 
 function updateButtons() {
-  prevBtn.disabled = currentPage === 0;
-  nextBtn.disabled = currentPage === totalPages - 1;
+    prevBtn.disabled = currentPage === 0;
+    nextBtn.disabled = currentPage === totalPages - 1;
 }
 
 function showPage(page) {
-  products.forEach((p, i) => {
-    const visible = i >= page * perPage && i < (page + 1) * perPage;
-    p.classList.toggle("hidden", !visible);
+    products.forEach((p, i) => {
+        const visible = i >= page * perPage && i < (page + 1) * perPage;
+        p.classList.toggle("hidden", !visible);
 
-    if (visible) {
-      setTimeout(() => p.classList.add("show"), 20);
-    } else {
-      p.classList.remove("show");
-    }
-  });
-  updateButtons();
+        if (visible) {
+            setTimeout(() => p.classList.add("show"), 20);
+        } else {
+            p.classList.remove("show");
+        }
+    });
+    updateButtons();
 }
 
 function slideProducts(dir) {
-  const next = currentPage + dir;
-  if (next >= 0 && next < totalPages) {
-    currentPage = next;
-    showPage(currentPage);
-  }
+    const next = currentPage + dir;
+    if (next >= 0 && next < totalPages) {
+        currentPage = next;
+        showPage(currentPage);
+    }
 }
 
 showPage(0);

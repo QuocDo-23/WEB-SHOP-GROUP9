@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
@@ -17,7 +17,7 @@
 </head>
 <body>
 <main>
-    <jsp:include page="header.jsp" />
+    <jsp:include page="header.jsp"/>
 
     <div class="link-page" id="up">
         <div class="containt_link">
@@ -55,7 +55,7 @@
 
         <c:if test="${not empty featuredArticles}">
             <!-- Main Featured Article -->
-            <c:set var="mainArticle" value="${featuredArticles[0]}" />
+            <c:set var="mainArticle" value="${featuredArticles[0]}"/>
             <div class="new_1">
                 <div class="cont">
                     <img src="${mainArticle.mainImg}" alt="${mainArticle.title}">
@@ -63,7 +63,7 @@
                         <div class="title_r">
                             <div class="title_last">
                                 <span>${mainArticle.categoryName != null ? mainArticle.categoryName : 'Bản tin LightUP'}</span>
-                                <li><fmt:formatDate value="${mainArticle.dateOfPosting}" pattern="dd/MM/yyyy" /></li>
+                                <li><fmt:formatDate value="${mainArticle.dateOfPosting}" pattern="dd/MM/yyyy"/></li>
                             </div>
                             <div class="name">
                                 <a href="news-detail?slug=${mainArticle.slug}">${mainArticle.title}</a>
@@ -88,7 +88,7 @@
                                 <div class="title_r">
                                     <div class="title_last">
                                         <span>${article.categoryName != null ? article.categoryName : 'Bản tin LightUP'}</span>
-                                        <li><fmt:formatDate value="${article.dateOfPosting}" pattern="dd/MM/yyyy" /></li>
+                                        <li><fmt:formatDate value="${article.dateOfPosting}" pattern="dd/MM/yyyy"/></li>
                                     </div>
                                     <div class="name">
                                         <a href="news-detail?slug=${article.slug}">${article.title}</a>
@@ -134,7 +134,7 @@
                             <div class="article-meta">
                                 <strong>${article.categoryName != null ? article.categoryName : 'Tin tức LightUP'}</strong>
                                 <span>•</span>
-                                <span><fmt:formatDate value="${article.dateOfPosting}" pattern="dd/MM/yyyy" /></span>
+                                <span><fmt:formatDate value="${article.dateOfPosting}" pattern="dd/MM/yyyy"/></span>
                             </div>
                         </div>
                         <div class="title_l">
@@ -171,7 +171,7 @@
     </section>
 
     <!-- Footer -->
-    <jsp:include page="footer.jsp" />
+    <jsp:include page="footer.jsp"/>
 
     <a href="#up">
         <button id="scrollToTopBtn">

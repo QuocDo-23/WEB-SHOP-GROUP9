@@ -8,18 +8,43 @@ public class Category {
     private String imgCate;
 
     // Getters and Setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public int getId() {
+        return id;
+    }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public Integer getParentId() { return parentId; }
-    public void setParentId(Integer parentId) { this.parentId = parentId; }
+    public String getName() {
+        return name;
+    }
 
-    public int getSortOrder() { return sortOrder; }
-    public void setSortOrder(int sortOrder) { this.sortOrder = sortOrder; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public String getImgCate() { return imgCate; }
-    public void setImgCate(String img) { this.imgCate = img; }
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
+    }
+
+    public int getSortOrder() {
+        return sortOrder;
+    }
+
+    public void setSortOrder(int sortOrder) {
+        this.sortOrder = sortOrder;
+    }
+
+    public String getImgCate() {
+        return imgCate;
+    }
+
+    public void setImgCate(String img) {
+        this.imgCate = img;
+    }
 }

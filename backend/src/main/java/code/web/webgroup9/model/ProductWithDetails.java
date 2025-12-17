@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class ProductWithDetails extends Product {
     private String categoryName;
-    private BigDecimal discountRate;
+    private double discountRate;
     private String description;
     private String warranty;
     private String material;
@@ -17,52 +17,111 @@ public class ProductWithDetails extends Product {
     private String hoverImage;
 
     // Calculated fields
-    public BigDecimal getDiscountedPrice() {
-        if (discountRate != null && discountRate.compareTo(BigDecimal.ZERO) > 0) {
-            BigDecimal discount = getPrice().multiply(discountRate).divide(new BigDecimal(100));
-            return getPrice().subtract(discount);
-        }
-        return getPrice();
+//    public double getDiscountedPrice() {
+//        if (discountRate != null && discountRate. > 0) {
+//            double discount = getPrice().multiply(discountRate).divide(new BigDecimal(100));
+//            return getPrice().subtract(discount);
+//        }
+//        return getPrice();
+//    }
+
+//    public boolean hasDiscount() {
+//        return discountRate != null && discountRate.compareTo(BigDecimal.ZERO) > 0;
+//    }
+
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public boolean hasDiscount() {
-        return discountRate != null && discountRate.compareTo(BigDecimal.ZERO) > 0;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
-    // Getters and Setters
-    public String getCategoryName() { return categoryName; }
-    public void setCategoryName(String categoryName) { this.categoryName = categoryName; }
+    public double getDiscountRate() {
+        return discountRate;
+    }
 
-    public BigDecimal getDiscountRate() { return discountRate; }
-    public void setDiscountRate(BigDecimal discountRate) { this.discountRate = discountRate; }
+    public void setDiscountRate(double discountRate) {
+        this.discountRate = discountRate;
+    }
 
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
+    public String getDescription() {
+        return description;
+    }
 
-    public String getWarranty() { return warranty; }
-    public void setWarranty(String warranty) { this.warranty = warranty; }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-    public String getMaterial() { return material; }
-    public void setMaterial(String material) { this.material = material; }
+    public String getWarranty() {
+        return warranty;
+    }
 
-    public String getVoltage() { return voltage; }
-    public void setVoltage(String voltage) { this.voltage = voltage; }
+    public void setWarranty(String warranty) {
+        this.warranty = warranty;
+    }
 
-    public String getDimensions() { return dimensions; }
-    public void setDimensions(String dimensions) { this.dimensions = dimensions; }
+    public String getMaterial() {
+        return material;
+    }
 
-    public String getType() { return type; }
-    public void setType(String type) { this.type = type; }
+    public void setMaterial(String material) {
+        this.material = material;
+    }
 
-    public String getColor() { return color; }
-    public void setColor(String color) { this.color = color; }
+    public String getVoltage() {
+        return voltage;
+    }
 
-    public String getStyle() { return style; }
-    public void setStyle(String style) { this.style = style; }
+    public void setVoltage(String voltage) {
+        this.voltage = voltage;
+    }
 
-    public String getMainImage() { return mainImage; }
-    public void setMainImage(String mainImage) { this.mainImage = mainImage; }
+    public String getDimensions() {
+        return dimensions;
+    }
 
-    public String getHoverImage() { return hoverImage; }
-    public void setHoverImage(String hoverImage) { this.hoverImage = hoverImage; }
+    public void setDimensions(String dimensions) {
+        this.dimensions = dimensions;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getStyle() {
+        return style;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
+    }
+
+    public String getMainImage() {
+        return mainImage;
+    }
+
+    public void setMainImage(String mainImage) {
+        this.mainImage = mainImage;
+    }
+
+    public String getHoverImage() {
+        return hoverImage;
+    }
+
+    public void setHoverImage(String hoverImage) {
+        this.hoverImage = hoverImage;
+    }
 }
