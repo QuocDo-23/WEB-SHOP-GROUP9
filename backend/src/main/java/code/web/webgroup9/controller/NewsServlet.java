@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -41,17 +42,14 @@ public class NewsServlet extends HttpServlet {
 
         // Lấy bài viết nổi bật
         List<Articles> featuredArticles = articleDAO.getFeaturedArticles();
-        // DEBUG: In ra để kiểm tra
         System.out.println("Số bài viết nổi bật: " + (featuredArticles != null ? featuredArticles.size() : 0));
 
         // Lấy bài viết theo trang
         List<Articles> articles = articleDAO.getArticlesByPage(currentPage, pageSize, sortBy);
-        // DEBUG: In ra để kiểm tra
         System.out.println("Số bài viết trên trang " + currentPage + ": " + (articles != null ? articles.size() : 0));
 
         // Tính tổng số trang
         int totalArticles = articleDAO.getTotalArticles();
-        // DEBUG: In ra để kiểm tra
         System.out.println("Tổng số bài viết: " + totalArticles);
         int totalPages = (int) Math.ceil((double) totalArticles / pageSize);
 

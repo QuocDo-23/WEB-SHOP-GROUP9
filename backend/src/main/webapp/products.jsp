@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.*, java.text.NumberFormat, java.util.Locale" %>
 <%@ page import="code.web.webgroup9.dao.ProductDAO, code.web.webgroup9.dao.CategoryDAO" %>
 <%@ page import="code.web.webgroup9.model.ProductWithDetails, code.web.webgroup9.model.Category" %>
@@ -121,7 +121,7 @@
     <!-- Products Section -->
     <div class="container product-section">
         <c:forEach var="category" items="${categories}">
-            <c:set var="products" value="${productsByCategory[category.id]}" />
+            <c:set var="products" value="${productsByCategory[category.id]}"/>
             <c:if test="${not empty products}">
                 <div id="section-${category.id}" class="product-section">
                     <h3 class="sub-title">${category.name}</h3>
@@ -130,9 +130,11 @@
                         <c:forEach var="product" items="${products}">
                             <div class="product-card">
                                 <div class="product-image">
-                                    <c:if test="${product.hasDiscount()}">
-                                        <div class="product-sale">-<fmt:formatNumber value="${product.getDiscountRate()}" maxFractionDigits="0" />%</div>
-                                    </c:if>
+<%--                                    <c:if test="${product.hasDiscount()}">--%>
+<%--                                        <div class="product-sale">-<fmt:formatNumber--%>
+<%--                                                value="${product.getDiscountRate()}" maxFractionDigits="0"/>%--%>
+<%--                                        </div>--%>
+<%--                                    </c:if>--%>
                                     <a href="product-detail.jsp?id=${product.getId()}">
                                         <img src="${not empty product.getMainImage() ? product.getMainImage() : 'default.jpg'}"
                                              alt="${product.getDescription()}" class="img-main">
@@ -146,12 +148,12 @@
                                 <div class="product-info">
                                     <h3 class="product-name">
                                         <a href="product-detail.jsp?id=${product.getId()}">
-                                            ${product.getName()}
+                                                ${product.getName()}
                                         </a>
                                     </h3>
 
 
-                                    <c:set var="rating" value="${product.review}" />
+                                    <c:set var="rating" value="${product.review}"/>
 
                                     <div class="rating-box">
                                         <div class="star-rating">
@@ -162,14 +164,16 @@
 
                                     <div class="product-action">
                                         <div class="product-prices">
-                                            <span class="current-price">
-                                                <fmt:formatNumber value="${product.getDiscountedPrice()}" type="currency" currencySymbol="" />₫
-                                            </span>
-                                            <c:if test="${product.hasDiscount()}">
-                                                <span class="old-price">
-                                                    <del><fmt:formatNumber value="${product.getPrice()}" type="currency" currencySymbol="" />₫</del>
-                                                </span>
-                                            </c:if>
+<%--                                            <span class="current-price">--%>
+<%--                                                <fmt:formatNumber value="${product.getDiscountedPrice()}"--%>
+<%--                                                                  type="currency" currencySymbol=""/>₫--%>
+<%--                                            </span>--%>
+<%--                                            <c:if test="${product.hasDiscount()}">--%>
+<%--                                                <span class="old-price">--%>
+<%--                                                    <del><fmt:formatNumber value="${product.getPrice()}" type="currency"--%>
+<%--                                                                           currencySymbol=""/>₫</del>--%>
+<%--                                                </span>--%>
+<%--                                            </c:if>--%>
                                         </div>
                                         <div class="cart-icon">
                                             <a href="cart?action=add&productId=${product.getId()}" class="open-cart">
@@ -194,7 +198,7 @@
     </div>
 
     <!-- Footer -->
-    <jsp:include page="footer.jsp" />
+    <jsp:include page="footer.jsp"/>
 
     <!-- Scroll to top button -->
     <a href="#">
@@ -204,7 +208,7 @@
     </a>
 
     <!-- Shopping Cart Sidebar -->
-<%--    <jsp:include page="cart-sidebar.jsp" />--%>
+    <%--    <jsp:include page="cart-sidebar.jsp" />--%>
 </main>
 
 <!-- JavaScript -->

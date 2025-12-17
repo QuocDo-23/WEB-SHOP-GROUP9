@@ -233,6 +233,7 @@ main {
     line-height: 1.3;
     margin-bottom: 0;
 }
+
 .article-title:hover {
     color: #8b7355;
 }
@@ -258,6 +259,7 @@ main {
 .article-meta span {
     color: #999;
 }
+
 /* Scroll to top button */
 #up {
     scroll-behavior: smooth;

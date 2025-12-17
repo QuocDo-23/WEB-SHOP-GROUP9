@@ -20,7 +20,7 @@ public class ArticleDAO {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
                                 "SELECT a.*, c.name AS categoryName, " +
-                                        "(SELECT img FROM Image WHERE type = 'articles' AND ref_id = a.id ORDER BY id LIMIT 1) as mainImg "+
+                                        "(SELECT img FROM Image WHERE type = 'articles' AND ref_id = a.id ORDER BY id LIMIT 1) as mainImg " +
                                         "FROM Articles a " +
                                         "LEFT JOIN Categories c ON a.category_id = c.id " +
                                         "WHERE a.feature = TRUE " +
@@ -47,7 +47,7 @@ public class ArticleDAO {
 
         String sql =
                 "SELECT a.*, c.name AS categoryName, " +
-                        "(SELECT img FROM Image WHERE type = 'articles' AND ref_id = a.id ORDER BY id LIMIT 1) as mainImg "+
+                        "(SELECT img FROM Image WHERE type = 'articles' AND ref_id = a.id ORDER BY id LIMIT 1) as mainImg " +
                         "FROM Articles a " +
                         "LEFT JOIN Categories c ON a.category_id = c.id " +
                         orderBy +
@@ -80,7 +80,7 @@ public class ArticleDAO {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
                                 "SELECT a.*, c.name AS categoryName, " +
-                                        "(SELECT img FROM Image WHERE type = 'articles' AND ref_id = a.id ORDER BY id LIMIT 1) as mainImg "+
+                                        "(SELECT img FROM Image WHERE type = 'articles' AND ref_id = a.id ORDER BY id LIMIT 1) as mainImg " +
                                         "FROM Articles a " +
                                         "LEFT JOIN Categories c ON a.category_id = c.id " +
                                         "WHERE a.id = :id"
@@ -99,7 +99,7 @@ public class ArticleDAO {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
                                 "SELECT a.*, c.name AS categoryName, " +
-                                        "(SELECT img FROM Image WHERE type = 'articles' AND ref_id = a.id ORDER BY id LIMIT 1) as mainImg "+
+                                        "(SELECT img FROM Image WHERE type = 'articles' AND ref_id = a.id ORDER BY id LIMIT 1) as mainImg " +
                                         "FROM Articles a " +
                                         "LEFT JOIN Categories c ON a.category_id = c.id " +
                                         "WHERE a.slug = :slug"

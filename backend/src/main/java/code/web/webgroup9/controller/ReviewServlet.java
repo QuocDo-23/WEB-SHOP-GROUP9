@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 
 @WebServlet("/review")
@@ -84,7 +85,7 @@ public class ReviewServlet extends HttpServlet {
      */
     private void updateProductRating(int productId) {
         try {
-          ReviewStatistics stats = reviewDAO.getReviewStatistics(productId);
+            ReviewStatistics stats = reviewDAO.getReviewStatistics(productId);
 
             // Update vào bảng Product
             // Bạn có thể thêm method updateRating trong ProductDAO

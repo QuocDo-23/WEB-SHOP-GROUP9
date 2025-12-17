@@ -7,16 +7,36 @@ public class Image {
     private int refId;
 
     // Getters and Setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public int getId() {
+        return id;
+    }
 
-    public String getImg() { return img; }
-    public void setImg(String img) { this.img = img; }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public String getType() { return type; }
-    public void setType(String type) { this.type = type; }
+    public String getImg() {
+        return img;
+    }
 
-    public int getRefId() { return refId; }
-    public void setRefId(int refId) { this.refId = refId; }
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public int getRefId() {
+        return refId;
+    }
+
+    public void setRefId(int refId) {
+        this.refId = refId;
+    }
 }
 
