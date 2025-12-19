@@ -42,15 +42,12 @@ public class NewsServlet extends HttpServlet {
 
         // Lấy bài viết nổi bật
         List<Articles> featuredArticles = articleDAO.getFeaturedArticles();
-        System.out.println("Số bài viết nổi bật: " + (featuredArticles != null ? featuredArticles.size() : 0));
 
         // Lấy bài viết theo trang
-        List<Articles> articles = articleDAO.getArticlesByPage(currentPage, pageSize, sortBy);
-        System.out.println("Số bài viết trên trang " + currentPage + ": " + (articles != null ? articles.size() : 0));
+        List<Articles> articles = articleDAO.getArticlesWithPagination(currentPage, pageSize, sortBy);
 
         // Tính tổng số trang
         int totalArticles = articleDAO.getTotalArticles();
-        System.out.println("Tổng số bài viết: " + totalArticles);
         int totalPages = (int) Math.ceil((double) totalArticles / pageSize);
 
         // Set attributes

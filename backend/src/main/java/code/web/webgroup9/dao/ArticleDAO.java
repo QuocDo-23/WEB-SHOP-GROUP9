@@ -35,32 +35,37 @@ public class ArticleDAO {
     /**
      * Lấy danh sách bài viết có phân trang + sắp xếp
      */
-    public List<Articles> getArticlesByPage(int page, int pageSize, String sortBy) {
+    /**
+     * Lấy bài viết với phân trang và hình ảnh
+     */
+    public List<Articles> getArticlesWithPagination(int page, int pageSize, String sortBy) {
         int offset = (page - 1) * pageSize;
 
-        String orderBy = "ORDER BY a.date_of_posting DESC";
+        String orderClause; // Default: newest first
         if ("oldest".equals(sortBy)) {
-            orderBy = "ORDER BY a.date_of_posting ASC";
-        } else if ("popular".equals(sortBy)) {
-            orderBy = "ORDER BY a.feature DESC, a.date_of_posting DESC";
+            orderClause = "a.date_of_posting ASC";
+        } else {
+            orderClause = "a.date_of_posting DESC";
         }
 
-        String sql =
-                "SELECT a.*, c.name AS categoryName, " +
-                        "(SELECT img FROM Image WHERE type = 'articles' AND ref_id = a.id ORDER BY id LIMIT 1) as mainImg " +
-                        "FROM Articles a " +
-                        "LEFT JOIN Categories c ON a.category_id = c.id " +
-                        orderBy +
-                        " LIMIT :limit OFFSET :offset";
-
         return jdbi.withHandle(handle ->
-                handle.createQuery(sql)
+                handle.createQuery(
+                                "SELECT a.*, c.name as category_name, " +
+                                        "(SELECT img FROM Image WHERE type = 'articles' AND ref_id = a.id LIMIT 1) as main_img " +
+                                        "FROM Articles a " +
+                                        "LEFT JOIN Categories c ON a.category_id = c.id " +
+                                        "WHERE (a.feature = FALSE OR a.feature IS NULL) " +
+                                        "ORDER BY " + orderClause + " " +
+                                        "LIMIT :limit OFFSET :offset"
+                        )
                         .bind("limit", pageSize)
                         .bind("offset", offset)
                         .mapToBean(Articles.class)
                         .list()
         );
     }
+
+
 
     /**
      * Đếm tổng số bài viết
@@ -110,4 +115,6 @@ public class ArticleDAO {
                         .orElse(null)
         );
     }
+
+
 }

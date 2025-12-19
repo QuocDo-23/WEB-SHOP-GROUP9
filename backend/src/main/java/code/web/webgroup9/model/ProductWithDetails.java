@@ -17,17 +17,17 @@ public class ProductWithDetails extends Product {
     private String hoverImage;
 
     // Calculated fields
-//    public double getDiscountedPrice() {
-//        if (discountRate != null && discountRate. > 0) {
-//            double discount = getPrice().multiply(discountRate).divide(new BigDecimal(100));
-//            return getPrice().subtract(discount);
-//        }
-//        return getPrice();
-//    }
+    public double getDiscountedPrice() {
+        if (discountRate > 0) {
+            double discount = getPrice() * discountRate / 100;
+            return getPrice() - discount;
+        }
+        return getPrice();
+    }
 
-//    public boolean hasDiscount() {
-//        return discountRate != null && discountRate.compareTo(BigDecimal.ZERO) > 0;
-//    }
+    public boolean hasDiscount() {
+        return discountRate > 0;
+    }
 
     public String getCategoryName() {
         return categoryName;
