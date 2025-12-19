@@ -1,8 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,21 +17,19 @@
     <link href='https://fonts.googleapis.com/css?family=Literata' rel='stylesheet'>
     <title>Tin Tức - LightUp</title>
 </head>
-<body>
-<main>
-    <jsp:include page="header.jsp"/>
 
+<body>
+<jsp:include page="header.jsp"/>
+<main>
     <div class="link-page" id="up">
         <div class="containt_link">
-            <a href="./index.jsp"><i class="bi bi-house"></i> Trang chủ </a>
+            <a href="index.jsp"><i class="bi bi-house"></i> Trang chủ </a>
             <span> /</span>
             <a href="">Tin tức</a>
         </div>
     </div>
-
     <div class="search-overlay" id="searchOverlay" onclick="closeSearchPanel()"></div>
 
-    <!-- Section 1: Header -->
     <section class="section_1_news" id="home">
         <div class="cont">
             <div class="section_1_content">
@@ -46,43 +46,46 @@
         </div>
     </section>
 
-    <!-- Section 2: Featured Articles -->
+    <!-- Featured Articles Section -->
     <div class="section_2_news">
         <div class="section-header">
             <h2>Bài viết nổi bật</h2>
             <div class="divider"></div>
         </div>
 
-        <c:if test="${not empty featuredArticles}">
+        <c:if test="${not empty featuredArticles && featuredArticles.size() > 0}">
             <!-- Main Featured Article -->
-            <c:set var="mainArticle" value="${featuredArticles[0]}"/>
             <div class="new_1">
                 <div class="cont">
-                    <img src="${mainArticle.mainImg}" alt="${mainArticle.title}">
+                    <img src="${featuredArticles[0].mainImg}"
+                         alt="${featuredArticles[0].title}">
                     <div class="title">
                         <div class="title_r">
                             <div class="title_last">
-                                <span>${mainArticle.categoryName != null ? mainArticle.categoryName : 'Bản tin LightUP'}</span>
-                                <li><fmt:formatDate value="${mainArticle.dateOfPosting}" pattern="dd/MM/yyyy"/></li>
+                                <span>${featuredArticles[0].categoryName != null ? featuredArticles[0].categoryName : 'Bản tin LightUP'}</span>
+                                <li><fmt:formatDate value="${featuredArticles[0].dateOfPosting}"
+                                                    pattern="dd/MM/yyyy"/></li>
                             </div>
                             <div class="name">
-                                <a href="news-detail?slug=${mainArticle.slug}">${mainArticle.title}</a>
+                                <a href="news-detail?id=${featuredArticles[0].id}">${featuredArticles[0].title}</a>
                             </div>
                         </div>
                         <div class="title_l">
-                            <a href="news-detail?slug=${mainArticle.slug}"><i class="bi bi-arrow-up-right"></i></a>
+                            <a href="news-detail?id=${featuredArticles[0].id}"> <i class="bi bi-arrow-up-right"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Other Featured Articles -->
+            <!-- Secondary Featured Articles -->
             <div class="new_2">
                 <div class="container">
                     <c:forEach var="article" items="${featuredArticles}" begin="1" end="3">
                         <div class="card">
                             <div class="card_img">
-                                <img src="${article.mainImg}" alt="${article.title}">
+                                <img src="${article.mainImg}"
+                                     alt="${article.title}"
+                                     onerror="this.src='https://via.placeholder.com/500x300?text=No+Image'">
                             </div>
                             <div class="title">
                                 <div class="title_r">
@@ -91,11 +94,11 @@
                                         <li><fmt:formatDate value="${article.dateOfPosting}" pattern="dd/MM/yyyy"/></li>
                                     </div>
                                     <div class="name">
-                                        <a href="news-detail?slug=${article.slug}">${article.title}</a>
+                                        <a href="news-detail?id=${article.id}">${article.title}</a>
                                     </div>
                                 </div>
                                 <div class="title_l">
-                                    <a href="news-detail?slug=${article.slug}"><i class="bi bi-arrow-up-right"></i></a>
+                                    <a href="news-detail?id=${article.id}"> <i class="bi bi-arrow-up-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -105,32 +108,44 @@
         </c:if>
     </div>
 
-    <!-- Section 3: All Articles -->
+    <!-- All Articles Section -->
     <section class="section_3_news">
         <div class="container">
             <div class="header">
-                <h1>Bài viết</h1>
+                <h1 id="normal-news">Bài viết</h1>
                 <div class="sort-dropdown">
                     <label>Sắp xếp theo:</label>
-                    <select onchange="window.location.href='news?page=1&sort=' + this.value">
-                        <option value="newest" ${sortBy eq 'newest' ? 'selected' : ''}>Mới nhất</option>
-                        <option value="oldest" ${sortBy eq 'oldest' ? 'selected' : ''}>Cũ nhất</option>
-                        <option value="popular" ${sortBy eq 'popular' ? 'selected' : ''}>Phổ biến nhất</option>
+                    <select id="sortSelect" onchange="sortArticles(this.value)">
+                        <option value="newest" ${param.sort == 'newest' || empty param.sort ? 'selected' : ''}>Mới
+                            nhất
+                        </option>
+                        <option value="oldest" ${param.sort == 'oldest' ? 'selected' : ''}>Cũ nhất</option>
                     </select>
                 </div>
             </div>
 
             <div class="articles-list">
                 <c:forEach var="article" items="${articles}">
-                    <div class="article-card">
+                    <div class="article-card" data-page="${currentPage}">
                         <div class="article-image">
-                            <img src="${article.mainImg}" alt="${article.title}">
+                            <img src="${article.mainImg}"
+                                 alt="${article.title}"
+                                 onerror="this.src='https://via.placeholder.com/500x300?text=No+Image'">
                         </div>
                         <div class="article-content">
                             <h2 class="article-title">
-                                <a href="news-detail?slug=${article.slug}">${article.title}</a>
+                                <a href="news-detail?id=${article.id}">${article.title}</a>
                             </h2>
-                            <p class="article-description">${article.description}</p>
+                            <p class="article-description">
+                                    <%--                                <c:choose>--%>
+                                    <%--                                    <c:when test="${article.description.length() > 150}">--%>
+                                    <%--                                        ${article.description.substring(0, 150)}...--%>
+                                    <%--                                    </c:when>--%>
+                                    <%--                                    <c:otherwise>--%>
+                                    <%--                                        ${article.description}--%>
+                                    <%--                                    </c:otherwise>--%>
+                                    <%--                                </c:choose>--%>
+                            </p>
                             <div class="article-meta">
                                 <strong>${article.categoryName != null ? article.categoryName : 'Tin tức LightUP'}</strong>
                                 <span>•</span>
@@ -138,7 +153,7 @@
                             </div>
                         </div>
                         <div class="title_l">
-                            <a href="news-detail?slug=${article.slug}"><i class="bi bi-arrow-up-right"></i></a>
+                            <a href="news-detail?id=${article.id}"> <i class="bi bi-arrow-up-right"></i></a>
                         </div>
                     </div>
                 </c:forEach>
@@ -148,30 +163,37 @@
             <c:if test="${totalPages > 1}">
                 <div class="pagination">
                     <c:if test="${currentPage > 1}">
-                        <a href="news?page=${currentPage - 1}&sort=${sortBy}" class="prev-btn">← Trước</a>
+                        <a href="news?page=${currentPage - 1}&sort=${param.sort}#normal-news" class="prev-btn">←
+                            Trước</a>
                     </c:if>
                     <c:if test="${currentPage == 1}">
-                        <a href="#" class="prev-btn disabled">← Trước</a>
+                        <span class="prev-btn disabled">← Trước</span>
                     </c:if>
 
-                    <c:forEach var="i" begin="1" end="${totalPages}">
-                        <a href="news?page=${i}&sort=${sortBy}"
-                           class="page-btn ${i == currentPage ? 'active' : ''}">${i}</a>
+                    <c:forEach begin="1" end="${totalPages}" var="i">
+                        <c:choose>
+                            <c:when test="${currentPage == i}">
+                                <span class="page-btn active">${i}</span>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="news?page=${i}&sort=${param.sort}#normal-news"
+                                   class="page-btn">${i}</a>
+                            </c:otherwise>
+                        </c:choose>
                     </c:forEach>
 
                     <c:if test="${currentPage < totalPages}">
-                        <a href="news?page=${currentPage + 1}&sort=${sortBy}" class="next-btn">Sau →</a>
+                        <a href="news?page=${currentPage + 1}&sort=${param.sort}#normal-news" class="next-btn">Sau →</a>
                     </c:if>
                     <c:if test="${currentPage == totalPages}">
-                        <a href="#" class="next-btn disabled">Sau →</a>
+                        <span class="next-btn disabled">Sau →</span>
                     </c:if>
                 </div>
             </c:if>
         </div>
     </section>
-
-    <!-- Footer -->
     <jsp:include page="footer.jsp"/>
+
 
     <a href="#up">
         <button id="scrollToTopBtn">
@@ -181,5 +203,14 @@
 </main>
 
 <script src="./JS/index.js"></script>
+<script>
+    function sortArticles(sortBy) {
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.set('sort', sortBy);
+        urlParams.set('page', '1'); // Reset to page 1 when sorting
+        window.location.href = 'news?' + urlParams.toString();
+    }
+</script>
 </body>
+
 </html>

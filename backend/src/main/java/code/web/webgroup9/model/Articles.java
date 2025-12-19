@@ -1,7 +1,5 @@
 package code.web.webgroup9.model;
 
-import org.jdbi.v3.core.mapper.reflect.ColumnName;
-
 import java.sql.Timestamp;
 
 public class Articles {
@@ -11,25 +9,9 @@ public class Articles {
     private String description;
     private Timestamp dateOfPosting;
     private String slug;
-    private String mainImg; // Alias, đã khớp
+    private String mainImg;
     private boolean feature;
-    private String categoryName; // Alias, đã khớp
-
-    // Constructors
-    public Articles() {
-    }
-
-    public Articles(int id, Integer categoryId, String title, String description,
-                    Timestamp dateOfPosting, String slug, String mainImg, boolean feature) {
-        this.id = id;
-        this.categoryId = categoryId;
-        this.title = title;
-        this.description = description;
-        this.dateOfPosting = dateOfPosting;
-        this.slug = slug;
-        this.mainImg = mainImg;
-        this.feature = feature;
-    }
+    private String categoryName; // For JOIN query
 
     // Getters and Setters
     public int getId() {
@@ -44,7 +26,6 @@ public class Articles {
         return categoryId;
     }
 
-    @ColumnName("category_id")
     public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
     }
@@ -69,7 +50,6 @@ public class Articles {
         return dateOfPosting;
     }
 
-    @ColumnName("date_of_posting")
     public void setDateOfPosting(Timestamp dateOfPosting) {
         this.dateOfPosting = dateOfPosting;
     }
@@ -86,7 +66,6 @@ public class Articles {
         return mainImg;
     }
 
-    @ColumnName("mainImg") // Tên alias trong câu SQL
     public void setMainImg(String mainImg) {
         this.mainImg = mainImg;
     }
@@ -103,7 +82,6 @@ public class Articles {
         return categoryName;
     }
 
-    @ColumnName("categoryName") // Tên alias trong câu SQL
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
     }

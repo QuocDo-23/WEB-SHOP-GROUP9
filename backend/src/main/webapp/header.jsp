@@ -37,7 +37,7 @@
                         </div>
                     </div>
                 </li>
-                <li><a href="./news.jsp" class="${pageContext.request.servletPath == '/news.jsp' ? 'active' : ''}">TIN
+                <li><a href="./news" class="${pageContext.request.servletPath == '/news.jsp' ? 'active' : ''}">TIN
                     TỨC</a></li>
                 <li><a href="./contact.jsp"
                        class="${pageContext.request.servletPath == '/contact.jsp' ? 'active' : ''}">LIÊN HỆ</a></li>

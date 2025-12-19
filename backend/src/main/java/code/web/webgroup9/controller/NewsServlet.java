@@ -11,12 +11,15 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/news")
+@WebServlet(name = "NewsServlet", urlPatterns = {"/news"})
 public class NewsServlet extends HttpServlet {
+
     private ArticleDAO articleDAO;
+    private static final int PAGE_SIZE = 4; // Số bài viết mỗi trang
+    private static final int FEATURED_LIMIT = 4; // Số bài viết nổi bật
 
     @Override
-    public void init() {
+    public void init() throws ServletException {
         articleDAO = new ArticleDAO();
     }
 
@@ -24,43 +27,64 @@ public class NewsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Lấy tham số phân trang và sắp xếp
-        String pageParam = request.getParameter("page");
-        String sortParam = request.getParameter("sort");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
 
-        int currentPage = 1;
-        if (pageParam != null && !pageParam.isEmpty()) {
-            try {
-                currentPage = Integer.parseInt(pageParam);
-            } catch (NumberFormatException e) {
-                currentPage = 1;
+        try {
+
+            // Lấy tham số
+            String pageParam = request.getParameter("page");
+            int currentPage = 1;
+            if (pageParam != null && !pageParam.isEmpty()) {
+                try {
+                    currentPage = Integer.parseInt(pageParam);
+                    if (currentPage < 1) currentPage = 1;
+                } catch (NumberFormatException e) {
+                    currentPage = 1;
+                }
             }
+
+            String sortBy = request.getParameter("sort");
+            if (sortBy == null || sortBy.isEmpty()) {
+                sortBy = "newest";
+            }
+
+
+            // Lấy bài viết nổi bật
+            List<Articles> featuredArticles = articleDAO.getFeaturedArticles(FEATURED_LIMIT);
+
+
+            // Lấy danh sách bài viết
+            List<Articles> articles = articleDAO.getArticlesWithPagination(currentPage, PAGE_SIZE, sortBy);
+
+            // Tính tổng số trang
+            int totalArticles = articleDAO.getTotalArticles();
+            int totalPages = (int) Math.ceil((double) totalArticles / PAGE_SIZE);
+
+            // Set attributes
+            request.setAttribute("featuredArticles", featuredArticles);
+            request.setAttribute("articles", articles);
+            request.setAttribute("currentPage", currentPage);
+            request.setAttribute("totalPages", totalPages);
+            request.setAttribute("sortBy", sortBy);
+
+
+            // Forward
+            request.getRequestDispatcher("/news.jsp").forward(request, response);
+
+        } catch (Exception e) {
+            System.err.println("Error in NewsServlet: " + e.getMessage());
+            e.printStackTrace();
+
+            request.setAttribute("errorMessage", "Có lỗi xảy ra: " + e.getMessage());
+            response.sendRedirect(request.getContextPath() + "/error.jsp");
         }
+    }
 
-        String sortBy = sortParam != null ? sortParam : "newest";
-        int pageSize = 4;
-
-        // Lấy bài viết nổi bật
-        List<Articles> featuredArticles = articleDAO.getFeaturedArticles();
-        System.out.println("Số bài viết nổi bật: " + (featuredArticles != null ? featuredArticles.size() : 0));
-
-        // Lấy bài viết theo trang
-        List<Articles> articles = articleDAO.getArticlesByPage(currentPage, pageSize, sortBy);
-        System.out.println("Số bài viết trên trang " + currentPage + ": " + (articles != null ? articles.size() : 0));
-
-        // Tính tổng số trang
-        int totalArticles = articleDAO.getTotalArticles();
-        System.out.println("Tổng số bài viết: " + totalArticles);
-        int totalPages = (int) Math.ceil((double) totalArticles / pageSize);
-
-        // Set attributes
-        request.setAttribute("featuredArticles", featuredArticles);
-        request.setAttribute("articles", articles);
-        request.setAttribute("currentPage", currentPage);
-        request.setAttribute("totalPages", totalPages);
-        request.setAttribute("sortBy", sortBy);
-
-        // Forward to JSP
-        request.getRequestDispatcher("/news.jsp").forward(request, response);
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doGet(request, response);
     }
 }
