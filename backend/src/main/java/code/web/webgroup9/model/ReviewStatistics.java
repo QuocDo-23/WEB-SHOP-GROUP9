@@ -23,24 +23,59 @@ public class ReviewStatistics {
     }
 
     // Getters and Setters
-    public int getTotalReviews() { return totalReviews; }
-    public void setTotalReviews(int totalReviews) { this.totalReviews = totalReviews; }
+    public int getTotalReviews() {
+        return totalReviews;
+    }
 
-    public double getAverageRating() { return averageRating; }
-    public void setAverageRating(double averageRating) { this.averageRating = averageRating; }
+    public void setTotalReviews(int totalReviews) {
+        this.totalReviews = totalReviews;
+    }
 
-    public int getFiveStars() { return fiveStars; }
-    public void setFiveStars(int fiveStars) { this.fiveStars = fiveStars; }
+    public double getAverageRating() {
+        return averageRating;
+    }
 
-    public int getFourStars() { return fourStars; }
-    public void setFourStars(int fourStars) { this.fourStars = fourStars; }
+    public void setAverageRating(double averageRating) {
+        this.averageRating = averageRating;
+    }
 
-    public int getThreeStars() { return threeStars; }
-    public void setThreeStars(int threeStars) { this.threeStars = threeStars; }
+    public int getFiveStars() {
+        return fiveStars;
+    }
 
-    public int getTwoStars() { return twoStars; }
-    public void setTwoStars(int twoStars) { this.twoStars = twoStars; }
+    public void setFiveStars(int fiveStars) {
+        this.fiveStars = fiveStars;
+    }
 
-    public int getOneStar() { return oneStar; }
-    public void setOneStar(int oneStar) { this.oneStar = oneStar; }
+    public int getFourStars() {
+        return fourStars;
+    }
+
+    public void setFourStars(int fourStars) {
+        this.fourStars = fourStars;
+    }
+
+    public int getThreeStars() {
+        return threeStars;
+    }
+
+    public void setThreeStars(int threeStars) {
+        this.threeStars = threeStars;
+    }
+
+    public int getTwoStars() {
+        return twoStars;
+    }
+
+    public void setTwoStars(int twoStars) {
+        this.twoStars = twoStars;
+    }
+
+    public int getOneStar() {
+        return oneStar;
+    }
+
+    public void setOneStar(int oneStar) {
+        this.oneStar = oneStar;
+    }
 }

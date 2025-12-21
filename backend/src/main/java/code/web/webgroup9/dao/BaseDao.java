@@ -6,8 +6,8 @@ import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.statement.StatementException;
 
 public class BaseDao {
-        // Thông tin kết nối
-        private static final String HOST = "localhost";
+    // Thông tin kết nối
+    private static final String HOST = "localhost";
     private static final String PORT = "3306";
     private static final String DATABASE = "lightup";
     private static final String DB_USER = "root";
@@ -70,5 +70,5 @@ public class BaseDao {
             System.out.println("Test kết nối JDBI thất bại!");
         }
     }
-                  }
+}
 

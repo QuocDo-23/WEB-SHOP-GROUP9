@@ -30,39 +30,99 @@ public class ProductWithDetails extends Product {
     }
 
     // Getters and Setters
-    public String getCategoryName() { return categoryName; }
-    public void setCategoryName(String categoryName) { this.categoryName = categoryName; }
+    public String getCategoryName() {
+        return categoryName;
+    }
 
-    public BigDecimal getDiscountRate() { return discountRate; }
-    public void setDiscountRate(BigDecimal discountRate) { this.discountRate = discountRate; }
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
 
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
+    public BigDecimal getDiscountRate() {
+        return discountRate;
+    }
 
-    public String getWarranty() { return warranty; }
-    public void setWarranty(String warranty) { this.warranty = warranty; }
+    public void setDiscountRate(BigDecimal discountRate) {
+        this.discountRate = discountRate;
+    }
 
-    public String getMaterial() { return material; }
-    public void setMaterial(String material) { this.material = material; }
+    public String getDescription() {
+        return description;
+    }
 
-    public String getVoltage() { return voltage; }
-    public void setVoltage(String voltage) { this.voltage = voltage; }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-    public String getDimensions() { return dimensions; }
-    public void setDimensions(String dimensions) { this.dimensions = dimensions; }
+    public String getWarranty() {
+        return warranty;
+    }
 
-    public String getType() { return type; }
-    public void setType(String type) { this.type = type; }
+    public void setWarranty(String warranty) {
+        this.warranty = warranty;
+    }
 
-    public String getColor() { return color; }
-    public void setColor(String color) { this.color = color; }
+    public String getMaterial() {
+        return material;
+    }
 
-    public String getStyle() { return style; }
-    public void setStyle(String style) { this.style = style; }
+    public void setMaterial(String material) {
+        this.material = material;
+    }
 
-    public String getMainImage() { return mainImage; }
-    public void setMainImage(String mainImage) { this.mainImage = mainImage; }
+    public String getVoltage() {
+        return voltage;
+    }
 
-    public String getHoverImage() { return hoverImage; }
-    public void setHoverImage(String hoverImage) { this.hoverImage = hoverImage; }
+    public void setVoltage(String voltage) {
+        this.voltage = voltage;
+    }
+
+    public String getDimensions() {
+        return dimensions;
+    }
+
+    public void setDimensions(String dimensions) {
+        this.dimensions = dimensions;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getStyle() {
+        return style;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
+    }
+
+    public String getMainImage() {
+        return mainImage;
+    }
+
+    public void setMainImage(String mainImage) {
+        this.mainImage = mainImage;
+    }
+
+    public String getHoverImage() {
+        return hoverImage;
+    }
+
+    public void setHoverImage(String hoverImage) {
+        this.hoverImage = hoverImage;
+    }
 }

@@ -2,6 +2,7 @@ package code.web.webgroup9.dao;
 
 import code.web.webgroup9.model.Image;
 import org.jdbi.v3.core.Jdbi;
+
 import java.util.List;
 
 public class ImageDAO {

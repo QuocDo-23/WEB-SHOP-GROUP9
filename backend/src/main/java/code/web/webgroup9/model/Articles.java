@@ -20,7 +20,7 @@ public class Articles {
     }
 
     public Articles(int id, Integer categoryId, String title, String description,
-                   Timestamp dateOfPosting, String slug, String mainImg, boolean feature) {
+                    Timestamp dateOfPosting, String slug, String mainImg, boolean feature) {
         this.id = id;
         this.categoryId = categoryId;
         this.title = title;

@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.util.*;
 
@@ -36,6 +37,7 @@ public class ProductServlet extends HttpServlet {
 
         if (action == null) {
             action = "list";
+
         }
 
         try {
@@ -60,35 +62,50 @@ public class ProductServlet extends HttpServlet {
             request.setAttribute("error", "Đã xảy ra lỗi: " + e.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
+
     }
 
     /**
-     * Hiển thị danh sách tất cả sản phẩm
+     * Hiển thị danh sách  sản phẩm
      */
     private void showProductList(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Lấy tất cả sản phẩm
-        List<ProductWithDetails> allProducts = productDAO.getAllProductsWithDetails();
-
         // Lấy tất cả categories
         List<Category> categories = categoryDAO.getSubCategories();
 
-        // Nhóm sản phẩm theo category
+        // Map: categoryId -> 8 sản phẩm
         Map<Integer, List<ProductWithDetails>> productsByCategory = new HashMap<>();
-        for (ProductWithDetails product : allProducts) {
-            int catId = product.getCategoryId();
-            productsByCategory.computeIfAbsent(catId, k -> new ArrayList<>()).add(product);
+
+        // ===== THÊM MỚI =====
+        // Map: categoryId -> tổng số sản phẩm (để biết có hiện "Xem thêm" hay không)
+        Map<Integer, Integer> totalProductsByCategory = new HashMap<>();
+        // ====================
+
+        for (Category category : categories) {
+
+            // 8 sản phẩm hiển thị mặc định
+            List<ProductWithDetails> products =
+                    productDAO.getTop8ProductsByCategory(category.getId());
+            productsByCategory.put(category.getId(), products);
+
+            // ===== THÊM MỚI =====
+            // Tổng số sản phẩm của category đó
+            int totalProducts = productDAO.getProductsByCategory(category.getId()).size();
+            totalProductsByCategory.put(category.getId(), totalProducts);
+            // ====================
         }
 
-        // Set attributes
         request.setAttribute("categories", categories);
         request.setAttribute("productsByCategory", productsByCategory);
-        request.setAttribute("totalProducts", allProducts.size());
 
-        // Forward to JSP
+        // ===== THÊM MỚI =====
+        request.setAttribute("totalProductsByCategory", totalProductsByCategory);
+        // ====================
+
         request.getRequestDispatcher("products.jsp").forward(request, response);
     }
+
 
     /**
      * Hiển thị chi tiết sản phẩm
@@ -147,37 +164,5 @@ public class ProductServlet extends HttpServlet {
             throws ServletException, IOException {
         doGet(request, response);
     }
+
 }
-
-// ============ web.xml Configuration ============
-/*
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
-         http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
-         version="4.0">
-
-    <display-name>LightUp Shop</display-name>
-
-    <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list>
-
-    <!-- Session timeout: 30 minutes -->
-    <session-config>
-        <session-timeout>30</session-timeout>
-    </session-config>
-
-    <!-- Error pages -->
-    <error-page>
-        <error-code>404</error-code>
-        <location>/error-404.jsp</location>
-    </error-page>
-
-    <error-page>
-        <error-code>500</error-code>
-        <location>/error-500.jsp</location>
-    </error-page>
-</web-app>
-*/
