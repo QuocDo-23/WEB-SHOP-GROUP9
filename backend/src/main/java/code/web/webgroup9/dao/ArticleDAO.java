@@ -1,6 +1,7 @@
 package code.web.webgroup9.dao;
 
 import code.web.webgroup9.model.Articles;
+import code.web.webgroup9.model.ProductWithDetails;
 import org.jdbi.v3.core.Jdbi;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class ArticleDAO {
     /**
      * Lấy 4 bài viết nổi bật
      */
-    public List<Articles> getFeaturedArticles() {
+    public List<Articles> getFeaturedArticles(int featuredLimit) {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
                                 "SELECT a.*, c.name AS categoryName, " +
@@ -25,8 +26,27 @@ public class ArticleDAO {
                                         "LEFT JOIN Categories c ON a.category_id = c.id " +
                                         "WHERE a.feature = TRUE " +
                                         "ORDER BY a.date_of_posting DESC " +
-                                        "LIMIT 4"
+                                        "LIMIT :featuredLimit"
+                )
+                .bind("featuredLimit", featuredLimit)
+                .mapToBean(Articles.class)
+                .list()
+        );
+    }
+    /**
+     * Lấy 4 bài viết cho trang chủ
+     */
+    public List<Articles> getArticles(int limit) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery(
+                                "SELECT a.*, c.name AS categoryName, " +
+                                        "(SELECT img FROM Image WHERE type = 'articles' AND ref_id = a.id ORDER BY id LIMIT 1) as mainImg " +
+                                        "FROM Articles a " +
+                                        "LEFT JOIN Categories c ON a.category_id = c.id " +
+                                        "ORDER BY a.date_of_posting DESC " +
+                                        "LIMIT :limit"
                         )
+                        .bind("limit", limit)
                         .mapToBean(Articles.class)
                         .list()
         );

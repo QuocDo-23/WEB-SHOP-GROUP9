@@ -11,13 +11,15 @@
 
         <div class="nav-container">
             <ul class="nav-links">
-                <li><a href="./" class="${pageContext.request.servletPath == '/index' ? 'active' : ''}">TRANG
-                    CHỦ</a></li>
-                <li><a href="./about.jsp" class="${pageContext.request.servletPath == '/about.jsp' ? 'active' : ''}">GIỚI
-                    THIỆU</a></li>
+                <li><a href="./"
+                       class="${pageContext.request.requestURI.contains('/') ? 'active' : ''}">
+                    TRANG CHỦ</a></li>
+                <li><a href="./about.jsp"
+                       class="${pageContext.request.requestURI.contains('/about') ? 'active' : ''}">
+                    GIỚI THIỆU</a></li>
                 <li>
-                    <a href="./products"
-                       class="${pageContext.request.servletPath == '/products' ? 'active' : ''}">
+                    <a href="products"
+                       class="${pageContext.request.requestURI.contains('/products') ? 'active' : ''}">
                         SẢN PHẨM <i class="bi bi-caret-down-fill"></i>
                     </a>
                     <div class="sub-item">
@@ -37,10 +39,14 @@
                         </div>
                     </div>
                 </li>
-                <li><a href="./news" class="${pageContext.request.servletPath == '/news' ? 'active' : ''}">TIN TỨC</a>
+                <li><a href="news"
+                       class="${pageContext.request.requestURI.contains('/news') ? 'active' : ''}">
+                    TIN TỨC
+                </a>
                 </li>
                 <li><a href="./contact.jsp"
-                       class="${pageContext.request.servletPath == '/contact.jsp' ? 'active' : ''}">LIÊN HỆ</a></li>
+                       class="${pageContext.request.requestURI.contains('/contact') ? 'active' : ''}">
+                    LIÊN HỆ</a></li>
             </ul>
 
             <div class="nav_r" id="nav_r">

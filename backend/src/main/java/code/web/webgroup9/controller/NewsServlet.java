@@ -2,6 +2,7 @@ package code.web.webgroup9.controller;
 
 import code.web.webgroup9.dao.ArticleDAO;
 import code.web.webgroup9.model.Articles;
+import code.web.webgroup9.service.NewsService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,11 +14,11 @@ import java.util.List;
 
 @WebServlet("/news")
 public class NewsServlet extends HttpServlet {
-    private ArticleDAO articleDAO;
+    private NewsService newsService;
 
     @Override
     public void init() {
-        articleDAO = new ArticleDAO();
+        newsService = new NewsService();
     }
 
     @Override
@@ -41,13 +42,13 @@ public class NewsServlet extends HttpServlet {
         int pageSize = 4;
 
         // Lấy bài viết nổi bật
-        List<Articles> featuredArticles = articleDAO.getFeaturedArticles();
+        List<Articles> featuredArticles = newsService.getFeaturedArticles(3);
 
         // Lấy bài viết theo trang
-        List<Articles> articles = articleDAO.getArticlesWithPagination(currentPage, pageSize, sortBy);
+        List<Articles> articles = newsService.getArticlesWithPagination(currentPage, pageSize, sortBy);
 
         // Tính tổng số trang
-        int totalArticles = articleDAO.getTotalArticles();
+        int totalArticles = newsService.getTotalArticles();
         int totalPages = (int) Math.ceil((double) totalArticles / pageSize);
 
         // Set attributes
@@ -58,6 +59,6 @@ public class NewsServlet extends HttpServlet {
         request.setAttribute("sortBy", sortBy);
 
         // Forward to JSP
-        request.getRequestDispatcher("/news.jsp").forward(request, response);
+        request.getRequestDispatcher("news.jsp").forward(request, response);
     }
 }

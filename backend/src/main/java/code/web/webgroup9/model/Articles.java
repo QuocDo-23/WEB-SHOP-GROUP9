@@ -11,9 +11,9 @@ public class Articles {
     private String description;
     private Timestamp dateOfPosting;
     private String slug;
-    private String mainImg; // Alias, đã khớp
+    private String mainImg;
     private boolean feature;
-    private String categoryName; // Alias, đã khớp
+    private String categoryName;
 
     // Constructors
     public Articles() {

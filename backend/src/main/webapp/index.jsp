@@ -174,7 +174,7 @@
                                     </c:if>
                                 </div>
                                 <div class="cart-icon">
-                                    <a href="#" class="open-cart" >
+                                    <a href="#" class="open-cart">
                                         <i class="bi bi-cart-check"></i>
                                     </a>
                                 </div>
@@ -279,21 +279,29 @@
             </div>
 
             <div class="news-grid">
-                <div class="featured-post">
-                    <img src="https://duhal.com.vn/image-news/small/ung-dung-bong-led-bulb-duhal-trong-chieu-sang-gia-dinh-van-phong-va-cua-hang-51306.jpg"
-                         alt="Tin tức" class="featured-image">
-                    <div class="featured-content">
-                        <h3><a href="news-detail.jsp">Ứng dụng bóng LED bulb Duhal trong chiếu sáng gia đình, văn phòng
-                            và cửa hàng</a></h3>
-                        <p>Bóng LED bulb Duhal ngày càng trở thành lựa chọn quen thuộc trong nhiều không gian nhờ ánh
-                            sáng dễ chịu,
-                            tiết kiệm điện năng và độ bền cao...</p>
-                    </div>
-                </div>
+                <c:forEach var="article" items="${listArticle}" begin="0" end="0">
+                    <div class="featured-post">
 
+                        <img src= "${article.mainImg}" alt="${article.title}" class="featured-thumbnail" >
+                        <div class="featured-content">
+                            <h3><a href="./news">${article.title}</a></h3>
+                            <p>${article.description}</p>
+                        </div>
+                    </div>
+                </c:forEach>
                 <div class="side-posts">
+                    <c:forEach var="article" items="${listArticle}" begin="1" end="3">
+                    <div class="post-item">
+                        <img src="${article.mainImg}" alt="${article.title}" class="post-thumbnail">
+                        <div class="post-content">
+                            <h4><a href="./new">${article.title}</a></h4>
+                            <p>${article.description}</p>
+                        </div>
+                    </div>
+                    </c:forEach>
+
                     <div class="view-more">
-                        <a href="./news.jsp" class="view-more-btn">
+                        <a href="./new" class="view-more-btn">
                             XEM THÊM <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>

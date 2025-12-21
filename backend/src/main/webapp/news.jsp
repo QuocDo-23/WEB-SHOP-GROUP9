@@ -115,7 +115,6 @@
                     <select onchange="window.location.href='news?page=1&sort=' + this.value">
                         <option value="newest" ${sortBy eq 'newest' ? 'selected' : ''}>Mới nhất</option>
                         <option value="oldest" ${sortBy eq 'oldest' ? 'selected' : ''}>Cũ nhất</option>
-                        <option value="popular" ${sortBy eq 'popular' ? 'selected' : ''}>Phổ biến nhất</option>
                     </select>
                 </div>
             </div>
