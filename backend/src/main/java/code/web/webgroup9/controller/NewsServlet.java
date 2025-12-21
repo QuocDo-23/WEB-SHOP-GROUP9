@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/news")
+@WebServlet(name = "NewsServlet", urlPatterns = {"/news"})
 public class NewsServlet extends HttpServlet {
     private NewsService newsService;
 
@@ -25,21 +25,33 @@ public class NewsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Lấy tham số phân trang và sắp xếp
-        String pageParam = request.getParameter("page");
-        String sortParam = request.getParameter("sort");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
 
-        int currentPage = 1;
-        if (pageParam != null && !pageParam.isEmpty()) {
-            try {
-                currentPage = Integer.parseInt(pageParam);
-            } catch (NumberFormatException e) {
-                currentPage = 1;
+        try {
+
+            // Lấy tham số
+            String pageParam = request.getParameter("page");
+            int currentPage = 1;
+            if (pageParam != null && !pageParam.isEmpty()) {
+                try {
+                    currentPage = Integer.parseInt(pageParam);
+                    if (currentPage < 1) currentPage = 1;
+                } catch (NumberFormatException e) {
+                    currentPage = 1;
+                }
             }
-        }
 
-        String sortBy = sortParam != null ? sortParam : "newest";
-        int pageSize = 4;
+            String sortBy = request.getParameter("sort");
+            if (sortBy == null || sortBy.isEmpty()) {
+                sortBy = "newest";
+            }
+
+
+            // Lấy bài viết nổi bật
+            List<Articles> featuredArticles = articleDAO.getFeaturedArticles(FEATURED_LIMIT);
+
 
         // Lấy bài viết nổi bật
         List<Articles> featuredArticles = newsService.getFeaturedArticles(3);
@@ -51,12 +63,6 @@ public class NewsServlet extends HttpServlet {
         int totalArticles = newsService.getTotalArticles();
         int totalPages = (int) Math.ceil((double) totalArticles / pageSize);
 
-        // Set attributes
-        request.setAttribute("featuredArticles", featuredArticles);
-        request.setAttribute("articles", articles);
-        request.setAttribute("currentPage", currentPage);
-        request.setAttribute("totalPages", totalPages);
-        request.setAttribute("sortBy", sortBy);
 
         // Forward to JSP
         request.getRequestDispatcher("news.jsp").forward(request, response);

@@ -5,9 +5,9 @@ import code.web.webgroup9.model.ProductWithDetails;
 import org.jdbi.v3.core.Jdbi;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ArticleDAO {
-
     private final Jdbi jdbi;
 
     public ArticleDAO() {
@@ -15,32 +15,68 @@ public class ArticleDAO {
     }
 
     /**
-     * Lấy 4 bài viết nổi bật
+     * Lấy tất cả bài viết với hình ảnh
      */
-    public List<Articles> getFeaturedArticles(int featuredLimit) {
+    public List<Articles> getAllArticles() {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
-                                "SELECT a.*, c.name AS categoryName, " +
-                                        "(SELECT img FROM Image WHERE type = 'articles' AND ref_id = a.id ORDER BY id LIMIT 1) as mainImg " +
+                                "SELECT a.*, c.name as category_name, " +
+                                        "(SELECT img FROM Image WHERE type = 'articles' AND ref_id = a.id LIMIT 1) as main_img " +
+                                        "FROM Articles a " +
+                                        "LEFT JOIN Categories c ON a.category_id = c.id " +
+                                        "ORDER BY a.date_of_posting DESC"
+                        )
+                        .mapToBean(Articles.class)
+                        .list()
+        );
+    }
+
+    /**
+     * Lấy bài viết theo ID với hình ảnhs
+     */
+    public Optional<Articles> getArticleById(int id) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery(
+                                "SELECT a.*, c.name as category_name, " +
+                                        "(SELECT img FROM Image WHERE type = 'articles' AND ref_id = a.id LIMIT 1) as main_img " +
+                                        "FROM Articles a " +
+                                        "LEFT JOIN Categories c ON a.category_id = c.id " +
+                                        "WHERE a.id = :id"
+                        )
+                        .bind("id", id)
+                        .mapToBean(Articles.class)
+                        .findFirst()
+        );
+    }
+
+    /**
+     * Lấy bài viết nổi bật với hình ảnh
+     */
+    public List<Articles> getFeaturedArticles(int limit) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery(
+                                "SELECT a.*, c.name as category_name, " +
+                                        "(SELECT img FROM Image WHERE type = 'articles' AND ref_id = a.id LIMIT 1) as main_img " +
                                         "FROM Articles a " +
                                         "LEFT JOIN Categories c ON a.category_id = c.id " +
                                         "WHERE a.feature = TRUE " +
                                         "ORDER BY a.date_of_posting DESC " +
-                                        "LIMIT :featuredLimit"
-                )
-                .bind("featuredLimit", featuredLimit)
-                .mapToBean(Articles.class)
-                .list()
+                                        "LIMIT :limit"
+                        )
+                        .bind("limit", limit)
+                        .mapToBean(Articles.class)
+                        .list()
         );
     }
+
     /**
-     * Lấy 4 bài viết cho trang chủ
+     * Lấy bài viết mới nhất với hình ảnh
      */
-    public List<Articles> getArticles(int limit) {
+    public List<Articles> getLatestArticles(int limit) {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
-                                "SELECT a.*, c.name AS categoryName, " +
-                                        "(SELECT img FROM Image WHERE type = 'articles' AND ref_id = a.id ORDER BY id LIMIT 1) as mainImg " +
+                                "SELECT a.*, c.name as category_name, " +
+                                        "(SELECT img FROM Image WHERE type = 'articles' AND ref_id = a.id LIMIT 1) as main_img " +
                                         "FROM Articles a " +
                                         "LEFT JOIN Categories c ON a.category_id = c.id " +
                                         "ORDER BY a.date_of_posting DESC " +
@@ -52,9 +88,6 @@ public class ArticleDAO {
         );
     }
 
-    /**
-     * Lấy danh sách bài viết có phân trang + sắp xếp
-     */
     /**
      * Lấy bài viết với phân trang và hình ảnh
      */
@@ -92,49 +125,29 @@ public class ArticleDAO {
      */
     public int getTotalArticles() {
         return jdbi.withHandle(handle ->
-                handle.createQuery("SELECT COUNT(*) FROM Articles")
+                handle.createQuery("SELECT COUNT(*) FROM Articles a " +
+                                "WHERE (a.feature = FALSE OR a.feature IS NULL) "
+                        )
                         .mapTo(Integer.class)
                         .one()
         );
     }
 
     /**
-     * Lấy bài viết theo ID
+     * Lấy bài viết theo category
      */
-    public Articles getArticleById(int id) {
+    public List<Articles> getArticlesByCategory(int categoryId) {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
-                                "SELECT a.*, c.name AS categoryName, " +
-                                        "(SELECT img FROM Image WHERE type = 'articles' AND ref_id = a.id ORDER BY id LIMIT 1) as mainImg " +
+                                "SELECT a.*, c.name as category_name " +
                                         "FROM Articles a " +
                                         "LEFT JOIN Categories c ON a.category_id = c.id " +
-                                        "WHERE a.id = :id"
+                                        "WHERE a.category_id = :categoryId " +
+                                        "ORDER BY a.date_of_posting DESC"
                         )
-                        .bind("id", id)
+                        .bind("categoryId", categoryId)
                         .mapToBean(Articles.class)
-                        .findFirst()
-                        .orElse(null)
+                        .list()
         );
     }
-
-    /**
-     * Lấy bài viết theo slug
-     */
-    public Articles getArticleBySlug(String slug) {
-        return jdbi.withHandle(handle ->
-                handle.createQuery(
-                                "SELECT a.*, c.name AS categoryName, " +
-                                        "(SELECT img FROM Image WHERE type = 'articles' AND ref_id = a.id ORDER BY id LIMIT 1) as mainImg " +
-                                        "FROM Articles a " +
-                                        "LEFT JOIN Categories c ON a.category_id = c.id " +
-                                        "WHERE a.slug = :slug"
-                        )
-                        .bind("slug", slug)
-                        .mapToBean(Articles.class)
-                        .findFirst()
-                        .orElse(null)
-        );
-    }
-
-
 }
