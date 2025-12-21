@@ -115,11 +115,9 @@
                 <h1 id="normal-news">Bài viết</h1>
                 <div class="sort-dropdown">
                     <label>Sắp xếp theo:</label>
-                    <select id="sortSelect" onchange="sortArticles(this.value)">
-                        <option value="newest" ${param.sort == 'newest' || empty param.sort ? 'selected' : ''}>Mới
-                            nhất
-                        </option>
-                        <option value="oldest" ${param.sort == 'oldest' ? 'selected' : ''}>Cũ nhất</option>
+                    <select onchange="window.location.href='news?page=1&sort=' + this.value">
+                        <option value="newest" ${sortBy eq 'newest' ? 'selected' : ''}>Mới nhất</option>
+                        <option value="oldest" ${sortBy eq 'oldest' ? 'selected' : ''}>Cũ nhất</option>
                     </select>
                 </div>
             </div>

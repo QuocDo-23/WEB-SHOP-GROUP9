@@ -2,6 +2,7 @@ package code.web.webgroup9.controller;
 
 import code.web.webgroup9.dao.ArticleDAO;
 import code.web.webgroup9.model.Articles;
+import code.web.webgroup9.service.NewsService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,14 +14,11 @@ import java.util.List;
 
 @WebServlet(name = "NewsServlet", urlPatterns = {"/news"})
 public class NewsServlet extends HttpServlet {
-
-    private ArticleDAO articleDAO;
-    private static final int PAGE_SIZE = 4; // Số bài viết mỗi trang
-    private static final int FEATURED_LIMIT = 4; // Số bài viết nổi bật
+    private NewsService newsService;
 
     @Override
-    public void init() throws ServletException {
-        articleDAO = new ArticleDAO();
+    public void init() {
+        newsService = new NewsService();
     }
 
     @Override
@@ -55,36 +53,18 @@ public class NewsServlet extends HttpServlet {
             List<Articles> featuredArticles = articleDAO.getFeaturedArticles(FEATURED_LIMIT);
 
 
-            // Lấy danh sách bài viết
-            List<Articles> articles = articleDAO.getArticlesWithPagination(currentPage, PAGE_SIZE, sortBy);
+        // Lấy bài viết nổi bật
+        List<Articles> featuredArticles = newsService.getFeaturedArticles(3);
 
-            // Tính tổng số trang
-            int totalArticles = articleDAO.getTotalArticles();
-            int totalPages = (int) Math.ceil((double) totalArticles / PAGE_SIZE);
+        // Lấy bài viết theo trang
+        List<Articles> articles = newsService.getArticlesWithPagination(currentPage, pageSize, sortBy);
 
-            // Set attributes
-            request.setAttribute("featuredArticles", featuredArticles);
-            request.setAttribute("articles", articles);
-            request.setAttribute("currentPage", currentPage);
-            request.setAttribute("totalPages", totalPages);
-            request.setAttribute("sortBy", sortBy);
+        // Tính tổng số trang
+        int totalArticles = newsService.getTotalArticles();
+        int totalPages = (int) Math.ceil((double) totalArticles / pageSize);
 
 
-            // Forward
-            request.getRequestDispatcher("/news.jsp").forward(request, response);
-
-        } catch (Exception e) {
-            System.err.println("Error in NewsServlet: " + e.getMessage());
-            e.printStackTrace();
-
-            request.setAttribute("errorMessage", "Có lỗi xảy ra: " + e.getMessage());
-            response.sendRedirect(request.getContextPath() + "/error.jsp");
-        }
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doGet(request, response);
+        // Forward to JSP
+        request.getRequestDispatcher("news.jsp").forward(request, response);
     }
 }
