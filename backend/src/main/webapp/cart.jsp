@@ -1,3 +1,5 @@
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="vi">
@@ -9,7 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png">
     <link rel="stylesheet" href="./CSS/sub_login.css">
-    <link rel="stylesheet" href="CSS/cart_detail.css">
+    <link rel="stylesheet" href="./CSS/cart_detail.css">
     <link rel="stylesheet" href="./CSS/style.css">
     <link rel="stylesheet" href="./CSS/about.css">
 
@@ -26,22 +28,56 @@
         <h2>Giỏ hàng của bạn</h2>
         <hr class="line">
 
-        <!--sản phẩm demo-->
-        <div class="cart-item">
-            <img src="https://flexhouse.vn/wp-content/uploads/2022/12/Den-de-ban-phong-khach-phong-cach-toi-gian-KLS0049-4-430x430.jpg"
-                 alt="Đèn tường LED">
-            <div class="item-info">
-                <h4>Đèn để bàn phòng khách phong cách tối giản KLS0049</h4>
-                <p class="price">3.900.000 VND</p>
-                <div class="quantity">
-                    <button type="submit">-</button>
-                    <span class="qty">1</span>
-                    <button type="submit">+</button>
+        <c:if test="${sessionScope.cart == null || empty sessionScope.cart.listItem}">
+            <p>Giỏ hàng của bạn đang trống</p>
+        </c:if>
+
+        <c:forEach var="item" items="${sessionScope.cart.listItem}">
+            <div class="cart-item">
+                    <%--                <img src="${item.product.getMainImage}" alt="${item.product.name}">--%>
+
+                <div class="item-info">
+                    <h4>${item.product.name}</h4>
+
+                    <p class="price">
+                        <fmt:formatNumber value="${item.price}" type="number"/> VND
+                    </p>
+
+                    <div class="quantity">
+
+                        <!-- Giảm -->
+                        <form action="${pageContext.request.contextPath}/update"
+                              method="post" style="display:inline;">
+                            <input type="hidden" name="productId" value="${item.product.id}">
+                            <input type="hidden" name="qty" value="${item.quantity - 1}">
+                            <button type="submit" class="qty-btn">-</button>
+                        </form>
+
+                        <span class="qty">${item.quantity}</span>
+
+                        <!-- Tăng -->
+                        <form action="${pageContext.request.contextPath}/update"
+                              method="post" style="display:inline;">
+                            <input type="hidden" name="productId" value="${item.product.id}">
+                            <input type="hidden" name="qty" value="${item.quantity + 1}">
+                            <button type="submit" class="qty-btn">+</button>
+                        </form>
+
+                    </div>
+
+
                 </div>
+
+                <div class="item-total">
+                    <fmt:formatNumber value="${item.price * item.quantity}" type="number"/> VND
+                </div>
+
+                <a href="remove?productId=${item.product.id}"
+                   class="delete-btn">
+                    Xóa
+                </a>
             </div>
-            <div class="item-total">3.900.000 VND</div>
-            <button class="delete-btn" type="submit">Xóa</button>
-        </div>
+        </c:forEach>
     </div>
 
     <!--tổng tiền sản phẩm-->
@@ -49,18 +85,26 @@
         <div class="order-box">
             <h3>Thông tin đơn hàng</h3>
             <ul>
-                <li>Đèn để bàn phòng khách phong cách tối giản KLS0049 - SL: 1</li>
-                <li>Đèn vách tường trang trí cảnh quan ngoài trời JJ7118 - SL: 1</li>
+                <c:forEach var="item" items="${sessionScope.cart.listItem}">
+                    <li>
+                            ${item.product.name} - SL: ${item.quantity}
+                    </li>
+                </c:forEach>
             </ul>
+
             <div class="total">
                 <span>Tổng tiền:</span>
-                <strong id="total">7.230.000 VND</strong>
+                <strong id="total">
+                    <fmt:formatNumber value="${sessionScope.cart.totalPrice}" type="number"/> VND
+                </strong>
             </div>
-            <a href="./checkout.html"> <button class="checkout-btn">THANH TOÁN</button></a>
+            <a href="./checkout.html">
+                <button class="checkout-btn">THANH TOÁN</button>
+            </a>
         </div>
 
         <div class="order-note">
-            <a href="products.html"><i class="bi bi-arrow-return-left"></i> Tiếp tục mua hàng</a>
+            <a href="./products"><i class="bi bi-arrow-return-left"></i> Tiếp tục mua hàng</a>
             <ul>
                 <li>Không rủi ro.</li>
                 <li>Đặt hàng trước, thanh toán sau tại nhà. Miễn phí giao hàng & lắp đặt tại TP.HCM, Hà Nội,...
