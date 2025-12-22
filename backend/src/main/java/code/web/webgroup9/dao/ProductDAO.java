@@ -26,7 +26,6 @@ public class ProductDAO {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
                                 "SELECT p.*, " +
-                                        "p.name as product_name, " +
                                         "d.discount_rate, " +
                                         "(SELECT img FROM Image WHERE type = 'product' AND ref_id = p.id LIMIT 1) as main_image, " +
                                         "(SELECT img FROM Image WHERE type = 'product' AND ref_id = p.id LIMIT 1 OFFSET 1) as hover_image, " +
@@ -55,7 +54,6 @@ public class ProductDAO {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
                                 "SELECT p.*, " +
-                                        "p.name as product_name, " +
                                         "c.name as category_name, " +
                                         "d.discount_rate, " +
                                         "pd.description, pd.warranty, pd.material, pd.voltage, " +
@@ -81,7 +79,6 @@ public class ProductDAO {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
                                 "SELECT p.*, " +
-                                        "p.name as product_name, " +
                                         "c.name as category_name, " +
                                         "d.discount_rate, " +
                                         "pd.description, pd.warranty, pd.material, pd.voltage, " +
@@ -108,7 +105,6 @@ public class ProductDAO {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
                                 "SELECT p.*, " +
-                                        "p.name as product_name, " +
                                         "c.name as category_name, " +
                                         "d.discount_rate, " +
                                         "pd.description, pd.warranty, pd.material, pd.voltage, " +
@@ -165,4 +161,3 @@ public class ProductDAO {
         );
     }
 }
-

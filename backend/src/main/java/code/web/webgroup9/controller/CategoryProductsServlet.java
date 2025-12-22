@@ -12,10 +12,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.List;
 
-@WebServlet("/products")
-public class ProductServlet extends HttpServlet {
+@WebServlet("/cate_products")
+public class CategoryProductsServlet extends HttpServlet {
 
     private ProductService productService;
     private CategoryService categoryService;
@@ -29,42 +29,48 @@ public class ProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
         try {
-            // Lấy tất cả sản phẩm và danh mục
-            List<ProductWithDetails> allProducts = productService.getAllProductsWithDetails();
+            // Lấy categoryId từ parameter
+            String idParam = request.getParameter("id");
+            if (idParam == null || idParam.isEmpty()) {
+                response.sendRedirect("products");
+                return;
+            }
+
+            int categoryId = Integer.parseInt(idParam);
+
+            // Lấy sản phẩm theo danh mục
+            List<ProductWithDetails> products = productService.getProductsByCategory(categoryId);
+            Category category = categoryService.getCategoryById(categoryId);
             List<Category> categories = categoryService.getSubCategories();
 
-            // Nhóm sản phẩm theo danh mục
-            Map<Integer, List<ProductWithDetails>> productsByCategory = new HashMap<>();
-            for (ProductWithDetails product : allProducts) {
-                int catId = product.getCategoryId();
-                List<ProductWithDetails> categoryProducts = productsByCategory.computeIfAbsent(catId, k -> new ArrayList<>());
-
-                // Chỉ thêm nếu chưa đủ 8 sản phẩm
-                if (categoryProducts.size() < 8) {
-                    categoryProducts.add(product);
-                }
+            // Kiểm tra danh mục có tồn tại không
+            if (category == null) {
+                response.sendRedirect("products");
+                return;
             }
 
             // Set attributes
+            request.setAttribute("products", products);
+            request.setAttribute("category", category);
             request.setAttribute("categories", categories);
-            request.setAttribute("productsByCategory", productsByCategory);
-            request.setAttribute("totalProducts", allProducts.size());
 
-            // Forward đến products.jsp
+            // Forward đến products.jsp (dùng chung)
             request.getRequestDispatcher("products.jsp").forward(request, response);
 
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            response.sendRedirect("products");
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("error", "Đã xảy ra lỗi: " + e.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }
-
-
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
