@@ -1,7 +1,7 @@
 package code.web.webgroup9.dao;
 
 import code.web.webgroup9.model.Articles;
-import code.web.webgroup9.model.ProductWithDetails;
+import code.web.webgroup9.model.Articles.Article;
 import org.jdbi.v3.core.Jdbi;
 
 import java.util.List;
@@ -52,7 +52,6 @@ public class ArticleDAO {
         );
     }
 
-
     /**
      * Lấy bài viết với phân trang và hình ảnh
      */
@@ -99,7 +98,7 @@ public class ArticleDAO {
     /**
      * Lấy bài viết theo ID
      */
-    public Articles getArticleById(int id) {
+    public Article getArticleById(int id) {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
                                 "SELECT a.*, c.name AS categoryName, " +

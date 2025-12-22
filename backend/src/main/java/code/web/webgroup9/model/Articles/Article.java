@@ -1,10 +1,10 @@
-package code.web.webgroup9.model;
+package code.web.webgroup9.model.Articles;
 
 import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
 import java.sql.Timestamp;
 
-public class Articles {
+public class Article {
     private int id;
     private Integer categoryId;
     private String title;
@@ -15,11 +15,10 @@ public class Articles {
     private boolean feature;
     private String categoryName;
 
-    // Constructors
-    public Articles() {
+    public Article() {
     }
 
-    public Articles(int id, Integer categoryId, String title, String description,
+    public Article(int id, Integer categoryId, String title, String description,
                     Timestamp dateOfPosting, String slug, String mainImg, boolean feature) {
         this.id = id;
         this.categoryId = categoryId;
@@ -31,7 +30,6 @@ public class Articles {
         this.feature = feature;
     }
 
-    // Getters and Setters
     public int getId() {
         return id;
     }
