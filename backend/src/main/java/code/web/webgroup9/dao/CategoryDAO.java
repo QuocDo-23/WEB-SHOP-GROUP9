@@ -42,7 +42,6 @@ public class CategoryDAO {
         );
     }
 
-
     /**
      * Lấy category theo ID
      */
@@ -55,6 +54,4 @@ public class CategoryDAO {
                         .orElse(null)
         );
     }
-
-
 }

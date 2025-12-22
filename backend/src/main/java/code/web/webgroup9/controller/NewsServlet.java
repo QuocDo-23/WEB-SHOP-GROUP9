@@ -1,7 +1,6 @@
 package code.web.webgroup9.controller;
 
-import code.web.webgroup9.dao.ArticleDAO;
-import code.web.webgroup9.model.Articles;
+import code.web.webgroup9.model.Articles.Article;
 import code.web.webgroup9.service.NewsService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -42,10 +41,10 @@ public class NewsServlet extends HttpServlet {
         int pageSize = 4;
 
         // Lấy bài viết nổi bật
-        List<Articles> featuredArticles = newsService.getFeaturedArticles(3);
+        List<Article> featuredArticles = newsService.getFeaturedArticles(1);
 
         // Lấy bài viết theo trang
-        List<Articles> articles = newsService.getArticlesWithPagination(currentPage, pageSize, sortBy);
+        List<Article> articles = newsService.getArticlesWithPagination(currentPage, pageSize, sortBy);
 
         // Tính tổng số trang
         int totalArticles = newsService.getTotalArticles();

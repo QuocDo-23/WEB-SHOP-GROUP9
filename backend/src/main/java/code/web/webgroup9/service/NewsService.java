@@ -1,7 +1,7 @@
 package code.web.webgroup9.service;
 
 import code.web.webgroup9.dao.ArticleDAO;
-import code.web.webgroup9.model.Articles;
+import code.web.webgroup9.model.Articles.Article;
 
 import java.util.List;
 
@@ -12,26 +12,26 @@ public class NewsService {
         this.articleDAO = new ArticleDAO();
     }
 
-    public List<Articles> getFeaturedArticles(int limit) {
-        return articleDAO.getFeaturedArticles(limit);
+    public List<Article> getFeaturedArticles(int limit) {
+        return articleDAO.getFeaturedArticle(limit);
     }
 
-    public List<Articles> getArticlesWithPagination(int page, int pageSize, String sortBy) {
-        return articleDAO.getArticlesWithPagination(page, pageSize, sortBy);
+    public List<Article> getArticlesWithPagination(int page, int pageSize, String sortBy) {
+        return articleDAO.getArticleWithPagination(page, pageSize, sortBy);
     }
 
     public int getTotalArticles() {
-        return articleDAO.getTotalArticles();
+        return articleDAO.getTotalArticle();
     }
 
-    public Articles getArticleById(int id) {
+    public Article getArticlesById(int id) {
         return articleDAO.getArticleById(id);
     }
-    public List<Articles> getArticles(int limit) {
-        return articleDAO.getArticles(limit);
+    public List<Article> getArticle(int limit) {
+        return articleDAO.getArticle(limit);
     }
 
-    public Articles getArticleBySlug(String slug) {
+    public Article getArticlesBySlug(String slug) {
         return articleDAO.getArticleBySlug(slug);
     }
 

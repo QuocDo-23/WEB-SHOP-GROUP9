@@ -27,7 +27,7 @@ public class IndexServlet extends HttpServlet {
 
         request.setAttribute("categories", categoryService.getSubCategories());
         request.setAttribute("listProducts", productService.getFeaturedProducts());
-        request.setAttribute("listArticle", newsService.getArticles(4));
+        request.setAttribute("listArticle", newsService.getArticle(4));
 
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
