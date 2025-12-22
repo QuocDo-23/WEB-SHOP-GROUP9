@@ -66,17 +66,6 @@ public class ArticleDAO {
             orderClause = "a.date_of_posting DESC";
         }
 
-<<<<<<< HEAD
-=======
-        String sql =
-                "SELECT a.*, c.name AS categoryName, " +
-                        "(SELECT img FROM Image WHERE type = 'articles' AND ref_id = a.id ORDER BY id LIMIT 1) as mainImg " +
-                        "FROM Articles a " +
-                        "LEFT JOIN Categories c ON a.category_id = c.id " +
-                        orderBy +
-                        " LIMIT :limit OFFSET :offset";
-
->>>>>>> 07c836a785bf7a8f4329f5442006a2aa41cce9d1
         return jdbi.withHandle(handle ->
                 handle.createQuery(
                                 "SELECT a.*, c.name as category_name, " +

@@ -1,3 +1,4 @@
+
 package code.web.webgroup9.model;
 
 import java.math.BigDecimal;
@@ -29,10 +30,6 @@ public class ProductWithDetails extends Product {
         return discountRate > 0;
     }
 
-<<<<<<< HEAD
-=======
-    // Getters and Setters
->>>>>>> 07c836a785bf7a8f4329f5442006a2aa41cce9d1
     public String getCategoryName() {
         return categoryName;
     }
@@ -41,19 +38,11 @@ public class ProductWithDetails extends Product {
         this.categoryName = categoryName;
     }
 
-<<<<<<< HEAD
     public double getDiscountRate() {
         return discountRate;
     }
 
     public void setDiscountRate(double discountRate) {
-=======
-    public BigDecimal getDiscountRate() {
-        return discountRate;
-    }
-
-    public void setDiscountRate(BigDecimal discountRate) {
->>>>>>> 07c836a785bf7a8f4329f5442006a2aa41cce9d1
         this.discountRate = discountRate;
     }
 
@@ -136,8 +125,4 @@ public class ProductWithDetails extends Product {
     public void setHoverImage(String hoverImage) {
         this.hoverImage = hoverImage;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 07c836a785bf7a8f4329f5442006a2aa41cce9d1

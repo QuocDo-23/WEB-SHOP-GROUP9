@@ -284,24 +284,24 @@
 
                         <img src= "${article.mainImg}" alt="${article.title}" class="featured-thumbnail" >
                         <div class="featured-content">
-                            <h3><a href="./news">${article.title}</a></h3>
+                            <h3><a href="news-detail?id=${article.id}">${article.title}</a></h3>
                             <p>${article.description}</p>
                         </div>
                     </div>
                 </c:forEach>
                 <div class="side-posts">
                     <c:forEach var="article" items="${listArticle}" begin="1" end="3">
-                    <div class="post-item">
-                        <img src="${article.mainImg}" alt="${article.title}" class="post-thumbnail">
-                        <div class="post-content">
-                            <h4><a href="./new">${article.title}</a></h4>
-                            <p>${article.description}</p>
+                        <div class="post-item">
+                            <img src="${article.mainImg}" alt="${article.title}" class="post-thumbnail">
+                            <div class="post-content">
+                                <h4><a href="news-detail?id=${article.id}">${article.title}</a></h4>
+                                <p>${article.description}</p>
+                            </div>
                         </div>
-                    </div>
                     </c:forEach>
 
                     <div class="view-more">
-                        <a href="./new" class="view-more-btn">
+                        <a href="news" class="view-more-btn">
                             XEM THÊM <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>

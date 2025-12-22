@@ -1,9 +1,5 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<<<<<<< HEAD
-=======
-<%@ page import="java.util.*, java.text.*, code.web.webgroup9.dao.*, code.web.webgroup9.model.*" %>
-<%@ page import="code.web.webgroup9.model.ReviewStatistics" %>
->>>>>>> 07c836a785bf7a8f4329f5442006a2aa41cce9d1
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -66,26 +62,9 @@
 
                 <!-- Rating -->
                 <div class="product-rating">
-<<<<<<< HEAD
                     <c:set var="rating" value="${product.review != null ? product.review : 0}"/>
                     <div class="star-rating">
                         <span style="width:${rating * 20}%;"></span>
-=======
-                    <c:set var="rating" value="${product.review}"/>
-                    <div class="star-rating">
-                        <span style="width:${rating * 20}%;"></span>
-                    </div>
-
-                    <div class="product-prices">
-                            <span class="current-price">
-                                <%= vndFormat.format(product.getDiscountedPrice()) %>₫
-                            </span>
-                        <% if (product.hasDiscount()) { %>
-                        <span class="old-price">
-                                    <del><%= vndFormat.format(product.getPrice()) %>₫</del>
-                                </span>
-                        <% } %>
->>>>>>> 07c836a785bf7a8f4329f5442006a2aa41cce9d1
                     </div>
                     <span class="review-count">(${stats.totalReviews} đánh giá)</span>
                 </div>
@@ -105,124 +84,124 @@
                     </c:if>
                 </div>
 
-                    <!-- Product Attributes Table -->
-                    <table class="product-attributes">
-                        <tbody>
-                        <c:if test="${not empty product.warranty}">
-                            <tr class="product-attributes-item">
-                                <th class="product-item-label">
-                                    <span class="wd-attr-name">Bảo hành</span>
-                                </th>
-                                <td class="product-item-value">
-                                    <p>${product.warranty}</p>
-                                </td>
-                            </tr>
-                        </c:if>
+                <!-- Product Attributes Table -->
+                <table class="product-attributes">
+                    <tbody>
+                    <c:if test="${not empty product.warranty}">
+                        <tr class="product-attributes-item">
+                            <th class="product-item-label">
+                                <span class="wd-attr-name">Bảo hành</span>
+                            </th>
+                            <td class="product-item-value">
+                                <p>${product.warranty}</p>
+                            </td>
+                        </tr>
+                    </c:if>
 
-                        <c:if test="${not empty product.material}">
-                            <tr class="product-attributes-item">
-                                <th class="product-item-label">
-                                    <span class="wd-attr-name">Vật liệu</span>
-                                </th>
-                                <td class="product-item-value">
-                                    <p>${product.material}</p>
-                                </td>
-                            </tr>
-                        </c:if>
+                    <c:if test="${not empty product.material}">
+                        <tr class="product-attributes-item">
+                            <th class="product-item-label">
+                                <span class="wd-attr-name">Vật liệu</span>
+                            </th>
+                            <td class="product-item-value">
+                                <p>${product.material}</p>
+                            </td>
+                        </tr>
+                    </c:if>
 
-                        <c:if test="${not empty product.voltage}">
-                            <tr class="product-attributes-item">
-                                <th class="product-item-label">
-                                    <span class="wd-attr-name">Hiệu điện thế</span>
-                                </th>
-                                <td class="product-item-value">
-                                    <p>${product.voltage}</p>
-                                </td>
-                            </tr>
-                        </c:if>
+                    <c:if test="${not empty product.voltage}">
+                        <tr class="product-attributes-item">
+                            <th class="product-item-label">
+                                <span class="wd-attr-name">Hiệu điện thế</span>
+                            </th>
+                            <td class="product-item-value">
+                                <p>${product.voltage}</p>
+                            </td>
+                        </tr>
+                    </c:if>
 
-                        <c:if test="${not empty product.dimensions}">
-                            <tr class="product-attributes-item">
-                                <th class="product-item-label">
-                                    <span class="wd-attr-name">Kích thước</span>
-                                </th>
-                                <td class="product-item-value">
-                                    <p>${product.dimensions}</p>
-                                </td>
-                            </tr>
-                        </c:if>
+                    <c:if test="${not empty product.dimensions}">
+                        <tr class="product-attributes-item">
+                            <th class="product-item-label">
+                                <span class="wd-attr-name">Kích thước</span>
+                            </th>
+                            <td class="product-item-value">
+                                <p>${product.dimensions}</p>
+                            </td>
+                        </tr>
+                    </c:if>
 
-                        <c:if test="${not empty product.type}">
-                            <tr class="product-attributes-item">
-                                <th class="product-item-label">
-                                    <span class="wd-attr-name">Loại bóng</span>
-                                </th>
-                                <td class="product-item-value">
-                                    <p>${product.type}</p>
-                                </td>
-                            </tr>
-                        </c:if>
+                    <c:if test="${not empty product.type}">
+                        <tr class="product-attributes-item">
+                            <th class="product-item-label">
+                                <span class="wd-attr-name">Loại bóng</span>
+                            </th>
+                            <td class="product-item-value">
+                                <p>${product.type}</p>
+                            </td>
+                        </tr>
+                    </c:if>
 
-                        <c:if test="${not empty product.color}">
-                            <tr class="product-item-label">
-                                <th class="product-item-label">
-                                    <span class="wd-attr-name">Màu sắc</span>
-                                </th>
-                                <td class="product-item-value">
-                                    <p>${product.color}</p>
-                                </td>
-                            </tr>
-                        </c:if>
+                    <c:if test="${not empty product.color}">
+                        <tr class="product-item-label">
+                            <th class="product-item-label">
+                                <span class="wd-attr-name">Màu sắc</span>
+                            </th>
+                            <td class="product-item-value">
+                                <p>${product.color}</p>
+                            </td>
+                        </tr>
+                    </c:if>
 
-                        <c:if test="${not empty product.style}">
-                            <tr class="product-attributes-item">
-                                <th class="product-item-label">
-                                    <span class="wd-attr-name">Phong cách</span>
-                                </th>
-                                <td class="product-item-value">
-                                    <p>${product.style}</p>
-                                </td>
-                            </tr>
-                        </c:if>
-                        </tbody>
-                    </table>
+                    <c:if test="${not empty product.style}">
+                        <tr class="product-attributes-item">
+                            <th class="product-item-label">
+                                <span class="wd-attr-name">Phong cách</span>
+                            </th>
+                            <td class="product-item-value">
+                                <p>${product.style}</p>
+                            </td>
+                        </tr>
+                    </c:if>
+                    </tbody>
+                </table>
 
-                    <!-- Quantity Section -->
-                    <form action="cart" method="post" id="addToCartForm">
-                        <input type="hidden" name="action" value="add">
-                        <input type="hidden" name="productId" value="${product.id}">
+                <!-- Quantity Section -->
+                <form action="cart" method="post" id="addToCartForm">
+                    <input type="hidden" name="action" value="add">
+                    <input type="hidden" name="productId" value="${product.id}">
 
-                        <div class="quantity-section">
-                            <label class="quantity-label">Số lượng</label>
-                            <div class="quantity-control">
-                                <button type="button" class="quantity-btn" onclick="decreaseQty()">-</button>
-                                <input type="number" class="quantity-input" name="quantity"
-                                       id="quantity" value="1" min="1" max="${product.inventoryQuantity}">
-                                <button type="button" class="quantity-btn" onclick="increaseQty()">+</button>
-                            </div>
-                            <p class="stock-info">Còn lại: ${product.inventoryQuantity} sản phẩm</p>
+                    <div class="quantity-section">
+                        <label class="quantity-label">Số lượng</label>
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn" onclick="decreaseQty()">-</button>
+                            <input type="number" class="quantity-input" name="quantity"
+                                   id="quantity" value="1" min="1" max="${product.inventoryQuantity}">
+                            <button type="button" class="quantity-btn" onclick="increaseQty()">+</button>
                         </div>
+                        <p class="stock-info">Còn lại: ${product.inventoryQuantity} sản phẩm</p>
+                    </div>
 
-                        <!-- Action Buttons -->
-                        <div class="action-buttons">
-                            <button type="submit" class="btn btn-add-cart">
-                                THÊM VÀO GIỎ HÀNG
-                            </button>
-                            <button type="button" class="btn btn-buy-now" onclick="buyNow()">
-                                THANH TOÁN
-                            </button>
-                        </div>
-                    </form>
-
-                    <a href="./contact.jsp">
-                        <button class="btn btn-contact" style="width: 100%;">
-                            LIÊN HỆ
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button type="submit" class="btn btn-add-cart">
+                            THÊM VÀO GIỎ HÀNG
                         </button>
-                    </a>
-                </div>
+                        <button type="button" class="btn btn-buy-now" onclick="buyNow()">
+                            THANH TOÁN
+                        </button>
+                    </div>
+                </form>
+
+                <a href="./contact.jsp">
+                    <button class="btn btn-contact" style="width: 100%;">
+                        LIÊN HỆ
+                    </button>
+                </a>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <!-- Product Tabs: Description & Reviews -->
@@ -354,21 +333,12 @@
                             <c:forEach var="relatedProduct" items="${relatedProducts}">
                                 <div class="product-card">
                                     <div class="product-image">
-<<<<<<< HEAD
-<%--                                        <c:if test="${relatedProduct.hasDiscount()}">--%>
-<%--                                            <div class="product-sale">--%>
-<%--                                                -<fmt:formatNumber value="${relatedProduct.discountRate}"--%>
-<%--                                                                   maxFractionDigits="0"/>%--%>
-<%--                                            </div>--%>
-<%--                                        </c:if>--%>
-=======
-                                        <c:if test="${relatedProduct.hasDiscount()}">
-                                            <div class="product-sale">
-                                                -<fmt:formatNumber value="${relatedProduct.discountRate}"
-                                                                   maxFractionDigits="0"/>%
-                                            </div>
-                                        </c:if>
->>>>>>> 07c836a785bf7a8f4329f5442006a2aa41cce9d1
+                                            <%--                                        <c:if test="${relatedProduct.hasDiscount()}">--%>
+                                            <%--                                            <div class="product-sale">--%>
+                                            <%--                                                -<fmt:formatNumber value="${relatedProduct.discountRate}"--%>
+                                            <%--                                                                   maxFractionDigits="0"/>%--%>
+                                            <%--                                            </div>--%>
+                                            <%--                                        </c:if>--%>
                                         <a href="product-detail.jsp?id=${relatedProduct.id}">
                                             <img src="${relatedProduct.mainImage}"
                                                  alt="${relatedProduct.description}" class="img-main">
@@ -396,29 +366,16 @@
 
                                         <div class="product-action">
                                             <div class="product-prices">
-<<<<<<< HEAD
-<%--                                            <span class="current-price">--%>
-<%--                                                <fmt:formatNumber value="${product.getDiscountedPrice()}"--%>
-<%--                                                                  type="currency" currencySymbol=""/>₫--%>
-<%--                                            </span>--%>
-<%--                                                <c:if test="${product.hasDiscount()}">--%>
-<%--                                                <span class="old-price">--%>
-<%--                                                    <del><fmt:formatNumber value="${product.getPrice()}" type="currency"--%>
-<%--                                                                           currencySymbol=""/>₫</del>--%>
-<%--                                                </span>--%>
-<%--                                                </c:if>--%>
-=======
-                                            <span class="current-price">
-                                                <fmt:formatNumber value="${product.getDiscountedPrice()}"
-                                                                  type="currency" currencySymbol=""/>₫
-                                            </span>
-                                                <c:if test="${product.hasDiscount()}">
-                                                <span class="old-price">
-                                                    <del><fmt:formatNumber value="${product.getPrice()}" type="currency"
-                                                                           currencySymbol=""/>₫</del>
-                                                </span>
-                                                </c:if>
->>>>>>> 07c836a785bf7a8f4329f5442006a2aa41cce9d1
+                                                    <%--                                            <span class="current-price">--%>
+                                                    <%--                                                <fmt:formatNumber value="${product.getDiscountedPrice()}"--%>
+                                                    <%--                                                                  type="currency" currencySymbol=""/>₫--%>
+                                                    <%--                                            </span>--%>
+                                                    <%--                                                <c:if test="${product.hasDiscount()}">--%>
+                                                    <%--                                                <span class="old-price">--%>
+                                                    <%--                                                    <del><fmt:formatNumber value="${product.getPrice()}" type="currency"--%>
+                                                    <%--                                                                           currencySymbol=""/>₫</del>--%>
+                                                    <%--                                                </span>--%>
+                                                    <%--                                                </c:if>--%>
                                             </div>
                                             <div class="cart-icon">
                                                 <a href="cart?action=add&productId=${product.getId()}"
