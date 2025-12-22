@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -112,14 +113,14 @@
                 <h1>Bài viết</h1>
                 <div class="sort-dropdown">
                     <label>Sắp xếp theo:</label>
-                    <select onchange="window.location.href='news?page=1&sort=' + this.value">
-                        <option value="newest" ${sortBy eq 'newest' ? 'selected' : ''}>Mới nhất</option>
-                        <option value="oldest" ${sortBy eq 'oldest' ? 'selected' : ''}>Cũ nhất</option>
+                    <select onchange="window.location.href='news?page=1&sort=' + this.value + '#articles'">
+                    <option value="newest" ${sortBy eq 'newest' ? 'selected' : ''}>Mới nhất</option>
+                    <option value="oldest" ${sortBy eq 'oldest' ? 'selected' : ''}>Cũ nhất</option>
                     </select>
                 </div>
             </div>
 
-            <div class="articles-list">
+            <div class="articles-list" id="articles">
                 <c:forEach var="article" items="${articles}">
                     <div class="article-card">
                         <div class="article-image">
@@ -136,6 +137,7 @@
                                 <span><fmt:formatDate value="${article.dateOfPosting}" pattern="dd/MM/yyyy"/></span>
                             </div>
                         </div>
+
                         <div class="title_l">
                             <a href="news-detail?slug=${article.slug}"><i class="bi bi-arrow-up-right"></i></a>
                         </div>

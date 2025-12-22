@@ -1,7 +1,7 @@
 package code.web.webgroup9.controller;
 
 import code.web.webgroup9.service.ProductService;
-import code.web.webgroup9.service.CategoryService;  // Thay DAO bằng Service
+import code.web.webgroup9.service.CategoryService;
 import code.web.webgroup9.model.ProductWithDetails;
 import code.web.webgroup9.model.Category;
 
