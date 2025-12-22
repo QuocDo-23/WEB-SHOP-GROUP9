@@ -301,7 +301,7 @@
                     </c:forEach>
 
                     <div class="view-more">
-                        <a href="./new" class="view-more-btn">
+                        <a href="news" class="view-more-btn">
                             XEM THÊM <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>

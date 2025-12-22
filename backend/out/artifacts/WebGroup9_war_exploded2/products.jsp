@@ -139,7 +139,7 @@
                                             </c:if>
                                         </div>
                                         <div class="cart-icon">
-                                            <a href="cart?action=add&productId=${product.id}" class="open-cart">
+                                            <a href="add-cart?pID=${product.id}&quantity=1">
                                                 <i class="bi bi-cart-check"></i>
                                             </a>
                                         </div>

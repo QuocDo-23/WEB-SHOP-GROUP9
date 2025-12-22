@@ -3,10 +3,7 @@ package code.web.webgroup9.model;
 import org.springframework.security.core.userdetails.User;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Cart implements Serializable {
     Map<Integer, CartItem> cartData;
@@ -16,34 +13,40 @@ public class Cart implements Serializable {
         cartData = new HashMap<>();
     }
 
+    public void updateCustomerInfo(User user) {
+        this.user = user;
+    }
     /**
      * This is a method add item
-     * @param p: product
+     *
+     * @param p:        product
      * @param quantity: quantity of product
      */
-    public void addItem(Product p, int quantity) {
-        // số lượng sản phẩm không được âm
-        if(quantity <= 0){
-            quantity = 1;
-        }
-        if(get(p.getId()) != null){
+    public void addItem(ProductWithDetails p, int quantity) {
+
+        if (quantity <= 0) quantity = 1;
+
+        if (cartData.containsKey(p.getId())) {
             cartData.get(p.getId()).updateQuantity(quantity);
-        }
-        else{
-            cartData.put(p.getId(), new CartItem(p, quantity, p.getPrice()));
+        } else {
+            cartData.put(
+                    p.getId(),
+                    new CartItem(p, quantity, p.getPrice())
+            );
         }
     }
 
     /**
      * This is a method update quantity of item
-     * @param pID: product id
+     *
+     * @param pID:      product id
      * @param quantity: quantity of item
      * @return true if success, false if fail
      */
-    public boolean updateItem(int pID, int quantity){
-        if(get(pID) == null) return false;
+    public boolean updateItem(int pID, int quantity) {
+        if (get(pID) == null) return false;
 
-        if(quantity <= 0){
+        if (quantity <= 0) {
             quantity = 1;
         }
 
@@ -54,16 +57,18 @@ public class Cart implements Serializable {
 
     /**
      * This is a method remove item
+     *
      * @param pID: product id
      * @return remove an item
      */
-    public CartItem removeItem(int pID){
-        if(get(pID) == null) return null;
-        return  cartData.remove(pID);
+    public CartItem removeItem(int pID) {
+        if (get(pID) == null) return null;
+        return cartData.remove(pID);
     }
 
     /**
      * This is a method remove all item
+     *
      * @return remove all item
      */
     public List<CartItem> removeAll() {
@@ -74,14 +79,16 @@ public class Cart implements Serializable {
 
     /**
      * This is a method get list item
+     *
      * @return list all item
      */
-    public List<CartItem> getListItem(){
+    public List<CartItem> getListItem() {
         return new ArrayList<>(cartData.values());
     }
 
     /**
      * This is a method get product
+     *
      * @param id: id
      * @return id of product
      */
@@ -98,6 +105,7 @@ public class Cart implements Serializable {
 
     /**
      * This is a method get total quantity
+     *
      * @return total quantity in cart
      */
     public int getTotalQuantity() {
@@ -107,9 +115,12 @@ public class Cart implements Serializable {
         }
         return total;
     }
-
+    public int getTotalItems() {
+        return cartData.size();
+    }
     /**
      * This is a method calculate total price
+     *
      * @return total price in cart
      */
     public double getTotalPrice() {
@@ -119,9 +130,5 @@ public class Cart implements Serializable {
             totalPrice += item.getQuantity() * item.getPrice();
         }
         return totalPrice;
-    }
-
-    public void updateCustomerInfo(User user){
-        this.user = user;
     }
 }

@@ -66,7 +66,7 @@
 
                 <div class="icon-group">
                     <div class="shop" id="shop">
-                        <a href="cart-detail.jsp">
+                        <a href="cart">
                             <i class="bi bi-cart-check" title="Giỏ hàng"></i>
                             <div class="item-quantity" id="cartCount">
                                 ${not empty sessionScope.cart ? sessionScope.cart.getTotalItems() : 0}
