@@ -24,14 +24,14 @@ public class NewsService {
         return articleDAO.getTotalArticles();
     }
 
-    public Articles getArticleById(int id) {
+    public Article getArticleById(int id) {
         return articleDAO.getArticleById(id);
     }
-    public List<Articles> getArticles(int limit) {
+    public List<Article> getArticles(int limit) {
         return articleDAO.getArticles(limit);
     }
 
-    public Articles getArticleBySlug(String slug) {
+    public Article getArticleBySlug(String slug) {
         return articleDAO.getArticleBySlug(slug);
     }
 
