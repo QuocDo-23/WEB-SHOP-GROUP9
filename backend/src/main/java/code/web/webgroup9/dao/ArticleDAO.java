@@ -1,6 +1,5 @@
 package code.web.webgroup9.dao;
 
-import code.web.webgroup9.model.Articles;
 import code.web.webgroup9.model.Articles.Article;
 import org.jdbi.v3.core.Jdbi;
 
@@ -17,7 +16,7 @@ public class ArticleDAO {
     /**
      * Lấy 4 bài viết nổi bật
      */
-    public List<Articles> getFeaturedArticles(int featuredLimit) {
+    public List<Article> getFeaturedArticles(int featuredLimit) {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
                                 "SELECT a.*, c.name AS categoryName, " +
@@ -29,14 +28,14 @@ public class ArticleDAO {
                                         "LIMIT :featuredLimit"
                         )
                         .bind("featuredLimit", featuredLimit)
-                        .mapToBean(Articles.class)
+                        .mapToBean(Article.class)
                         .list()
         );
     }
     /**
      * Lấy 4 bài viết cho trang chủ
      */
-    public List<Articles> getArticles(int limit) {
+    public List<Article> getArticles(int limit) {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
                                 "SELECT a.*, c.name AS categoryName, " +
@@ -47,7 +46,7 @@ public class ArticleDAO {
                                         "LIMIT :limit"
                         )
                         .bind("limit", limit)
-                        .mapToBean(Articles.class)
+                        .mapToBean(Article.class)
                         .list()
         );
     }
@@ -55,7 +54,7 @@ public class ArticleDAO {
     /**
      * Lấy bài viết với phân trang và hình ảnh
      */
-    public List<Articles> getArticlesWithPagination(int page, int pageSize, String sortBy) {
+    public List<Article> getArticlesWithPagination(int page, int pageSize, String sortBy) {
         int offset = (page - 1) * pageSize;
 
         String orderClause; // Default: newest first
@@ -77,7 +76,7 @@ public class ArticleDAO {
                         )
                         .bind("limit", pageSize)
                         .bind("offset", offset)
-                        .mapToBean(Articles.class)
+                        .mapToBean(Article.class)
                         .list()
         );
     }
@@ -108,7 +107,7 @@ public class ArticleDAO {
                                         "WHERE a.id = :id"
                         )
                         .bind("id", id)
-                        .mapToBean(Articles.class)
+                        .mapToBean(Article.class)
                         .findFirst()
                         .orElse(null)
         );
@@ -117,7 +116,7 @@ public class ArticleDAO {
     /**
      * Lấy bài viết theo slug
      */
-    public Articles getArticleBySlug(String slug) {
+    public Article getArticleBySlug(String slug) {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
                                 "SELECT a.*, c.name AS categoryName, " +
@@ -127,7 +126,7 @@ public class ArticleDAO {
                                         "WHERE a.slug = :slug"
                         )
                         .bind("slug", slug)
-                        .mapToBean(Articles.class)
+                        .mapToBean(Article.class)
                         .findFirst()
                         .orElse(null)
         );
