@@ -1,4 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<<<<<<< HEAD
+=======
+<%@ page import="java.util.*, java.text.*, code.web.webgroup9.dao.*, code.web.webgroup9.model.*" %>
+<%@ page import="code.web.webgroup9.model.ReviewStatistics" %>
+>>>>>>> 07c836a785bf7a8f4329f5442006a2aa41cce9d1
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -61,9 +66,26 @@
 
                 <!-- Rating -->
                 <div class="product-rating">
+<<<<<<< HEAD
                     <c:set var="rating" value="${product.review != null ? product.review : 0}"/>
                     <div class="star-rating">
                         <span style="width:${rating * 20}%;"></span>
+=======
+                    <c:set var="rating" value="${product.review}"/>
+                    <div class="star-rating">
+                        <span style="width:${rating * 20}%;"></span>
+                    </div>
+
+                    <div class="product-prices">
+                            <span class="current-price">
+                                <%= vndFormat.format(product.getDiscountedPrice()) %>₫
+                            </span>
+                        <% if (product.hasDiscount()) { %>
+                        <span class="old-price">
+                                    <del><%= vndFormat.format(product.getPrice()) %>₫</del>
+                                </span>
+                        <% } %>
+>>>>>>> 07c836a785bf7a8f4329f5442006a2aa41cce9d1
                     </div>
                     <span class="review-count">(${stats.totalReviews} đánh giá)</span>
                 </div>
@@ -332,12 +354,21 @@
                             <c:forEach var="relatedProduct" items="${relatedProducts}">
                                 <div class="product-card">
                                     <div class="product-image">
+<<<<<<< HEAD
 <%--                                        <c:if test="${relatedProduct.hasDiscount()}">--%>
 <%--                                            <div class="product-sale">--%>
 <%--                                                -<fmt:formatNumber value="${relatedProduct.discountRate}"--%>
 <%--                                                                   maxFractionDigits="0"/>%--%>
 <%--                                            </div>--%>
 <%--                                        </c:if>--%>
+=======
+                                        <c:if test="${relatedProduct.hasDiscount()}">
+                                            <div class="product-sale">
+                                                -<fmt:formatNumber value="${relatedProduct.discountRate}"
+                                                                   maxFractionDigits="0"/>%
+                                            </div>
+                                        </c:if>
+>>>>>>> 07c836a785bf7a8f4329f5442006a2aa41cce9d1
                                         <a href="product-detail.jsp?id=${relatedProduct.id}">
                                             <img src="${relatedProduct.mainImage}"
                                                  alt="${relatedProduct.description}" class="img-main">
@@ -365,6 +396,7 @@
 
                                         <div class="product-action">
                                             <div class="product-prices">
+<<<<<<< HEAD
 <%--                                            <span class="current-price">--%>
 <%--                                                <fmt:formatNumber value="${product.getDiscountedPrice()}"--%>
 <%--                                                                  type="currency" currencySymbol=""/>₫--%>
@@ -375,6 +407,18 @@
 <%--                                                                           currencySymbol=""/>₫</del>--%>
 <%--                                                </span>--%>
 <%--                                                </c:if>--%>
+=======
+                                            <span class="current-price">
+                                                <fmt:formatNumber value="${product.getDiscountedPrice()}"
+                                                                  type="currency" currencySymbol=""/>₫
+                                            </span>
+                                                <c:if test="${product.hasDiscount()}">
+                                                <span class="old-price">
+                                                    <del><fmt:formatNumber value="${product.getPrice()}" type="currency"
+                                                                           currencySymbol=""/>₫</del>
+                                                </span>
+                                                </c:if>
+>>>>>>> 07c836a785bf7a8f4329f5442006a2aa41cce9d1
                                             </div>
                                             <div class="cart-icon">
                                                 <a href="cart?action=add&productId=${product.getId()}"

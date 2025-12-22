@@ -83,8 +83,17 @@ public class ReviewServlet extends HttpServlet {
 
     private void updateProductRating(int productId) {
         try {
+<<<<<<< HEAD
             ReviewStatistics stats = reviewService.getReviewStatistics(productId);
             productService.updateRating(productId, stats.getAverageRating());
+=======
+            ReviewStatistics stats = reviewDAO.getReviewStatistics(productId);
+
+            // Update vào bảng Product
+            // Bạn có thể thêm method updateRating trong ProductDAO
+            // productDAO.updateRating(productId, stats.getAverageRating());
+
+>>>>>>> 07c836a785bf7a8f4329f5442006a2aa41cce9d1
         } catch (Exception e) {
             e.printStackTrace();
             // Có thể log lỗi ở đây

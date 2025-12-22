@@ -126,6 +126,7 @@ public class ProductDAO {
     /**
      * Tìm kiếm sản phẩm theo tên
      */
+<<<<<<< HEAD
 //    public List<ProductWithDetails> searchProducts(String keyword) {
 //        return jdbi.withHandle(handle ->
 //                handle.createQuery(
@@ -146,6 +147,28 @@ public class ProductDAO {
 //                        .list()
 //        );
 //    }
+=======
+    public List<ProductWithDetails> searchProducts(String keyword) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery(
+                                "SELECT p.*, " +
+                                        "c.name as category_name, " +
+                                        "d.discount_rate, " +
+                                        "pd.description, " +
+                                        "(SELECT img FROM Image WHERE type = 'product' AND ref_id = p.id LIMIT 1) as main_image " +
+                                        "FROM Product p " +
+                                        "LEFT JOIN Categories c ON p.category_id = c.id " +
+                                        "LEFT JOIN Discount d ON p.discount_id = d.id " +
+                                        "LEFT JOIN Product_Detail pd ON p.id = pd.product_id " +
+                                        "WHERE p.status = 'active' AND pd.description LIKE :keyword " +
+                                        "ORDER BY p.id LIMIT 5"
+                        )
+                        .bind("keyword", "%" + keyword + "%")
+                        .mapToBean(ProductWithDetails.class)
+                        .list()
+        );
+    }
+>>>>>>> 07c836a785bf7a8f4329f5442006a2aa41cce9d1
 
     /**
      * Update rating của sản phẩm
@@ -160,4 +183,54 @@ public class ProductDAO {
                         .execute()
         );
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Lấy 8 sản phẩm đầu tiên theo category (dùng cho trang products)
+     */
+    public List<ProductWithDetails> getTop8ProductsByCategory(int categoryId) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery(
+                                "SELECT p.*, " +
+                                        "p.name as product_name, " +
+                                        "c.name as category_name, " +
+                                        "d.discount_rate, " +
+                                        "pd.description, pd.warranty, pd.material, pd.voltage, " +
+                                        "pd.dimensions, pd.type, pd.color, pd.style, " +
+                                        "(SELECT img FROM Image WHERE type = 'product' AND ref_id = p.id LIMIT 1) as main_image, " +
+                                        "(SELECT img FROM Image WHERE type = 'product' AND ref_id = p.id LIMIT 1 OFFSET 1) as hover_image " +
+                                        "FROM Product p " +
+                                        "LEFT JOIN Categories c ON p.category_id = c.id " +
+                                        "LEFT JOIN Discount d ON p.discount_id = d.id " +
+                                        "LEFT JOIN Product_Detail pd ON p.id = pd.product_id " +
+                                        "WHERE p.status = 'active' AND p.category_id = :categoryId " +
+                                        "ORDER BY p.id " +
+                                        "LIMIT 8"
+                        )
+                        .bind("categoryId", categoryId)
+                        .mapToBean(ProductWithDetails.class)
+                        .list()
+        );
+    }
+
+    // ===== THÊM MỚI =====
+    /**
+     * Đếm tổng số sản phẩm theo category
+     * Dùng để kiểm tra có hiển thị "Xem thêm" hay không
+     */
+    public int countProductsByCategory(int categoryId) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery(
+                                "SELECT COUNT(*) FROM Product " +
+                                        "WHERE status = 'active' AND category_id = :categoryId"
+                        )
+                        .bind("categoryId", categoryId)
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
+    // ====================
+
+>>>>>>> 07c836a785bf7a8f4329f5442006a2aa41cce9d1
 }

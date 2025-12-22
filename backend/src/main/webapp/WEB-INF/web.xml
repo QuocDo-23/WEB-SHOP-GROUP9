@@ -3,7 +3,10 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
          version="6.0">
+<<<<<<< HEAD
     <welcome-file-list>
         <welcome-file>/</welcome-file>
     </welcome-file-list>
+=======
+>>>>>>> 07c836a785bf7a8f4329f5442006a2aa41cce9d1
 </web-app>

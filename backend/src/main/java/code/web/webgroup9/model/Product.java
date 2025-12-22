@@ -45,11 +45,19 @@ public class Product {
         this.discountId = discountId;
     }
 
+<<<<<<< HEAD
     public double getPrice() {
         return price;
     }
 
     public void setPrice(double price) {
+=======
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+>>>>>>> 07c836a785bf7a8f4329f5442006a2aa41cce9d1
         this.price = price;
     }
 

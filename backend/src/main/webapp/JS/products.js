@@ -41,6 +41,7 @@ document.querySelector('.sort-toggle')?.addEventListener('click', () => {
     list.classList.toggle('show');
     document.querySelector('.sort-toggle').classList.toggle('open');
 });
+<<<<<<< HEAD
 
     document.addEventListener("DOMContentLoaded", function () {
 
@@ -59,3 +60,5 @@ document.querySelector('.sort-toggle')?.addEventListener('click', () => {
 });
 });
 
+=======
+>>>>>>> 07c836a785bf7a8f4329f5442006a2aa41cce9d1
