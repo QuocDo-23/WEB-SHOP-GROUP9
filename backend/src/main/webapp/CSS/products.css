@@ -483,5 +483,59 @@
 .star-rating span::before {
     content: "★★★★★"; /* 5 sao vàng */
 }
+<<<<<<< HEAD
+/* ===== HEADER DANH MỤC ===== */
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.view-more-text {
+    font-size: 14px;
+    color: #000;
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+.view-more-text:hover {
+    color: #d32f2f;
+}
+/* ===== MỖI DANH MỤC CHỈ HIỂN THỊ 8 SP ===== */
+.category-block .product-card {
+    display: none;
+}
+
+.category-block .product-card:nth-child(-n+8) {
+    display: block;
+}
+/* ===== KHI XEM THÊM → HIỆN TẤT CẢ ===== */
+.category-block.show-all .product-card {
+    display: block;
+=======
+/* nút xem thêm */
+.view-more-wrapper {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.view-more-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    border: 1px solid #000;
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.view-more-btn:hover {
+    background-color: #000;
+    color: #fff;
+>>>>>>> 07c836a785bf7a8f4329f5442006a2aa41cce9d1
+}
+
 
 

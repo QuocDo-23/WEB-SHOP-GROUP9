@@ -41,7 +41,7 @@ public class NewsServlet extends HttpServlet {
         int pageSize = 4;
 
         // Lấy bài viết nổi bật
-        List<Article> featuredArticles = newsService.getFeaturedArticles(3);
+        List<Article> featuredArticles = newsService.getFeaturedArticles(1);
 
         // Lấy bài viết theo trang
         List<Article> articles = newsService.getArticlesWithPagination(currentPage, pageSize, sortBy);
