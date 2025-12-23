@@ -85,6 +85,7 @@ public class ReviewServlet extends HttpServlet {
         try {
             ReviewStatistics stats = reviewService.getReviewStatistics(productId);
             productService.updateRating(productId, stats.getAverageRating());
+
         } catch (Exception e) {
             e.printStackTrace();
             // Có thể log lỗi ở đây

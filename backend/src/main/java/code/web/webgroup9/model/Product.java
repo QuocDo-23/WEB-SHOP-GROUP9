@@ -77,4 +77,3 @@ public class Product {
         this.status = status;
     }
 }
-
