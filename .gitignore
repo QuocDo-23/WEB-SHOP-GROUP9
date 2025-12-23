@@ -1,8 +1,9 @@
-# IntelliJ IDEA
+# IDE
 .idea/
-*.iml
 
-# Build output
+# Build artifacts
 out/
-*.class
+target/
+build/
 *.war
+*_war_exploded/

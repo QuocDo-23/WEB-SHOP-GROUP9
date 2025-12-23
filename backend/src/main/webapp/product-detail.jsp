@@ -330,63 +330,61 @@
                         <h3 class="title slider-title">Sản phẩm tương tự</h3>
 
                         <div class="product-grid">
-                            <c:forEach var="relatedProduct" items="${relatedProducts}">
-                                <div class="product-card">
+                            <c:forEach var="product" items="${relatedProducts}">
+                                <div class="product-card"
+                                     data-price="${product.discountedPrice}"
+                                     data-rating="${product.review}"
+                                     data-category="${product.categoryId}">
                                     <div class="product-image">
-                                            <%--                                        <c:if test="${relatedProduct.hasDiscount()}">--%>
-                                            <%--                                            <div class="product-sale">--%>
-                                            <%--                                                -<fmt:formatNumber value="${relatedProduct.discountRate}"--%>
-                                            <%--                                                                   maxFractionDigits="0"/>%--%>
-                                            <%--                                            </div>--%>
-                                            <%--                                        </c:if>--%>
-                                        <a href="product-detail.jsp?id=${relatedProduct.id}">
-                                            <img src="${relatedProduct.mainImage}"
-                                                 alt="${relatedProduct.description}" class="img-main">
-                                            <c:if test="${not empty relatedProduct.hoverImage}">
-                                                <img src="${relatedProduct.hoverImage}"
-                                                     alt="${relatedProduct.description}" class="img-hover">
+                                        <c:if test="${product.hasDiscount()}">
+                                            <div class="product-sale">-<fmt:formatNumber
+                                                    value="${product.discountRate}" maxFractionDigits="0"/>%
+                                            </div>
+                                        </c:if>
+                                        <a href="product-detail?id=${product.id}">
+                                            <img src="${not empty product.mainImage ? product.mainImage : 'default.jpg'}"
+                                                 alt="${product.description}" class="img-main">
+                                            <c:if test="${not empty product.hoverImage}">
+                                                <img src="${product.hoverImage}"
+                                                     alt="${product.description}" class="img-hover">
                                             </c:if>
                                         </a>
                                     </div>
 
                                     <div class="product-info">
                                         <h3 class="product-name">
-                                            <a href="product-detail.jsp?id=${relatedProduct.id}">
-                                                    ${relatedProduct.description}
+                                            <a href="product-detail?id=${product.id}">
+                                                    ${product.name}
                                             </a>
                                         </h3>
-
                                         <c:set var="rating" value="${product.review}"/>
-
                                         <div class="rating-box">
                                             <div class="star-rating">
                                                 <span style="width:${rating * 20}%;"></span>
                                             </div>
                                         </div>
-
                                         <div class="product-action">
                                             <div class="product-prices">
-                                                    <%--                                            <span class="current-price">--%>
-                                                    <%--                                                <fmt:formatNumber value="${product.getDiscountedPrice()}"--%>
-                                                    <%--                                                                  type="currency" currencySymbol=""/>₫--%>
-                                                    <%--                                            </span>--%>
-                                                    <%--                                                <c:if test="${product.hasDiscount()}">--%>
-                                                    <%--                                                <span class="old-price">--%>
-                                                    <%--                                                    <del><fmt:formatNumber value="${product.getPrice()}" type="currency"--%>
-                                                    <%--                                                                           currencySymbol=""/>₫</del>--%>
-                                                    <%--                                                </span>--%>
-                                                    <%--                                                </c:if>--%>
+                                                    <span class="current-price">
+                                                        <fmt:formatNumber value="${product.discountedPrice}"
+                                                                          pattern="#,###"/>₫
+                                                    </span>
+                                                <c:if test="${product.hasDiscount()}">
+                                                        <span class="old-price">
+                                                            <del><fmt:formatNumber value="${product.price}"
+                                                                                   pattern="#,###"/>₫</del>
+                                                        </span>
+                                                </c:if>
                                             </div>
                                             <div class="cart-icon">
-                                                <a href="cart?action=add&productId=${product.getId()}"
-                                                   class="open-cart">
+                                                <a href="add-cart?pID=${product.id}&quantity=1">
                                                     <i class="bi bi-cart-check"></i>
                                                 </a>
                                             </div>
                                         </div>
 
                                         <div class="product-meta">
-                                            <span class="sold">Còn lại: ${relatedProduct.inventoryQuantity}</span>
+                                            <span class="sold">Còn lại: ${product.inventoryQuantity}</span>
                                         </div>
                                     </div>
                                 </div>
