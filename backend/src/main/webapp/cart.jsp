@@ -10,10 +10,10 @@
     <title>Giỏ hàng của bạn</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png">
-    <link rel="stylesheet" href="./CSS/sub_login.css">
-    <link rel="stylesheet" href="./CSS/cart_detail.css">
-    <link rel="stylesheet" href="./CSS/style.css">
-    <link rel="stylesheet" href="./CSS/about.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/sub_login.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cart_detail.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/about.css">
 
 </head>
 
@@ -34,13 +34,12 @@
 
         <c:forEach var="item" items="${sessionScope.cart.listItem}">
             <div class="cart-item">
-                    <%--                <img src="${item.product.getMainImage}" alt="${item.product.name}">--%>
 
                 <div class="item-info">
                     <h4>${item.product.name}</h4>
 
                     <p class="price">
-                        <fmt:formatNumber value="${item.price}" type="number"/> VND
+                        <fmt:formatNumber value="${item.price}" type="number"/>đ
                     </p>
 
                     <div class="quantity">
@@ -62,20 +61,19 @@
                             <input type="hidden" name="qty" value="${item.quantity + 1}">
                             <button type="submit" class="qty-btn">+</button>
                         </form>
-
                     </div>
-
-
                 </div>
 
                 <div class="item-total">
-                    <fmt:formatNumber value="${item.price * item.quantity}" type="number"/> VND
+                    <fmt:formatNumber value="${item.price * item.quantity}" type="number"/>đ
                 </div>
 
-                <a href="remove?productId=${item.product.id}"
-                   class="delete-btn">
-                    Xóa
-                </a>
+                <!--Xóa sản phẩm-->
+                <form action="${pageContext.request.contextPath}/remove"
+                      method="post" style="display:inline;">
+                    <input type="hidden" name="productId" value="${item.product.id}">
+                    <button type="submit" class="delete-btn">Xóa</button>
+                </form>
             </div>
         </c:forEach>
     </div>
@@ -87,7 +85,7 @@
             <ul>
                 <c:forEach var="item" items="${sessionScope.cart.listItem}">
                     <li>
-                            ${item.product.name} - SL: ${item.quantity}
+                            ${item.product.name} - <b>SL: ${item.quantity}</b>
                     </li>
                 </c:forEach>
             </ul>
@@ -95,7 +93,7 @@
             <div class="total">
                 <span>Tổng tiền:</span>
                 <strong id="total">
-                    <fmt:formatNumber value="${sessionScope.cart.totalPrice}" type="number"/> VND
+                    <fmt:formatNumber value="${sessionScope.cart.totalPrice}" type="number"/>đ
                 </strong>
             </div>
             <a href="./checkout.html">
