@@ -118,6 +118,7 @@ public class Cart implements Serializable {
     public int getTotalItems() {
         return cartData.size();
     }
+
     /**
      * This is a method calculate total price
      *

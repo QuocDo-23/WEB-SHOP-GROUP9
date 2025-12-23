@@ -45,5 +45,50 @@ public class ArticleContentDAO {
         );
     }
 
-//    public int updateContent
+    /**
+     * Cập nhật một khối nội dung đã có.
+     *
+     * @param content Đối tượng ArticlesContent chứa thông tin cần cập nhật. ID của đối tượng này sẽ được dùng để xác định dòng cần cập nhật.
+     * @return Số dòng đã được cập nhật (thường là 1 nếu thành công).
+     */
+    public int updateContent(ArticlesContent content) {
+        return jdbi.withHandle(handle ->
+                handle.createUpdate(
+                                "UPDATE articles_content " +
+                                        "SET content = :content, content_type = :contentType, display_order = :displayOrder " +
+                                        "WHERE id = :id"
+                        )
+                        .bindBean(content)
+                        .execute()
+        );
+    }
+
+    /**
+     * Xóa một khối nội dung.
+     *
+     * @param id ID của khối nội dung cần xóa.
+     * @return Số dòng đã được xóa (thường là 1 nếu thành công).
+     */
+    public int deleteContent(int id) {
+        return jdbi.withHandle(handle ->
+                handle.createUpdate("DELETE FROM articles_content WHERE id = :id")
+                        .bind("id", id)
+                        .execute()
+        );
+    }
+
+    /**
+     * Xóa tất cả nội dung của một bài viết.
+     * Thường được dùng khi xóa bài viết chính hoặc khi muốn ghi đè lại toàn bộ nội dung.
+     *
+     * @param articleId ID của bài viết.
+     * @return Số dòng đã được xóa.
+     */
+    public int deleteAllContentByArticleId(int articleId) {
+        return jdbi.withHandle(handle ->
+                handle.createUpdate("DELETE FROM articles_content WHERE article_id = :articleId")
+                        .bind("articleId", articleId)
+                        .execute()
+        );
+    }
 }

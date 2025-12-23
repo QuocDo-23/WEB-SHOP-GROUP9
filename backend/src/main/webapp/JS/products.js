@@ -41,3 +41,24 @@ document.querySelector('.sort-toggle')?.addEventListener('click', () => {
     list.classList.toggle('show');
     document.querySelector('.sort-toggle').classList.toggle('open');
 });
+<<<<<<< HEAD
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+    const viewMoreLinks = document.querySelectorAll(".view-more-text");
+
+    viewMoreLinks.forEach(link => {
+    link.addEventListener("click", function () {
+    const categoryId = this.getAttribute("data-category");
+    const section = document.getElementById("section-" + categoryId);
+
+    if (section) {
+    section.classList.add("show-all");
+    this.style.display = "none"; // ẩn chữ "Xem thêm"
+}
+});
+});
+});
+
+=======
+>>>>>>> 07c836a785bf7a8f4329f5442006a2aa41cce9d1

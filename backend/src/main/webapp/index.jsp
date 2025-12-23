@@ -291,13 +291,13 @@
                 </c:forEach>
                 <div class="side-posts">
                     <c:forEach var="article" items="${listArticle}" begin="1" end="3">
-                    <div class="post-item">
-                        <img src="${article.mainImg}" alt="${article.title}" class="post-thumbnail">
-                        <div class="post-content">
-                            <h4><a href="news-detail?id=${article.id}">${article.title}</a></h4>
-                            <p>${article.description}</p>
+                        <div class="post-item">
+                            <img src="${article.mainImg}" alt="${article.title}" class="post-thumbnail">
+                            <div class="post-content">
+                                <h4><a href="news-detail?id=${article.id}">${article.title}</a></h4>
+                                <p>${article.description}</p>
+                            </div>
                         </div>
-                    </div>
                     </c:forEach>
 
                     <div class="view-more">
