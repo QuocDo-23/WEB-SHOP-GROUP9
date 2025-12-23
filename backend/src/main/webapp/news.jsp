@@ -149,19 +149,19 @@
             <c:if test="${totalPages > 1}">
                 <div class="pagination">
                     <c:if test="${currentPage > 1}">
-                        <a href="news?page=${currentPage - 1}&sort=${sortBy}" class="prev-btn">← Trước</a>
+                        <a href="news?page=${currentPage - 1}&sort=${sortBy}#articles " class="prev-btn">← Trước</a>
                     </c:if>
                     <c:if test="${currentPage == 1}">
                         <a href="#" class="prev-btn disabled">← Trước</a>
                     </c:if>
 
                     <c:forEach var="i" begin="1" end="${totalPages}">
-                        <a href="news?page=${i}&sort=${sortBy}"
+                        <a href="news?page=${i}&sort=${sortBy}#articles"
                            class="page-btn ${i == currentPage ? 'active' : ''}">${i}</a>
                     </c:forEach>
 
                     <c:if test="${currentPage < totalPages}">
-                        <a href="news?page=${currentPage + 1}&sort=${sortBy}" class="next-btn">Sau →</a>
+                        <a href="news?page=${currentPage + 1}&sort=${sortBy}#articles" class="next-btn">Sau →</a>
                     </c:if>
                     <c:if test="${currentPage == totalPages}">
                         <a href="#" class="next-btn disabled">Sau →</a>
