@@ -198,11 +198,14 @@
                     <c:set var="products" value="${productsByCategory[cat.id]}"/>
                     <c:if test="${not empty products}">
                         <div id="section-${cat.id}" class="product-section" data-category="${cat.id}">
-                            <h3 class="sub-title">${cat.name}</h3>
-                            <a class="view-more-text"
-                               href="cate_products?action=category&id=${cat.id}">
-                                Xem thêm
-                            </a>
+                            <div class="category-header">
+                                <h3 class="sub-title">${cat.name}</h3>
+                                <a class="view-more-text"
+                                   href="cate_products?action=category&id=${cat.id}">
+                                    Xem thêm →
+                                </a>
+                            </div>
+
 
                             <div class="product-grid">
                                 <c:forEach var="product" items="${products}">
