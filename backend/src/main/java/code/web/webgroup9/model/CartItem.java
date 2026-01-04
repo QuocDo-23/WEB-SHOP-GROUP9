@@ -3,24 +3,24 @@ package code.web.webgroup9.model;
 import java.math.BigDecimal;
 
 public class CartItem {
-    private Product product;
+    private ProductWithDetails product;
     private int quantity;
     private double price;
 
     public CartItem() {
     }
 
-    public CartItem(Product product, int quantity, double price) {
-        this.product = product;
+    public CartItem(ProductWithDetails product, int quantity, double price) {
+        this.product = (ProductWithDetails) product;
         this.quantity = quantity;
         this.price = price;
     }
 
-    public Product getProduct() {
+    public ProductWithDetails getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(ProductWithDetails product) {
         this.product = product;
     }
 

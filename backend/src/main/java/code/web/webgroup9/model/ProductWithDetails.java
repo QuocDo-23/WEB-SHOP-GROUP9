@@ -125,4 +125,5 @@ public class ProductWithDetails extends Product {
     public void setHoverImage(String hoverImage) {
         this.hoverImage = hoverImage;
     }
+
 }
