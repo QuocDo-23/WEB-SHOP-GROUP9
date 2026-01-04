@@ -99,7 +99,6 @@
 
 .section_2_news .name a:hover {
     color: #8b7355;
-    text-decoration: underline;
 }
 
 .section_2_news .title_l {
@@ -223,6 +222,7 @@ h1 {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     transition: transform 0.2s, box-shadow 0.2s;
     padding: 20px;
+    align-items: center;
 }
 
 .article-card.hidden {
@@ -243,7 +243,6 @@ h1 {
 
 .article-card a:hover {
     color: #8b7355;
-    text-decoration: underline;
 }
 
 .article-image {
@@ -284,6 +283,10 @@ h1 {
     color: #666;
     font-size: 1rem;
     line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .article-meta {

@@ -74,7 +74,7 @@
                 <img src="https://c.files.bbci.co.uk/e30d/live/27add5e0-b00e-11f0-8317-a7963fdcfd4f.jpg" alt="">
             </div>
             <div class="story-text">
-                <h3>Tầm nhìn thiết kế</h3>
+                <h3>Tầm Nhìn Thiết Kế</h3>
                 <p>Tại LightUp, chúng tôi xem ánh sáng là <b>nghệ
                     thuật của không
                     gian </b>– nơi cảm xúc,

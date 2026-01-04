@@ -1,15 +1,19 @@
 package code.web.webgroup9.service;
 
+import code.web.webgroup9.dao.ArticleContentDAO;
 import code.web.webgroup9.dao.ArticleDAO;
 import code.web.webgroup9.model.Articles.Article;
+import code.web.webgroup9.model.Articles.ArticlesContent;
 
 import java.util.List;
 
 public class NewsService {
     private final ArticleDAO articleDAO;
+    private final ArticleContentDAO articleContentDAO;
 
     public NewsService() {
         this.articleDAO = new ArticleDAO();
+        this.articleContentDAO = new ArticleContentDAO();
     }
 
     public List<Article> getFeaturedArticles(int limit) {
@@ -24,9 +28,10 @@ public class NewsService {
         return articleDAO.getTotalArticle();
     }
 
-    public Article getArticlesById(int id) {
+    public Article getArticleById(int id) {
         return articleDAO.getArticleById(id);
     }
+
     public List<Article> getArticle(int limit) {
         return articleDAO.getArticle(limit);
     }
@@ -34,5 +39,14 @@ public class NewsService {
     public Article getArticlesBySlug(String slug) {
         return articleDAO.getArticleBySlug(slug);
     }
+
+    public List<Article> getRelatedArticles(int currentArticleId, Integer categoryId, int limit) {
+        return articleContentDAO.getRelatedArticles(currentArticleId, categoryId, limit);
+    }
+
+    public List<ArticlesContent> getContentByArticleId(int articleId) {
+        return articleContentDAO.getContentByArticleId(articleId);
+    }
+
 
 }
