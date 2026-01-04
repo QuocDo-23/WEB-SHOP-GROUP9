@@ -21,7 +21,7 @@ public class ArticleDAO {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
                                 "SELECT a.*, c.name AS categoryName, " +
-                                        "(SELECT img FROM Image WHERE type = 'Article' AND ref_id = a.id ORDER BY id LIMIT 1) as mainImg " +
+                                        "(SELECT img FROM Image WHERE type = 'Articles' AND ref_id = a.id ORDER BY id LIMIT 1) as mainImg " +
                                         "FROM Articles a " +
                                         "LEFT JOIN Categories c ON a.category_id = c.id " +
                                         "WHERE a.feature = TRUE " +
@@ -33,6 +33,7 @@ public class ArticleDAO {
                         .list()
         );
     }
+
     /**
      * Lấy 4 bài viết cho trang chủ
      */
@@ -40,7 +41,7 @@ public class ArticleDAO {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
                                 "SELECT a.*, c.name AS categoryName, " +
-                                        "(SELECT img FROM Image WHERE type = 'Article' AND ref_id = a.id ORDER BY id LIMIT 1) as mainImg " +
+                                        "(SELECT img FROM Image WHERE type = 'Articles' AND ref_id = a.id ORDER BY id LIMIT 1) as mainImg " +
                                         "FROM Articles a " +
                                         "LEFT JOIN Categories c ON a.category_id = c.id " +
                                         "ORDER BY a.date_of_posting DESC " +
@@ -68,7 +69,7 @@ public class ArticleDAO {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
                                 "SELECT a.*, c.name as category_name, " +
-                                        "(SELECT img FROM Image WHERE type = 'Article' AND ref_id = a.id LIMIT 1) as main_img " +
+                                        "(SELECT img FROM Image WHERE type = 'Articles' AND ref_id = a.id LIMIT 1) as main_img " +
                                         "FROM Articles a " +
                                         "LEFT JOIN Categories c ON a.category_id = c.id " +
                                         "WHERE (a.feature = FALSE OR a.feature IS NULL) " +
@@ -83,13 +84,13 @@ public class ArticleDAO {
     }
 
 
-
     /**
      * Đếm tổng số bài viết
      */
     public int getTotalArticle() {
         return jdbi.withHandle(handle ->
-                handle.createQuery("SELECT COUNT(*) FROM Articles")
+                handle.createQuery("SELECT COUNT(*) FROM Articles"
+                                + " WHERE (feature = FALSE OR feature IS NULL)")
                         .mapTo(Integer.class)
                         .one()
         );
@@ -102,7 +103,7 @@ public class ArticleDAO {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
                                 "SELECT a.*, c.name AS categoryName, " +
-                                        "(SELECT img FROM Image WHERE type = 'Article' AND ref_id = a.id ORDER BY id LIMIT 1) as mainImg " +
+                                        "(SELECT img FROM Image WHERE type = 'Articles' AND ref_id = a.id ORDER BY id LIMIT 1) as mainImg " +
                                         "FROM Articles a " +
                                         "LEFT JOIN Categories c ON a.category_id = c.id " +
                                         "WHERE a.id = :id"
@@ -121,7 +122,7 @@ public class ArticleDAO {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
                                 "SELECT a.*, c.name AS categoryName, " +
-                                        "(SELECT img FROM Image WHERE type = 'Article' AND ref_id = a.id ORDER BY id LIMIT 1) as mainImg " +
+                                        "(SELECT img FROM Image WHERE type = 'Articles' AND ref_id = a.id ORDER BY id LIMIT 1) as mainImg " +
                                         "FROM Articles a " +
                                         "LEFT JOIN Categories c ON a.category_id = c.id " +
                                         "WHERE a.slug = :slug"
@@ -133,5 +134,127 @@ public class ArticleDAO {
         );
     }
 
+    /**
+     * Chức năng của admin
+     */
+
+    /**
+     * Lấy bài viết theo danh mục
+     */
+    public List<Article> getArticlesByCategory(int categoryId, int limit, int offset) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery(
+                                "SELECT a.*, c.name AS categoryName " +
+                                        "FROM articles a " +
+                                        "LEFT JOIN categories c ON a.category_id = c.id " +
+                                        "WHERE a.category_id = :categoryId " +
+                                        "ORDER BY a.date_of_posting DESC " +
+                                        "LIMIT :limit OFFSET :offset"
+                        )
+                        .bind("categoryId", categoryId)
+                        .bind("limit", limit)
+                        .bind("offset", offset)
+                        .mapToBean(Article.class)
+                        .list()
+        );
+    }
+
+    /**
+     * Tìm kiếm bài viết theo từ khóa
+     */
+    public List<Article> searchArticles(String keyword, int limit, int offset) {
+        String searchPattern = "%" + keyword + "%";
+        return jdbi.withHandle(handle ->
+                handle.createQuery(
+                                "SELECT a.*, c.name AS categoryName " +
+                                        "FROM articles a " +
+                                        "LEFT JOIN categories c ON a.category_id = c.id " +
+                                        "WHERE a.title LIKE :keyword " +
+                                        "OR a.description LIKE :keyword " +
+                                        "ORDER BY a.date_of_posting DESC " +
+                                        "LIMIT :limit OFFSET :offset"
+                        )
+                        .bind("keyword", searchPattern)
+                        .bind("limit", limit)
+                        .bind("offset", offset)
+                        .mapToBean(Article.class)
+                        .list()
+        );
+    }
+
+    /**
+     * Thêm bài viết mới
+     * @return ID của bài viết vừa tạo
+     */
+    public int insertArticle(Article article) {
+        return jdbi.withHandle(handle ->
+                handle.createUpdate(
+                                "INSERT INTO articles (category_id, title, description, date_of_posting, slug, mainImg, feature) " +
+                                        "VALUES (:categoryId, :title, :description, :dateOfPosting, :slug, :mainImg, :feature)"
+                        )
+                        .bindBean(article)
+                        .executeAndReturnGeneratedKeys("id")
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
+
+    /**
+     * Cập nhật bài viết
+     */
+    public int updateArticle(Article article) {
+        return jdbi.withHandle(handle ->
+                handle.createUpdate(
+                                "UPDATE articles SET " +
+                                        "category_id = :categoryId, " +
+                                        "title = :title, " +
+                                        "description = :description, " +
+                                        "date_of_posting = :dateOfPosting, " +
+                                        "slug = :slug, " +
+                                        "mainImg = :mainImg, " +
+                                        "feature = :feature " +
+                                        "WHERE id = :id"
+                        )
+                        .bindBean(article)
+                        .execute()
+        );
+    }
+
+    /**
+     * Xóa bài viết
+     */
+    public int deleteArticle(int id) {
+        return jdbi.withHandle(handle ->
+                handle.createUpdate("DELETE FROM articles WHERE id = :id")
+                        .bind("id", id)
+                        .execute()
+        );
+    }
+
+
+    /**
+     * Đếm tổng số bài viết theo danh mục
+     */
+    public int countArticlesByCategory(int categoryId) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery(
+                                "SELECT COUNT(*) FROM articles WHERE category_id = :categoryId"
+                        )
+                        .bind("categoryId", categoryId)
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
+
+    /**
+     * Đếm tổng số bài viết
+     */
+    public int countAllArticles() {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT COUNT(*) FROM articles")
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
 
 }

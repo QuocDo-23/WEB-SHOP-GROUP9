@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -7,132 +10,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${article.title}</title>
+    <title>${article.title} - LightUP News</title>
     <link rel="stylesheet" href="CSS/news_details.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png">
-    <link rel="stylesheet" href="CSS/style.css">
-    <link rel="stylesheet" href="CSS/sub_login.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/news_details.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/sub_login.css">
 
 </head>
 
 <body>
-<!--Header-->
+<!--Header của trang web-->
 <jsp:include page="header.jsp"/>
 
 <div class="link-page" id="up">
     <div class="containt_link">
-        <a href="./index.html"><i class="bi bi-house"></i> Trang chủ </a>
+        <a href="${pageContext.request.contextPath}/"><i class="bi bi-house"></i> Trang chủ </a>
         <span> /</span>
-        <a href="news.html">Tin tức</a>
+        <a href=${pageContext.request.contextPath}/news>Tin tức</a>
         <span> /</span>
         <b>${article.title}</b>
     </div>
 </div>
-
 <main>
     <section class="container_1">
         <div class="title">
 
             <h1>${article.title}</h1>
+            <i>${article.description}
+                <div class="article-meta-date">
+                    <span>
+                        <i class="bi bi-calendar3"></i>
+                        <fmt:formatDate value="${article.dateOfPosting}" pattern="dd/MM/yyyy HH:mm"/>
+                    </span>
 
-            <c:forEach items="${contents}" var="c">
+                    <c:if test="${article.feature}">
+                        <span style="color: #ffc107;">
+                            <i class="bi bi-star-fill"></i> Nổi bật
+                        </span>
+                    </c:if>
+                </div>
+            </i>
+
+            <c:if test="${not empty article.mainImg}">
+            <div class="img">
+                <img src="${article.mainImg}" alt="${article.title}">
+            </div>
+            </c:if>
+
+            <div class="content_1">
+                <c:forEach items="${contents}" var="content">
                 <c:choose>
+                    <%-- Tiêu đề phụ --%>
+                <c:when test="${content.contentType.name() eq 'HEADING'}">
+                <h2>${content.content}</h2>
+                </c:when>
+                    <%-- Văn bản --%>
+                <c:when test="${content.contentType.name() eq 'TEXT'}">
+                <p>${content.content}</p>
+                </c:when>
 
-                    <c:when test="${c.contentType == 'TEXT'}">
-                        <p>${c.content}</p>
-                    </c:when>
+                    <%-- Hình ảnh --%>
+                <c:when test="${content.contentType.name() eq 'IMAGE'}">
+                <div class="img">
+                    <img src="${content.content}" alt="Hình ảnh">
+                </div>
+                </c:when>
 
-                    <c:when test="${c.contentType == 'IMAGE_URL'}">
-                        <div class="img">
-                            <img src="${c.content}" alt="">
-                        </div>
-                    </c:when>
-
-                    <c:when test="${c.contentType == 'VIDEO_EMBED'}">
-                        <iframe src="${c.content}" frameborder="0"></iframe>
-                    </c:when>
-
-                    <c:when test="${c.contentType == 'HEADING'}">
-                        <h2>${c.content}</h2>
-                    </c:when>
-
-                    <c:when test="${c.contentType == 'BLOCKQUOTE'}">
-                        <blockquote>${c.content}</blockquote>
-                    </c:when>
-
-                    <c:when test="${c.contentType == 'CODE_BLOCK'}">
-                        <pre><code>${c.content}</code></pre>
-                    </c:when>
+                    <%-- Trích dẫn --%>
+                <c:when test="${content.contentType.name() eq 'QUOTE'}">
+                <h3>${content.content}</h3>
+                </c:when>
 
                 </c:choose>
-            </c:forEach>
-
-        </div>
+                </c:forEach>
+                <div class="sidebar-section" style="margin-top: 40px;">
+                    <div class="sidebar-title">Chia sẻ bài viết</div>
+                    <div class="share-buttons">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=${pageContext.request.requestURL}"
+                           target="_blank" class="share-btn facebook" title="Share on Facebook">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="https://twitter.com/intent/tweet?url=${pageContext.request.requestURL}&text=${article.title}"
+                           target="_blank" class="share-btn twitter" title="Share on Twitter">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=${pageContext.request.requestURL}"
+                           target="_blank" class="share-btn linkedin" title="Share on LinkedIn">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                        <button onclick="copyLink()" class="share-btn copy" title="Copy link">
+                            <i class="bi bi-link-45deg"></i>
+                        </button>
+                    </div>
+                </div>
     </section>
-
     <section class="container_2">
-        <div class="news">
-            <h2>Tin liên quan</h2>
+        <c:if test="${not empty relatedArticles}">
+            <div class="news">
+                <h2>Tin liên quan</h2>
+                <c:forEach items="${relatedArticles}" var="related">
+                    <div class="article-card" data-page="1">
+                        <div class="article-image">
+                            <img src="${not empty related.mainImg ? related.mainImg : 'https://via.placeholder.com/100x70'}"
+                                 alt="${related.title}">
+                        </div>
+                        <div class="article-content">
+                            <h2 class="article-title"><a
+                                    href="${pageContext.request.contextPath}/news-detail?slug=${related.slug}"
+                                    class="related-article-title">
+                                    ${related.title}
+                            </a></h2>
+                            <p class="article-description">${related.description} </p>
+                            <div class="article-meta">
+                                <strong>${related.categoryName != null ? related.categoryName : 'Tin tức LightUP'}</strong>
+                                <span>•</span>
+                                <span> <fmt:formatDate value="${related.dateOfPosting}"
+                                                       pattern="dd/MM/yyyy"/></span>
+                            </div>
+                        </div>
 
-            <div class="article-card" data-page="1">
-                <div class="article-image">
-                    <img src="https://i1-giadinh.vnecdn.net/2023/03/02/setop-1677718671-1677718682-6756-1677718754.jpg?w=500&h=300&q=100&dpr=2&fit=crop&s=oe9JH4fyZe2kF7EJumgLxA"
-                         alt="Bản tin 1">
-                </div>
-                <div class="article-content">
-                    <h2 class="article-title"><a href="news_details.html">Lumi ra mắt bộ sưu tập đèn Lumi
-                        Lighting</a> </h2>
-                    <p class="article-description">Với gần 30 mẫu thiết kế đèn, Lumi Lighting ứng dụng được vào
-                        hầu hết không gian nội thất và ngoại thất, phù hợp nhiều phong cách kiến trúc. </p>
-                    <div class="article-meta">
-                        <strong>Tin tức LightUP</strong>
-                        <span>•</span>
-                        <span>25/10/2025</span>
                     </div>
-                </div>
+                </c:forEach>
             </div>
-
-            <div class="article-card" data-page="1">
-                <div class="article-image">
-                    <img src="https://i1-giadinh.vnecdn.net/2023/03/02/setop-1677718671-1677718682-6756-1677718754.jpg?w=500&h=300&q=100&dpr=2&fit=crop&s=oe9JH4fyZe2kF7EJumgLxA"
-                         alt="Bản tin 1">
-                </div>
-                <div class="article-content">
-                    <h2 class="article-title"><a href="news_details.html">Lumi ra mắt bộ sưu tập đèn Lumi
-                        Lighting</a> </h2>
-                    <p class="article-description">Với gần 30 mẫu thiết kế đèn, Lumi Lighting ứng dụng được vào
-                        hầu hết không gian nội thất và ngoại thất, phù hợp nhiều phong cách kiến trúc. </p>
-                    <div class="article-meta">
-                        <strong>Tin tức LightUP</strong>
-                        <span>•</span>
-                        <span>25/10/2025</span>
-                    </div>
-                </div>
-            </div>
-            <div class="article-card" data-page="1">
-                <div class="article-image">
-                    <img src="https://i1-giadinh.vnecdn.net/2023/03/02/setop-1677718671-1677718682-6756-1677718754.jpg?w=500&h=300&q=100&dpr=2&fit=crop&s=oe9JH4fyZe2kF7EJumgLxA"
-                         alt="Bản tin 1">
-                </div>
-                <div class="article-content">
-                    <h2 class="article-title"><a href="news_details.html">Lumi ra mắt bộ sưu tập đèn Lumi
-                        Lighting</a> </h2>
-                    <p class="article-description">Với gần 30 mẫu thiết kế đèn, Lumi Lighting ứng dụng được vào
-                        hầu hết không gian nội thất và ngoại thất, phù hợp nhiều phong cách kiến trúc. </p>
-                    <div class="article-meta">
-                        <strong>Tin tức LightUP</strong>
-                        <span>•</span>
-                        <span>25/10/2025</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </c:if>
     </section>
 </main>
 
-<!-- Footer -->
+<!--Chân trang chứa thông tin liên hệ-->
 <jsp:include page="footer.jsp"/>
 <script src="./JS/index.js"></script>
 </body>
+
 </html>

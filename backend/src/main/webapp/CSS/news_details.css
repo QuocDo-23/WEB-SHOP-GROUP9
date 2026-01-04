@@ -86,7 +86,7 @@ main {
     padding-left: 20px;
 }
 
-.content_2 h3 {
+.content_1 h3 {
     font-size: 22px;
     color: #5d4037;
     margin-bottom: 15px;
@@ -95,7 +95,7 @@ main {
     padding-left: 15px;
 }
 
-.content_2 h3::before {
+.content_1 h3::before {
     content: "";
     position: absolute;
     left: 0;
@@ -155,7 +155,6 @@ main {
 
 .extend a:hover {
     color: #5d4037;
-    text-decoration: underline;
 }
 
 /* Sidebar tin liên quan */
@@ -202,7 +201,6 @@ main {
 
 .article-card a:hover {
     color: #8b7355;
-    text-decoration: underline;
 }
 
 .article-image {
@@ -232,6 +230,10 @@ main {
     color: #1a1a1a;
     line-height: 1.3;
     margin-bottom: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .article-title:hover {
@@ -247,13 +249,24 @@ main {
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
-
-.article-meta {
+.article-meta{
     display: flex;
     gap: 15px;
     align-items: center;
     font-size: 0.5rem;
     color: #8b7355;
+}
+.article-meta-date {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    font-size: 15px;
+    margin-top: 15px;
+    color: #8b7355;
+    font-style: normal;
+}
+.article-meta-date span {
+    color: black;
 }
 
 .article-meta span {
@@ -339,4 +352,63 @@ main {
     .news_inf img {
         height: 120px;
     }
+}
+.article-sidebar {
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+}
+
+.sidebar-section {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #007bff;
+}
+/* Share buttons */
+.share-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.share-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+
+.share-btn:hover {
+    transform: scale(1.1);
+}
+
+.share-btn.facebook {
+    background: #3b5998;
+}
+
+.share-btn.twitter {
+    background: #1da1f2;
+}
+
+.share-btn.linkedin {
+    background: #0077b5;
+}
+
+.share-btn.copy {
+    background: #666;
 }

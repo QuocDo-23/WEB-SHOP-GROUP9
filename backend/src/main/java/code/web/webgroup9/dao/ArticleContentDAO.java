@@ -1,8 +1,9 @@
 package code.web.webgroup9.dao;
 
+import code.web.webgroup9.model.Articles.Article;
 import code.web.webgroup9.model.Articles.ArticlesContent;
+import code.web.webgroup9.model.Articles.ContentType;
 import org.jdbi.v3.core.Jdbi;
-
 import java.util.List;
 
 public class ArticleContentDAO {
@@ -13,7 +14,7 @@ public class ArticleContentDAO {
     }
 
     /**
-     * Lấy nội dung của bài viết khi người dùng bấm vào bài viết
+     * Lấy bài viết theo ID
      */
     public List<ArticlesContent> getContentByArticleId(int articleId) {
         return jdbi.withHandle(handle ->
@@ -29,66 +30,61 @@ public class ArticleContentDAO {
     }
 
     /**
-     * Thêm mới một khối nội dung vào bài viết.
-     *
-     * @param content Đối tượng ArticlesContent chứa thông tin cần thêm.
-     * @return Số dòng đã được thêm vào (thường là 1 nếu thành công).
+     * Lấy tất cả bài viết
      */
-    public int addContent(ArticlesContent content) {
+    public List<Article> getAllArticles() {
         return jdbi.withHandle(handle ->
-                handle.createUpdate(
-                                "INSERT INTO articles_content (article_id, content, content_type, display_order) " +
-                                        "VALUES (:articleId, :content, :contentType, :displayOrder)"
+                handle.createQuery(
+                                "SELECT a.*, c.name AS categoryName " +
+                                        "FROM articles a " +
+                                        "LEFT JOIN categories c ON a.category_id = c.id " +
+                                        "ORDER BY a.date_of_posting DESC"
                         )
-                        .bindBean(content)
-                        .execute()
+                        .mapToBean(Article.class)
+                        .list()
         );
     }
 
     /**
-     * Cập nhật một khối nội dung đã có.
-     *
-     * @param content Đối tượng ArticlesContent chứa thông tin cần cập nhật. ID của đối tượng này sẽ được dùng để xác định dòng cần cập nhật.
-     * @return Số dòng đã được cập nhật (thường là 1 nếu thành công).
+     * Lấy bài viết liên quan (cùng danh mục, khác ID)
      */
-    public int updateContent(ArticlesContent content) {
+    public List<Article> getRelatedArticles(int currentArticleId, Integer categoryId, int limit) {
+        if (categoryId == null) {
+            // Nếu không có category, lấy bài viết mới nhất
+            return jdbi.withHandle(handle ->
+                    handle.createQuery(
+                                    "SELECT a.*, c.name AS categoryName, " +
+                                            "(SELECT img FROM Image WHERE type = 'Articles' AND ref_id = a.id ORDER BY id LIMIT 1) as mainImg " +
+                                            "FROM articles a " +
+                                            "LEFT JOIN categories c ON a.category_id = c.id " +
+                                            "WHERE a.id != :currentId " +
+                                            "ORDER BY a.date_of_posting DESC " +
+                                            "LIMIT :limit"
+                            )
+                            .bind("currentId", currentArticleId)
+                            .bind("limit", limit)
+                            .mapToBean(Article.class)
+                            .list()
+            );
+        }
+
         return jdbi.withHandle(handle ->
-                handle.createUpdate(
-                                "UPDATE articles_content " +
-                                        "SET content = :content, content_type = :contentType, display_order = :displayOrder " +
-                                        "WHERE id = :id"
+                handle.createQuery(
+                                "SELECT a.*, c.name AS categoryName, " +
+                                        "(SELECT img FROM Image WHERE type = 'Articles' AND ref_id = a.id ORDER BY id LIMIT 1) as mainImg " +
+                                        "FROM articles a " +
+                                        "LEFT JOIN categories c ON a.category_id = c.id " +
+                                        "WHERE a.category_id = :categoryId " +
+                                        "AND a.id != :currentId " +
+                                        "ORDER BY a.date_of_posting DESC " +
+                                        "LIMIT :limit"
                         )
-                        .bindBean(content)
-                        .execute()
+                        .bind("categoryId", categoryId)
+                        .bind("currentId", currentArticleId)
+                        .bind("limit", limit)
+                        .mapToBean(Article.class)
+                        .list()
         );
     }
 
-    /**
-     * Xóa một khối nội dung.
-     *
-     * @param id ID của khối nội dung cần xóa.
-     * @return Số dòng đã được xóa (thường là 1 nếu thành công).
-     */
-    public int deleteContent(int id) {
-        return jdbi.withHandle(handle ->
-                handle.createUpdate("DELETE FROM articles_content WHERE id = :id")
-                        .bind("id", id)
-                        .execute()
-        );
-    }
-
-    /**
-     * Xóa tất cả nội dung của một bài viết.
-     * Thường được dùng khi xóa bài viết chính hoặc khi muốn ghi đè lại toàn bộ nội dung.
-     *
-     * @param articleId ID của bài viết.
-     * @return Số dòng đã được xóa.
-     */
-    public int deleteAllContentByArticleId(int articleId) {
-        return jdbi.withHandle(handle ->
-                handle.createUpdate("DELETE FROM articles_content WHERE article_id = :articleId")
-                        .bind("articleId", articleId)
-                        .execute()
-        );
-    }
 }
