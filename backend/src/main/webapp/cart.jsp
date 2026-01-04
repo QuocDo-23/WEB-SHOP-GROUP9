@@ -34,13 +34,30 @@
 
         <c:forEach var="item" items="${sessionScope.cart.listItem}">
             <div class="cart-item">
+                <div class="item-image">
+                    <img src="${not empty item.product.mainImage ? item.product.mainImage : 'default.jpg'}"
+                         alt="${item.product.description}" class="img-main">
+                    <c:if test="${not empty item.product.hoverImage}">
+                        <img src="${item.product.hoverImage}"
+                             alt="${item.product.description}" class="img-hover">
+                    </c:if>
+                </div>
 
                 <div class="item-info">
-                    <h4>${item.product.name}</h4>
-
-                    <p class="price">
-                        <fmt:formatNumber value="${item.price}" type="number"/>đ
-                    </p>
+                    <h4><a href="product-detail?id=${item.product.id}">
+                            ${item.product.name}
+                    </a></h4>
+                    <div class="price-cart">
+                        <div class="price">
+                            <fmt:formatNumber value="${item.product.getDiscountedPrice()}" type="number"/>đ
+                        </div>
+                        <c:if test="${item.product.discountRate > 0}">
+                            <div class="discount-badge">
+                                -<fmt:formatNumber
+                                    value="${item.product.discountRate}"/>%
+                            </div>
+                        </c:if>
+                    </div>
 
                     <div class="quantity">
 
@@ -65,7 +82,7 @@
                 </div>
 
                 <div class="item-total">
-                    <fmt:formatNumber value="${item.price * item.quantity}" type="number"/>đ
+                    <fmt:formatNumber value="${item.product.getDiscountedPrice() * item.quantity}" type="number"/>đ
                 </div>
 
                 <!--Xóa sản phẩm-->

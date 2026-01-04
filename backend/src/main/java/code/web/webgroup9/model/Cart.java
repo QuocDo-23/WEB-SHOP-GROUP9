@@ -128,7 +128,7 @@ public class Cart implements Serializable {
         double totalPrice = 0;
 
         for (CartItem item : getListItem()) {
-            totalPrice += item.getQuantity() * item.getPrice();
+            totalPrice += item.getQuantity() * item.getProduct().getDiscountedPrice();
         }
         return totalPrice;
     }
