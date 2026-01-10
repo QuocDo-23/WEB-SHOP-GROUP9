@@ -166,31 +166,36 @@
                 </table>
 
                 <!-- Quantity Section -->
-                <form action="cart" method="post" id="addToCartForm">
-                    <input type="hidden" name="action" value="add">
+                <form method="post" action="${pageContext.request.contextPath}/cart" id="productForm">
+
                     <input type="hidden" name="productId" value="${product.id}">
 
+                    <!-- Quantity -->
                     <div class="quantity-section">
                         <label class="quantity-label">Số lượng</label>
                         <div class="quantity-control">
-                            <button type="button" class="quantity-btn" onclick="decreaseQty()">-</button>
-                            <input type="number" class="quantity-input" name="quantity"
-                                   id="quantity" value="1" min="1" max="${product.inventoryQuantity}">
-                            <button type="button" class="quantity-btn" onclick="increaseQty()">+</button>
+                            <button type="button" onclick="decreaseQty()">-</button>
+                            <input type="number" name="quantity" id="quantity"
+                                   value="1" min="1" max="${product.inventoryQuantity}">
+                            <button type="button" onclick="increaseQty()">+</button>
                         </div>
-                        <p class="stock-info">Còn lại: ${product.inventoryQuantity} sản phẩm</p>
+                        <p class="stock-info">Còn lại: ${product.inventoryQuantity}</p>
                     </div>
 
-                    <!-- Action Buttons -->
+                    <!-- Buttons -->
                     <div class="action-buttons">
-                        <button type="submit" class="btn btn-add-cart">
-                            THÊM VÀO GIỎ HÀNG
+                        <button type="submit" name="action" value="add" class="btn btn-add-cart">
+                            THÊM VÀO GIỎ
                         </button>
-                        <button type="button" class="btn btn-buy-now" onclick="buyNow()">
-                            THANH TOÁN
+
+                        <button type="submit"
+                                formaction="${pageContext.request.contextPath}/buy-now"
+                                class="btn btn-buy-now">
+                            MUA NGAY
                         </button>
                     </div>
                 </form>
+
 
                 <a href="./contact.jsp">
                     <button class="btn btn-contact" style="width: 100%;">
@@ -474,10 +479,6 @@
         }
     }
 
-    function buyNow() {
-        document.getElementById('addToCartForm').action = 'checkout.jsp';
-        document.getElementById('addToCartForm').submit();
-    }
 
     // Review box
     document.querySelector('.btn-reviews-now').addEventListener('click', function (e) {
