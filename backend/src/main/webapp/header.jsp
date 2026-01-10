@@ -81,8 +81,8 @@
                                 <a href="#"><i class="bi bi-person-circle" title="${sessionScope.user.name}"></i></a>
                                 <div class="sub_login">
                                     <div class="container-sub-login">
-                                        <a href="./profile.jsp"><i class="bi bi-person"></i> Tài khoản</a>
-                                        <a href="./order.jsp"><i class="bi bi-clipboard-check"></i> Đơn Hàng</a>
+                                        <a href="./profile"><i class="bi bi-person"></i> Tài khoản</a>
+                                        <a href="./order"><i class="bi bi-clipboard-check"></i> Đơn Hàng</a>
                                         <a href="logout"><i class="bi bi-box-arrow-right"></i> Đăng xuất</a>
                                     </div>
                                 </div>

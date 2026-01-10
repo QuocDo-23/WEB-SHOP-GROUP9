@@ -19,19 +19,19 @@ public class AddressDAO {
     public boolean insertAddress(Address address) {
         String sql = "INSERT INTO address (user_id, recipient_name, phone, email, " +
                 "house_number, commune, district, address_detail, is_default) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "VALUES (:userId, :recipientName, :phone, :email, :houseNumber, :commune, :district, :addressDetail, :isDefault)";
 
         return jdbi.withHandle(handle -> {
             int rows = handle.createUpdate(sql)
-                    .bind(0, address.getUserId())
-                    .bind(1, address.getRecipientName())
-                    .bind(2, address.getPhone())
-                    .bind(3, address.getEmail())
-                    .bind(4, address.getHouse_number())
-                    .bind(5, address.getCommune())
-                    .bind(6, address.getDistrict())
-                    .bind(7, address.getAddressDetail())
-                    .bind(8, address.isDefault())
+                    .bind("userId", address.getUserId())
+                    .bind("recipientName", address.getRecipientName())
+                    .bind("phone", address.getPhone())
+                    .bind("email", address.getEmail())
+                    .bind("houseNumber", address.getHouse_number())
+                    .bind("commune", address.getCommune())
+                    .bind("district", address.getDistrict())
+                    .bind("addressDetail", address.getAddressDetail())
+                    .bind("isDefault", address.isDefault())
                     .execute();
             return rows > 0;
         });
@@ -41,11 +41,11 @@ public class AddressDAO {
      * Lấy tất cả địa chỉ của user
      */
     public List<Address> getAddressByUserId(int userId) {
-        String sql = "SELECT * FROM address WHERE user_id = ? ORDER BY is_default DESC, id DESC";
+        String sql = "SELECT * FROM address WHERE user_id = :userId ORDER BY is_default DESC, id DESC";
 
         return jdbi.withHandle(handle -> {
             return handle.createQuery(sql)
-                    .bind(0, userId)
+                    .bind("userId", userId)
                     .map((rs, ctx) -> {
                         Address address = new Address();
                         address.setId(rs.getInt("id"));
@@ -68,11 +68,11 @@ public class AddressDAO {
      * Lấy địa chỉ theo ID
      */
     public Address getAddressById(int addressId) {
-        String sql = "SELECT * FROM address WHERE id = ?";
+        String sql = "SELECT * FROM address WHERE id = :addressId";
 
         return jdbi.withHandle(handle -> {
             return handle.createQuery(sql)
-                    .bind(0, addressId)
+                    .bind("addressId", addressId)
                     .map((rs, ctx) -> {
                         Address address = new Address();
                         address.setId(rs.getInt("id"));
@@ -96,11 +96,11 @@ public class AddressDAO {
      * Lấy địa chỉ mặc định của user
      */
     public Address getDefaultAddress(int userId) {
-        String sql = "SELECT * FROM address WHERE user_id = ? AND is_default = true LIMIT 1";
+        String sql = "SELECT * FROM address WHERE user_id = :userId AND is_default = true LIMIT 1";
 
         return jdbi.withHandle(handle -> {
             return handle.createQuery(sql)
-                    .bind(0, userId)
+                    .bind("userId", userId)
                     .map((rs, ctx) -> {
                         Address address = new Address();
                         address.setId(rs.getInt("id"));
@@ -124,21 +124,21 @@ public class AddressDAO {
      * Cập nhật địa chỉ
      */
     public boolean updateAddress(Address address) {
-        String sql = "UPDATE address SET recipient_name = ?, phone = ?, email = ?, " +
-                "house_number = ?, commune = ?, district = ?, address_detail = ?, " +
-                "is_default = ? WHERE id = ?";
+        String sql = "UPDATE address SET recipient_name = :recipientName, phone = :phone, email = :email, " +
+                "house_number = :houseNumber, commune = :commune, district = :district, address_detail = :addressDetail, " +
+                "is_default = :isDefault WHERE id = :id";
 
         return jdbi.withHandle(handle -> {
             int rows = handle.createUpdate(sql)
-                    .bind(0, address.getRecipientName())
-                    .bind(1, address.getPhone())
-                    .bind(2, address.getEmail())
-                    .bind(3, address.getHouse_number())
-                    .bind(4, address.getCommune())
-                    .bind(5, address.getDistrict())
-                    .bind(6, address.getAddressDetail())
-                    .bind(7, address.isDefault())
-                    .bind(8, address.getId())
+                    .bind("recipientName", address.getRecipientName())
+                    .bind("phone", address.getPhone())
+                    .bind("email", address.getEmail())
+                    .bind("houseNumber", address.getHouse_number())
+                    .bind("commune", address.getCommune())
+                    .bind("district", address.getDistrict())
+                    .bind("addressDetail", address.getAddressDetail())
+                    .bind("isDefault", address.isDefault())
+                    .bind("id", address.getId())
                     .execute();
             return rows > 0;
         });
@@ -148,11 +148,11 @@ public class AddressDAO {
      * Xóa địa chỉ
      */
     public boolean deleteAddress(int addressId) {
-        String sql = "DELETE FROM address WHERE id = ?";
+        String sql = "DELETE FROM address WHERE id = :addressId";
 
         return jdbi.withHandle(handle -> {
             int rows = handle.createUpdate(sql)
-                    .bind(0, addressId)
+                    .bind("addressId", addressId)
                     .execute();
             return rows > 0;
         });
@@ -162,13 +162,13 @@ public class AddressDAO {
      * Bỏ mặc định tất cả địa chỉ của user
      */
     public boolean unsetAllDefault(int userId) {
-        String sql = "UPDATE address SET is_default = false WHERE user_id = ?";
+        String sql = "UPDATE address SET is_default = false WHERE user_id = :userId";
 
         return jdbi.withHandle(handle -> {
             int rows = handle.createUpdate(sql)
-                    .bind(0, userId)
+                    .bind("userId", userId)
                     .execute();
-            return rows > 0;
+            return rows >= 0; // Có thể không có địa chỉ nào để update
         });
     }
 
@@ -177,20 +177,20 @@ public class AddressDAO {
      */
     public boolean setAsDefault(int addressId, int userId) {
         return jdbi.inTransaction(handle -> {
-
+            // Bỏ mặc định tất cả địa chỉ của user
             int reset = handle.createUpdate(
                             "UPDATE address SET is_default = false WHERE user_id = :userId")
                     .bind("userId", userId)
                     .execute();
 
+            // Đặt địa chỉ mới làm mặc định
             int set = handle.createUpdate(
                             "UPDATE address SET is_default = true WHERE id = :addressId AND user_id = :userId")
                     .bind("addressId", addressId)
                     .bind("userId", userId)
                     .execute();
 
-            return set > 0; // true nếu update thành công
+            return set > 0;
         });
     }
-
 }
