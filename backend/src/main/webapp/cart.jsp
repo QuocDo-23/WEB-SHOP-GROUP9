@@ -113,7 +113,8 @@
                     <fmt:formatNumber value="${sessionScope.cart.totalPrice}" type="number"/>đ
                 </strong>
             </div>
-            <a href="./checkout.html">
+
+            <a href="${pageContext.request.contextPath}/${not empty sessionScope.user ? 'payment' : 'login?redirect=payment'}">
                 <button class="checkout-btn">THANH TOÁN</button>
             </a>
         </div>
