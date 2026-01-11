@@ -33,8 +33,19 @@ public class ProductService {
     public void updateRating(int productId, double rating) {
         productDAO.updateRating(productId, rating);
     }
-    public List<ProductWithDetails> getFeaturedProducts(){
+
+    public List<ProductWithDetails> getFeaturedProducts() {
         return productDAO.getFeaturedProductsByReview(8);
 
     }
+
+    public int countProductsByCategory(int categoryId) {
+        return productDAO.countProductsByCategory(categoryId);
+
+    }
+    public List<ProductWithDetails> getProductsByCategoryWithPagination(int categoryId, int offset, int limit) {
+        return productDAO.getProductsByCategoryWithPagination(categoryId, offset, limit);
+
+    }
+
 }
