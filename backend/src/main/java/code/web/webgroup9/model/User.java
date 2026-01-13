@@ -1,6 +1,7 @@
 package code.web.webgroup9.model;
 
-import java.sql.Date;
+import java.time.LocalDate;
+import java.util.Date;
 
 public class User {
     private int id;
@@ -10,7 +11,7 @@ public class User {
     private String email;
     private String password;
     private String gender;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private String avatarImg;
     private String roleName; // For JOIN query
 
@@ -71,11 +72,11 @@ public class User {
         this.gender = gender;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -94,4 +95,6 @@ public class User {
     public void setRoleName(String roleName) {
         this.roleName = roleName;
     }
+
+
 }
