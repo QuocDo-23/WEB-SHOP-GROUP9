@@ -5,6 +5,9 @@ import code.web.webgroup9.model.User;
 import org.jdbi.v3.core.Jdbi;
 import code.web.webgroup9.util.PasswordUtil;
 
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.PreparedStatement;
 import java.util.Optional;
 
 public class UserDAO {
@@ -169,4 +172,5 @@ public class UserDAO {
             return false;
         }
     }
+
 }

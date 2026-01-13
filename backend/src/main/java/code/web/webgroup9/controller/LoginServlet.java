@@ -57,8 +57,14 @@ public class LoginServlet extends HttpServlet {
             User user = userOpt.get();
             SessionUtil.setUserSession(request, user);
 
-            String target = (redirect != null && !redirect.isEmpty()) ? redirect : "index";
-            response.sendRedirect(target);
+            String contextPath = request.getContextPath();
+            if ("payment".equals(redirect)) {
+                response.sendRedirect(contextPath + "/payment");
+            } else if ("cart".equals(redirect)) {
+                response.sendRedirect(contextPath + "/cart");
+            } else {
+                response.sendRedirect(contextPath + "/");
+            }
         } else {
             request.setAttribute("error", "Email hoặc mật khẩu không đúng");
             request.setAttribute("email", email);
