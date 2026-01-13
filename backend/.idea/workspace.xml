@@ -11,8 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="476ff113-5c41-4ffd-b426-f906bb36a60e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/code/web/webgroup9/CartController/RemoveCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/code/web/webgroup9/CartController/RemoveCart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/cart.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,8 +176,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.27397.103" />
-        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-IU-252.27397.103" />
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.28539.13" />
+        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-IU-252.28539.13" />
       </set>
     </attachedChunks>
   </component>
@@ -198,6 +196,7 @@
       <workItem from="1765956762318" duration="673000" />
       <workItem from="1766391265388" duration="377000" />
       <workItem from="1766458711529" duration="589000" />
+      <workItem from="1768033126302" duration="1137000" />
     </task>
     <servers />
   </component>
