@@ -1,10 +1,10 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <nav>
     <div class="nav_head">
-        <a href="./">
+        <!-- LOGO -->
+        <a href="${pageContext.request.contextPath}/">
             <div class="logo">
                 <img src="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png" alt="Logo">
             </div>
@@ -12,25 +12,45 @@
 
         <div class="nav-container">
             <ul class="nav-links">
-                <li><a href="./"
-                       class="${pageContext.request.requestURI.contains('/') ? 'active' : ''}">
-                    TRANG CHỦ</a></li>
-                <li><a href="./about.jsp"
-                       class="${pageContext.request.requestURI.contains('/about') ? 'active' : ''}">
-                    GIỚI THIỆU</a></li>
+
+                <!-- TRANG CHỦ -->
                 <li>
-                    <a href="products"
+                    <a href="${pageContext.request.contextPath}/"
+                       class="${not pageContext.request.requestURI.contains('/products')
+                            and not pageContext.request.requestURI.contains('/news')
+                            and not pageContext.request.requestURI.contains('/about')
+                            and not pageContext.request.requestURI.contains('/contact')
+                            and not pageContext.request.requestURI.contains('/login')
+                            and not pageContext.request.requestURI.contains('/cart')
+                            ? 'active' : ''}">
+                        TRANG CHỦ
+                    </a>
+                </li>
+
+                <!-- GIỚI THIỆU -->
+                <li>
+                    <a href="${pageContext.request.contextPath}/about.jsp"
+                       class="${pageContext.request.requestURI.contains('/about') ? 'active' : ''}">
+                        GIỚI THIỆU
+                    </a>
+                </li>
+
+                <!-- SẢN PHẨM -->
+                <li>
+                    <a href="${pageContext.request.contextPath}/products"
                        class="${pageContext.request.requestURI.contains('/products') ? 'active' : ''}">
                         SẢN PHẨM <i class="bi bi-caret-down-fill"></i>
                     </a>
+
                     <div class="sub-item">
                         <div class="contant-sub">
                             <h2>Danh mục sản phẩm</h2>
                             <div class="cont-item">
                                 <c:forEach var="category" items="${categories}">
-                                    <a href="./products.jsp#section-${category.id}" class="product_item">
+                                    <a href="${pageContext.request.contextPath}/products.jsp#section-${category.id}"
+                                       class="product_item">
                                         <div class="product_cont">
-                                            <img src="${category.imgCate}" alt="${category.name}"/>
+                                            <img src="${category.imgCate}" alt="${category.name}">
                                             <div class="item">${category.name}</div>
                                         </div>
                                         <span class="arrow">›</span>
@@ -40,21 +60,31 @@
                         </div>
                     </div>
                 </li>
-                <li><a href="news"
+
+                <!-- TIN TỨC -->
+                <li>
+                    <a href="${pageContext.request.contextPath}/news"
                        class="${pageContext.request.requestURI.contains('/news') ? 'active' : ''}">
-                    TIN TỨC
-                </a>
+                        TIN TỨC
+                    </a>
                 </li>
-                <li><a href="./contact.jsp"
+
+                <!-- LIÊN HỆ -->
+                <li>
+                    <a href="${pageContext.request.contextPath}/contact.jsp"
                        class="${pageContext.request.requestURI.contains('/contact') ? 'active' : ''}">
-                    LIÊN HỆ</a></li>
+                        LIÊN HỆ
+                    </a>
+                </li>
             </ul>
 
+            <!-- PHẦN PHẢI -->
             <div class="nav_r" id="nav_r">
                 <div class="search-icon" onclick="openSearchBar()">
                     <input type="text" placeholder="Tìm kiếm" id="searchInput">
                     <i class="bi bi-search"></i>
                 </div>
+
                 <i class="bi bi-x back-button-nav" onclick="closeSearchBar()"></i>
 
                 <div class="search-panel" id="searchPanel">
@@ -67,7 +97,7 @@
 
                 <div class="icon-group">
                     <div class="shop" id="shop">
-                        <a href="cart">
+                        <a href="${pageContext.request.contextPath}/cart">
                             <i class="bi bi-cart-check" title="Giỏ hàng"></i>
                             <div class="item-quantity" id="cartCount">
                                 ${not empty sessionScope.cart ? sessionScope.cart.getTotalItems() : 0}
@@ -78,17 +108,27 @@
                     <div class="login" id="login">
                         <c:choose>
                             <c:when test="${not empty sessionScope.user}">
-                                <a href="#"><i class="bi bi-person-circle" title="${sessionScope.user.name}"></i></a>
+                                <a href="#">
+                                    <i class="bi bi-person-circle" title="${sessionScope.user.name}"></i>
+                                </a>
                                 <div class="sub_login">
                                     <div class="container-sub-login">
-                                        <a href="./profile"><i class="bi bi-person"></i> Tài khoản</a>
-                                        <a href="./order"><i class="bi bi-clipboard-check"></i> Đơn Hàng</a>
-                                        <a href="logout"><i class="bi bi-box-arrow-right"></i> Đăng xuất</a>
+                                        <a href="${pageContext.request.contextPath}/profile.jsp">
+                                            <i class="bi bi-person"></i> Tài khoản
+                                        </a>
+                                        <a href="${pageContext.request.contextPath}/order.jsp">
+                                            <i class="bi bi-clipboard-check"></i> Đơn Hàng
+                                        </a>
+                                        <a href="${pageContext.request.contextPath}/logout">
+                                            <i class="bi bi-box-arrow-right"></i> Đăng xuất
+                                        </a>
                                     </div>
                                 </div>
                             </c:when>
                             <c:otherwise>
-                                <a href="login"><i class="bi bi-person-circle" title="Đăng nhập"></i></a>
+                                <a href="${pageContext.request.contextPath}/login">
+                                    <i class="bi bi-person-circle" title="Đăng nhập"></i>
+                                </a>
                             </c:otherwise>
                         </c:choose>
                     </div>

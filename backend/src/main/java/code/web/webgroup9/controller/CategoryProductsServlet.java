@@ -19,6 +19,7 @@ public class CategoryProductsServlet extends HttpServlet {
 
     private ProductService productService;
     private CategoryService categoryService;
+    private static final int PRODUCTS_PER_PAGE = 12;
 
     @Override
     public void init() throws ServletException {
@@ -43,8 +44,35 @@ public class CategoryProductsServlet extends HttpServlet {
 
             int categoryId = Integer.parseInt(idParam);
 
-            // Lấy sản phẩm theo danh mục
-            List<ProductWithDetails> products = productService.getProductsByCategory(categoryId);
+            String pageParam = request.getParameter("page");
+            int currentPage = 1;
+            if (pageParam != null && !pageParam.isEmpty()) {
+                try {
+                    currentPage = Integer.parseInt(pageParam);
+                    if (currentPage < 1) currentPage = 1;
+                } catch (NumberFormatException e) {
+                    currentPage = 1;
+                }
+            }
+
+            // Tính offset
+            int offset = (currentPage - 1) * PRODUCTS_PER_PAGE;
+
+            // Lấy tổng số sản phẩm và tính số trang
+            int totalProducts = productService.countProductsByCategory(categoryId);
+            int totalPages = (int) Math.ceil((double) totalProducts / PRODUCTS_PER_PAGE);
+
+            // Đảm bảo currentPage không vượt quá totalPages
+            if (currentPage > totalPages && totalPages > 0) {
+                currentPage = totalPages;
+                offset = (currentPage - 1) * PRODUCTS_PER_PAGE;
+            }
+
+            // Lấy sản phẩm theo phân trang
+            List<ProductWithDetails> products = productService.getProductsByCategoryWithPagination(
+                    categoryId, offset, PRODUCTS_PER_PAGE
+            );
+
             Category category = categoryService.getCategoryById(categoryId);
             List<Category> categories = categoryService.getSubCategories();
 
@@ -58,8 +86,11 @@ public class CategoryProductsServlet extends HttpServlet {
             request.setAttribute("products", products);
             request.setAttribute("category", category);
             request.setAttribute("categories", categories);
+            request.setAttribute("currentPage", currentPage);
+            request.setAttribute("totalPages", totalPages);
+            request.setAttribute("totalProducts", totalProducts);
 
-            // Forward đến products.jsp (dùng chung)
+            // Forward đến products.jsp
             request.getRequestDispatcher("products.jsp").forward(request, response);
 
         } catch (NumberFormatException e) {
