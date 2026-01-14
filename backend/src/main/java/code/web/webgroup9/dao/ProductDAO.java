@@ -208,6 +208,34 @@ public class ProductDAO {
                         .one()
         );
     }
+    /**
+     * Lấy sản phẩm theo category với phân trang
+     */
+    public List<ProductWithDetails> getProductsByCategoryWithPagination(int categoryId, int offset, int limit) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery(
+                                "SELECT p.*, " +
+                                        "c.name as category_name, " +
+                                        "d.discount_rate, " +
+                                        "pd.description, pd.warranty, pd.material, pd.voltage, " +
+                                        "pd.dimensions, pd.type, pd.color, pd.style, " +
+                                        "(SELECT img FROM Image WHERE type = 'product' AND ref_id = p.id LIMIT 1) as main_image, " +
+                                        "(SELECT img FROM Image WHERE type = 'product' AND ref_id = p.id LIMIT 1 OFFSET 1) as hover_image " +
+                                        "FROM Product p " +
+                                        "LEFT JOIN Categories c ON p.category_id = c.id " +
+                                        "LEFT JOIN Discount d ON p.discount_id = d.id " +
+                                        "LEFT JOIN Product_Detail pd ON p.id = pd.product_id " +
+                                        "WHERE p.status = 'active' AND p.category_id = :categoryId " +
+                                        "ORDER BY p.id " +
+                                        "LIMIT :limit OFFSET :offset"
+                        )
+                        .bind("categoryId", categoryId)
+                        .bind("limit", limit)
+                        .bind("offset", offset)
+                        .mapToBean(ProductWithDetails.class)
+                        .list()
+        );
+    }
     // ====================
 
 

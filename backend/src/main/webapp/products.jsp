@@ -74,11 +74,16 @@
                     <i class="bi bi-chevron-down"></i>
                 </div>
                 <ul class="filter-list">
-                    <li><label><input type="checkbox" class="price-filter" data-min="0" data-max="1000000"> Dưới 1.000.000₫</label></li>
-                    <li><label><input type="checkbox" class="price-filter" data-min="1000000" data-max="5000000"> 1.000.000₫ – 5.000.000₫</label></li>
-                    <li><label><input type="checkbox" class="price-filter" data-min="5000000" data-max="7500000"> 5.000.000₫ – 7.500.000₫</label></li>
-                    <li><label><input type="checkbox" class="price-filter" data-min="7500000" data-max="10000000"> 7.500.000₫ – 10.000.000₫</label></li>
-                    <li><label><input type="checkbox" class="price-filter" data-min="10000000" data-max="999999999"> Trên 10.000.000₫</label></li>
+                    <li><label><input type="checkbox" class="price-filter" data-min="0" data-max="1000000"> Dưới
+                        1.000.000₫</label></li>
+                    <li><label><input type="checkbox" class="price-filter" data-min="1000000" data-max="5000000">
+                        1.000.000₫ – 5.000.000₫</label></li>
+                    <li><label><input type="checkbox" class="price-filter" data-min="5000000" data-max="7500000">
+                        5.000.000₫ – 7.500.000₫</label></li>
+                    <li><label><input type="checkbox" class="price-filter" data-min="7500000" data-max="10000000">
+                        7.500.000₫ – 10.000.000₫</label></li>
+                    <li><label><input type="checkbox" class="price-filter" data-min="10000000" data-max="999999999">
+                        Trên 10.000.000₫</label></li>
                 </ul>
             </div>
 
@@ -91,7 +96,8 @@
                     </div>
                     <ul class="filter-list">
                         <c:forEach var="cat" items="${categories}">
-                            <li><label><input type="checkbox" class="category-filter" value="${cat.id}"> ${cat.name}</label></li>
+                            <li><label><input type="checkbox" class="category-filter" value="${cat.id}"> ${cat.name}
+                            </label></li>
                         </c:forEach>
                     </ul>
                 </div>
@@ -200,12 +206,10 @@
                         <div id="section-${cat.id}" class="product-section" data-category="${cat.id}">
                             <div class="category-header">
                                 <h3 class="sub-title">${cat.name}</h3>
-                                <a class="view-more-text"
-                                   href="cate_products?action=category&id=${cat.id}">
+                                <a class="view-more-text" href="cate_products?id=${cat.id}">
                                     Xem thêm →
                                 </a>
                             </div>
-
 
                             <div class="product-grid">
                                 <c:forEach var="product" items="${products}">
@@ -249,7 +253,8 @@
                                                     </span>
                                                     <c:if test="${product.hasDiscount()}">
                                                         <span class="old-price">
-                                                            <del><fmt:formatNumber value="${product.price}" pattern="#,###"/>₫</del>
+                                                            <del><fmt:formatNumber value="${product.price}"
+                                                                                   pattern="#,###"/>₫</del>
                                                         </span>
                                                     </c:if>
                                                 </div>
@@ -274,7 +279,29 @@
         </c:choose>
 
         <!-- Pagination -->
-        <div class="pagination" id="pagination"></div>
+
+        <c:if test="${totalPages > 1}">
+            <div class="pagination">
+                <c:if test="${currentPage > 1}">
+                    <a href="cate_products?id=${category.id}&page=${currentPage - 1}" class="prev-btn">← Trước</a>
+                </c:if>
+                <c:if test="${currentPage == 1}">
+                    <a href="#" class="prev-btn disabled">← Trước</a>
+                </c:if>
+
+                <c:forEach var="i" begin="1" end="${totalPages}">
+                    <a href="cate_products?id=${category.id}&page=${i}"
+                       class="page-btn ${i == currentPage ? 'active' : ''}">${i}</a>
+                </c:forEach>
+
+                <c:if test="${currentPage < totalPages}">
+                    <a href="cate_products?id=${category.id}&page=${currentPage + 1}" class="next-btn">Sau →</a>
+                </c:if>
+                <c:if test="${currentPage == totalPages}">
+                    <a href="#" class="next-btn disabled">Sau →</a>
+                </c:if>
+            </div>
+        </c:if>
     </div>
 
     <!-- Footer -->
