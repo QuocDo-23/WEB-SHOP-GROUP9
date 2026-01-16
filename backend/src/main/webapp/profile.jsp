@@ -205,115 +205,6 @@
 
                         <button type="submit" class="save-btn">Lưu Thay Đổi</button>
                     </form>
-
-                    <!-- QUẢN LÝ ĐỊA CHỈ -->
-                    <div class="address-section">
-                        <h2 class="section-title">Địa Chỉ Của Tôi</h2>
-
-                        <button class="add-address-btn" onclick="showAddAddressForm()">
-                            <i class="bi bi-plus-circle"></i> Thêm Địa Chỉ Mới
-                        </button>
-
-                        <!-- Form thêm địa chỉ (ẩn mặc định) -->
-                        <div id="addAddressForm" style="display: none; margin-bottom: 20px; padding: 20px; background: #f0f0f0; border-radius: 8px;">
-                            <h3>Thêm Địa Chỉ Mới</h3>
-                            <form action="${pageContext.request.contextPath}/profile" method="post">
-                                <input type="hidden" name="action" value="addAddress">
-
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label>Tên người nhận</label>
-                                        <input type="text" name="recipientName" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Số điện thoại</label>
-                                        <input type="tel" name="phone" pattern="[0-9]{10,11}" required>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Email</label>
-                                    <input type="email" name="email" value="${user.email}">
-                                </div>
-
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label>Số nhà</label>
-                                        <input type="text" name="houseNumber" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Phường/Xã</label>
-                                        <input type="text" name="commune" required>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Quận/Huyện</label>
-                                    <input type="text" name="district" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Chi tiết địa chỉ</label>
-                                    <textarea name="addressDetail" rows="3" placeholder="Ví dụ: Gần chợ, đối diện trường học..."></textarea>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>
-                                        <input type="checkbox" name="isDefault" value="true">
-                                        Đặt làm địa chỉ mặc định
-                                    </label>
-                                </div>
-
-                                <button type="submit" class="save-btn">Lưu Địa Chỉ</button>
-                                <button type="button" class="save-btn" onclick="hideAddAddressForm()" style="background: #6c757d; margin-left: 10px;">Hủy</button>
-                            </form>
-                        </div>
-
-<%--                        <!-- Danh sách địa chỉ -->--%>
-                        <c:choose>
-                            <c:when test="${empty addresses}">
-                                <p style="color: #666; padding: 20px; text-align: center;">
-                                    Bạn chưa có địa chỉ nào. Hãy thêm địa chỉ mới!
-                                </p>
-                            </c:when>
-                            <c:otherwise>
-                                <c:forEach items="${addresses}" var="addr">
-                                    <div class="address-card ${addr['default'] ? 'default' : ''}
-">
-                                        <div class="address-header">
-                                            <strong>${addr.recipientName}</strong>
-                                            <c:if test="${addr.default}">
-                                                <span class="default-badge">Mặc định</span>
-                                            </c:if>
-                                        </div>
-                                        <p>Điện thoại: ${addr.phone}</p>
-                                        <p>Email: ${addr.email}</p>
-                                        <p>Địa chỉ: ${addr.houseNumber}, ${addr.commune}, ${addr.district}</p>
-                                        <c:if test="${not empty addr.addressDetail}">
-                                            <p>Chi tiết: ${addr.addressDetail}</p>
-                                        </c:if>
-
-                                        <div class="address-actions">
-                                            <c:if test="${!addr.default}">
-                                                <form action="${pageContext.request.contextPath}/profile" method="post" style="display: inline;">
-                                                    <input type="hidden" name="action" value="setDefaultAddress">
-                                                    <input type="hidden" name="addressId" value="${addr.id}">
-                                                    <button type="submit" class="btn-default">Đặt làm mặc định</button>
-                                                </form>
-                                            </c:if>
-
-                                            <form action="${pageContext.request.contextPath}/profile" method="post" style="display: inline;" onsubmit="return confirm('Bạn có chắc muốn xóa địa chỉ này?');">
-                                                <input type="hidden" name="action" value="deleteAddress">
-                                                <input type="hidden" name="addressId" value="${addr.id}">
-                                                <button type="submit" class="btn-delete">Xóa</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </c:forEach>
-                            </c:otherwise>
-                        </c:choose>
-                    </div>
-
                 </div>
             </div>
 
@@ -344,6 +235,5 @@
         }
     };
 </script>
-
 </body>
 </html>

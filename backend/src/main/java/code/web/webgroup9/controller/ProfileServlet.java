@@ -97,7 +97,9 @@ public class ProfileServlet extends HttpServlet {
             user.setName(fullName);
             user.setPhone(phone);
             user.setGender(gender);
-            user.setDateOfBirth(LocalDate.parse(dob));
+            if (dob != null && !dob.isEmpty()) {
+                user.setDateOfBirth(LocalDate.parse(dob));
+            }
 
             boolean success = userDAO.updateUser(user);
 
