@@ -80,19 +80,21 @@
 
             <!-- PHẦN PHẢI -->
             <div class="nav_r" id="nav_r">
-                <div class="search-icon" onclick="openSearchBar()">
-                    <input type="text" placeholder="Tìm kiếm" id="searchInput">
-                    <i class="bi bi-search"></i>
-                </div>
+                <div class="search-icon">
+                    <form action="#" method="get" id="searchForm" onsubmit="return false;">
+                        <input type="text"
+                               name="q"
+                               placeholder="Tìm kiếm sản phẩm..."
+                               id="searchInput"
+                               value="${param.q}"
+                               autocomplete="off"
+                               oninput="handleSearchInput(this.value)">
+                        <button type="button">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </form>
 
-                <i class="bi bi-x back-button-nav" onclick="closeSearchBar()"></i>
-
-                <div class="search-panel" id="searchPanel">
-                    <div class="search-content" id="searchResults">
-                        <div class="section-header_search">
-                            <h2 class="section-title-search">Gợi ý tìm kiếm</h2>
-                        </div>
-                    </div>
+                    <div id="searchSuggestions" class="search-suggestions"></div>
                 </div>
 
                 <div class="icon-group">
@@ -137,3 +139,35 @@
         </div>
     </div>
 </nav>
+<script>
+    let searchTimeout;
+
+    function handleSearchInput(value) {
+        clearTimeout(searchTimeout);
+        const suggestionsDiv = document.getElementById('searchSuggestions');
+
+        if (value.length < 2) {
+            suggestionsDiv.style.display = 'none';
+            return;
+        }
+
+        searchTimeout = setTimeout(() => {
+            fetch('search-suggestions?q=' + encodeURIComponent(value))
+                .then(response => response.text())
+                .then(html => {
+                    suggestionsDiv.innerHTML = html;
+                    suggestionsDiv.style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Search error:', error);
+                });
+        }, 300);
+    }
+
+    document.addEventListener('click', function(e) {
+        const searchIcon = document.querySelector('.search-icon');
+        if (searchIcon && !searchIcon.contains(e.target)) {
+            document.getElementById('searchSuggestions').style.display = 'none';
+        }
+    });
+</script>

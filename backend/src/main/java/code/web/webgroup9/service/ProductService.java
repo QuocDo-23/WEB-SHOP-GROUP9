@@ -26,9 +26,9 @@ public class ProductService {
         return productDAO.getProductById(id);
     }
 
-//    public List<ProductWithDetails> searchProducts(String keyword) {
-//        return productDAO.searchProducts(keyword);
-//    }
+    public List<ProductWithDetails> searchProducts(String keyword) {
+        return productDAO.searchProducts(keyword);
+    }
 
     public void updateRating(int productId, double rating) {
         productDAO.updateRating(productId, rating);
