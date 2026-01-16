@@ -118,7 +118,7 @@
                                         <a href="${pageContext.request.contextPath}/profile.jsp">
                                             <i class="bi bi-person"></i> Tài khoản
                                         </a>
-                                        <a href="${pageContext.request.contextPath}/order.jsp">
+                                        <a href="${pageContext.request.contextPath}/orders">
                                             <i class="bi bi-clipboard-check"></i> Đơn Hàng
                                         </a>
                                         <a href="${pageContext.request.contextPath}/logout">

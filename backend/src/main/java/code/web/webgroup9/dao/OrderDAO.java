@@ -173,18 +173,19 @@ public class OrderDAO {
      * Insert order item mới
      */
     public boolean insertOrderItem(OrderItem item) {
-        String sql = "INSERT INTO order_details (order_id, product_id, product_name, product_material, " +
-                "price, quantity, subtotal) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO order_details (order_id, product_id, product_name, img, product_material, " +
+                "price, quantity, subtotal) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         return jdbi.withHandle(handle -> {
             int rows = handle.createUpdate(sql)
                     .bind(0, item.getOrderId())
                     .bind(1, item.getProductId())
                     .bind(2, item.getProductName())
-                    .bind(3, item.getProductMaterial())
-                    .bind(4, item.getPrice())
-                    .bind(5, item.getQuantity())
-                    .bind(6, item.getSubtotal())
+                    .bind(3, item.getImg())
+                    .bind(4, item.getProductMaterial())
+                    .bind(5, item.getPrice())
+                    .bind(6, item.getQuantity())
+                    .bind(7, item.getSubtotal())
                     .execute();
             return rows > 0;
         });
@@ -205,6 +206,7 @@ public class OrderDAO {
                         item.setOrderId(rs.getInt("order_id"));
                         item.setProductId(rs.getInt("product_id"));
                         item.setProductName(rs.getString("product_name"));
+                        item.setImg(rs.getString("img"));
                         item.setProductMaterial(rs.getString("product_material"));
                         item.setPrice(rs.getDouble("price"));
                         item.setQuantity(rs.getInt("quantity"));
@@ -230,6 +232,7 @@ public class OrderDAO {
                         item.setOrderId(rs.getInt("order_id"));
                         item.setProductId(rs.getInt("product_id"));
                         item.setProductName(rs.getString("product_name"));
+                        item.setImg(rs.getString("img"));
                         item.setProductMaterial(rs.getString("product_material"));
                         item.setPrice(rs.getDouble("price"));
                         item.setQuantity(rs.getInt("quantity"));

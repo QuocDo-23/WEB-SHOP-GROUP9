@@ -99,8 +99,7 @@
 
                 <div class="form-group">
                     <textarea name="addressDetail" id="addressDetail"
-                              placeholder="Ghi chú địa chỉ cụ thể (nếu có) *"
-                              required>${isNewAddress ? '' : (not empty selectedAddress ? selectedAddress.addressDetail : '')}</textarea>
+                              placeholder="Ghi chú địa chỉ cụ thể (nếu có) *">${isNewAddress ? '' : (not empty selectedAddress ? selectedAddress.addressDetail : '')}</textarea>
                 </div>
 
                 <c:if test="${not empty sessionScope.user}">
@@ -275,9 +274,8 @@
     document.getElementById('checkoutForm').addEventListener('submit', function(e) {
         const recipientName = document.getElementById('recipientName').value.trim();
         const phone = document.getElementById('phone').value.trim();
-        const addressDetail = document.getElementById('addressDetail').value.trim();
 
-        if (!recipientName || !phone || !addressDetail) {
+        if (!recipientName || !phone ) {
             e.preventDefault();
             alert('Vui lòng điền đầy đủ thông tin nhận hàng');
             return false;
