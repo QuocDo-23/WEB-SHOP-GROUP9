@@ -122,4 +122,8 @@ public class Order implements Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public java.sql.Date getOrderDateAsSqlDate() {
+        return java.sql.Date.valueOf(orderDate);
+    }
 }

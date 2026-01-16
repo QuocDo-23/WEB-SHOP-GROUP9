@@ -48,9 +48,11 @@ nav {
     background: #f0f2f5;
     padding: 6px 12px;
     border-radius: 50px;
-    flex: 0 0 180px;
+    flex: 0 0 260px;
     height: 30px;
     transition: 0.3s ease;
+    position: relative;
+    width: 100%;
 }
 
 .nav-container .search-icon input {

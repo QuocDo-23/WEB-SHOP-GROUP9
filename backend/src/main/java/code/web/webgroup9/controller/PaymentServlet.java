@@ -113,6 +113,10 @@ public class PaymentServlet extends HttpServlet {
             String commune = request.getParameter("commune");
             String district = request.getParameter("district");
             String addressDetail = request.getParameter("addressDetail");
+            if (addressDetail != null && addressDetail.trim().isEmpty()) {
+                addressDetail = null;
+            }
+
 
             String shippingMethod = request.getParameter("shippingMethod");
             String paymentMethod = request.getParameter("paymentMethod");
@@ -149,9 +153,9 @@ public class PaymentServlet extends HttpServlet {
                     orderItem.setProductName(item.getProduct().getName());
                     orderItem.setProductMaterial(item.getProduct().getMaterial());
                     orderItem.setPrice(item.getProduct().getDiscountedPrice());
+                    orderItem.setImg(item.getProduct().getMainImage());
                     orderItem.setQuantity(item.getQuantity());
                     orderItem.setSubtotal(item.getQuantity() * item.getProduct().getDiscountedPrice());
-
                     orderDAO.insertOrderItem(orderItem);
                 }
 
