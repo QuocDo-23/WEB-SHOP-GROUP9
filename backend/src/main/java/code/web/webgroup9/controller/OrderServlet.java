@@ -66,6 +66,7 @@ public class OrderServlet extends HttpServlet {
         request.setAttribute("orders", orders);
         request.setAttribute("orderItemsMap", orderItemsMap);
         request.setAttribute("paymentMap", paymentMap);
+        request.setAttribute("activeTab", "orders");;
 
         request.getRequestDispatcher("order.jsp").forward(request, response);
     }

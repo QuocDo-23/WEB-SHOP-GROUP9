@@ -2,6 +2,7 @@ package code.web.webgroup9.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Order implements Serializable {
     private int id;
@@ -122,8 +123,9 @@ public class Order implements Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
-
-    public java.sql.Date getOrderDateAsSqlDate() {
-        return java.sql.Date.valueOf(orderDate);
+    public String getOrderDateFormatted() {
+        if (orderDate == null) return "";
+        return orderDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
+
 }

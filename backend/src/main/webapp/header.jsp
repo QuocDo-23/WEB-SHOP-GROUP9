@@ -108,31 +108,46 @@
                     </div>
 
                     <div class="login" id="login">
-                        <c:choose>
-                            <c:when test="${not empty sessionScope.user}">
-                                <a href="#">
-                                    <i class="bi bi-person-circle" title="${sessionScope.user.name}"></i>
-                                </a>
-                                <div class="sub_login">
-                                    <div class="container-sub-login">
-                                        <a href="${pageContext.request.contextPath}/profile.jsp">
-                                            <i class="bi bi-person"></i> Tài khoản
-                                        </a>
-                                        <a href="${pageContext.request.contextPath}/orders">
-                                            <i class="bi bi-clipboard-check"></i> Đơn Hàng
-                                        </a>
-                                        <a href="${pageContext.request.contextPath}/logout">
-                                            <i class="bi bi-box-arrow-right"></i> Đăng xuất
-                                        </a>
+
+
+                        <div class="login" id="login">
+                            <c:choose>
+                                <c:when test="${not empty sessionScope.user}">
+                                    <a href="#" class="avatar-link">
+                                        <c:choose>
+                                            <c:when test="${not empty sessionScope.user.avatarImg}">
+                                                <img src="${pageContext.request.contextPath}/images/${sessionScope.user.avatarImg}"
+                                                     alt="Avatar">
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img src="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png"
+                                                     alt="Avatar">
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </a>
+
+                                    <div class="sub_login">
+                                        <div class="container-sub-login">
+                                            <a href="${pageContext.request.contextPath}/profile">
+                                                <i class="bi bi-person"></i> Tài khoản
+                                            </a>
+                                            <a href="${pageContext.request.contextPath}/orders">
+                                                <i class="bi bi-clipboard-check"></i> Đơn Hàng
+                                            </a>
+                                            <a href="${pageContext.request.contextPath}/logout">
+                                                <i class="bi bi-box-arrow-right"></i> Đăng xuất
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                            </c:when>
-                            <c:otherwise>
-                                <a href="${pageContext.request.contextPath}/login">
-                                    <i class="bi bi-person-circle" title="Đăng nhập"></i>
-                                </a>
-                            </c:otherwise>
-                        </c:choose>
+                                </c:when>
+                                <c:otherwise>
+                                    <!-- Chưa login: giữ icon mặc định -->
+                                    <a href="${pageContext.request.contextPath}/login">
+                                        <i class="bi bi-person-circle" title="Đăng nhập"></i>
+                                    </a>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
                     </div>
                 </div>
             </div>
