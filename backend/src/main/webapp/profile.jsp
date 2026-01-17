@@ -18,6 +18,8 @@
     <!-- CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/profile.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/confirm.css">
+
 
     <title>Thông tin của tôi</title>
 
@@ -105,12 +107,12 @@
     <!-- HEADER -->
     <div class="header">
         <div class="header-cont">
-            <a href="${pageContext.request.contextPath}/index.jsp" class="logo-link">
+            <a href="./" class="logo-link">
                 <img src="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png" alt="logo">
                 <h1>Thông Tin</h1>
             </a>
-            <a href="${pageContext.request.contextPath}/logout">
-                <div class="logout-btn">Đăng xuất</div>
+            <a href="./">
+                <div class="logout-btn">Quay về trang chủ</div>
             </a>
         </div>
     </div>
@@ -120,27 +122,8 @@
         <div class="main-content">
 
             <!-- SIDEBAR -->
-            <div class="sidebar">
-                <div class="edit-avatar">
-                    <img src="${user.avatarImg != null ? user.avatarImg : 'https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png'}"
-                         alt="Avatar" class="profile-pic">
+            <jsp:include page="siderbar_user.jsp"/>
 
-                    <div class="cont">
-                        <label class="edit-avatar-btn">
-                            Chỉnh Sửa Ảnh
-                            <input type="file" name="avatar" accept="image/*">
-                        </label>
-                    </div>
-                </div>
-
-                <div class="menu-item active">
-                    <i class="bi bi-person"></i> Thông Tin Cá Nhân
-                </div>
-
-                <a href="${pageContext.request.contextPath}/order" class="menu-item">
-                    <i class="bi bi-clipboard-check"></i> Đơn Hàng
-                </a>
-            </div>
 
             <!-- PROFILE FORM -->
             <div class="profile-container">

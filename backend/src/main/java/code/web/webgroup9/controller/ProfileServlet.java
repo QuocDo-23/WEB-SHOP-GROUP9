@@ -50,6 +50,7 @@ public class ProfileServlet extends HttpServlet {
         // Load địa chỉ mặc định
         Address defaultAddress = addressDAO.getDefaultAddress(user.getId());
         request.setAttribute("defaultAddress", defaultAddress);
+        request.setAttribute("activeTab", "profile");
 
         request.getRequestDispatcher("profile.jsp").forward(request, response);
     }

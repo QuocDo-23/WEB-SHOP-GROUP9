@@ -40,4 +40,9 @@ public class UserService {
     public boolean updateUser(User user) {
         return userDAO.updateUser(user);
     }
+
+    public boolean updateAvatar(int userId, String avatarUrl) {
+        return userDAO.updateAvatar(userId, avatarUrl);
+    }
+
 }

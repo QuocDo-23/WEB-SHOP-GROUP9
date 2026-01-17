@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="./CSS/profile.css">
     <link rel="stylesheet" href="./CSS/order.css">
     <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./CSS/confirm.css">
+
     <title>Đơn hàng của tôi</title>
 </head>
 <body>
@@ -22,32 +24,16 @@
                 <img src="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png" alt="logo">
                 <h1>Thông Tin</h1>
             </a>
-            <a href="logout">
-                <div class="logout-btn">Đăng xuất</div>
+            <a href="./">
+                <div class="logout-btn">Quay về trang chủ</div>
             </a>
         </div>
     </div>
 
     <div class="container">
         <div class="main-content">
-            <div class="sidebar">
-                <div class="edit-avatar">
-<%--                    <img src="${not empty user.avatar ? user.avatar : 'https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png'}"--%>
-<%--                         alt="Avatar" class="profile-pic">--%>
-                    <div class="cont">
-                        <label class="edit-avatar-btn">
-                            Chỉnh Sửa Ảnh
-                            <input type="file" accept="image/*">
-                        </label>
-                    </div>
-                </div>
-                <a href="profile.jsp" class="menu-item">
-                    <i class="bi bi-person"></i> Thông Tin Cá Nhân
-                </a>
-                <a href="orders" class="menu-item active">
-                    <i class="bi bi-clipboard-check"></i> Đơn Hàng
-                </a>
-            </div>
+            <jsp:include page="siderbar_user.jsp"/>
+
 
             <div class="profile-container">
                 <div class="content-area">
@@ -84,8 +70,9 @@
                                             <div class="info-item">
                                                 <span class="info-label">Ngày đặt hàng</span>
                                                 <span class="info-value">
-<%--                                                        <fmt:formatDate value="${order.getOrderDate}" pattern="dd/MM/yyyy"/>--%>
-                                                    </span>
+                                                        ${order.orderDateFormatted}
+                                                </span>
+
                                             </div>
                                             <div class="info-item">
                                                 <span class="info-label">Người nhận</span>

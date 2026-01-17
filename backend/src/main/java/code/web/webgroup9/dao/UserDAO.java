@@ -172,5 +172,23 @@ public class UserDAO {
             return false;
         }
     }
+    /**
+     * Cập nhật ảnh đại diện
+     */
+
+    public boolean updateAvatar(int userId, String avatarUrl) {
+        String sql = "UPDATE user SET avatar_img = :avatar WHERE id = :id";
+
+        int rows = jdbi.withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("avatar", avatarUrl)
+                        .bind("id", userId)
+                        .execute()
+        );
+
+        return rows > 0;
+    }
+
+
 
 }
