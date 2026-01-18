@@ -140,6 +140,10 @@
                 <a href="${pageContext.request.contextPath}/order" class="menu-item">
                     <i class="bi bi-clipboard-check"></i> Đơn Hàng
                 </a>
+
+                <a href="${pageContext.request.contextPath}/address" class="menu-item">
+                    <i class="bi bi-house-check"></i> Địa chỉ
+                </a>
             </div>
 
             <!-- PROFILE FORM -->
@@ -207,8 +211,6 @@
                     </form>
                 </div>
             </div>
-
-        </div>
     </div>
 
     <!-- FOOTER -->
