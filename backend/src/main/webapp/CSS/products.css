@@ -186,7 +186,7 @@
 
 .cart-icon i {
     font-size: 18px;
-    color: white;
+    color: #fff;
 }
 
 .cart-icon:hover {
@@ -558,4 +558,12 @@
     opacity: 0.4;
     cursor: not-allowed;
     pointer-events: none;
+}
+.cart-icon button {
+    background: #8b7355;
+    border: none;
+}
+
+.cart-icon button i {
+    color: white;
 }
