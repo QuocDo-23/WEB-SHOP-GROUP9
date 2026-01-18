@@ -9,11 +9,24 @@ document.addEventListener("DOMContentLoaded", function () {
     // MỞ mini cart (chỉ icon trên thẻ sản phẩm có class .open-cart)
     document.querySelectorAll(".open-cart").forEach(btn => {
         btn.addEventListener("click", function (e) {
-            e.preventDefault();
-            cart?.classList.add("active");
-            overlay?.classList.add("active");
+            e.preventDefault(); // ⭐ BẮT BUỘC
+
+            const productId = this.dataset.productId;
+            if (!productId) return;
+
+            fetch(`add-cart?pID=${productId}&quantity=1`)
+                .then(() => {
+                    const cart = document.getElementById("khunggiohang");
+                    const overlay = document.getElementById("cart-overlay");
+
+                    cart?.classList.add("active");
+                    overlay?.classList.add("active");
+                })
+                .catch(err => console.error(err));
         });
     });
+
+
 
     // ĐÓNG mini cart (nút X)
     document.querySelectorAll(".close-cart").forEach(btn => {
