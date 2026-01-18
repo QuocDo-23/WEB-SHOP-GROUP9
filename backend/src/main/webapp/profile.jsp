@@ -124,7 +124,6 @@
             <!-- SIDEBAR -->
             <jsp:include page="siderbar_user.jsp"/>
 
-
             <!-- PROFILE FORM -->
             <div class="profile-container">
                 <div class="content-area">
@@ -190,8 +189,6 @@
                     </form>
                 </div>
             </div>
-
-        </div>
     </div>
 
     <!-- FOOTER -->
