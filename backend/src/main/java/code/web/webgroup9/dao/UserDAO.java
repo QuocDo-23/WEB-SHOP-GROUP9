@@ -188,6 +188,19 @@ public class UserDAO {
 
         return rows > 0;
     }
+    /**
+     * Đếm tổng số khách hàng
+     */
+    public int getTotalCustomerCount() {
+        String sql = "SELECT COUNT(*) FROM user WHERE role_id = '2'";
+
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(sql)
+                    .mapTo(Integer.class)
+                    .findOne()
+                    .orElse(0);
+        });
+    }
 
 
 

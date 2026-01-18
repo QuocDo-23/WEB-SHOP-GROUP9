@@ -3,7 +3,9 @@ package code.web.webgroup9.dao;
 import code.web.webgroup9.model.Order;
 import org.jdbi.v3.core.Jdbi;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import code.web.webgroup9.model.OrderItem;
@@ -64,7 +66,7 @@ public class OrderDAO {
                         order.setShippingCommune(rs.getString("shipping_commune"));
                         order.setShippingDistrict(rs.getString("shipping_district"));
                         order.setShippingAddressDetail(rs.getString("shipping_address_detail"));
-                        order.setOrderDate(rs.getDate("order_date").toLocalDate());
+                        order.setOrderDate(rs.getTimestamp("order_date").toLocalDateTime());
                         order.setTotal(rs.getDouble("total"));
                         order.setStatus(rs.getString("status"));
 
@@ -98,7 +100,7 @@ public class OrderDAO {
                         order.setShippingCommune(rs.getString("shipping_commune"));
                         order.setShippingDistrict(rs.getString("shipping_district"));
                         order.setShippingAddressDetail(rs.getString("shipping_address_detail"));
-                        order.setOrderDate(rs.getDate("order_date").toLocalDate());
+                        order.setOrderDate(rs.getTimestamp("order_date").toLocalDateTime());
                         order.setTotal(rs.getDouble("total"));
                         order.setStatus(rs.getString("status"));
 
@@ -159,7 +161,7 @@ public class OrderDAO {
                         order.setShippingCommune(rs.getString("shipping_commune"));
                         order.setShippingDistrict(rs.getString("shipping_district"));
                         order.setShippingAddressDetail(rs.getString("shipping_address_detail"));
-                        order.setOrderDate(rs.getDate("order_date").toLocalDate());
+                        order.setOrderDate(rs.getTimestamp("order_date").toLocalDateTime());
                         order.setTotal(rs.getDouble("total"));
                         order.setStatus(rs.getString("status"));
 
@@ -269,6 +271,195 @@ public class OrderDAO {
                     .bind(0, orderId)
                     .execute();
             return rows > 0;
+        });
+    }
+    /**
+     * Đếm số đơn hàng chưa giao của user
+     */
+    public int countOrdersByUserId(int userId) {
+        String sql = "SELECT COUNT(*) FROM orders WHERE user_id = ? AND status != 'delivered' AND status != 'cancelled'";
+
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(sql)
+                    .bind(0, userId)
+                    .mapTo(Integer.class)
+                    .findOne()
+                    .orElse(0);
+        });
+    }
+    /**
+     * Lấy tổng doanh thu
+     */
+    public double getTotalRevenue() {
+        String sql = "SELECT COALESCE(SUM(total), 0) FROM orders WHERE status != 'cancelled'";
+
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(sql)
+                    .mapTo(Double.class)
+                    .findOne()
+                    .orElse(0.0);
+        });
+    }
+
+    /**
+     * Đếm tổng số đơn hàng
+     */
+    public int getTotalOrderCount() {
+        String sql = "SELECT COUNT(*) FROM orders";
+
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(sql)
+                    .mapTo(Integer.class)
+                    .findOne()
+                    .orElse(0);
+        });
+    }
+
+    /**
+     * Đếm đơn hàng theo trạng thái
+     */
+    public int getOrderCountByStatus(String status) {
+        String sql = "SELECT COUNT(*) FROM orders WHERE status = ?";
+
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(sql)
+                    .bind(0, status)
+                    .mapTo(Integer.class)
+                    .findOne()
+                    .orElse(0);
+        });
+    }
+
+    /**
+     * Đếm đơn hàng hôm nay
+     */
+    public int getTodayOrderCount() {
+        String sql = "SELECT COUNT(*) FROM orders WHERE DATE(order_date) = CURDATE()";
+
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(sql)
+                    .mapTo(Integer.class)
+                    .findOne()
+                    .orElse(0);
+        });
+    }
+
+    /**
+     * Lấy doanh thu tháng hiện tại
+     */
+    public double getCurrentMonthRevenue() {
+        String sql = "SELECT COALESCE(SUM(total), 0) FROM orders " +
+                "WHERE MONTH(order_date) = MONTH(CURDATE()) " +
+                "AND YEAR(order_date) = YEAR(CURDATE()) " +
+                "AND status != 'cancelled'";
+
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(sql)
+                    .mapTo(Double.class)
+                    .findOne()
+                    .orElse(0.0);
+        });
+    }
+
+    /**
+     * Đếm đơn hàng tháng hiện tại
+     */
+    public int getCurrentMonthOrderCount() {
+        String sql = "SELECT COUNT(*) FROM orders " +
+                "WHERE MONTH(order_date) = MONTH(CURDATE()) " +
+                "AND YEAR(order_date) = YEAR(CURDATE())";
+
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(sql)
+                    .mapTo(Integer.class)
+                    .findOne()
+                    .orElse(0);
+        });
+    }
+
+    /**
+     * Lấy top sản phẩm bán chạy
+     */
+    public List<Map<String, Object>> getTopSellingProducts(int limit) {
+        String sql = "SELECT od.product_name, MAX(od.img) AS img, c.name, SUM(od.quantity) as total_sold, " +
+                "SUM(od.subtotal) as revenue " +
+                "FROM order_details od " +
+                "JOIN orders o ON od.order_id = o.id " +
+                "JOIN product p ON od.product_id = p.id " +
+                "JOIN categories c ON p.category_id = c.id " +
+                "WHERE o.status != 'cancelled' " +
+                "GROUP BY od.product_name, od.img, c.name " +
+                "ORDER BY total_sold DESC " +
+                "LIMIT ?";
+
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(sql)
+                    .bind(0, limit)
+                    .map((rs, ctx) -> {
+                        Map<String, Object> product = new HashMap<>();
+                        product.put("productName", rs.getString("product_name"));
+                        product.put("img", rs.getString("img"));
+                        product.put("category", rs.getString("name"));
+                        product.put("totalSold", rs.getInt("total_sold"));
+                        product.put("revenue", rs.getDouble("revenue"));
+                        return product;
+                    })
+                    .list();
+        });
+    }
+
+    /**
+     * Lấy đơn hàng gần đây
+     */
+    public List<Order> getRecentOrders(int limit) {
+        String sql = "SELECT * FROM orders ORDER BY order_date DESC, id DESC LIMIT ?";
+
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(sql)
+                    .bind(0, limit)
+                    .map((rs, ctx) -> {
+                        Order order = new Order();
+                        order.setId(rs.getInt("id"));
+                        order.setUserId((Integer) rs.getObject("user_id"));
+                        order.setRecipientName(rs.getString("recipient_name"));
+                        order.setRecipientPhone(rs.getString("recipient_phone"));
+                        order.setRecipientEmail(rs.getString("recipient_email"));
+                        order.setShippingHouseNumber(rs.getString("shipping_house_number"));
+                        order.setShippingCommune(rs.getString("shipping_commune"));
+                        order.setShippingDistrict(rs.getString("shipping_district"));
+                        order.setShippingAddressDetail(rs.getString("shipping_address_detail"));
+                        order.setOrderDate(rs.getTimestamp("order_date").toLocalDateTime());
+                        order.setTotal(rs.getDouble("total"));
+                        order.setStatus(rs.getString("status"));
+                        return order;
+                    })
+                    .list();
+        });
+    }
+
+    /**
+     * Lấy doanh thu theo tháng
+     */
+    public List<Map<String, Object>> getMonthlyRevenue(int months) {
+        String sql = "SELECT DATE_FORMAT(order_date, '%Y-%m') as month, " +
+                "SUM(total) as revenue, COUNT(*) as order_count " +
+                "FROM orders " +
+                "WHERE order_date >= DATE_SUB(CURDATE(), INTERVAL ? MONTH) " +
+                "AND status != 'cancelled' " +
+                "GROUP BY DATE_FORMAT(order_date, '%Y-%m') " +
+                "ORDER BY month DESC";
+
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(sql)
+                    .bind(0, months)
+                    .map((rs, ctx) -> {
+                        Map<String, Object> data = new HashMap<>();
+                        data.put("month", rs.getString("month"));
+                        data.put("revenue", rs.getDouble("revenue"));
+                        data.put("orderCount", rs.getInt("order_count"));
+                        return data;
+                    })
+                    .list();
         });
     }
 }

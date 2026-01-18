@@ -248,6 +248,34 @@ public class ProductDAO {
         );
     }
     // ====================
+    /**
+     * Giảm số lượng sản phẩm khi có đơn hàng
+     */
+    public boolean decreaseProductQuantity(int productId, int quantity) {
+        String sql = "UPDATE product SET inventory_quantity = inventory_quantity - ? WHERE id = ? AND inventory_quantity >= ?";
+
+        return jdbi.withHandle(handle -> {
+            int rows = handle.createUpdate(sql)
+                    .bind(0, quantity)
+                    .bind(1, productId)
+                    .bind(2, quantity)
+                    .execute();
+            return rows > 0;
+        });
+    }
+    /**
+     * Đếm tổng số sản phẩm
+     */
+    public int getTotalProductCount() {
+        String sql = "SELECT COUNT(*) FROM product";
+
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(sql)
+                    .mapTo(Integer.class)
+                    .findOne()
+                    .orElse(0);
+        });
+    }
 
 
 }

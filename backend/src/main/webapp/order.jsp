@@ -57,8 +57,8 @@
                                             <span class="order-status status-${order.status}">
                                                     <c:choose>
                                                         <c:when test="${order.status == 'pending'}">Chờ xác nhận</c:when>
-                                                        <c:when test="${order.status == 'confirmed'}">Đã xác nhận</c:when>
-                                                        <c:when test="${order.status == 'shipping'}">Đang giao hàng</c:when>
+                                                        <c:when test="${order.status == 'processing'}">Đã xác nhận</c:when>
+                                                        <c:when test="${order.status == 'shipped'}">Đang giao hàng</c:when>
                                                         <c:when test="${order.status == 'delivered'}">Đã giao hàng</c:when>
                                                         <c:when test="${order.status == 'cancelled'}">Đã hủy</c:when>
                                                         <c:otherwise>${order.status}</c:otherwise>
@@ -144,6 +144,7 @@
             </div>
         </div>
     </div>
+    <jsp:include page="footer.jsp"/>
 </main>
 </body>
 </html>

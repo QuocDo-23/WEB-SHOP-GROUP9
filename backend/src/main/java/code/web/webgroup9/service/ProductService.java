@@ -47,5 +47,7 @@ public class ProductService {
         return productDAO.getProductsByCategoryWithPagination(categoryId, offset, limit);
 
     }
-
+    public boolean decreaseProductQuantity(int productId, int quantity) {
+        return productDAO.decreaseProductQuantity(productId, quantity);
+    }
 }

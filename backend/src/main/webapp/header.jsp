@@ -131,8 +131,11 @@
                                             <a href="${pageContext.request.contextPath}/profile">
                                                 <i class="bi bi-person"></i> Tài khoản
                                             </a>
-                                            <a href="${pageContext.request.contextPath}/orders">
+                                            <a href="${pageContext.request.contextPath}/orders" class="order-link">
                                                 <i class="bi bi-clipboard-check"></i> Đơn Hàng
+                                                <c:if test="${not empty orderCount && orderCount > 0}">
+                                                    <span class="badge-notification">${orderCount}</span>
+                                                </c:if>
                                             </a>
                                             <a href="${pageContext.request.contextPath}/logout">
                                                 <i class="bi bi-box-arrow-right"></i> Đăng xuất
