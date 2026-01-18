@@ -270,3 +270,30 @@
 .checkout:hover {
     background-color: #967a21;
 }
+/* FIX STYLE NÚT MINI CART */
+.woocommerce-mini-cart__buttons .btn-cart,
+.woocommerce-mini-cart__buttons .checkout {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.woocommerce-mini-cart__buttons .btn-cart {
+    background-color: #fff !important;
+    border: 1px solid #b59530 !important;
+    color: #b59530 !important;
+    font-weight: 700;
+    padding: 12px 0;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+.woocommerce-mini-cart__buttons .checkout {
+    background-color: #b59530 !important;
+    border: none !important;
+    color: #fff !important;
+    font-weight: 700;
+    padding: 14px 0;
+    border-radius: 30px;
+    text-decoration: none;
+}

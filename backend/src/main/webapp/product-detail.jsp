@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="./CSS/style.css">
     <link rel="stylesheet" href="./CSS/sub_login.css">
     <link rel="stylesheet" href="CSS/products.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cart.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -414,106 +416,7 @@
         <i class="bi bi-chevron-up"></i>
     </button>
 </a>
-<!-- ===== MINI CART (KHUNG GIỎ HÀNG) ===== -->
-<div id="khunggiohang" class="cart-widget-side wd-right">
 
-    <!-- Header -->
-    <div class="wd-heading">
-        <span class="title">Giỏ hàng</span>
-        <div class="close-side-widget wd-action-btn wd-style-text wd-cross-icon">
-            <a href="#" class="close-cart" rel="nofollow">× Đóng</a>
-        </div>
-    </div>
-
-    <!-- Body -->
-    <div class="woocommerce-cart-widget">
-        <div class="widget_shopping_cart_content">
-
-            <div class="shopping-cart-widget-body wd-scroll">
-
-                <ul class="cart_list product_list_widget woocommerce-mini-cart">
-
-                    <!-- Giỏ trống -->
-                    <c:if test="${empty sessionScope.cart || empty sessionScope.cart.items}">
-                        <li class="mini-cart-empty">
-                            <p>Giỏ hàng của bạn đang trống</p>
-                        </li>
-                    </c:if>
-
-                    <!-- Có sản phẩm -->
-                    <c:forEach var="item" items="${sessionScope.cart.items}">
-                        <li class="woocommerce-mini-cart-item mini_cart_item">
-
-                            <a href="product-detail?id=${item.product.id}"
-                               class="cart-item-link"
-                               style="text-decoration:none;color:inherit;">
-
-                                <div class="cart-item-image">
-                                    <img src="${item.product.mainImage}"
-                                         alt="${item.product.name}">
-                                </div>
-
-                                <div class="cart-info">
-                                    <div class="cart-info-top">
-                                        <span class="wd-entities-title">
-                                                ${item.product.name}
-                                        </span>
-
-                                        <!-- XÓA -->
-                                        <a href="remove-cart?id=${item.product.id}"
-                                           class="remove remove_from_cart_button">×</a>
-                                    </div>
-
-                                    <!-- SỐ LƯỢNG + GIÁ -->
-                                    <span class="quantity">
-                                        <a href="update-cart?id=${item.product.id}&type=minus">-</a>
-                                        <span class="qty">${item.quantity}</span>
-                                        <a href="update-cart?id=${item.product.id}&type=plus">+</a>
-
-                                        <span class="woocommerce-Price-amount amount">
-                                            <bdi>
-                                                <fmt:formatNumber value="${item.totalPrice}" pattern="#,###"/>₫
-                                            </bdi>
-                                        </span>
-                                    </span>
-                                </div>
-                            </a>
-                        </li>
-                    </c:forEach>
-
-                </ul>
-            </div>
-
-            <!-- ===== TỔNG TIỀN (BẮT BUỘC) ===== -->
-            <div class="shopping-cart-widget-footer">
-                <p class="woocommerce-mini-cart__total total">
-                    <strong>Tổng tiền:</strong>
-                    <span class="woocommerce-Price-amount amount">
-                        <bdi>
-                            <fmt:formatNumber
-                                    value="${sessionScope.cart.totalPrice}"
-                                    pattern="#,###"/>₫
-                        </bdi>
-                    </span>
-                </p>
-
-                <!-- NÚT -->
-                <p class="woocommerce-mini-cart__buttons buttons">
-                    <a href="cart" class="button btn-cart wc-forward">
-                        Xem giỏ hàng
-                    </a>
-                    <a href="payment" class="button checkout wc-forward">
-                        Thanh toán
-                    </a>
-                </p>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<div id="cart-overlay"></div>
-<!-- ===== HẾT MINI CART ===== -->
 
 <!-- Review Box Overlay -->
 <div class="overlay"></div>
@@ -554,6 +457,8 @@
         <button type="submit" class="submit-btn">Gửi đánh giá</button>
     </form>
 </div>
+<!-- ===== MINI CART (CHỖ DÁN DUY NHẤT) ===== -->
+<jsp:include page="cart-mini.jsp"/>
 
 <!-- JavaScript -->
 <script>
