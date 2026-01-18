@@ -2,6 +2,7 @@ package code.web.webgroup9.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Order implements Serializable {
@@ -18,7 +19,7 @@ public class Order implements Serializable {
     private String shippingAddressDetail;
 
 
-    private LocalDate orderDate;
+    private LocalDateTime orderDate;
 
     private double total;
     private String status;
@@ -59,7 +60,7 @@ public class Order implements Serializable {
         return shippingDistrict;
     }
 
-    public LocalDate getOrderDate() {
+    public LocalDateTime getOrderDate() {
         return orderDate;
     }
     public String getShippingAddressDetail(){
@@ -111,7 +112,7 @@ public class Order implements Serializable {
         this.shippingDistrict = shippingDistrict;
     }
 
-    public void setOrderDate(LocalDate orderDate) {
+    public void setOrderDate(LocalDateTime orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -123,6 +124,7 @@ public class Order implements Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
+
     public String getOrderDateFormatted() {
         if (orderDate == null) return "";
         return orderDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
