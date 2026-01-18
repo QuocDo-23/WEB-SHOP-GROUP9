@@ -34,6 +34,13 @@ public class UpdateCart extends HttpServlet {
             }
         }
 
-        response.sendRedirect(request.getContextPath() + "/cart");
+        String from = request.getParameter("from");
+
+        if ("mini".equals(from)) {
+            response.sendRedirect(request.getHeader("Referer"));
+        } else {
+            response.sendRedirect(request.getContextPath() + "/cart");
+        }
+
     }
 }
