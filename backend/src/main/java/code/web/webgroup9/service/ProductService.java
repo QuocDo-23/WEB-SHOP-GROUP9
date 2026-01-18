@@ -26,9 +26,9 @@ public class ProductService {
         return productDAO.getProductById(id);
     }
 
-//    public List<ProductWithDetails> searchProducts(String keyword) {
-//        return productDAO.searchProducts(keyword);
-//    }
+    public List<ProductWithDetails> searchProducts(String keyword) {
+        return productDAO.searchProducts(keyword);
+    }
 
     public void updateRating(int productId, double rating) {
         productDAO.updateRating(productId, rating);
@@ -47,5 +47,7 @@ public class ProductService {
         return productDAO.getProductsByCategoryWithPagination(categoryId, offset, limit);
 
     }
-
+    public boolean decreaseProductQuantity(int productId, int quantity) {
+        return productDAO.decreaseProductQuantity(productId, quantity);
+    }
 }

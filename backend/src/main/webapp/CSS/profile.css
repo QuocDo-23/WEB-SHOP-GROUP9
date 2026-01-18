@@ -66,6 +66,10 @@
     padding: 25px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     height: fit-content;
+    position: sticky;
+    top: 20px;
+    align-self: flex-start;
+    z-index: 100;
 }
 
 .profile-pic {

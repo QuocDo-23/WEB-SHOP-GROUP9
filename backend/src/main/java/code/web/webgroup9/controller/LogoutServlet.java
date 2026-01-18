@@ -18,7 +18,7 @@ public class LogoutServlet extends HttpServlet {
 
         SessionUtil.clearSession(request);
 
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("./");
     }
 
     @Override

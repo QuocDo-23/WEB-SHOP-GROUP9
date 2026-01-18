@@ -127,26 +127,37 @@ public class ProductDAO {
      * Tìm kiếm sản phẩm theo tên
      */
 
-//    public List<ProductWithDetails> searchProducts(String keyword) {
-//        return jdbi.withHandle(handle ->
-//                handle.createQuery(
-//                                "SELECT p.*, " +
-//                                        "c.name as category_name, " +
-//                                        "d.discount_rate, " +
-//                                        "pd.description, " +
-//                                        "(SELECT img FROM Image WHERE type = 'product' AND ref_id = p.id LIMIT 1) as main_image " +
-//                                        "FROM Product p " +
-//                                        "LEFT JOIN Categories c ON p.category_id = c.id " +
-//                                        "LEFT JOIN Discount d ON p.discount_id = d.id " +
-//                                        "LEFT JOIN Product_Detail pd ON p.id = pd.product_id " +
-//                                        "WHERE p.status = 'active' AND pd.description LIKE :keyword " +
-//                                        "ORDER BY p.id LIMIT 5"
-//                        )
-//                        .bind("keyword", "%" + keyword + "%")
-//                        .mapToBean(ProductWithDetails.class)
-//                        .list()
-//        );
-//    }
+    public List<ProductWithDetails> searchProducts(String keyword) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery(
+                                "SELECT p.*, " +
+                                        "c.name as category_name, " +
+                                        "d.discount_rate, " +
+                                        "pd.description, " +
+                                        "(SELECT img FROM Image WHERE type = 'product' AND ref_id = p.id LIMIT 1) as main_image " +
+                                        "FROM Product p " +
+                                        "LEFT JOIN Categories c ON p.category_id = c.id " +
+                                        "LEFT JOIN Discount d ON p.discount_id = d.id " +
+                                        "LEFT JOIN Product_Detail pd ON p.id = pd.product_id " +
+                                        "WHERE p.status = 'active' " +
+                                        "AND (p.name LIKE :keyword OR pd.description LIKE :keyword OR c.name LIKE :keyword) " +
+                                        "ORDER BY " +
+                                        "CASE " +
+                                        "  WHEN p.name LIKE :exactKeyword THEN 1 " +
+                                        "  WHEN p.name LIKE :keyword THEN 2 " +
+                                        "  WHEN pd.description LIKE :keyword THEN 3 " +
+                                        "  ELSE 4 " +
+                                        "END, " +
+                                        "p.review DESC " +
+                                        "LIMIT 5"
+                        )
+                        .bind("keyword", "%" + keyword + "%")
+                        .bind("exactKeyword", keyword + "%")
+                        .mapToBean(ProductWithDetails.class)
+                        .list()
+        );
+    }
+
 
 
     /**
@@ -237,6 +248,34 @@ public class ProductDAO {
         );
     }
     // ====================
+    /**
+     * Giảm số lượng sản phẩm khi có đơn hàng
+     */
+    public boolean decreaseProductQuantity(int productId, int quantity) {
+        String sql = "UPDATE product SET inventory_quantity = inventory_quantity - ? WHERE id = ? AND inventory_quantity >= ?";
+
+        return jdbi.withHandle(handle -> {
+            int rows = handle.createUpdate(sql)
+                    .bind(0, quantity)
+                    .bind(1, productId)
+                    .bind(2, quantity)
+                    .execute();
+            return rows > 0;
+        });
+    }
+    /**
+     * Đếm tổng số sản phẩm
+     */
+    public int getTotalProductCount() {
+        String sql = "SELECT COUNT(*) FROM product";
+
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(sql)
+                    .mapTo(Integer.class)
+                    .findOne()
+                    .orElse(0);
+        });
+    }
 
 
 }

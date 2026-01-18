@@ -172,5 +172,36 @@ public class UserDAO {
             return false;
         }
     }
+    /**
+     * Cập nhật ảnh đại diện
+     */
+
+    public boolean updateAvatar(int userId, String avatarUrl) {
+        String sql = "UPDATE user SET avatar_img = :avatar WHERE id = :id";
+
+        int rows = jdbi.withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("avatar", avatarUrl)
+                        .bind("id", userId)
+                        .execute()
+        );
+
+        return rows > 0;
+    }
+    /**
+     * Đếm tổng số khách hàng
+     */
+    public int getTotalCustomerCount() {
+        String sql = "SELECT COUNT(*) FROM user WHERE role_id = '2'";
+
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(sql)
+                    .mapTo(Integer.class)
+                    .findOne()
+                    .orElse(0);
+        });
+    }
+
+
 
 }

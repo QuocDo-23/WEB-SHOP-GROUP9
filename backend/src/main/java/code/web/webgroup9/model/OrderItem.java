@@ -13,17 +13,27 @@ public class OrderItem implements Serializable {
     private double price;
     private int quantity;
     private double subtotal;
+    private String img;
 
     public OrderItem() {
     }
 
-    public OrderItem(int orderId, int productId, String productName, double price, int quantity) {
+    public OrderItem(int orderId, int productId, String productName, double price, int quantity, String img) {
         this.orderId = orderId;
         this.productId = productId;
         this.productName = productName;
         this.price = price;
         this.quantity = quantity;
+        this.img = img;
+        this.subtotal = price * quantity;
 
+    }
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public int getId() {

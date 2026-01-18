@@ -62,4 +62,8 @@ public class Payment implements Serializable {
     public void setPayDate(LocalDate payDate) {
         this.payDate = payDate;
     }
+
+    public java.sql.Date getOrderDateAsSqlDate() {
+        return java.sql.Date.valueOf(payDate);
+    }
 }

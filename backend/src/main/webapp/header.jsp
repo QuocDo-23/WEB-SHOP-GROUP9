@@ -80,19 +80,21 @@
 
             <!-- PHẦN PHẢI -->
             <div class="nav_r" id="nav_r">
-                <div class="search-icon" onclick="openSearchBar()">
-                    <input type="text" placeholder="Tìm kiếm" id="searchInput">
-                    <i class="bi bi-search"></i>
-                </div>
+                <div class="search-icon">
+                    <form action="#" method="get" id="searchForm" onsubmit="return false;">
+                        <input type="text"
+                               name="q"
+                               placeholder="Tìm kiếm sản phẩm..."
+                               id="searchInput"
+                               value="${param.q}"
+                               autocomplete="off"
+                               oninput="handleSearchInput(this.value)">
+                        <button type="button">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </form>
 
-                <i class="bi bi-x back-button-nav" onclick="closeSearchBar()"></i>
-
-                <div class="search-panel" id="searchPanel">
-                    <div class="search-content" id="searchResults">
-                        <div class="section-header_search">
-                            <h2 class="section-title-search">Gợi ý tìm kiếm</h2>
-                        </div>
-                    </div>
+                    <div id="searchSuggestions" class="search-suggestions"></div>
                 </div>
 
                 <div class="icon-group">
@@ -106,34 +108,84 @@
                     </div>
 
                     <div class="login" id="login">
-                        <c:choose>
-                            <c:when test="${not empty sessionScope.user}">
-                                <a href="#">
-                                    <i class="bi bi-person-circle" title="${sessionScope.user.name}"></i>
-                                </a>
-                                <div class="sub_login">
-                                    <div class="container-sub-login">
-                                        <a href="${pageContext.request.contextPath}/profile.jsp">
-                                            <i class="bi bi-person"></i> Tài khoản
-                                        </a>
-                                        <a href="${pageContext.request.contextPath}/order.jsp">
-                                            <i class="bi bi-clipboard-check"></i> Đơn Hàng
-                                        </a>
-                                        <a href="${pageContext.request.contextPath}/logout">
-                                            <i class="bi bi-box-arrow-right"></i> Đăng xuất
-                                        </a>
+
+
+                        <div class="login" id="login">
+                            <c:choose>
+                                <c:when test="${not empty sessionScope.user}">
+                                    <a href="#" class="avatar-link">
+                                        <c:choose>
+                                            <c:when test="${not empty sessionScope.user.avatarImg}">
+                                                <img src="${pageContext.request.contextPath}/images/${sessionScope.user.avatarImg}"
+                                                     alt="Avatar">
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img src="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png"
+                                                     alt="Avatar">
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </a>
+
+                                    <div class="sub_login">
+                                        <div class="container-sub-login">
+                                            <a href="${pageContext.request.contextPath}/profile">
+                                                <i class="bi bi-person"></i> Tài khoản
+                                            </a>
+                                            <a href="${pageContext.request.contextPath}/orders" class="order-link">
+                                                <i class="bi bi-clipboard-check"></i> Đơn Hàng
+                                                <c:if test="${not empty orderCount && orderCount > 0}">
+                                                    <span class="badge-notification">${orderCount}</span>
+                                                </c:if>
+                                            </a>
+                                            <a href="${pageContext.request.contextPath}/logout">
+                                                <i class="bi bi-box-arrow-right"></i> Đăng xuất
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                            </c:when>
-                            <c:otherwise>
-                                <a href="${pageContext.request.contextPath}/login">
-                                    <i class="bi bi-person-circle" title="Đăng nhập"></i>
-                                </a>
-                            </c:otherwise>
-                        </c:choose>
+                                </c:when>
+                                <c:otherwise>
+                                    <!-- Chưa login: giữ icon mặc định -->
+                                    <a href="${pageContext.request.contextPath}/login">
+                                        <i class="bi bi-person-circle" title="Đăng nhập"></i>
+                                    </a>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </nav>
+<script>
+    let searchTimeout;
+
+    function handleSearchInput(value) {
+        clearTimeout(searchTimeout);
+        const suggestionsDiv = document.getElementById('searchSuggestions');
+
+        if (value.length < 2) {
+            suggestionsDiv.style.display = 'none';
+            return;
+        }
+
+        searchTimeout = setTimeout(() => {
+            fetch('search-suggestions?q=' + encodeURIComponent(value))
+                .then(response => response.text())
+                .then(html => {
+                    suggestionsDiv.innerHTML = html;
+                    suggestionsDiv.style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Search error:', error);
+                });
+        }, 300);
+    }
+
+    document.addEventListener('click', function(e) {
+        const searchIcon = document.querySelector('.search-icon');
+        if (searchIcon && !searchIcon.contains(e.target)) {
+            document.getElementById('searchSuggestions').style.display = 'none';
+        }
+    });
+</script>

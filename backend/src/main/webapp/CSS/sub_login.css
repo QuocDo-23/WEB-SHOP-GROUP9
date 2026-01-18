@@ -13,6 +13,7 @@
     transform: translateY(-10px) scale(0.95);
     transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     padding-top: 20px;
+
 }
 
 .login:hover .sub_login {
@@ -39,7 +40,7 @@
     transition: all 0.3s ease;
     white-space: nowrap;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     font-weight: 500;
     display: flex;
     align-items: center;
@@ -355,4 +356,168 @@
     justify-content: center;
     font-size: 12px;
     font-weight: 700;
+}
+/* Overlay backdrop */
+/* Container cho search form */
+
+.search-icon form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.search-icon button {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    color: #666;
+}
+
+.search-icon button:hover {
+    color: #4CAF50;
+}
+
+/* Dropdown suggestions */
+.search-suggestions {
+    position: absolute;
+    top: calc(100% + 5px); /* Xuất hiện ngay dưới input */
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 9999;
+    display: none;
+}
+
+.search-suggestions.show {
+    display: block;
+}
+
+/* Item trong suggestions */
+.suggestion-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: #333;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: #f8f9fa;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 15px;
+    border: 1px solid #eee;
+}
+
+.suggestion-info {
+    flex: 1;
+}
+
+.suggestion-name {
+    font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.suggestion-price {
+    font-size: 14px;
+    color: #e74c3c;
+    font-weight: 600;
+}
+
+.suggestion-price del {
+    color: #999;
+    font-weight: normal;
+    margin-left: 8px;
+    font-size: 12px;
+}
+
+/* No results */
+.no-results {
+    padding: 30px 20px;
+    text-align: center;
+    color: #999;
+}
+
+.no-results i {
+    font-size: 40px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.no-results p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Scrollbar cho suggestions */
+.search-suggestions::-webkit-scrollbar {
+    width: 8px;
+}
+
+.search-suggestions::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 0 8px 8px 0;
+}
+
+.search-suggestions::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.search-suggestions::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+.order-link {
+    position: relative;
+}
+
+.badge-notification {
+    position: absolute;
+    top: -9px;
+    right: 18px;;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 11px;
+    font-weight: bold;
+    min-width: 18px;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 2000;
+}
+
+.badge-notification {
+    border-radius: 10px;
+    padding: 2px 5px;
 }

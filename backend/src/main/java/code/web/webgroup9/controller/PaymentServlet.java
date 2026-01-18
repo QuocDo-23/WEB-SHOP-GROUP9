@@ -2,26 +2,34 @@ package code.web.webgroup9.controller;
 
 import code.web.webgroup9.dao.*;
 import code.web.webgroup9.model.*;
+import code.web.webgroup9.service.OrderService;
+import code.web.webgroup9.service.PaymentService;
+import code.web.webgroup9.service.addressService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @WebServlet("/payment")
 public class PaymentServlet extends HttpServlet {
 
-    private OrderDAO orderDAO;
-    private PaymentDAO paymentDAO;
-    private AddressDAO addressDAO;
+    private OrderService orderService;
+    private PaymentService paymentService;
+    private addressService addressService;
+    private ProductDAO productDAO;
 
     @Override
     public void init() throws ServletException {
-        orderDAO = new OrderDAO();
-        paymentDAO = new PaymentDAO();
-        addressDAO = new AddressDAO();
+        super.init();
+        orderService = new OrderService();
+        paymentService = new PaymentService();
+        addressService = new addressService();
+        productDAO = new ProductDAO();
+
     }
 
     @Override
@@ -31,7 +39,6 @@ public class PaymentServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
 
-        // Kiểm tra cart có tồn tại và có sản phẩm không
         if (cart == null || cart.getTotalItems() == 0) {
             response.sendRedirect(request.getContextPath() + "/cart");
             return;
@@ -41,7 +48,7 @@ public class PaymentServlet extends HttpServlet {
         User user = (User) session.getAttribute("user");
         if (user != null) {
             // Lấy danh sách địa chỉ đã lưu của user
-            List<Address> savedAddresses = addressDAO.getAddressByUserId(user.getId());
+            List<Address> savedAddresses = addressService.getAddressByUserId(user.getId());
             request.setAttribute("savedAddresses", savedAddresses);
 
             // Xử lý chọn địa chỉ
@@ -81,7 +88,6 @@ public class PaymentServlet extends HttpServlet {
             return;
         }
 
-        // Chuyển đến trang payment.jsp
         request.getRequestDispatcher("/payment.jsp").forward(request, response);
     }
 
@@ -100,7 +106,6 @@ public class PaymentServlet extends HttpServlet {
                 return;
             }
 
-            // Lấy thông tin user (nếu có)
             User user = (User) session.getAttribute("user");
             Integer userId = user != null ? user.getId() : null;
 
@@ -113,6 +118,10 @@ public class PaymentServlet extends HttpServlet {
             String commune = request.getParameter("commune");
             String district = request.getParameter("district");
             String addressDetail = request.getParameter("addressDetail");
+            if (addressDetail != null && addressDetail.trim().isEmpty()) {
+                addressDetail = null;
+            }
+
 
             String shippingMethod = request.getParameter("shippingMethod");
             String paymentMethod = request.getParameter("paymentMethod");
@@ -133,12 +142,12 @@ public class PaymentServlet extends HttpServlet {
             order.setShippingCommune(commune);
             order.setShippingDistrict(district);
             order.setShippingAddressDetail(addressDetail);
-            order.setOrderDate(LocalDate.now());
+            order.setOrderDate(LocalDateTime.now());
             order.setTotal(totalAmount);
             order.setStatus("pending");
 
             // Lưu order vào database
-            int orderId = orderDAO.insertOrder(order);
+            int orderId = orderService.insertOrder(order);
 
             if (orderId > 0) {
                 // Lưu các order items
@@ -149,10 +158,14 @@ public class PaymentServlet extends HttpServlet {
                     orderItem.setProductName(item.getProduct().getName());
                     orderItem.setProductMaterial(item.getProduct().getMaterial());
                     orderItem.setPrice(item.getProduct().getDiscountedPrice());
+                    orderItem.setImg(item.getProduct().getMainImage());
                     orderItem.setQuantity(item.getQuantity());
                     orderItem.setSubtotal(item.getQuantity() * item.getProduct().getDiscountedPrice());
+                    orderService.insertOrderItem(orderItem);
 
-                    orderDAO.insertOrderItem(orderItem);
+                    // Giảm số lượng sản phẩm
+                    productDAO.decreaseProductQuantity(item.getProduct().getId(), item.getQuantity());
+
                 }
 
                 // Tạo payment record
@@ -163,7 +176,7 @@ public class PaymentServlet extends HttpServlet {
                 payment.setStatus("pending");
                 payment.setPayDate(LocalDate.now());
 
-                paymentDAO.insertPayment(payment);
+                paymentService.insertPayment(payment);
 
                 // Lưu địa chỉ nếu user chọn
                 if (user != null && saveAddress) {
@@ -172,7 +185,7 @@ public class PaymentServlet extends HttpServlet {
                             houseNumber, commune, district, addressDetail
                     );
                     newAddress.setEmail(email);
-                    addressDAO.insertAddress(newAddress);
+                    addressService.insertAddress(newAddress);
                 }
 
                 // Xóa cart sau khi đặt hàng thành công

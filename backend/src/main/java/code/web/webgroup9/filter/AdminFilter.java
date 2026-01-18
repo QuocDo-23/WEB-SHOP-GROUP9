@@ -1,5 +1,6 @@
 package code.web.webgroup9.filter;
 
+import code.web.webgroup9.model.User;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
@@ -28,15 +29,15 @@ public class AdminFilter implements Filter {
 
         HttpSession session = httpRequest.getSession(false);
 
+        // Kiểm tra đã login chưa
         if (session == null || session.getAttribute("user") == null) {
             httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.jsp");
             return;
         }
 
-        String userRole = (String) session.getAttribute("userRole");
+        User user = (User) session.getAttribute("user");
 
-        if (!"Admin".equals(userRole)) {
-            // Not admin
+        if (user == null || !"Admin".equalsIgnoreCase(user.getRoleName())) {
             httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN,
                     "Bạn không có quyền truy cập trang này");
             return;
