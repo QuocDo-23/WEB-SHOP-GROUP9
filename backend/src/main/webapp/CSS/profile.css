@@ -282,28 +282,35 @@ form {
 .save-btn:active {
     transform: translateY(0);
 }
+.form-group-area textarea{
+    width: 900px;
+    height: 99px;
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    resize: vertical; /* chỉ cho kéo dọc */
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+.form-group-area {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
 
-/* Responsive */
-@media (max-width: 768px) {
-    .header-cont {
-        width: 100%;
-        padding: 0 20px;
-    }
+.form-group-area label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
 
-    .container {
-        padding: 0 15px;
-    }
 
-    .main-content {
-        grid-template-columns: 1fr;
-    }
-
-    .content-area {
-        padding: 25px 20px;
-    }
-
-    .form-row {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
+/* Khi focus */
+.form-group-area textarea:focus {
+    border-color: #8b7355;
+    box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.15);
+}
+.checkbox-group{
+    margin: 20px 0;
 }

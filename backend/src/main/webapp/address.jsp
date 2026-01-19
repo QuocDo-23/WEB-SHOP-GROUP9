@@ -18,6 +18,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/profile.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/confirm.css">
 
     <title>Địa chỉ của tôi</title>
 
@@ -116,12 +117,12 @@
     <!-- HEADER -->
     <div class="header">
         <div class="header-cont">
-            <a href="${pageContext.request.contextPath}/index.jsp" class="logo-link">
+            <a href="./" class="logo-link">
                 <img src="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png" alt="logo">
                 <h1>Thông Tin</h1>
             </a>
-            <a href="${pageContext.request.contextPath}/logout">
-                <div class="logout-btn">Đăng xuất</div>
+            <a href="./">
+                <div class="logout-btn">Quay về trang chủ</div>
             </a>
         </div>
     </div>
@@ -131,31 +132,7 @@
         <div class="main-content">
 
             <!-- SIDEBAR -->
-            <div class="sidebar">
-                <div class="edit-avatar">
-                    <img src="${user.avatarImg != null ? user.avatarImg : 'https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png'}"
-                         alt="Avatar" class="profile-pic">
-
-                    <div class="cont">
-                        <label class="edit-avatar-btn">
-                            Chỉnh Sửa Ảnh
-                            <input type="file" name="avatar" accept="image/*">
-                        </label>
-                    </div>
-                </div>
-
-                <a href="${pageContext.request.contextPath}/profile" class="menu-item">
-                    <i class="bi bi-person"></i> Thông Tin Cá Nhân
-                </a>
-
-                <a href="${pageContext.request.contextPath}/order" class="menu-item">
-                    <i class="bi bi-clipboard-check"></i> Đơn Hàng
-                </a>
-
-                <div class="menu-item active">
-                    <i class="bi bi-geo-alt"></i> Địa Chỉ
-                </div>
-            </div>
+            <jsp:include page="siderbar_user.jsp" />
 
             <!-- ADDRESS CONTENT -->
             <div class="profile-container">
@@ -214,12 +191,12 @@
                                     <input type="text" name="district" required>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group-area">
                                     <label>Chi tiết địa chỉ</label>
                                     <textarea name="addressDetail" rows="3" placeholder="Ví dụ: Gần chợ, đối diện trường học..."></textarea>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="checkbox-group">
                                     <label>
                                         <input type="checkbox" name="isDefault" value="true">
                                         Đặt làm địa chỉ mặc định
@@ -227,7 +204,7 @@
                                 </div>
 
                                 <button type="submit" class="save-btn">Lưu Địa Chỉ</button>
-                                <button type="button" class="save-btn" onclick="hideAddAddressForm()" style="background: #6c757d; margin-left: 10px;">Hủy</button>
+                                <button type="button" class="save-btn" onclick="hideAddAddressForm()" style="background: #6c757d">Hủy</button>
                             </form>
                         </div>
 
@@ -270,12 +247,12 @@
                                     <input type="text" name="district" id="edit_district" required>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group-area">
                                     <label>Chi tiết địa chỉ</label>
                                     <textarea name="addressDetail" id="edit_addressDetail" rows="3"></textarea>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="checkbox-group">
                                     <label>
                                         <input type="checkbox" name="isDefault" id="edit_isDefault" value="true">
                                         Đặt làm địa chỉ mặc định
@@ -283,7 +260,7 @@
                                 </div>
 
                                 <button type="submit" class="save-btn">Cập Nhật</button>
-                                <button type="button" class="save-btn" onclick="hideEditAddressForm()" style="background: #6c757d; margin-left: 10px;">Hủy</button>
+                                <button type="button" class="save-btn" onclick="hideEditAddressForm()" style="background: #6c757d">Hủy</button>
                             </form>
                         </div>
 

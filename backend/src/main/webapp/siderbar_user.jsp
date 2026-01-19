@@ -44,6 +44,9 @@
     <a href="orders" class="menu-item ${activeTab == 'orders' ? 'active' : ''}">
         <i class="bi bi-clipboard-check"></i> Đơn Hàng
     </a>
+    <a href="address" class="menu-item ${activeTab == 'address' ? 'active' : ''}">
+        <i class="bi bi-geo-alt"></i> địa chỉ
+    </a>
     <a href="logout" class="menu-item logout">
         <i class="bi bi-box-arrow-right"></i> Đăng Xuất
     </a>
