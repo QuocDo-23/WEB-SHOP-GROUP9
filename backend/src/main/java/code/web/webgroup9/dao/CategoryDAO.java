@@ -24,6 +24,21 @@ public class CategoryDAO {
                         .list()
         );
     }
+    /**
+     * Lấy tất cả categories cấp 1
+     */
+
+    public List<Category> getProductCategories() {
+        return jdbi.withHandle(handle ->
+                handle.createQuery(
+                                "SELECT * FROM Categories " +
+                                        "WHERE parent_id IS not NULL " +
+                                        "ORDER BY sort_order, id"
+                        )
+                        .mapToBean(Category.class)
+                        .list()
+        );
+    }
 
     /**
      * Lấy sub-categories (categories có parent_id)

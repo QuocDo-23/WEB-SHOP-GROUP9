@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png">
     <title>Dashboard - Quản Lý Đèn</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/admin.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/admin/admin.css">
 
 </head>
 

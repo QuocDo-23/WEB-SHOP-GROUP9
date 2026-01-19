@@ -36,10 +36,11 @@
 }
 
 .content_img_l .img_main img {
-    width: 100%;
+    width: 99%;
     height: auto;
     border-radius: 8px;
     object-fit: cover;
+    border: 2px solid #8b6a17;
 }
 
 /* --- CỘT PHẢI: THÔNG TIN SẢN PHẨM --- */
@@ -696,4 +697,7 @@ textarea {
     z-index: 999;
     display: none; /* Ẩn ban đầu */
     z-index: 1000;
+}
+.summary-inner{
+    width: 670px;
 }
