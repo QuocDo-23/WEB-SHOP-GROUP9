@@ -4,7 +4,9 @@ import code.web.webgroup9.model.Product;
 import code.web.webgroup9.model.ProductWithDetails;
 import org.jdbi.v3.core.Jdbi;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class ProductDAO {
@@ -274,6 +276,263 @@ public class ProductDAO {
                     .mapTo(Integer.class)
                     .findOne()
                     .orElse(0);
+        });
+    }
+
+    /**
+     * Đếm sản phẩm theo trạng thái (dựa vào quantity)
+     */
+    public int getProductCountByStatus(String status) {
+        String sql;
+        if ("active".equals(status)) {
+            sql = "SELECT COUNT(*) FROM product WHERE inventory_quantity > 0";
+        } else {
+            sql = "SELECT COUNT(*) FROM product WHERE inventory_quantity = 0";
+        }
+
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(sql)
+                    .mapTo(Integer.class)
+                    .findOne()
+                    .orElse(0);
+        });
+    }
+
+    /**
+     * Đếm sản phẩm sắp hết hàng
+     */
+    public int getLowStockProductCount(int threshold) {
+        String sql = "SELECT COUNT(*) FROM product WHERE inventory_quantity > 0 AND inventory_quantity <= ?";
+
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(sql)
+                    .bind(0, threshold)
+                    .mapTo(Integer.class)
+                    .findOne()
+                    .orElse(0);
+        });
+    }
+
+    /**
+     * Đếm sản phẩm hết hàng
+     */
+    public int getOutOfStockProductCount() {
+        String sql = "SELECT COUNT(*) FROM product WHERE inventory_quantity = 0";
+
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(sql)
+                    .mapTo(Integer.class)
+                    .findOne()
+                    .orElse(0);
+        });
+    }
+
+    /**
+     * Insert sản phẩm mới
+     */
+    public boolean insertProduct(ProductWithDetails product) {
+        return jdbi.inTransaction(handle -> {
+
+            // 1. Insert Product
+            int productId = handle.createUpdate(
+                            "INSERT INTO Product (name, category_id, price, inventory_quantity, discount_id, status) " +
+                                    "VALUES (?, ?, ?, ?, ?, 'active')")
+                    .bind(0, product.getName())
+                    .bind(1, product.getCategoryId())
+                    .bind(2, product.getPrice())
+                    .bind(3, product.getInventoryQuantity())
+                    .bind(4, product.getDiscountId())
+                    .executeAndReturnGeneratedKeys("id")
+                    .mapTo(int.class)
+                    .one();
+
+            // 2. Insert Product_Detail
+            handle.createUpdate(
+                            "INSERT INTO Product_Detail (product_id, description, material, voltage, dimensions, " +
+                                    "type, color, style, warranty) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")
+                    .bind(0, productId)
+                    .bind(1, product.getDescription())
+                    .bind(2, product.getMaterial())
+                    .bind(3, product.getVoltage())
+                    .bind(4, product.getDimensions())
+                    .bind(5, product.getType())
+                    .bind(6, product.getColor())
+                    .bind(7, product.getStyle())
+                    .bind(8, product.getWarranty())
+                    .execute();
+
+            // 3. Insert main image
+            if (product.getMainImage() != null) {
+                handle.createUpdate(
+                                "INSERT INTO Image (type, ref_id, img) VALUES ('product', ?, ?)")
+                        .bind(0, productId)
+                        .bind(1, product.getMainImage())
+                        .execute();
+            }
+
+            return true;
+        });
+    }
+
+
+    /**
+     * Update sản phẩm
+     */
+    public boolean updateProduct(ProductWithDetails product) {
+        return jdbi.inTransaction(handle -> {
+
+            // 1. Update Product
+            int productRows = handle.createUpdate(
+                            "UPDATE Product SET name = ?, category_id = ?, price = ?, inventory_quantity = ?, discount_id = ? WHERE id = ?")
+                    .bind(0, product.getName())
+                    .bind(1, product.getCategoryId())
+                    .bind(2, product.getPrice())
+                    .bind(3, product.getInventoryQuantity())
+                    .bind(4, product.getDiscountId())
+                    .bind(5, product.getId())
+                    .execute();
+
+            // 2. Update Product_Detail
+            int detailRows = handle.createUpdate(
+                            "UPDATE Product_Detail SET description = ?, material = ?, voltage = ?, dimensions = ?, " +
+                                    "type = ?, color = ?, style = ?, warranty = ? WHERE product_id = ?")
+                    .bind(0, product.getDescription())
+                    .bind(1, product.getMaterial())
+                    .bind(2, product.getVoltage())
+                    .bind(3, product.getDimensions())
+                    .bind(4, product.getType())
+                    .bind(5, product.getColor())
+                    .bind(6, product.getStyle())
+                    .bind(7, product.getWarranty())
+                    .bind(8, product.getId())
+                    .execute();
+
+            // 3. Update main image
+            if (product.getMainImage() != null) {
+                handle.createUpdate(
+                                "UPDATE Image SET img = ? WHERE type = 'product' AND ref_id = ? LIMIT 1")
+                        .bind(0, product.getMainImage())
+                        .bind(1, product.getId())
+                        .execute();
+            }
+
+            return productRows > 0 && detailRows > 0;
+        });
+    }
+
+
+    /**
+     * Xóa sản phẩm
+     */
+    public boolean deleteProduct(int productId) {
+        String sql = "DELETE FROM product WHERE id = ?";
+
+        return jdbi.withHandle(handle -> {
+            int rows = handle.createUpdate(sql)
+                    .bind(0, productId)
+                    .execute();
+            return rows > 0;
+        });
+    }
+    // Thêm vào ProductDAO.java
+
+    /**
+     * LẤY SẢN PHẨM VỚI PHÂN TRANG NGAY TỪ DATABASE
+     * Tránh lấy toàn bộ rồi mới filter ở Java
+     */
+    public List<ProductWithDetails> getProductsWithPagination(
+            String search, Integer categoryId, String status,
+            int offset, int limit) {
+
+        StringBuilder sql = new StringBuilder(
+                "SELECT p.*, " +
+                        "c.name as category_name, " +
+                        "d.discount_rate, " +
+                        "pd.description, pd.warranty, pd.material, pd.voltage, " +
+                        "pd.dimensions, pd.type, pd.color, pd.style, " +
+                        "(SELECT img FROM Image WHERE type = 'product' AND ref_id = p.id LIMIT 1) as main_image, " +
+                        "(SELECT img FROM Image WHERE type = 'product' AND ref_id = p.id LIMIT 1 OFFSET 1) as hover_image " +
+                        "FROM Product p " +
+                        "LEFT JOIN Categories c ON p.category_id = c.id " +
+                        "LEFT JOIN Discount d ON p.discount_id = d.id " +
+                        "LEFT JOIN Product_Detail pd ON p.id = pd.product_id " +
+                        "WHERE 1=1 "
+        );
+
+        // Thêm điều kiện filter
+        if (search != null && !search.trim().isEmpty()) {
+            sql.append("AND p.name LIKE :search ");
+        }
+
+        if (categoryId != null) {
+            sql.append("AND p.category_id = :categoryId ");
+        }
+
+        if (status != null && !status.trim().isEmpty()) {
+            if ("active".equals(status)) {
+                sql.append("AND p.inventory_quantity > 0 ");
+            } else if ("out_of_stock".equals(status)) {
+                sql.append("AND p.inventory_quantity = 0 ");
+            }
+        }
+
+        sql.append("ORDER BY p.id DESC ");
+        sql.append("LIMIT :limit OFFSET :offset");
+
+        return jdbi.withHandle(handle -> {
+            var query = handle.createQuery(sql.toString())
+                    .bind("limit", limit)
+                    .bind("offset", offset);
+
+            if (search != null && !search.trim().isEmpty()) {
+                query.bind("search", "%" + search + "%");
+            }
+
+            if (categoryId != null) {
+                query.bind("categoryId", categoryId);
+            }
+
+            return query.mapToBean(ProductWithDetails.class).list();
+        });
+    }
+
+    /**
+     * ĐẾM SỐ LƯỢNG SẢN PHẨM VỚI FILTER
+     * Dùng cho phân trang
+     */
+    public int countProductsWithFilter(String search, Integer categoryId, String status) {
+        StringBuilder sql = new StringBuilder(
+                "SELECT COUNT(*) FROM Product p WHERE 1=1 "
+        );
+
+        if (search != null && !search.trim().isEmpty()) {
+            sql.append("AND p.name LIKE :search ");
+        }
+
+        if (categoryId != null) {
+            sql.append("AND p.category_id = :categoryId ");
+        }
+
+        if (status != null && !status.trim().isEmpty()) {
+            if ("active".equals(status)) {
+                sql.append("AND p.inventory_quantity > 0 ");
+            } else if ("out_of_stock".equals(status)) {
+                sql.append("AND p.inventory_quantity = 0 ");
+            }
+        }
+
+        return jdbi.withHandle(handle -> {
+            var query = handle.createQuery(sql.toString());
+
+            if (search != null && !search.trim().isEmpty()) {
+                query.bind("search", "%" + search + "%");
+            }
+
+            if (categoryId != null) {
+                query.bind("categoryId", categoryId);
+            }
+
+            return query.mapTo(Integer.class).one();
         });
     }
 
