@@ -1,4 +1,4 @@
-package code.web.webgroup9.controller.admin;
+package code.web.webgroup9.ADMIN.ProductsAdmin;
 
 import code.web.webgroup9.dao.CategoryDAO;
 import code.web.webgroup9.dao.ProductDAO;
@@ -13,9 +13,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
-@WebServlet("/admin/products/add")
-public class AdminProductAddServlet extends HttpServlet {
+@WebServlet("/admin/products/edit")
+public class AdminProductEditServlet extends HttpServlet {
     private ProductDAO productDAO;
     private CategoryDAO categoryDAO;
 
@@ -29,13 +30,41 @@ public class AdminProductAddServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        // Lấy danh sách categories để hiển thị trong form
-        List<Category> categories = categoryDAO.getProductCategories();
-        req.setAttribute("categories", categories);
-        req.setAttribute("currentPage", "products");
+        String idParam = req.getParameter("id");
 
-        // Forward đến trang thêm sản phẩm
-        req.getRequestDispatcher("/Admin/product_add.jsp").forward(req, resp);
+        if (idParam == null || idParam.trim().isEmpty()) {
+            resp.sendRedirect(req.getContextPath() + "/admin/products");
+            return;
+        }
+
+        try {
+            int productId = Integer.parseInt(idParam);
+
+            // Lấy thông tin sản phẩm
+            Optional<ProductWithDetails> productOpt = productDAO.getProductById(productId);
+
+            if (productOpt.isEmpty()) {
+                req.setAttribute("error", "Không tìm thấy sản phẩm");
+                resp.sendRedirect(req.getContextPath() + "/admin/products");
+                return;
+            }
+
+            ProductWithDetails product = productOpt.get();
+
+            // Lấy danh sách categories
+            List<Category> categories = categoryDAO.getProductCategories();
+
+            // Set attributes
+            req.setAttribute("product", product);
+            req.setAttribute("categories", categories);
+            req.setAttribute("currentPage", "products");
+
+            // Forward đến trang edit
+            req.getRequestDispatcher("/Admin/product_edit.jsp").forward(req, resp);
+
+        } catch (NumberFormatException e) {
+            resp.sendRedirect(req.getContextPath() + "/admin/products");
+        }
     }
 
     @Override
@@ -45,9 +74,19 @@ public class AdminProductAddServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
+        String idParam = req.getParameter("productId");
+
+        if (idParam == null || idParam.trim().isEmpty()) {
+            resp.sendRedirect(req.getContextPath() + "/admin/products");
+            return;
+        }
+
         try {
-            // Lấy dữ liệu từ form
+            int productId = Integer.parseInt(idParam);
+
+            // Tạo object product với dữ liệu mới
             ProductWithDetails product = new ProductWithDetails();
+            product.setId(productId);
 
             // Thông tin cơ bản
             product.setName(req.getParameter("productName"));
@@ -69,7 +108,7 @@ public class AdminProductAddServlet extends HttpServlet {
                 product.setDiscountId(Integer.parseInt(discountParam));
             }
 
-            // Status - mặc định là active
+            // Status
             String status = req.getParameter("status");
             product.setStatus(status != null ? status : "active");
 
@@ -91,32 +130,57 @@ public class AdminProductAddServlet extends HttpServlet {
             // Image
             product.setMainImage(req.getParameter("imageLink"));
 
-            // Thêm sản phẩm vào database
-            boolean success = productDAO.insertProduct(product);
+            // Cập nhật sản phẩm trong database
+            boolean success = productDAO.updateProduct(product);
 
             if (success) {
                 // Thành công - redirect về trang danh sách với thông báo
-                resp.sendRedirect(req.getContextPath() + "/admin/products?success=add");
+                resp.sendRedirect(req.getContextPath() + "/admin/products?success=edit");
             } else {
                 // Thất bại - quay lại form với thông báo lỗi
-                req.setAttribute("error", "Có lỗi xảy ra khi thêm sản phẩm");
+                req.setAttribute("error", "Có lỗi xảy ra khi cập nhật sản phẩm");
                 List<Category> categories = categoryDAO.getProductCategories();
                 req.setAttribute("categories", categories);
-                req.setAttribute("product", product); // Giữ lại dữ liệu đã nhập
-                req.getRequestDispatcher("/Admin/product_add.jsp").forward(req, resp);
+                req.setAttribute("product", product);
+                req.getRequestDispatcher("/Admin/product_edit.jsp").forward(req, resp);
             }
 
         } catch (NumberFormatException e) {
             req.setAttribute("error", "Dữ liệu nhập không hợp lệ: " + e.getMessage());
+
+            // Lấy lại thông tin để hiển thị form
+            try {
+                int productId = Integer.parseInt(idParam);
+                Optional<ProductWithDetails> productOpt = productDAO.getProductById(productId);
+                if (productOpt.isPresent()) {
+                    req.setAttribute("product", productOpt.get());
+                }
+            } catch (Exception ex) {
+                // Ignore
+            }
+
             List<Category> categories = categoryDAO.getProductCategories();
             req.setAttribute("categories", categories);
-            req.getRequestDispatcher("/Admin/product_add.jsp").forward(req, resp);
+            req.getRequestDispatcher("/Admin/product_edit.jsp").forward(req, resp);
+
         } catch (Exception e) {
             e.printStackTrace();
             req.setAttribute("error", "Lỗi hệ thống: " + e.getMessage());
+
+            // Lấy lại thông tin để hiển thị form
+            try {
+                int productId = Integer.parseInt(idParam);
+                Optional<ProductWithDetails> productOpt = productDAO.getProductById(productId);
+                if (productOpt.isPresent()) {
+                    req.setAttribute("product", productOpt.get());
+                }
+            } catch (Exception ex) {
+                // Ignore
+            }
+
             List<Category> categories = categoryDAO.getProductCategories();
             req.setAttribute("categories", categories);
-            req.getRequestDispatcher("/Admin/product_add.jsp").forward(req, resp);
+            req.getRequestDispatcher("/Admin/product_edit.jsp").forward(req, resp);
         }
     }
 }
