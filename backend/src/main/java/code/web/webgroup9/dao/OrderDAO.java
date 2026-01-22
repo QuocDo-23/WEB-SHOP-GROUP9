@@ -381,14 +381,16 @@ public class OrderDAO {
      * Lấy top sản phẩm bán chạy
      */
     public List<Map<String, Object>> getTopSellingProducts(int limit) {
-        String sql = "SELECT od.product_name, MAX(od.img) AS img, c.name, SUM(od.quantity) as total_sold, " +
+        String sql = "SELECT od.product_name, " +
+                "(SELECT img FROM Image WHERE type = 'product' AND ref_id = p.id LIMIT 1) as img, " +
+                "c.name, SUM(od.quantity) as total_sold, " +
                 "SUM(od.subtotal) as revenue " +
                 "FROM order_details od " +
                 "JOIN orders o ON od.order_id = o.id " +
                 "JOIN product p ON od.product_id = p.id " +
                 "JOIN categories c ON p.category_id = c.id " +
                 "WHERE o.status != 'cancelled' " +
-                "GROUP BY od.product_name, od.img, c.name " +
+                "GROUP BY od.product_name, p.id, c.name " +
                 "ORDER BY total_sold DESC " +
                 "LIMIT ?";
 

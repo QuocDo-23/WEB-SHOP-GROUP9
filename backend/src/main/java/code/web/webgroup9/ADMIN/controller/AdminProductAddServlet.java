@@ -1,4 +1,4 @@
-package code.web.webgroup9.controller.admin;
+package code.web.webgroup9.ADMIN.controller;
 
 import code.web.webgroup9.dao.CategoryDAO;
 import code.web.webgroup9.dao.ProductDAO;
