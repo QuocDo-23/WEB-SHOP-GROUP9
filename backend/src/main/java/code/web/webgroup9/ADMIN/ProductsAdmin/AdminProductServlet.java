@@ -1,4 +1,4 @@
-package code.web.webgroup9.controller.admin;
+package code.web.webgroup9.ADMIN.ProductsAdmin;
 
 import code.web.webgroup9.dao.CategoryDAO;
 import code.web.webgroup9.dao.ProductDAO;
@@ -12,7 +12,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-import java.util.Locale;
 
 @WebServlet("/admin/products")
 public class AdminProductServlet extends HttpServlet {

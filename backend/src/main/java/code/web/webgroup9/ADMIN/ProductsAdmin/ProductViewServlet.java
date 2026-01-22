@@ -1,8 +1,7 @@
-package code.web.webgroup9.ADMIN.controller;
+package code.web.webgroup9.ADMIN.ProductsAdmin;
 
 import code.web.webgroup9.dao.CategoryDAO;
 import code.web.webgroup9.dao.ProductDAO;
-import code.web.webgroup9.model.Category;
 import code.web.webgroup9.model.ProductWithDetails;
 
 import jakarta.servlet.ServletException;
@@ -11,7 +10,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 import java.util.Optional;
 
 @WebServlet("/admin/products/view")
