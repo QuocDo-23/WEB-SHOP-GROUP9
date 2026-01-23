@@ -325,77 +325,15 @@
         </button>
     </a>
 
-    <!-- Cart Sidebar -->
-    <%--    <jsp:include page="cart-sidebar.jsp" />--%>
 
     <div id="cart-overlay"></div>
-    <!-- ===== MINI CART (CHỖ DÁN DUY NHẤT) ===== -->
     <jsp:include page="cart-mini.jsp"/>
 
 
 </main>
 
 <!-- JavaScript -->
-<script>
-    // Search functionality
-    document.getElementById('searchInput').addEventListener('input', function () {
-        const keyword = this.value.trim();
-        if (keyword.length >= 2) {
-            searchProducts(keyword);
-        }
-    });
 
-    function searchProducts(keyword) {
-        fetch('products?action=search&keyword=' + encodeURIComponent(keyword))
-            .then(response => response.json())
-            .then(data => {
-                displaySearchResults(data);
-            })
-            .catch(error => console.error('Error:', error));
-    }
-
-    function displaySearchResults(products) {
-        const resultsContainer = document.getElementById('searchResults');
-        let html = '<div class="section-header_search"><h2 class="section-title-search">Kết quả tìm kiếm</h2></div>';
-
-        products.forEach(product => {
-            html += `
-                    <a href="product-detail.jsp?id=\${product.id}" class="search-item">
-                        <span class="arrow-icon"><i class="bi bi-search"></i></span>
-                        <div class="item-content">
-                            <div class="item-name">\${product.description}</div>
-                        </div>
-                    </a>
-                `;
-        });
-
-        resultsContainer.innerHTML = html;
-    }
-
-    // Add to cart
-    function addToCart(productId) {
-        fetch('cart?action=add&productId=' + productId, {
-            method: 'POST'
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    updateCartCount(data.cartCount);
-                    showNotification('Đã thêm vào giỏ hàng');
-                }
-            })
-            .catch(error => console.error('Error:', error));
-    }
-
-    function updateCartCount(count) {
-        document.getElementById('cartCount').textContent = count;
-    }
-
-    function showNotification(message) {
-        // Implement notification display
-        alert(message);
-    }
-</script>
 <script src="./JS/products.js"></script>
 <script src="./JS/index.js"></script>
 <script src="./JS/actionButton.js"></script>

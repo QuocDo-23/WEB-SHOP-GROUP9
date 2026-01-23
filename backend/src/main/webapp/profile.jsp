@@ -124,7 +124,6 @@
             <!-- SIDEBAR -->
             <jsp:include page="siderbar_user.jsp"/>
 
-
             <!-- PROFILE FORM -->
             <div class="profile-container">
                 <div class="content-area">
@@ -174,7 +173,7 @@
 
                             <div class="form-group">
                                 <label>Ngày Sinh</label>
-                                <input type="date" name="dob" value="${user.dateOfBirth}">
+                                <input type="date" name="dob" value="${user.dateOfBirth}" placeholder="Chọn ngày sinh">
                             </div>
                         </div>
 
@@ -190,7 +189,6 @@
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
 

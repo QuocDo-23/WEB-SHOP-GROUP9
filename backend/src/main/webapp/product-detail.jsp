@@ -59,7 +59,7 @@
     <div class="product-image-summary">
         <div class="content_products">
             <div class="summary-inner">
-                <h1 class="product_title">${product.description}</h1>
+                <h1 class="product_title">${product.name}</h1>
 
                 <!-- Rating -->
                 <div class="product-rating">
@@ -227,7 +227,7 @@
 
                         <div class="wd-accordion-content" id="tab-description">
                             <div class="wc-tab-inner">
-                                <h4>Chi tiết về ${product.description}</h4>
+                                <h4>Chi tiết về ${product.name}</h4>
 
                                 <c:if test="${not empty images && fn:length(images) > 0}">
                                     <div class="image-grid">
@@ -245,7 +245,7 @@
                         <div id="reviews" class="woocommerce-Reviews">
                             <div id="comments">
                                 <div class="reviews-title">
-                                    ${stats.totalReviews} đánh giá cho <span>${product.description}</span>
+                                    ${stats.totalReviews} đánh giá cho <span>${product.name}</span>
                                 </div>
 
                                 <div class="star_box">
