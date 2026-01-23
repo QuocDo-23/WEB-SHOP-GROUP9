@@ -103,7 +103,18 @@ public class UserDAO {
                         .bind("id", id)
                         .mapToBean(User.class)
                         .findFirst()
-        );
+            ).map(user -> {
+                String statusSql = "SELECT status FROM user WHERE id = :id";
+                String status = jdbi.withHandle(handle ->
+                    handle.createQuery(statusSql)
+                        .bind("id", id)
+                        .mapTo(String.class)
+                        .findOne()
+                        .orElse("active") // Mặc định là active nếu không tìm thấy
+                );
+                user.setStatus(status);
+                return user;
+            });
     }
 
     /**
@@ -116,11 +127,22 @@ public class UserDAO {
                                         "FROM User u " +
                                         "LEFT JOIN Role r ON u.role_id = r.id " +
                                         "WHERE u.email = :email"
-                        )
+                            )
+                            .bind("email", email)
+                            .mapToBean(User.class)
+                            .findFirst()
+            ).map(user -> {
+                String statusSql = "SELECT status FROM user WHERE email = :email";
+                String status = jdbi.withHandle(handle ->
+                    handle.createQuery(statusSql)
                         .bind("email", email)
-                        .mapToBean(User.class)
-                        .findFirst()
-        );
+                        .mapTo(String.class)
+                        .findOne()
+                        .orElse("active")
+                );
+                user.setStatus(status);
+                return user;
+            });
     }
 
     /**
@@ -210,11 +232,14 @@ public class UserDAO {
         // JOIN với bảng orders để lấy số lượng đơn hàng và tổng chi tiêu
         String sql = "SELECT u.*, " +
                      "COUNT(o.id) as order_count, " +
-                     "COALESCE(SUM(o.total), 0) as total_spent " +
+                     "COALESCE(SUM(o.total), 0) as total_spent, " +
+                     "u.status, " +
+                     "r.name as role_name " + // Thêm role_name vào SELECT
                      "FROM user u " +
                      "LEFT JOIN orders o ON u.id = o.user_id AND o.status != 'cancelled' " +
+                     "LEFT JOIN role r ON u.role_id = r.id " + // JOIN với bảng role
                      "WHERE u.role_id = 2 " +
-                     "GROUP BY u.id " +
+                     "GROUP BY u.id, u.status, r.name " +
                      "ORDER BY u.id DESC";
 
         return jdbi.withHandle(handle -> 
@@ -237,6 +262,7 @@ public class UserDAO {
                     user.setTotalSpent(rs.getDouble("total_spent"));
 
                     user.setStatus(rs.getString("status"));
+                    user.setRoleName(rs.getString("role_name"));
 
                     return user;
                 })
@@ -258,4 +284,31 @@ public class UserDAO {
         );
     }
 
+    /**
+     * Cập nhật mật khẩu của user bằng ID
+     */
+    public boolean updatePasswordById(int userId, String newHashedPassword) {
+        String sql = "UPDATE user SET password = :password WHERE id = :id";
+        
+        return jdbi.withHandle(handle -> 
+            handle.createUpdate(sql)
+                .bind("password", newHashedPassword)
+                .bind("id", userId)
+                .execute() > 0
+        );
+    }
+
+    /**
+     * Cập nhật vai trò (role_id) của user
+     */
+    public boolean updateUserRole(int userId, int newRoleId) {
+        String sql = "UPDATE user SET role_id = :newRoleId WHERE id = :userId";
+        
+        return jdbi.withHandle(handle -> 
+            handle.createUpdate(sql)
+                .bind("newRoleId", newRoleId)
+                .bind("userId", userId)
+                .execute() > 0
+        );
+    }
 }

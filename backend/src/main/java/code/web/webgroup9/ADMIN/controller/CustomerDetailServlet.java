@@ -6,10 +6,13 @@ import code.web.webgroup9.dao.UserDAO;
 import code.web.webgroup9.model.Address;
 import code.web.webgroup9.model.Order;
 import code.web.webgroup9.model.User;
+import code.web.webgroup9.util.PasswordUtil;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,7 +45,7 @@ public class CustomerDetailServlet extends HttpServlet {
             return;
         }
 
-        // Lấy ID khách hàng
+        // Lấy ID khách hàng từ request
         String idStr = request.getParameter("id");
         if (idStr == null || idStr.isEmpty()) {
             response.sendRedirect(request.getContextPath() + "/admin/customers");
@@ -63,7 +66,7 @@ public class CustomerDetailServlet extends HttpServlet {
             //Lấy danh sách địa chỉ
             List<Address> addresses = addressDAO.getAddressByUserId(customerId);
 
-            // Lấy lịch sử đơn hàng
+            //Lấy lịch sử đơn hàng
             List<Order> orders = orderDAO.getOrdersByUserId(customerId);
 
             // Set attributes
@@ -104,6 +107,28 @@ public class CustomerDetailServlet extends HttpServlet {
                     userDAO.updateUserStatus(customerId, "banned");
                 } else if ("unlock".equals(action)) {
                     userDAO.updateUserStatus(customerId, "active");
+                }  else if ("changeRole".equals(action)) {
+                    String roleIdStr = request.getParameter("newRoleId");
+                    if (roleIdStr != null && !roleIdStr.isEmpty()) {
+                        try {
+                            int newRoleId = Integer.parseInt(roleIdStr);
+                            userDAO.updateUserRole(customerId, newRoleId);
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
+                            // Log lỗi hoặc thông báo cho admin
+                        }
+                    }
+                } else if ("resetPassword".equals(action)) {
+                    String newPassword = generateRandomPassword();
+                    String hashedPassword = PasswordUtil.hashPassword(newPassword);
+
+                    boolean success = userDAO.updatePasswordById(customerId, hashedPassword);
+
+                    if (success) {
+                        // Lưu mật khẩu mới vào session
+                        session.setAttribute("newPassword", newPassword);
+                        session.setAttribute("passwordResetFor", customerId);
+                    }
                 }
 
                 // Redirect lại trang chi tiết để thấy thay đổi
@@ -116,5 +141,24 @@ public class CustomerDetailServlet extends HttpServlet {
         }
 
         response.sendRedirect(request.getContextPath() + "/admin/customers");
+    }
+
+    private String generateRandomPassword() {
+        String CHAR_LOWER = "abcdefghijklmnopqrstuvwxyz";
+        String CHAR_UPPER = CHAR_LOWER.toUpperCase();
+        String NUMBER = "0123456789";
+        String OTHER_CHAR = "!@#$%&";
+
+        String PASSWORD_ALLOW_BASE = CHAR_LOWER + CHAR_UPPER + NUMBER + OTHER_CHAR;
+        SecureRandom random = new SecureRandom();
+        StringBuilder sb = new StringBuilder(10);
+
+        for (int i = 0; i < 10; i++) {
+            int rndCharAt = random.nextInt(PASSWORD_ALLOW_BASE.length());
+            char rndChar = PASSWORD_ALLOW_BASE.charAt(rndCharAt);
+            sb.append(rndChar);
+        }
+
+        return sb.toString();
     }
 }

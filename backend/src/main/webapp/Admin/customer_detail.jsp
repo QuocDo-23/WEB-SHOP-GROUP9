@@ -14,18 +14,22 @@
 </head>
 
 <body>
-    <div class="container">
-        <!-- SIDEBAR -->
-        <%@ include file="siderbar.jsp" %>
+<div class="container">
+    <!-- SIDEBAR -->
+    <%@ include file="siderbar.jsp" %>
 
-        <!-- MAIN CONTENT -->
-        <div class="main-content">
-            <div class="header">
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <a href="${pageContext.request.contextPath}/admin/customers" style="text-decoration: none; color: #718096; font-size: 20px;">
-                        <i class="bi bi-arrow-left"></i> 🔙
-                    </a>
-                    <h1>Chi Tiết Khách Hàng: ${customer.name}</h1>
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <div class="header">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <a href="${pageContext.request.contextPath}/admin/customers" style="text-decoration: none; color: #718096; font-size: 20px;">
+                    <i class="bi bi-arrow-left"></i> 🔙
+                </a>
+                <h1>Chi Tiết Khách Hàng: ${customer.name}</h1>
+            </div>
+            <div class="user-info">
+                <div class="avatar">
+                    ${sessionScope.user.name.charAt(0)}
                 </div>
                 <div class="user-info">
                     <div class="avatar">
@@ -42,6 +46,16 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Hiển thị mật khẩu mới-->
+            <c:if test="${not empty sessionScope.newPassword and sessionScope.passwordResetFor == customer.id}">
+                <div class="password-reset-alert">
+                    Mật khẩu mới đã được tạo: <strong>${sessionScope.newPassword}</strong>. Vui lòng sao chép và gửi cho khách hàng. Mật khẩu này sẽ biến mất sau khi tải lại trang.
+                </div>
+                <%-- Xóa attribute khỏi session sau khi hiển thị --%>
+                <c:remove var="newPassword" scope="session"/>
+                <c:remove var="passwordResetFor" scope="session"/>
+            </c:if>
 
             <div class="detail-container">
                 <!--Thông tin cá nhân & Địa chỉ -->
@@ -97,14 +111,30 @@
                                 </c:choose>
                             </span>
                         </div>
+                        <div class="info-row">
+                            <span class="info-label">Vai trò:</span>
+                            <span class="info-value">${customer.roleName}</span>
+                        </div>
+
+                        <!-- Thay đổi Vai trò -->
+                        <form action="${pageContext.request.contextPath}/admin/customer-detail" method="post" class="role-selector">
+                            <input type="hidden" name="id" value="${customer.id}">
+                            <input type="hidden" name="action" value="changeRole">
+                            <label for="newRoleId" style="margin-right: 5px; color: #718096; font-weight: 500;">Đổi vai trò:</label>
+                            <select name="newRoleId" id="newRoleId">
+                                <option value="1" ${customer.roleId == 1 ? 'selected' : ''}>Admin</option>
+                                <option value="2" ${customer.roleId == 2 ? 'selected' : ''}>Khách hàng</option>
+                            </select>
+                            <button type="submit" onclick="return confirm('Bạn có chắc muốn thay đổi vai trò của người dùng này?');">Cập nhật</button>
+                        </form>
 
                         <!-- Hành động -->
-                        <div style="margin-top: 20px; display: flex; gap: 10px;">
-                            <a href="mailto:${customer.email}" style="flex: 1; text-align: center; padding: 8px; background: #3182ce; color: white; border: none; border-radius: 4px; cursor: pointer; text-decoration: none;">
+                        <div style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+                            <a href="mailto:${customer.email}" style="text-align: center; padding: 8px; background: #3182ce; color: white; border: none; border-radius: 4px; cursor: pointer; text-decoration: none;">
                                 Gửi Email
                             </a>
 
-                            <form action="${pageContext.request.contextPath}/admin/customer-detail" method="post" style="flex: 1;">
+                            <form action="${pageContext.request.contextPath}/admin/customer-detail" method="post">
                                 <input type="hidden" name="id" value="${customer.id}">
                                 <c:choose>
                                     <c:when test="${customer.status == 'banned'}">
@@ -120,6 +150,14 @@
                                         </button>
                                     </c:otherwise>
                                 </c:choose>
+                            </form>
+
+                            <form action="${pageContext.request.contextPath}/admin/customer-detail" method="post">
+                                <input type="hidden" name="id" value="${customer.id}">
+                                <input type="hidden" name="action" value="resetPassword">
+                                <button type="submit" style="width: 100%; padding: 8px; background: #dd6b20; color: white; border: none; border-radius: 4px; cursor: pointer;" onclick="return confirm('Bạn có chắc muốn đặt lại mật khẩu cho người dùng này?');">
+                                    Reset Mật Khẩu
+                                </button>
                             </form>
                         </div>
                     </div>
