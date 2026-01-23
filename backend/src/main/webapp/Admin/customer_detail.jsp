@@ -27,10 +27,7 @@
                 </a>
                 <h1>Chi Tiết Khách Hàng: ${customer.name}</h1>
             </div>
-            <div class="user-info">
-                <div class="avatar">
-                    ${sessionScope.user.name.charAt(0)}
-                </div>
+
                 <div class="user-info">
                     <div class="avatar">
                         ${sessionScope.user.name.charAt(0)}
@@ -45,7 +42,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+
 
             <!-- Hiển thị mật khẩu mới-->
             <c:if test="${not empty sessionScope.newPassword and sessionScope.passwordResetFor == customer.id}">
@@ -56,6 +53,7 @@
                 <c:remove var="newPassword" scope="session"/>
                 <c:remove var="passwordResetFor" scope="session"/>
             </c:if>
+        </div>
 
             <div class="detail-container">
                 <!--Thông tin cá nhân & Địa chỉ -->
@@ -145,7 +143,7 @@
                                     </c:when>
                                     <c:otherwise>
                                         <input type="hidden" name="action" value="lock">
-                                        <button type="submit" style="width: 100%; padding: 8px; background: #e53e3e; color: white; border: none; border-radius: 4px; cursor: pointer;" onclick="return confirm('Bạn có chắc muốn khóa tài khoản này?');">
+                                        <button type="submit" style="width: 100%; padding: 16px; background: #e53e3e; color: white; border: none; border-radius: 4px; cursor: pointer;" onclick="return confirm('Bạn có chắc muốn khóa tài khoản này?');">
                                             Khóa TK
                                         </button>
                                     </c:otherwise>
@@ -246,7 +244,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+
     </div>
 </body>
 
