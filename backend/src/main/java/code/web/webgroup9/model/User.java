@@ -15,6 +15,11 @@ public class User {
     private LocalDate dateOfBirth;
     private String avatarImg;
     private String roleName; // For JOIN query
+    private String status; // active, banned
+    
+    // Thêm các thuộc tính thống kê
+    private int orderCount;
+    private double totalSpent;
 
     // Getters and Setters
     public int getId() {
@@ -97,5 +102,27 @@ public class User {
         this.roleName = roleName;
     }
 
+    public int getOrderCount() {
+        return orderCount;
+    }
 
+    public void setOrderCount(int orderCount) {
+        this.orderCount = orderCount;
+    }
+
+    public double getTotalSpent() {
+        return totalSpent;
+    }
+
+    public void setTotalSpent(double totalSpent) {
+        this.totalSpent = totalSpent;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
