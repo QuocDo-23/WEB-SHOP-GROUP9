@@ -44,5 +44,8 @@ public class UserService {
     public boolean updateAvatar(int userId, String avatarUrl) {
         return userDAO.updateAvatar(userId, avatarUrl);
     }
+    public boolean checkEmailExists(String email) {
+        return userDAO.checkEmailExists(email);
+    }
 
 }
