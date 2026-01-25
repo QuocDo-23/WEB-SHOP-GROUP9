@@ -16,9 +16,7 @@ public class ReviewDAO {
 
     // ================= USER =================
 
-    /**
-     * Lấy tất cả reviews của một sản phẩm
-     */
+    // Lấy review theo sản phẩm
     public List<Review> getReviewsByProductId(int productId) {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
@@ -34,22 +32,19 @@ public class ReviewDAO {
         );
     }
 
-    /**
-     * Thống kê rating theo sản phẩm
-     */
+    // Thống kê theo sản phẩm
     public ReviewStatistics getReviewStatistics(int productId) {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
                                 "SELECT " +
                                         "COUNT(*) AS total_reviews, " +
-                                        "COALESCE(AVG(rating), 0) AS average_rating, " +
-                                        "SUM(CASE WHEN rating = 5 THEN 1 ELSE 0 END) AS five_stars, " +
-                                        "SUM(CASE WHEN rating = 4 THEN 1 ELSE 0 END) AS four_stars, " +
-                                        "SUM(CASE WHEN rating = 3 THEN 1 ELSE 0 END) AS three_stars, " +
-                                        "SUM(CASE WHEN rating = 2 THEN 1 ELSE 0 END) AS two_stars, " +
-                                        "SUM(CASE WHEN rating = 1 THEN 1 ELSE 0 END) AS one_star " +
-                                        "FROM Review_Product " +
-                                        "WHERE product_id = :productId"
+                                        "COALESCE(AVG(rating),0) AS average_rating, " +
+                                        "SUM(CASE WHEN rating=5 THEN 1 ELSE 0 END) AS five_stars, " +
+                                        "SUM(CASE WHEN rating=4 THEN 1 ELSE 0 END) AS four_stars, " +
+                                        "SUM(CASE WHEN rating=3 THEN 1 ELSE 0 END) AS three_stars, " +
+                                        "SUM(CASE WHEN rating=2 THEN 1 ELSE 0 END) AS two_stars, " +
+                                        "SUM(CASE WHEN rating=1 THEN 1 ELSE 0 END) AS one_star " +
+                                        "FROM Review_Product WHERE product_id=:productId"
                         )
                         .bind("productId", productId)
                         .mapToBean(ReviewStatistics.class)
@@ -57,14 +52,12 @@ public class ReviewDAO {
         );
     }
 
-    /**
-     * Thêm review mới
-     */
+    // Thêm review
     public int addReview(Review review) {
         return jdbi.withHandle(handle ->
                 handle.createUpdate(
-                                "INSERT INTO Review_Product (product_id, user_id, text, img, rating, date) " +
-                                        "VALUES (:productId, :userId, :text, :img, :rating, NOW())"
+                                "INSERT INTO Review_Product(product_id,user_id,text,img,rating,date,status) " +
+                                        "VALUES(:productId,:userId,:text,:img,:rating,NOW(),1)"
                         )
                         .bind("productId", review.getProductId())
                         .bind("userId", review.getUserId())
@@ -75,11 +68,9 @@ public class ReviewDAO {
         );
     }
 
-    // ================= ADMIN (BỔ SUNG) =================
+    // ================= ADMIN =================
 
-    /**
-     * Admin: lấy toàn bộ review trong hệ thống
-     */
+    // Lấy toàn bộ review
     public List<Review> getAllReviews() {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
@@ -93,14 +84,27 @@ public class ReviewDAO {
         );
     }
 
-    /**
-     * Admin: cập nhật trạng thái review (duyệt / ẩn)
-     * status: 1 = duyệt, 0 = ẩn
-     */
+    // ⭐ BỔ SUNG QUAN TRỌNG (SỬA LỖI BUILD)
+    public List<Review> getReviewsByStatus(int status) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery(
+                                "SELECT r.*, u.name AS user_name " +
+                                        "FROM Review_Product r " +
+                                        "LEFT JOIN User u ON r.user_id = u.id " +
+                                        "WHERE r.status = :status " +
+                                        "ORDER BY r.date DESC"
+                        )
+                        .bind("status", status)
+                        .mapToBean(Review.class)
+                        .list()
+        );
+    }
+
+    // Duyệt / ẩn review
     public int updateReviewStatus(int reviewId, int status) {
         return jdbi.withHandle(handle ->
                 handle.createUpdate(
-                                "UPDATE Review_Product SET status = :status WHERE id = :id"
+                                "UPDATE Review_Product SET status=:status WHERE id=:id"
                         )
                         .bind("status", status)
                         .bind("id", reviewId)
@@ -108,33 +112,29 @@ public class ReviewDAO {
         );
     }
 
-    /**
-     * Admin: xóa review
-     */
+    // Xóa review
     public int deleteReview(int reviewId) {
         return jdbi.withHandle(handle ->
                 handle.createUpdate(
-                                "DELETE FROM Review_Product WHERE id = :id"
+                                "DELETE FROM Review_Product WHERE id=:id"
                         )
                         .bind("id", reviewId)
                         .execute()
         );
     }
 
-    /**
-     * Admin: thống kê review toàn hệ thống
-     */
+    // Thống kê toàn hệ thống
     public ReviewStatistics getAdminReviewStatistics() {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
                                 "SELECT " +
                                         "COUNT(*) AS total_reviews, " +
-                                        "COALESCE(AVG(rating), 0) AS average_rating, " +
-                                        "SUM(CASE WHEN rating = 5 THEN 1 ELSE 0 END) AS five_stars, " +
-                                        "SUM(CASE WHEN rating = 4 THEN 1 ELSE 0 END) AS four_stars, " +
-                                        "SUM(CASE WHEN rating = 3 THEN 1 ELSE 0 END) AS three_stars, " +
-                                        "SUM(CASE WHEN rating = 2 THEN 1 ELSE 0 END) AS two_stars, " +
-                                        "SUM(CASE WHEN rating = 1 THEN 1 ELSE 0 END) AS one_star " +
+                                        "COALESCE(AVG(rating),0) AS average_rating, " +
+                                        "SUM(CASE WHEN rating=5 THEN 1 ELSE 0 END) AS five_stars, " +
+                                        "SUM(CASE WHEN rating=4 THEN 1 ELSE 0 END) AS four_stars, " +
+                                        "SUM(CASE WHEN rating=3 THEN 1 ELSE 0 END) AS three_stars, " +
+                                        "SUM(CASE WHEN rating=2 THEN 1 ELSE 0 END) AS two_stars, " +
+                                        "SUM(CASE WHEN rating=1 THEN 1 ELSE 0 END) AS one_star " +
                                         "FROM Review_Product"
                         )
                         .mapToBean(ReviewStatistics.class)
