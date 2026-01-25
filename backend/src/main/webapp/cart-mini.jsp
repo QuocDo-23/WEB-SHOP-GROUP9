@@ -45,7 +45,12 @@
                                     </span>
 
                                     <!-- XÓA SẢN PHẨM -->
-                                    <a href="remove-cart?id=${item.product.id}" class="remove">×</a>
+                                    <a href="#"
+                                       class="remove-mini-cart"
+                                       data-id="${item.product.id}">×</a>
+
+
+
                                 </div>
 
                                 <!-- SỐ LƯỢNG + GIÁ -->

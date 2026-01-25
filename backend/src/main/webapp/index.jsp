@@ -175,11 +175,13 @@
                                     </c:if>
                                 </div>
                                 <div class="cart-icon">
-                                    <a href="cart?action=add&productId=${product.id}&quantity=1"
-                                       class="open-cart">
+                                    <button type="button"
+                                            class="open-cart"
+                                            data-product-id="${product.id}">
                                         <i class="bi bi-cart-check"></i>
-                                    </a>
+                                    </button>
                                 </div>
+
 
 
                             </div>

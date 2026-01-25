@@ -1,127 +1,69 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* =======================
-       MINI CART (KHUNGGIOHANG)
-       ======================= */
-    const cart = document.getElementById("khunggiohang");
+    const miniCart = document.getElementById("khunggiohang");
     const overlay = document.getElementById("cart-overlay");
 
-    // MỞ mini cart (chỉ icon trên thẻ sản phẩm có class .open-cart)
+    /* =======================
+       ADD TO CART + OPEN MINI CART
+       ======================= */
     document.querySelectorAll(".open-cart").forEach(btn => {
         btn.addEventListener("click", function (e) {
-            e.preventDefault(); // ⭐ BẮT BUỘC
+            e.preventDefault();
 
             const productId = this.dataset.productId;
             if (!productId) return;
 
             fetch(`add-cart?pID=${productId}&quantity=1`)
-                .then(() => {
-                    const cart = document.getElementById("khunggiohang");
-                    const overlay = document.getElementById("cart-overlay");
+                .then(res => {
+                    if (!res.ok) throw new Error("Add cart failed");
 
-                    cart?.classList.add("active");
-                    overlay?.classList.add("active");
+                    // CÁCH SINH VIÊN – reload để JSP cập nhật session
+                    location.reload();
+                })
+                .then(() => {
+                    miniCart.classList.add("active");
+                    overlay.classList.add("active");
                 })
                 .catch(err => console.error(err));
         });
     });
 
-
-
-    // ĐÓNG mini cart (nút X)
+    /* =======================
+       CLOSE MINI CART
+       ======================= */
     document.querySelectorAll(".close-cart").forEach(btn => {
         btn.addEventListener("click", function (e) {
             e.preventDefault();
-            cart?.classList.remove("active");
-            overlay?.classList.remove("active");
+            miniCart.classList.remove("active");
+            overlay.classList.remove("active");
         });
     });
 
-    // BẤM RA NGOÀI overlay → đóng
     if (overlay) {
         overlay.addEventListener("click", function () {
-            cart?.classList.remove("active");
+            miniCart.classList.remove("active");
             overlay.classList.remove("active");
         });
     }
 
     /* =======================
-       FILTER DROPDOWN
+       REMOVE ITEM IN MINI CART
        ======================= */
-    document.querySelectorAll('.filter-toggle').forEach(toggle => {
-        toggle.addEventListener('click', () => {
-            const list = toggle.nextElementSibling;
-            list?.classList.toggle('show');
-            toggle.classList.toggle('open');
-        });
+    document.addEventListener("click", function (e) {
+        const btn = e.target.closest(".remove-mini-cart");
+        if (!btn) return;
+
+        e.preventDefault();
+
+        const productId = btn.dataset.id;
+        if (!productId) return;
+
+        fetch(`remove?productId=${productId}`)
+            .then(res => {
+                if (!res.ok) throw new Error("Remove failed");
+                location.reload(); // reload để mini cart cập nhật
+            })
+            .catch(err => console.error(err));
     });
-
-    /* =======================
-       SORT DROPDOWN
-       ======================= */
-    const sortToggle = document.querySelector('.sort-toggle');
-    if (sortToggle) {
-        sortToggle.addEventListener('click', () => {
-            const list = document.querySelector('.sort-list');
-            list?.classList.toggle('show');
-            sortToggle.classList.toggle('open');
-        });
-    }
-
-    /* =======================
-       VIEW MORE (XEM THÊM)
-       ======================= */
-    document.querySelectorAll(".view-more-text").forEach(link => {
-        link.addEventListener("click", function () {
-            const categoryId = this.getAttribute("data-category");
-            const section = document.getElementById("section-" + categoryId);
-
-            if (section) {
-                section.classList.add("show-all");
-                this.style.display = "none";
-            }
-        });
-    });
-    document.querySelectorAll(".open-cart").forEach(btn => {
-        btn.addEventListener("click", function (e) {
-            e.preventDefault();
-
-            const productId = this.dataset.productId;
-            if (!productId) return;
-
-            document.querySelectorAll(".open-cart").forEach(btn => {
-                btn.addEventListener("click", function (e) {
-                    e.preventDefault();
-
-                    const productId = this.dataset.productId;
-                    if (!productId) return;
-
-                    // 1. Thêm sản phẩm vào cart (session)
-                    fetch(`add-cart?pID=${productId}&quantity=1`)
-                        .then(res => {
-                            if (!res.ok) throw new Error("Add cart failed");
-
-                            // 2. Load lại mini cart (HTML mới)
-                            return fetch("cart-mini.jsp");
-                        })
-                        .then(res => res.text())
-                        .then(html => {
-                            // 3. Thay nội dung mini cart
-                            const doc = new DOMParser().parseFromString(html, "text/html");
-                            document.getElementById("khunggiohang").innerHTML =
-                                doc.getElementById("khunggiohang").innerHTML;
-
-                            // 4. Hiện mini cart
-                            document.getElementById("khunggiohang").classList.add("active");
-                            document.getElementById("cart-overlay").classList.add("active");
-                        })
-                        .catch(err => console.error(err));
-                });
-            });
-
-        });
-    });
-
-
 
 });
