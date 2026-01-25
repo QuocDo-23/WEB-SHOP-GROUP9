@@ -36,7 +36,7 @@ public class AddCart extends HttpServlet {
         if (product.isPresent()) {
             cart.addItem(product.get(), quantity);
             session.setAttribute("cart", cart);
-            response.sendRedirect("cart");
+            response.setStatus(HttpServletResponse.SC_OK);
         } else {
             request.setAttribute("msg", "Product not found");
             request.getRequestDispatcher("products.jsp").forward(request, response);

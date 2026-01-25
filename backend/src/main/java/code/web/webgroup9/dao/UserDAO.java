@@ -1,6 +1,5 @@
 package code.web.webgroup9.dao;
 
-
 import code.web.webgroup9.model.User;
 import org.jdbi.v3.core.Jdbi;
 import code.web.webgroup9.util.PasswordUtil;
@@ -8,6 +7,7 @@ import code.web.webgroup9.util.PasswordUtil;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
+import java.util.List;
 import java.util.Optional;
 
 public class UserDAO {
@@ -103,7 +103,18 @@ public class UserDAO {
                         .bind("id", id)
                         .mapToBean(User.class)
                         .findFirst()
-        );
+            ).map(user -> {
+                String statusSql = "SELECT status FROM user WHERE id = :id";
+                String status = jdbi.withHandle(handle ->
+                    handle.createQuery(statusSql)
+                        .bind("id", id)
+                        .mapTo(String.class)
+                        .findOne()
+                        .orElse("active") // Mặc định là active nếu không tìm thấy
+                );
+                user.setStatus(status);
+                return user;
+            });
     }
 
     /**
@@ -116,11 +127,22 @@ public class UserDAO {
                                         "FROM User u " +
                                         "LEFT JOIN Role r ON u.role_id = r.id " +
                                         "WHERE u.email = :email"
-                        )
+                            )
+                            .bind("email", email)
+                            .mapToBean(User.class)
+                            .findFirst()
+            ).map(user -> {
+                String statusSql = "SELECT status FROM user WHERE email = :email";
+                String status = jdbi.withHandle(handle ->
+                    handle.createQuery(statusSql)
                         .bind("email", email)
-                        .mapToBean(User.class)
-                        .findFirst()
-        );
+                        .mapTo(String.class)
+                        .findOne()
+                        .orElse("active")
+                );
+                user.setStatus(status);
+                return user;
+            });
     }
 
     /**
@@ -172,10 +194,10 @@ public class UserDAO {
             return false;
         }
     }
+
     /**
      * Cập nhật ảnh đại diện
      */
-
     public boolean updateAvatar(int userId, String avatarUrl) {
         String sql = "UPDATE user SET avatar_img = :avatar WHERE id = :id";
 
@@ -188,6 +210,7 @@ public class UserDAO {
 
         return rows > 0;
     }
+
     /**
      * Đếm tổng số khách hàng
      */
@@ -202,6 +225,90 @@ public class UserDAO {
         });
     }
 
+    /**
+     * Lấy danh sách tất cả khách hàng (role_id = 2)
+     */
+    public List<User> getAllCustomers() {
+        // JOIN với bảng orders để lấy số lượng đơn hàng và tổng chi tiêu
+        String sql = "SELECT u.*, " +
+                     "COUNT(o.id) as order_count, " +
+                     "COALESCE(SUM(o.total), 0) as total_spent, " +
+                     "u.status, " +
+                     "r.name as role_name " + // Thêm role_name vào SELECT
+                     "FROM user u " +
+                     "LEFT JOIN orders o ON u.id = o.user_id AND o.status != 'cancelled' " +
+                     "LEFT JOIN role r ON u.role_id = r.id " + // JOIN với bảng role
+                     "WHERE u.role_id = 2 " +
+                     "GROUP BY u.id, u.status, r.name " +
+                     "ORDER BY u.id DESC";
 
+        return jdbi.withHandle(handle -> 
+            handle.createQuery(sql)
+                .map((rs, ctx) -> {
+                    User user = new User();
+                    user.setId(rs.getInt("id"));
+                    user.setRoleId(rs.getInt("role_id"));
+                    user.setName(rs.getString("name"));
+                    user.setEmail(rs.getString("email"));
+                    user.setPhone(rs.getString("phone"));
+                    user.setGender(rs.getString("gender"));
+                    if (rs.getDate("date_of_birth") != null) {
+                        user.setDateOfBirth(rs.getDate("date_of_birth").toLocalDate());
+                    }
+                    user.setAvatarImg(rs.getString("avatar_img"));
+                    
+                    // Map thêm các trường thống kê
+                    user.setOrderCount(rs.getInt("order_count"));
+                    user.setTotalSpent(rs.getDouble("total_spent"));
 
+                    user.setStatus(rs.getString("status"));
+                    user.setRoleName(rs.getString("role_name"));
+
+                    return user;
+                })
+                .list()
+        );
+    }
+    
+    /**
+     * Cập nhật trạng thái tài khoản user (Khóa/Mở khóa)
+     */
+    public boolean updateUserStatus(int userId, String status) {
+        String sql = "UPDATE user SET status = :status WHERE id = :id";
+        
+        return jdbi.withHandle(handle -> 
+            handle.createUpdate(sql)
+                .bind("status", status)
+                .bind("id", userId)
+                .execute() > 0
+        );
+    }
+
+    /**
+     * Cập nhật mật khẩu của user bằng ID
+     */
+    public boolean updatePasswordById(int userId, String newHashedPassword) {
+        String sql = "UPDATE user SET password = :password WHERE id = :id";
+        
+        return jdbi.withHandle(handle -> 
+            handle.createUpdate(sql)
+                .bind("password", newHashedPassword)
+                .bind("id", userId)
+                .execute() > 0
+        );
+    }
+
+    /**
+     * Cập nhật vai trò (role_id) của user
+     */
+    public boolean updateUserRole(int userId, int newRoleId) {
+        String sql = "UPDATE user SET role_id = :newRoleId WHERE id = :userId";
+        
+        return jdbi.withHandle(handle -> 
+            handle.createUpdate(sql)
+                .bind("newRoleId", newRoleId)
+                .bind("userId", userId)
+                .execute() > 0
+        );
+    }
 }

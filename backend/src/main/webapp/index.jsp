@@ -327,6 +327,7 @@
 
 
     <div id="cart-overlay"></div>
+
     <jsp:include page="cart-mini.jsp"/>
 
 
@@ -337,5 +338,6 @@
 <script src="./JS/products.js"></script>
 <script src="./JS/index.js"></script>
 <script src="./JS/actionButton.js"></script>
+
 </body>
 </html>

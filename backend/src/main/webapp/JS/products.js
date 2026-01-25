@@ -82,5 +82,46 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
+    document.querySelectorAll(".open-cart").forEach(btn => {
+        btn.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const productId = this.dataset.productId;
+            if (!productId) return;
+
+            document.querySelectorAll(".open-cart").forEach(btn => {
+                btn.addEventListener("click", function (e) {
+                    e.preventDefault();
+
+                    const productId = this.dataset.productId;
+                    if (!productId) return;
+
+                    // 1. Thêm sản phẩm vào cart (session)
+                    fetch(`add-cart?pID=${productId}&quantity=1`)
+                        .then(res => {
+                            if (!res.ok) throw new Error("Add cart failed");
+
+                            // 2. Load lại mini cart (HTML mới)
+                            return fetch("cart-mini.jsp");
+                        })
+                        .then(res => res.text())
+                        .then(html => {
+                            // 3. Thay nội dung mini cart
+                            const doc = new DOMParser().parseFromString(html, "text/html");
+                            document.getElementById("khunggiohang").innerHTML =
+                                doc.getElementById("khunggiohang").innerHTML;
+
+                            // 4. Hiện mini cart
+                            document.getElementById("khunggiohang").classList.add("active");
+                            document.getElementById("cart-overlay").classList.add("active");
+                        })
+                        .catch(err => console.error(err));
+                });
+            });
+
+        });
+    });
+
+
 
 });
