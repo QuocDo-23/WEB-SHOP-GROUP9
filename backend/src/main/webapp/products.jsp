@@ -328,5 +328,6 @@
 
 <!-- JavaScript -->
 <script src="./JS/products.js"></script>
+
 </body>
 </html>

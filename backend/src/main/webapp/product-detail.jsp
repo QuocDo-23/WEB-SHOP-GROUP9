@@ -503,5 +503,6 @@
 </script>
 <script src="./JS/product_detail.js"></script>
 <script src="./JS/index.js"></script>
+<script src="./JS/products.js"></script>
 </body>
 </html>
