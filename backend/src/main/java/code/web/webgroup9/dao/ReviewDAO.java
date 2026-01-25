@@ -7,11 +7,14 @@ import org.jdbi.v3.core.Jdbi;
 import java.util.List;
 
 public class ReviewDAO {
+
     private final Jdbi jdbi;
 
     public ReviewDAO() {
         this.jdbi = BaseDao.get();
     }
+
+    // ================= USER =================
 
     /**
      * Lấy tất cả reviews của một sản phẩm
@@ -19,7 +22,7 @@ public class ReviewDAO {
     public List<Review> getReviewsByProductId(int productId) {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
-                                "SELECT r.*, u.name as user_name " +
+                                "SELECT r.*, u.name AS user_name " +
                                         "FROM Review_Product r " +
                                         "LEFT JOIN User u ON r.user_id = u.id " +
                                         "WHERE r.product_id = :productId " +
@@ -32,19 +35,19 @@ public class ReviewDAO {
     }
 
     /**
-     * Tính rating trung bình
+     * Thống kê rating theo sản phẩm
      */
     public ReviewStatistics getReviewStatistics(int productId) {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
                                 "SELECT " +
-                                        "COUNT(*) as total_reviews, " +
-                                        "COALESCE(AVG(rating), 0) as average_rating, " +
-                                        "SUM(CASE WHEN rating = 5 THEN 1 ELSE 0 END) as five_stars, " +
-                                        "SUM(CASE WHEN rating = 4 THEN 1 ELSE 0 END) as four_stars, " +
-                                        "SUM(CASE WHEN rating = 3 THEN 1 ELSE 0 END) as three_stars, " +
-                                        "SUM(CASE WHEN rating = 2 THEN 1 ELSE 0 END) as two_stars, " +
-                                        "SUM(CASE WHEN rating = 1 THEN 1 ELSE 0 END) as one_star " +
+                                        "COUNT(*) AS total_reviews, " +
+                                        "COALESCE(AVG(rating), 0) AS average_rating, " +
+                                        "SUM(CASE WHEN rating = 5 THEN 1 ELSE 0 END) AS five_stars, " +
+                                        "SUM(CASE WHEN rating = 4 THEN 1 ELSE 0 END) AS four_stars, " +
+                                        "SUM(CASE WHEN rating = 3 THEN 1 ELSE 0 END) AS three_stars, " +
+                                        "SUM(CASE WHEN rating = 2 THEN 1 ELSE 0 END) AS two_stars, " +
+                                        "SUM(CASE WHEN rating = 1 THEN 1 ELSE 0 END) AS one_star " +
                                         "FROM Review_Product " +
                                         "WHERE product_id = :productId"
                         )
@@ -72,5 +75,70 @@ public class ReviewDAO {
         );
     }
 
+    // ================= ADMIN (BỔ SUNG) =================
 
+    /**
+     * Admin: lấy toàn bộ review trong hệ thống
+     */
+    public List<Review> getAllReviews() {
+        return jdbi.withHandle(handle ->
+                handle.createQuery(
+                                "SELECT r.*, u.name AS user_name " +
+                                        "FROM Review_Product r " +
+                                        "LEFT JOIN User u ON r.user_id = u.id " +
+                                        "ORDER BY r.date DESC"
+                        )
+                        .mapToBean(Review.class)
+                        .list()
+        );
+    }
+
+    /**
+     * Admin: cập nhật trạng thái review (duyệt / ẩn)
+     * status: 1 = duyệt, 0 = ẩn
+     */
+    public int updateReviewStatus(int reviewId, int status) {
+        return jdbi.withHandle(handle ->
+                handle.createUpdate(
+                                "UPDATE Review_Product SET status = :status WHERE id = :id"
+                        )
+                        .bind("status", status)
+                        .bind("id", reviewId)
+                        .execute()
+        );
+    }
+
+    /**
+     * Admin: xóa review
+     */
+    public int deleteReview(int reviewId) {
+        return jdbi.withHandle(handle ->
+                handle.createUpdate(
+                                "DELETE FROM Review_Product WHERE id = :id"
+                        )
+                        .bind("id", reviewId)
+                        .execute()
+        );
+    }
+
+    /**
+     * Admin: thống kê review toàn hệ thống
+     */
+    public ReviewStatistics getAdminReviewStatistics() {
+        return jdbi.withHandle(handle ->
+                handle.createQuery(
+                                "SELECT " +
+                                        "COUNT(*) AS total_reviews, " +
+                                        "COALESCE(AVG(rating), 0) AS average_rating, " +
+                                        "SUM(CASE WHEN rating = 5 THEN 1 ELSE 0 END) AS five_stars, " +
+                                        "SUM(CASE WHEN rating = 4 THEN 1 ELSE 0 END) AS four_stars, " +
+                                        "SUM(CASE WHEN rating = 3 THEN 1 ELSE 0 END) AS three_stars, " +
+                                        "SUM(CASE WHEN rating = 2 THEN 1 ELSE 0 END) AS two_stars, " +
+                                        "SUM(CASE WHEN rating = 1 THEN 1 ELSE 0 END) AS one_star " +
+                                        "FROM Review_Product"
+                        )
+                        .mapToBean(ReviewStatistics.class)
+                        .one()
+        );
+    }
 }
