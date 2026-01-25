@@ -311,4 +311,15 @@ public class UserDAO {
                 .execute() > 0
         );
     }
+    public boolean checkEmailExists(String email) {
+        String sql = "SELECT COUNT(*) FROM User WHERE email = :email";
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("email", email)
+                        .mapTo(int.class)
+                        .one()
+        ) > 0;
+    }
+
 }
