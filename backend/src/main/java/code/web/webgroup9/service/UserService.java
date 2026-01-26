@@ -48,4 +48,8 @@ public class UserService {
         return userDAO.checkEmailExists(email);
     }
 
+    public boolean registerGoogleUser(User user) {
+        return userDAO.registerGoogleUser(user);
+    }
+
 }

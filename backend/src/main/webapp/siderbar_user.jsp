@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+
 <div class="sidebar">
     <div class="edit-avatar">
 
@@ -11,6 +12,14 @@
         </c:if>
 
         <c:choose>
+            <c:when test="${not empty sessionScope.user.avatarImg
+                    and fn:startsWith(sessionScope.user.avatarImg, 'http')}">
+                <!-- Avatar là URL -->
+                <img src="${sessionScope.user.avatarImg}"
+                     alt="Avatar"
+                     class="profile-pic"
+                     id="previewAvatar">
+            </c:when>
             <c:when test="${not empty sessionScope.user.avatarImg}">
                 <img src="${pageContext.request.contextPath}/images/${sessionScope.user.avatarImg}"
                      alt="Avatar"

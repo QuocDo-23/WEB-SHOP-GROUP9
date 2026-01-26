@@ -111,7 +111,7 @@
 
         <div class="products-grid-2">
             <c:forEach var="category" items="${categories}">
-                <a href="products?action=category&id=${category.id}">
+                <a href="cate_products?id=${category.id}">
                     <div class="product-card-2">
                         <div class="product-image-2">
                             <img src="${not empty category.imgCate ? category.imgCate : 'images/default-category.jpg'}"

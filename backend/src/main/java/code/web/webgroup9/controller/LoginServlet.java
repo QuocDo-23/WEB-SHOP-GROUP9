@@ -65,15 +65,18 @@ public class LoginServlet extends HttpServlet {
                 redirectUrl = contextPath + "/payment";
             } else if ("cart".equals(redirect)) {
                 redirectUrl = contextPath + "/cart";
-            }
-            else if ("Admin".equals(user.getRoleName())) {
+            } else if ("Admin".equals(user.getRoleName())) {
                 redirectUrl = contextPath + "/admin/dashboard";
-            }
-            else {
+            } else {
                 redirectUrl = contextPath + "/";
             }
 
             response.sendRedirect(redirectUrl);
+        } else {
+            request.setAttribute("error", "Email hoặc mật khẩu không đúng");
+            request.setAttribute("email", email);
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
+
 }

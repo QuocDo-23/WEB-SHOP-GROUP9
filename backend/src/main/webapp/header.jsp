@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <nav>
     <div class="nav_head">
@@ -47,7 +48,7 @@
                             <h2>Danh mục sản phẩm</h2>
                             <div class="cont-item">
                                 <c:forEach var="category" items="${categories}">
-                                    <a href="${pageContext.request.contextPath}/products.jsp#section-${category.id}"
+                                    <a href="${pageContext.request.contextPath}/cate_products?id=${category.id}"
                                        class="product_item">
                                         <div class="product_cont">
                                             <img src="${category.imgCate}" alt="${category.name}">
@@ -115,6 +116,14 @@
                                 <c:when test="${not empty sessionScope.user}">
                                     <a href="#" class="avatar-link">
                                         <c:choose>
+                                            <c:when test="${not empty sessionScope.user.avatarImg
+                                                and fn:startsWith(sessionScope.user.avatarImg, 'http')}">
+                                                <!-- Avatar là URL -->
+                                                <img src="${sessionScope.user.avatarImg}"
+                                                     alt="Avatar"
+                                                     class="profile-pic"
+                                                     id="previewAvatar">
+                                            </c:when>
                                             <c:when test="${not empty sessionScope.user.avatarImg}">
                                                 <img src="${pageContext.request.contextPath}/images/${sessionScope.user.avatarImg}"
                                                      alt="Avatar">

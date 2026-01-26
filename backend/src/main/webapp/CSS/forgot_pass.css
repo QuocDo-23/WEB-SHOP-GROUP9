@@ -226,3 +226,47 @@ input:focus {
 .fp-footer a:hover {
     text-decoration: underline;
 }
+.otp-input-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.otp-input {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.otp-input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.resend-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.resend-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.resend-link a:hover {
+    text-decoration: underline;
+}
+
+.timer {
+    text-align: center;
+    color: #666;
+    margin: 10px 0;
+    font-size: 14px;
+}

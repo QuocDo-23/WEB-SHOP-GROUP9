@@ -31,6 +31,8 @@ public class BaseDao {
                 ds.setServerTimezone("UTC");
                 ds.setAllowPublicKeyRetrieval(true);
 
+                // connect pull *
+
                 // Tạo JDBI instance
                 jdbi = Jdbi.create(ds);
 
