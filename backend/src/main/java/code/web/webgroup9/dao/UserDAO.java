@@ -321,5 +321,29 @@ public class UserDAO {
                         .one()
         ) > 0;
     }
+    /**
+     * Đăng ký user từ Google OAuth (không cần password)
+     */
+    public boolean registerGoogleUser(User user) {
+        try {
+            return jdbi.withHandle(handle -> {
+                int result = handle.createUpdate(
+                                "INSERT INTO User (role_id, name, email, password, avatar_img) " +
+                                        "VALUES (:roleId, :name, :email, :password, :avatar)"
+                        )
+                        .bind("roleId", 2) // Default role: Customer
+                        .bind("name", user.getName())
+                        .bind("email", user.getEmail())
+                        .bind("password", "") // Empty password cho OAuth users
+                        .bind("avatar", user.getAvatarImg())
+                        .execute();
+
+                return result > 0;
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 }

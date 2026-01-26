@@ -11,6 +11,8 @@ public class Review {
     private int rating;
     private Timestamp date;
     private String userName; // For JOIN query
+    private int status;
+
 
     // Getters and Setters
     public int getId() {
@@ -75,6 +77,12 @@ public class Review {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+    public int getStatus() {
+        return status;
+    }
+    public void setStatus(int status) {
+        this.status = status;
     }
 }
 
