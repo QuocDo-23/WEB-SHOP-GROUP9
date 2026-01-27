@@ -29,52 +29,65 @@ public class ProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-
-        String action = request.getParameter("action");
-
-        if (action == null) {
-            action = "list";
-
-        }
-
         try {
-            // Lấy tất cả sản phẩm và danh mục
-            List<ProductWithDetails> allProducts = productService.getAllProductsWithDetails();
+            /* ===================== 1. NHẬN FILTER GIÁ ===================== */
+            // checkbox giá (vd: 0-1000000, 1000000-5000000 ...)
+            String[] priceRanges = request.getParameterValues("price");
+
+            /* ===================== 2. LẤY DANH MỤC (GIỮ NGUYÊN) ===================== */
             List<Category> categories = categoryService.getSubCategories();
 
-            // Nhóm sản phẩm theo danh mục
+            /* ===================== 3. NẾU CÓ LỌC GIÁ → CHẠY LỌC ===================== */
+            if (priceRanges != null && priceRanges.length > 0) {
+                List<ProductWithDetails> filteredProducts =
+                        productService.filterProductsByPrice(priceRanges);
+
+                // Debug: In ra console để kiểm tra (tùy chọn, xóa khi production)
+                System.out.println("Filtering by price ranges: " + Arrays.toString(priceRanges) + ", Filtered products count: " + filteredProducts.size());
+
+                request.setAttribute("products", filteredProducts);  // Dòng quan trọng: Set products cho JSP
+                request.setAttribute("categories", categories);
+
+                // Dùng lại products.jsp – KHÔNG đổi giao diện
+                request.getRequestDispatcher("products.jsp").forward(request, response);
+                return;
+            }
+
+            /* ===================== 4. KHÔNG LỌC → LOGIC CŨ ===================== */
+            List<ProductWithDetails> allProducts =
+                    productService.getAllProductsWithDetails();
+
             Map<Integer, List<ProductWithDetails>> productsByCategory = new HashMap<>();
+
             for (ProductWithDetails product : allProducts) {
                 int catId = product.getCategoryId();
-                List<ProductWithDetails> categoryProducts = productsByCategory.computeIfAbsent(catId, k -> new ArrayList<>());
+                List<ProductWithDetails> list =
+                        productsByCategory.computeIfAbsent(catId, k -> new ArrayList<>());
 
-                // Chỉ thêm nếu chưa đủ 8 sản phẩm
-                if (categoryProducts.size() < 8) {
-                    categoryProducts.add(product);
+                // Chỉ lấy 8 sp / danh mục (GIỮ NGUYÊN)
+                if (list.size() < 8) {
+                    list.add(product);
                 }
             }
 
-            // Set attributes
             request.setAttribute("categories", categories);
             request.setAttribute("productsByCategory", productsByCategory);
             request.setAttribute("totalProducts", allProducts.size());
 
-            // Forward đến products.jsp
             request.getRequestDispatcher("products.jsp").forward(request, response);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            request.setAttribute("error", "Đã xảy ra lỗi: " + e.getMessage());
-            request.getRequestDispatcher("error.jsp").forward(request, response);
+            throw new ServletException(e);
         }
-
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
-    }}
+    }
+}
