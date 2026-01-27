@@ -17,9 +17,6 @@ public class ProductDAO {
     }
 
     /**
-     * lấy tất cả sản phẩm nổi bật
-     */
-    /**
      * Lấy sản phẩm nổi bật theo đánh giá trung bình cao nhất
      * Ưu tiên: review cao + có ít nhất một số lượng review nhất định
      * Giới hạn số lượng (ví dụ top 12)
@@ -140,12 +137,9 @@ public class ProductDAO {
         });
     }
 
-
-
     /**
      * Tìm kiếm sản phẩm theo tên
      */
-
     public List<ProductWithDetails> searchProducts(String keyword) {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
@@ -177,8 +171,6 @@ public class ProductDAO {
         );
     }
 
-
-
     /**
      * Update rating của sản phẩm
      */
@@ -192,7 +184,6 @@ public class ProductDAO {
                         .execute()
         );
     }
-
 
     /**
      * Lấy 8 sản phẩm đầu tiên theo category (dùng cho trang products)
@@ -222,7 +213,6 @@ public class ProductDAO {
         );
     }
 
-    // ===== THÊM MỚI =====
     /**
      * Đếm tổng số sản phẩm theo category
      * Dùng để kiểm tra có hiển thị "Xem thêm" hay không
@@ -238,6 +228,7 @@ public class ProductDAO {
                         .one()
         );
     }
+
     /**
      * Lấy sản phẩm theo category với phân trang
      */
@@ -266,7 +257,7 @@ public class ProductDAO {
                         .list()
         );
     }
-    // ====================
+
     /**
      * Giảm số lượng sản phẩm khi có đơn hàng
      */
@@ -345,12 +336,12 @@ public class ProductDAO {
     }
 
     /**
-     * Insert sản phẩm mới
+     * thêm sản phẩm mới
      */
     public boolean insertProduct(ProductWithDetails product) {
         return jdbi.inTransaction(handle -> {
 
-            // 1. Insert Product
+            //thêm Product
             int productId = handle.createUpdate(
                             "INSERT INTO Product (name, category_id, price, inventory_quantity, discount_id, status) " +
                                     "VALUES (?, ?, ?, ?, ?, 'active')")
@@ -363,7 +354,7 @@ public class ProductDAO {
                     .mapTo(int.class)
                     .one();
 
-            // 2. Insert Product_Detail
+            // thêm Product_Detail
             handle.createUpdate(
                             "INSERT INTO Product_Detail (product_id, description, material, voltage, dimensions, " +
                                     "type, color, style, warranty) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")
@@ -378,7 +369,7 @@ public class ProductDAO {
                     .bind(8, product.getWarranty())
                     .execute();
 
-            // 3. Insert main image
+            // thêm main image
             if (product.getImages() != null) {
                 for (String img : product.getImages()) {
                     handle.createUpdate(
@@ -393,14 +384,13 @@ public class ProductDAO {
         });
     }
 
-
     /**
      * Update sản phẩm
      */
     public boolean updateProduct(ProductWithDetails product) {
         return jdbi.inTransaction(handle -> {
 
-            // 1. Update Product
+            // sửa Product
             int productRows = handle.createUpdate(
                             "UPDATE Product SET name = ?, category_id = ?, price = ?, inventory_quantity = ?, discount_id = ? WHERE id = ?")
                     .bind(0, product.getName())
@@ -411,7 +401,7 @@ public class ProductDAO {
                     .bind(5, product.getId())
                     .execute();
 
-            // 2. Update Product_Detail
+            //sửa Product_Detail
             int detailRows = handle.createUpdate(
                             "UPDATE Product_Detail SET description = ?, material = ?, voltage = ?, dimensions = ?, " +
                                     "type = ?, color = ?, style = ?, warranty = ? WHERE product_id = ?")
@@ -426,13 +416,13 @@ public class ProductDAO {
                     .bind(8, product.getId())
                     .execute();
 
-            // 3. XÓA ẢNH CŨ
+            //xóa ảnh cũ
             handle.createUpdate(
                             "DELETE FROM Image WHERE type = 'product' AND ref_id = ?")
                     .bind(0, product.getId())
                     .execute();
 
-            // 4. INSERT ẢNH MỚI
+            //thêm ảnh mới
             if (product.getImages() != null) {
                 for (String img : product.getImages()) {
                     handle.createUpdate(
@@ -446,8 +436,6 @@ public class ProductDAO {
             return productRows > 0 && detailRows > 0;
         });
     }
-
-
 
     /**
      * Xóa sản phẩm
@@ -480,7 +468,6 @@ public class ProductDAO {
             return rows > 0;
         });
     }
-    // Thêm vào ProductDAO.java
 
     /**
      * LẤY SẢN PHẨM VỚI PHÂN TRANG NGAY TỪ DATABASE
@@ -592,7 +579,4 @@ public class ProductDAO {
                         .list()
         );
     }
-
-
-
 }
