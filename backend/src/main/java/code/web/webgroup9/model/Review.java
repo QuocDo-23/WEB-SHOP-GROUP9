@@ -10,7 +10,7 @@ public class Review {
     private String img;
     private int rating;
     private Timestamp date;
-    private String userName; // For JOIN query
+    private String userName;
     private int status;
 
 

@@ -24,9 +24,12 @@ public class Order implements Serializable {
     private double total;
     private String status;
 
-    private String userName;      // Tên user từ JOIN
-    private String userEmail;     // Email user từ JOIN
+
+
+    private String userName;
+    private String userEmail;
     private List<OrderItem> items;
+    private boolean hasReview;
 
     public Order() {
         this.status = "pending";
@@ -152,6 +155,13 @@ public class Order implements Serializable {
     }
     public void setItems(List<OrderItem> items) {
         this.items = items;
+    }
+    public boolean isHasReview() {
+        return hasReview;
+    }
+
+    public void setHasReview(boolean hasReview) {
+        this.hasReview = hasReview;
     }
 
 

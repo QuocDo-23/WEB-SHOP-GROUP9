@@ -62,6 +62,10 @@ public class OrderServlet extends HttpServlet {
                 paymentMap.put(order.getId(), payment);
             }
         }
+        for (Order order : orders) {
+            boolean hasReview = orderDAO.hasOrderReview(order.getId());
+            order.setHasReview(hasReview);
+        }
 
         request.setAttribute("orders", orders);
         request.setAttribute("orderItemsMap", orderItemsMap);

@@ -127,13 +127,26 @@
                                                         Hủy Đơn
                                                     </a>
                                                 </c:if>
-                                                <a href="order-detail?id=${order.id}" class="btn btn-secondary">
+                                                <a href="${pageContext.request.contextPath}/order_detail?id=${order.id}" class="btn btn-secondary">
                                                     Chi tiết
                                                 </a>
                                                 <c:if test="${order.status == 'delivered'}">
-                                                    <a href="cart" class="btn btn-primary">Mua Lại</a>
+                                                    <c:choose>
+                                                        <c:when test="${order.hasReview}">
+                                                            <!-- Đã đánh giá -->
+                                                            <button class="btn btn-secondary" disabled>
+                                                                <i class="bi bi-check-circle"></i> Đã đánh giá
+                                                            </button>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <a href="${pageContext.request.contextPath}/order-review?id=${order.id}">
+                                                                Đánh giá đơn hàng
+                                                            </a>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                 </c:if>
                                             </div>
+
                                         </div>
                                     </div>
                                 </c:forEach>
