@@ -141,4 +141,21 @@ public class ReviewDAO {
                         .one()
         );
     }
+
+    // order review
+    public boolean hasOrderReview(int orderId) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery(
+                                "SELECT COUNT(*) FROM review_order WHERE order_id = :orderId"
+                        )
+                        .bind("orderId", orderId)
+                        .mapTo(Integer.class)
+                        .one() > 0
+        );
+    }
+
+//    public Object getReviewByOrderId(int orderId) {
+//        return jdbi.withHandle(handle ->
+//                )
+//    }
 }

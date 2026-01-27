@@ -103,19 +103,9 @@ public class UserDAO {
                         .bind("id", id)
                         .mapToBean(User.class)
                         .findFirst()
-            ).map(user -> {
-                String statusSql = "SELECT status FROM user WHERE id = :id";
-                String status = jdbi.withHandle(handle ->
-                    handle.createQuery(statusSql)
-                        .bind("id", id)
-                        .mapTo(String.class)
-                        .findOne()
-                        .orElse("active") // Mặc định là active nếu không tìm thấy
-                );
-                user.setStatus(status);
-                return user;
-            });
+        );
     }
+
 
     /**
      * Lấy user theo email
