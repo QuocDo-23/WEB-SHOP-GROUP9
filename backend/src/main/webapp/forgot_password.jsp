@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <!DOCTYPE html>
@@ -52,6 +53,10 @@
             <c:if test="${not empty error}">
                 <p style="color:red">${error}</p>
             </c:if>
+
+            <div class="fp-footer">
+                <p>Bạn đã nhớ mật khẩu? <a href="login">Đăng nhập ngay</a></p>
+            </div>
 
         </form>
     </div>
