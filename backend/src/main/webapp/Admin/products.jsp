@@ -218,7 +218,7 @@
                     <!-- Previous button -->
                     <c:choose>
                         <c:when test="${currentPages > 1}">
-                            <c:url var="prevUrl" value="/admin/products">
+                            <c:url var="prevUrl" value="/Admin/products.jsp">
                                 <c:param name="page" value="${currentPages - 1}"/>
                                 <c:if test="${not empty searchParam}">
                                     <c:param name="search" value="${searchParam}"/>
