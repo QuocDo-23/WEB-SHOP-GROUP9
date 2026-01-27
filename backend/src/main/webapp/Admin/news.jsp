@@ -43,14 +43,15 @@
                     <h2>Danh Sách Tin Tức</h2>
                     <div class="search-box">
                         <form action="${pageContext.request.contextPath}/admin/news" method="get" style="display: flex; gap: 10px;">
-                            <input type="text" name="search" placeholder="Tìm kiếm tin tức..." value="${param.search}">
+                            <input type="text" name="search" placeholder="Tìm kiếm..." value="${param.search}">
                             <button type="submit" class="btn btn-primary">Tìm</button>
                         </form>
                         <button class="btn btn-primary" onclick="openModal()">
-                            + Thêm Tin Tức
+                            + Thêm tin tức mới
                         </button>
                     </div>
                 </div>
+
                 <table>
                     <thead>
                         <tr>
@@ -61,28 +62,37 @@
                             <th>Chức Năng</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         <c:choose>
                             <c:when test="${not empty newsList}">
                                 <c:forEach items="${newsList}" var="article">
                                     <tr>
                                         <td class="product-img">
-                                            <img src="${article.mainImg}" alt="${article.title}">
+                                            <a href="${pageContext.request.contextPath}/admin/news-content?articleId=${article.id}">
+                                                <img src="${article.mainImg}" alt="${article.title}">
+                                            </a>
                                         </td>
+
                                         <td>
                                             <div class="product-info">
-                                                <div class="products-name">${article.title}</div>
+                                                <a href="${pageContext.request.contextPath}/admin/news-content?articleId=${article.id}" class="article-title-link">
+                                                    ${article.title}
+                                                </a>
                                             </div>
                                         </td>
+
                                         <td>
                                             <c:choose>
                                                 <c:when test="${article.feature}">Nổi bật</c:when>
                                                 <c:otherwise>Thường</c:otherwise>
                                             </c:choose>
                                         </td>
+
                                         <td>
                                             <fmt:formatDate value="${article.dateOfPosting}" pattern="dd/MM/yyyy"/>
                                         </td>
+
                                         <td>
                                             <button class="btn btn-sm btn-edit" onclick="editNews('${article.id}', '${article.title}', '${article.categoryId}', '${article.mainImg}', '${article.description}', '${article.feature}')">Sửa</button>
                                             <form action="${pageContext.request.contextPath}/admin/news" method="post" style="display: inline;" onsubmit="return confirm('Bạn có chắc muốn xóa tin tức này?');">
@@ -94,6 +104,7 @@
                                     </tr>
                                 </c:forEach>
                             </c:when>
+
                             <c:otherwise>
                                 <tr>
                                     <td colspan="5" style="text-align: center; padding: 20px;">Không có tin tức nào.</td>
@@ -113,6 +124,7 @@
                 <h3 id="modalTitle">Thêm Tin Tức Mới</h3>
                 <button class="close-btn" onclick="closeModal()">×</button>
             </div>
+
             <form id="newsForm" action="${pageContext.request.contextPath}/admin/news" method="post">
                 <input type="hidden" name="action" id="formAction" value="add">
                 <input type="hidden" name="id" id="newsId">
@@ -121,10 +133,12 @@
                     <label>Link Hình Ảnh</label>
                     <input type="url" name="imageLink" id="imageLink" required>
                 </div>
+
                 <div class="form-group">
                     <label>Tiêu Đề</label>
                     <input type="text" name="newsTitle" id="newsTitle" required>
                 </div>
+
                 <div class="form-group">
                     <label>Loại tin tức</label>
                     <select name="newsCategory" id="newsCategory" required>
@@ -132,12 +146,14 @@
                         <option value="2">Thường</option>
                     </select>
                 </div>
+
                 <div class="form-group">
                     <label>Nội Dung</label>
                     <textarea name="newsContent" id="newsContent" rows="5"
                         style="width: 100%; padding: 10px 15px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px;"
                         required></textarea>
                 </div>
+
                 <div class="form-actions">
                     <button type="button" class="btn btn-secondary" onclick="closeModal()">Hủy</button>
                     <button type="submit" class="btn btn-primary">Lưu Tin</button>
