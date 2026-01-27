@@ -19,7 +19,8 @@ public class ReviewStatistics {
             case 1 -> oneStar;
             default -> 0;
         };
-        return (count * 100.0) / totalReviews;
+        return Math.round((count * 100.0 / totalReviews) * 100.0) / 100.0;
+
     }
 
     // Getters and Setters
