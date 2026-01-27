@@ -1,9 +1,9 @@
 package code.web.webgroup9.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class Order implements Serializable {
     private int id;
@@ -23,6 +23,10 @@ public class Order implements Serializable {
 
     private double total;
     private String status;
+
+    private String userName;      // Tên user từ JOIN
+    private String userEmail;     // Email user từ JOIN
+    private List<OrderItem> items;
 
     public Order() {
         this.status = "pending";
@@ -129,5 +133,26 @@ public class Order implements Serializable {
         if (orderDate == null) return "";
         return orderDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
+    public String getUserName() {
+        return userName;
+    }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public List<OrderItem> getItems() {
+        return items;
+    }
+    public void setItems(List<OrderItem> items) {
+        this.items = items;
+    }
+
 
 }

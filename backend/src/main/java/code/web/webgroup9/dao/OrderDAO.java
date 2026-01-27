@@ -3,10 +3,7 @@ package code.web.webgroup9.dao;
 import code.web.webgroup9.model.Order;
 import org.jdbi.v3.core.Jdbi;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import code.web.webgroup9.model.OrderItem;
 
@@ -464,4 +461,280 @@ public class OrderDAO {
                     .list();
         });
     }
+
+    // ================== HÀM MỚI - NÂNG CẤP CHO ADMIN ==================
+
+    /**
+     * Lấy danh sách đơn hàng có phân trang và lọc (PHÂN TRANG TẠI DAO)
+     *
+     * @param page Trang hiện tại (bắt đầu từ 1)
+     * @param pageSize Số bản ghi trên mỗi trang
+     * @param status Lọc theo trạng thái (null = tất cả)
+     * @param searchKeyword Từ khóa tìm kiếm (tên khách, email, mã đơn)
+     * @param sortBy Sắp xếp theo (order_date, total, status)
+     * @param sortOrder Thứ tự (ASC, DESC)
+     * @return Danh sách đơn hàng
+     */
+    public List<Order> getOrdersWithPagination(int page, int pageSize, String status,
+                                               String searchKeyword, String sortBy, String sortOrder) {
+        // Tính offset
+        int offset = (page - 1) * pageSize;
+
+        // Build query động
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT o.*, u.name as user_name, u.email as user_email ");
+        sql.append("FROM orders o ");
+        sql.append("LEFT JOIN user u ON o.user_id = u.id ");
+        sql.append("WHERE 1=1 ");
+
+        // Thêm điều kiện lọc
+        List<Object> params = new ArrayList<>();
+        if (status != null && !status.isEmpty() && !status.equals("all")) {
+            sql.append("AND o.status = ? ");
+            params.add(status);
+        }
+
+        if (searchKeyword != null && !searchKeyword.trim().isEmpty()) {
+            sql.append("AND (o.recipient_name LIKE ? OR o.recipient_email LIKE ? OR o.id = ?) ");
+            String likeKeyword = "%" + searchKeyword.trim() + "%";
+            params.add(likeKeyword);
+            params.add(likeKeyword);
+            // Thử parse keyword thành số cho ID
+            try {
+                int orderId = Integer.parseInt(searchKeyword.trim());
+                params.add(orderId);
+            } catch (NumberFormatException e) {
+                params.add(-1); // ID không hợp lệ
+            }
+        }
+
+        // Thêm sắp xếp
+        if (sortBy == null || sortBy.isEmpty()) {
+            sortBy = "order_date";
+        }
+        if (sortOrder == null || (!sortOrder.equalsIgnoreCase("ASC") && !sortOrder.equalsIgnoreCase("DESC"))) {
+            sortOrder = "DESC";
+        }
+
+        sql.append("ORDER BY o.").append(sortBy).append(" ").append(sortOrder).append(" ");
+        sql.append("LIMIT ? OFFSET ?");
+        params.add(pageSize);
+        params.add(offset);
+
+        return jdbi.withHandle(handle -> {
+            var query = handle.createQuery(sql.toString());
+
+            // Bind parameters
+            for (int i = 0; i < params.size(); i++) {
+                query.bind(i, params.get(i));
+            }
+
+            return query.map((rs, ctx) -> {
+                Order order = new Order();
+                order.setId(rs.getInt("id"));
+                order.setUserId((Integer) rs.getObject("user_id"));
+                order.setRecipientName(rs.getString("recipient_name"));
+                order.setRecipientPhone(rs.getString("recipient_phone"));
+                order.setRecipientEmail(rs.getString("recipient_email"));
+                order.setShippingHouseNumber(rs.getString("shipping_house_number"));
+                order.setShippingCommune(rs.getString("shipping_commune"));
+                order.setShippingDistrict(rs.getString("shipping_district"));
+                order.setShippingAddressDetail(rs.getString("shipping_address_detail"));
+                order.setOrderDate(rs.getTimestamp("order_date").toLocalDateTime());
+                order.setTotal(rs.getDouble("total"));
+                order.setStatus(rs.getString("status"));
+
+                // Thêm thông tin user
+                order.setUserName(rs.getString("user_name"));
+                order.setUserEmail(rs.getString("user_email"));
+
+                return order;
+            }).list();
+        });
+    }
+
+    /**
+     * Đếm tổng số đơn hàng (cho phân trang)
+     */
+    public int countOrders(String status, String searchKeyword) {
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT COUNT(*) FROM orders o ");
+        sql.append("LEFT JOIN user u ON o.user_id = u.id ");
+        sql.append("WHERE 1=1 ");
+
+        List<Object> params = new ArrayList<>();
+
+        if (status != null && !status.isEmpty() && !status.equals("all")) {
+            sql.append("AND o.status = ? ");
+            params.add(status);
+        }
+
+        if (searchKeyword != null && !searchKeyword.trim().isEmpty()) {
+            sql.append("AND (o.recipient_name LIKE ? OR o.recipient_email LIKE ? OR o.id = ?) ");
+            String likeKeyword = "%" + searchKeyword.trim() + "%";
+            params.add(likeKeyword);
+            params.add(likeKeyword);
+            try {
+                int orderId = Integer.parseInt(searchKeyword.trim());
+                params.add(orderId);
+            } catch (NumberFormatException e) {
+                params.add(-1);
+            }
+        }
+
+        return jdbi.withHandle(handle -> {
+            var query = handle.createQuery(sql.toString());
+            for (int i = 0; i < params.size(); i++) {
+                query.bind(i, params.get(i));
+            }
+            return query.mapTo(Integer.class).findOne().orElse(0);
+        });
+    }
+
+    /**
+     * Kiểm tra đơn hàng đã có đánh giá chưa
+     */
+    public boolean hasOrderReview(int orderId) {
+        String sql = "SELECT COUNT(*) FROM review_order WHERE order_id = ?";
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind(0, orderId)
+                        .mapTo(Integer.class)
+                        .one() > 0
+        );
+    }
+
+    /**
+     * Lấy đánh giá đơn hàng theo order_id
+     */
+    public Map<String, Object> getOrderReview(int orderId) {
+        String sql = "SELECT ro.*, u.name as user_name " +
+                "FROM review_order ro " +
+                "LEFT JOIN user u ON ro.user_id = u.id " +
+                "WHERE ro.order_id = ?";
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind(0, orderId)
+                        .map((rs, ctx) -> {
+                            Map<String, Object> review = new HashMap<>();
+                            review.put("id", rs.getInt("id"));
+                            review.put("orderId", rs.getInt("order_id"));
+                            review.put("userId", rs.getInt("user_id"));
+                            review.put("userName", rs.getString("user_name"));
+                            review.put("rating", rs.getInt("rating"));
+                            review.put("text", rs.getString("text"));
+                            review.put("date", rs.getTimestamp("date"));
+                            return review;
+                        })
+                        .findOne()
+                        .orElse(null)
+        );
+    }
+
+    /**
+     * Lấy thống kê theo trạng thái đơn hàng
+     */
+    public Map<String, Integer> getOrderStatusStatistics() {
+        String sql = "SELECT status, COUNT(*) as count FROM orders GROUP BY status";
+
+        Map<String, Integer> stats = new HashMap<>();
+
+        jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .map((rs, ctx) -> {
+                            stats.put(rs.getString("status"), rs.getInt("count"));
+                            return null;
+                        })
+                        .list()
+        );
+
+        // Đảm bảo có đủ các status
+        stats.putIfAbsent("pending", 0);
+        stats.putIfAbsent("processing", 0);
+        stats.putIfAbsent("shipped", 0);
+        stats.putIfAbsent("delivered", 0);
+        stats.putIfAbsent("cancelled", 0);
+
+        return stats;
+    }
+
+    /**
+     * Cập nhật nhiều đơn hàng cùng lúc (bulk update)
+     */
+    public int bulkUpdateOrderStatus(List<Integer> orderIds, String newStatus) {
+        if (orderIds == null || orderIds.isEmpty()) {
+            return 0;
+        }
+
+        String placeholders = String.join(",", Collections.nCopies(orderIds.size(), "?"));
+        String sql = "UPDATE orders SET status = ? WHERE id IN (" + placeholders + ")";
+
+        return jdbi.withHandle(handle -> {
+            var update = handle.createUpdate(sql);
+            update.bind(0, newStatus);
+            for (int i = 0; i < orderIds.size(); i++) {
+                update.bind(i + 1, orderIds.get(i));
+            }
+            return update.execute();
+        });
+    }
+
+    /**
+     * Xuất dữ liệu đơn hàng (cho export Excel/CSV)
+     */
+    public List<Order> exportOrders(String status, String fromDate, String toDate) {
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT o.*, u.name as user_name, u.email as user_email ");
+        sql.append("FROM orders o ");
+        sql.append("LEFT JOIN user u ON o.user_id = u.id ");
+        sql.append("WHERE 1=1 ");
+
+        List<Object> params = new ArrayList<>();
+
+        if (status != null && !status.isEmpty() && !status.equals("all")) {
+            sql.append("AND o.status = ? ");
+            params.add(status);
+        }
+
+        if (fromDate != null && !fromDate.isEmpty()) {
+            sql.append("AND DATE(o.order_date) >= ? ");
+            params.add(fromDate);
+        }
+
+        if (toDate != null && !toDate.isEmpty()) {
+            sql.append("AND DATE(o.order_date) <= ? ");
+            params.add(toDate);
+        }
+
+        sql.append("ORDER BY o.order_date DESC");
+
+        return jdbi.withHandle(handle -> {
+            var query = handle.createQuery(sql.toString());
+            for (int i = 0; i < params.size(); i++) {
+                query.bind(i, params.get(i));
+            }
+
+            return query.map((rs, ctx) -> {
+                Order order = new Order();
+                order.setId(rs.getInt("id"));
+                order.setUserId((Integer) rs.getObject("user_id"));
+                order.setRecipientName(rs.getString("recipient_name"));
+                order.setRecipientPhone(rs.getString("recipient_phone"));
+                order.setRecipientEmail(rs.getString("recipient_email"));
+                order.setShippingHouseNumber(rs.getString("shipping_house_number"));
+                order.setShippingCommune(rs.getString("shipping_commune"));
+                order.setShippingDistrict(rs.getString("shipping_district"));
+                order.setShippingAddressDetail(rs.getString("shipping_address_detail"));
+                order.setOrderDate(rs.getTimestamp("order_date").toLocalDateTime());
+                order.setTotal(rs.getDouble("total"));
+                order.setStatus(rs.getString("status"));
+                order.setUserName(rs.getString("user_name"));
+                order.setUserEmail(rs.getString("user_email"));
+                return order;
+            }).list();
+        });
+    }
+
 }
