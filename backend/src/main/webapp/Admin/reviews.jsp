@@ -11,8 +11,9 @@
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/CSS/reviews-list.css">
+    <<link rel="stylesheet"
+           href="${pageContext.request.contextPath}/CSS/reviews-list.css?v=123">
+
 </head>
 
 <body>
@@ -139,6 +140,7 @@
 
             </div>
         </div>
+
 
 
 

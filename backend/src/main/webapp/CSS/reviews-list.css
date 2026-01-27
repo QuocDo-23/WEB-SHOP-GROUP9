@@ -259,3 +259,58 @@ body {
     padding: 22px;
     width: 480px;
 }
+/* ===== REVIEW ACTION BUTTONS ===== */
+
+.review-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.btn-action {
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all .25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ===== DUYỆT / ẨN ===== */
+.btn-action:not(.btn-delete):not(.btn-reply) {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: #fff;
+}
+
+.btn-action:not(.btn-delete):not(.btn-reply):hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}
+
+/* ===== XÓA ===== */
+.btn-action.btn-delete,
+.review-actions form:nth-child(2) .btn-action {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: #fff;
+}
+
+.btn-action.btn-delete:hover,
+.review-actions form:nth-child(2) .btn-action:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}
+
+/* ===== XEM ===== */
+.btn-action.btn-reply {
+    background: linear-gradient(135deg, #38bdf8, #2563eb);
+    color: #fff;
+}
+
+.btn-action.btn-reply:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}
