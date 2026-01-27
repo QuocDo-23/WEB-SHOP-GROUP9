@@ -208,8 +208,7 @@
                                                 <tr>
                                                     <td>#${o.id}</td>
                                                     <td>
-                                                        <fmt:parseDate value="${o.orderDate}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDate" type="both" />
-                                                        <fmt:formatDate value="${parsedDate}" pattern="dd/MM/yyyy HH:mm"/>
+                                                        ${o.orderDateFormatted}
                                                     </td>
                                                     <td>
                                                         <span class="status-badge
@@ -227,7 +226,7 @@
                                                         <fmt:formatNumber value="${o.total}" type="currency" currencySymbol="₫" maxFractionDigits="0"/>
                                                     </td>
                                                     <td>
-                                                        <a href="${pageContext.request.contextPath}/admin/order-detail?id=${o.id}" style="color: #3182ce; text-decoration: none;">Xem</a>
+                                                        <a href="${pageContext.request.contextPath}/admin/orders/detail?id=${o.id}" style="color: #3182ce; text-decoration: none;">Xem</a>
                                                     </td>
                                                 </tr>
                                             </c:forEach>

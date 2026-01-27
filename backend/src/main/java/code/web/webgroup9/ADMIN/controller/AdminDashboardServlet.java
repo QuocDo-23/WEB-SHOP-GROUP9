@@ -59,7 +59,7 @@ public class AdminDashboardServlet extends HttpServlet {
 
 
         // Top 5 sản phẩm bán chạy
-        List<Map<String, Object>> topProducts = orderDAO.getTopSellingProducts(5);
+        List<Map<String, Object>> topProducts = orderDAO.getTopSellingProducts(8);
         stats.put("topProducts", topProducts);
 
         // Format tiền tệ
