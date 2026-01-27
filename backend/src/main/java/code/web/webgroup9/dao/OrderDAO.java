@@ -270,6 +270,7 @@ public class OrderDAO {
             return rows > 0;
         });
     }
+
     /**
      * Đếm số đơn hàng chưa giao của user
      */
@@ -284,6 +285,7 @@ public class OrderDAO {
                     .orElse(0);
         });
     }
+
     /**
      * Lấy tổng doanh thu
      */
@@ -378,34 +380,46 @@ public class OrderDAO {
      * Lấy top sản phẩm bán chạy
      */
     public List<Map<String, Object>> getTopSellingProducts(int limit) {
-        String sql = "SELECT od.product_name, " +
-                "(SELECT img FROM Image WHERE type = 'product' AND ref_id = p.id LIMIT 1) as img, " +
-                "c.name, SUM(od.quantity) as total_sold, " +
-                "SUM(od.subtotal) as revenue " +
-                "FROM order_details od " +
-                "JOIN orders o ON od.order_id = o.id " +
-                "JOIN product p ON od.product_id = p.id " +
-                "JOIN categories c ON p.category_id = c.id " +
-                "WHERE o.status != 'cancelled' " +
-                "GROUP BY od.product_name, p.id, c.name " +
-                "ORDER BY total_sold DESC " +
-                "LIMIT ?";
 
-        return jdbi.withHandle(handle -> {
-            return handle.createQuery(sql)
-                    .bind(0, limit)
-                    .map((rs, ctx) -> {
-                        Map<String, Object> product = new HashMap<>();
-                        product.put("productName", rs.getString("product_name"));
-                        product.put("img", rs.getString("img"));
-                        product.put("category", rs.getString("name"));
-                        product.put("totalSold", rs.getInt("total_sold"));
-                        product.put("revenue", rs.getDouble("revenue"));
-                        return product;
-                    })
-                    .list();
-        });
+        String sql = """
+        SELECT 
+            p.name AS product_name,
+            COALESCE(i.img, 'no-image.png') AS img,
+            c.name AS category_name,
+            SUM(od.quantity) AS total_sold,
+            SUM(od.price * od.quantity) AS revenue
+        FROM order_details od
+        JOIN orders o ON od.order_id = o.id
+        JOIN product p ON od.product_id = p.id
+        JOIN categories c ON p.category_id = c.id
+        LEFT JOIN Image i 
+            ON i.id = (
+                SELECT MIN(id)
+                FROM Image
+                WHERE ref_id = p.id AND type = 'product'
+            )
+        WHERE o.status != 'cancelled'
+        GROUP BY p.id, p.name, c.name, i.img
+        ORDER BY total_sold DESC
+        LIMIT :limit
+    """;
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("limit", limit)
+                        .map((rs, ctx) -> {
+                            Map<String, Object> product = new HashMap<>();
+                            product.put("productName", rs.getString("product_name"));
+                            product.put("img", rs.getString("img"));
+                            product.put("category", rs.getString("category_name"));
+                            product.put("totalSold", rs.getInt("total_sold"));
+                            product.put("revenue", rs.getDouble("revenue"));
+                            return product;
+                        })
+                        .list()
+        );
     }
+
 
     /**
      * Lấy đơn hàng gần đây
@@ -467,12 +481,12 @@ public class OrderDAO {
     /**
      * Lấy danh sách đơn hàng có phân trang và lọc (PHÂN TRANG TẠI DAO)
      *
-     * @param page Trang hiện tại (bắt đầu từ 1)
-     * @param pageSize Số bản ghi trên mỗi trang
-     * @param status Lọc theo trạng thái (null = tất cả)
+     * @param page          Trang hiện tại (bắt đầu từ 1)
+     * @param pageSize      Số bản ghi trên mỗi trang
+     * @param status        Lọc theo trạng thái (null = tất cả)
      * @param searchKeyword Từ khóa tìm kiếm (tên khách, email, mã đơn)
-     * @param sortBy Sắp xếp theo (order_date, total, status)
-     * @param sortOrder Thứ tự (ASC, DESC)
+     * @param sortBy        Sắp xếp theo (order_date, total, status)
+     * @param sortOrder     Thứ tự (ASC, DESC)
      * @return Danh sách đơn hàng
      */
     public List<Order> getOrdersWithPagination(int page, int pageSize, String status,

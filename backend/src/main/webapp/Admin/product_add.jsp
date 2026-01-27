@@ -110,20 +110,36 @@
                 <!-- PHẦN 2: HÌNH ẢNH -->
                 <div class="form-section">
                     <div class="form-section-title">🖼️ Hình Ảnh Sản Phẩm</div>
+
                     <div class="form-row full">
                         <div class="form-group">
                             <label>Link Hình Ảnh Sản Phẩm</label>
-                            <input type="url" name="imageLink" id="imageLink"
-                                   placeholder="https://example.com/image.jpg"
-                                   value="${product.mainImage}"
-                                   onchange="previewImage()">
-                            <div class="image-preview-box">
-                                <img id="imagePreview" class="image-preview" alt="Preview">
-                                <p id="previewText" style="color: #718096;">Xem trước hình ảnh sẽ hiển thị ở đây</p>
+
+                            <!-- Danh sách input ảnh -->
+                            <div id="imageInputs">
+                                <input type="url"
+                                       name="imageLinks"
+                                       class="image-input"
+                                       placeholder="https://example.com/image.jpg"
+                                       onchange="previewImages()">
+                            </div>
+
+                            <button type="button"
+                                    style="margin-top:8px"
+                                    onclick="addImageInput()">
+                                ➕ Thêm hình ảnh
+                            </button>
+
+                            <!-- Preview -->
+                            <div class="image-preview-box" id="imagePreviewBox">
+                                <p id="previewText" style="color:#718096;">
+                                    Xem trước hình ảnh sẽ hiển thị ở đây
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
+
 
                 <!-- PHẦN 3: CHI TIẾT SẢN PHẨM -->
                 <div class="form-section">
@@ -203,34 +219,62 @@
 </div>
 
 <script>
-    function previewImage() {
-        const imageLink = document.getElementById('imageLink').value;
-        const preview = document.getElementById('imagePreview');
-        const previewText = document.getElementById('previewText');
+    function previewImages() {
+        const inputs = document.querySelectorAll('.image-input');
+        const previewBox = document.getElementById('imagePreviewBox');
 
-        if (imageLink) {
-            preview.src = imageLink;
-            preview.classList.add('show');
-            previewText.style.display = 'none';
+        previewBox.innerHTML = '';
+        let hasImage = false;
 
-            preview.onerror = function() {
-                this.classList.remove('show');
-                previewText.style.display = 'block';
-                previewText.textContent = '❌ Không thể tải hình ảnh';
-                previewText.style.color = '#ef4444';
-            };
-        } else {
-            preview.classList.remove('show');
-            previewText.style.display = 'block';
-            previewText.textContent = 'Xem trước hình ảnh sẽ hiển thị ở đây';
-            previewText.style.color = '#718096';
+        inputs.forEach(input => {
+            const imageLink = input.value.trim();
+            if (imageLink) {
+                hasImage = true;
+
+                const img = document.createElement('img');
+                img.src = imageLink;
+                img.className = 'image-preview show';
+
+                img.onerror = function () {
+                    this.remove();
+                    const errorText = document.createElement('p');
+                    errorText.textContent = '❌ Không thể tải hình ảnh';
+                    errorText.style.color = '#ef4444';
+                    errorText.style.fontSize = '13px';
+                    previewBox.appendChild(errorText);
+                };
+
+                previewBox.appendChild(img);
+            }
+        });
+
+        if (!hasImage) {
+            previewBox.innerHTML = `
+            <p style="color:#718096">
+                Xem trước hình ảnh sẽ hiển thị ở đây
+            </p>
+        `;
         }
     }
 
-    // Preview image nếu đã có link khi load trang
-    window.onload = function() {
-        previewImage();
+    // Khi load trang (edit sản phẩm)
+    window.onload = function () {
+        previewImages();
     };
+
+    // Thêm input ảnh mới
+    function addImageInput() {
+        const container = document.getElementById('imageInputs');
+
+        const input = document.createElement('input');
+        input.type = 'url';
+        input.name = 'imageLinks';
+        input.className = 'image-input';
+        input.placeholder = 'https://example.com/image.jpg';
+        input.onchange = previewImages;
+
+        container.appendChild(input);
+    }
 </script>
 </body>
 </html>

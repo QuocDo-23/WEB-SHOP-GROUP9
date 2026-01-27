@@ -292,20 +292,40 @@
                 <!-- PHẦN 2: HÌNH ẢNH -->
                 <div class="form-section">
                     <div class="form-section-title">🖼️ Hình Ảnh Sản Phẩm</div>
+
                     <div class="form-row full">
                         <div class="form-group">
                             <label>Link Hình Ảnh Sản Phẩm</label>
-                            <input type="url" name="imageLink" id="imageLink"
-                                   placeholder="https://example.com/image.jpg"
-                                   value="<c:out value='${product.mainImage}'/>"
-                                   onchange="previewImage()">
-                            <div class="image-preview-box">
-                                <img id="imagePreview" class="image-preview" alt="Preview">
-                                <p id="previewText" style="color: #718096;">Xem trước hình ảnh sẽ hiển thị ở đây</p>
+
+                            <!-- Ảnh cũ -->
+                            <div id="imageInputs">
+                                <c:forEach items="${product.images}" var="img">
+                                    <input type="url"
+                                           name="imageLinks"
+                                           class="image-input"
+                                           value="<c:out value='${img}'/>"
+                                           onchange="previewImages()">
+                                </c:forEach>
+
+                                <!-- Nếu chưa có ảnh -->
+                                <c:if test="${empty product.images}">
+                                    <input type="url"
+                                           name="imageLinks"
+                                           class="image-input"
+                                           placeholder="https://example.com/image.jpg"
+                                           onchange="previewImages()">
+                                </c:if>
+                            </div>
+
+                            <button type="button" onclick="addImageInput()">➕ Thêm hình ảnh</button>
+
+                            <div class="image-preview-box" id="imagePreviewBox">
+                                <p style="color:#718096">Xem trước hình ảnh sẽ hiển thị ở đây</p>
                             </div>
                         </div>
                     </div>
                 </div>
+
 
                 <!-- PHẦN 3: CHI TIẾT SẢN PHẨM -->
                 <div class="form-section">
@@ -385,34 +405,53 @@
 </div>
 
 <script>
-    function previewImage() {
-        const imageLink = document.getElementById('imageLink').value;
-        const preview = document.getElementById('imagePreview');
-        const previewText = document.getElementById('previewText');
+    function previewImages() {
+        const inputs = document.querySelectorAll('.image-input');
+        const previewBox = document.getElementById('imagePreviewBox');
 
-        if (imageLink) {
-            preview.src = imageLink;
-            preview.classList.add('show');
-            previewText.style.display = 'none';
+        previewBox.innerHTML = '';
+        let hasImage = false;
 
-            preview.onerror = function() {
-                this.classList.remove('show');
-                previewText.style.display = 'block';
-                previewText.textContent = '❌ Không thể tải hình ảnh';
-                previewText.style.color = '#ef4444';
-            };
-        } else {
-            preview.classList.remove('show');
-            previewText.style.display = 'block';
-            previewText.textContent = 'Xem trước hình ảnh sẽ hiển thị ở đây';
-            previewText.style.color = '#718096';
+        inputs.forEach(input => {
+            const url = input.value.trim();
+            if (url) {
+                hasImage = true;
+                const img = document.createElement('img');
+                img.src = url;
+                img.className = 'image-preview show';
+
+                img.onerror = function () {
+                    this.remove();
+                    const p = document.createElement('p');
+                    p.textContent = '❌ Không thể tải hình ảnh';
+                    p.style.color = '#ef4444';
+                    previewBox.appendChild(p);
+                };
+
+                previewBox.appendChild(img);
+            }
+        });
+
+        if (!hasImage) {
+            previewBox.innerHTML =
+                '<p style="color:#718096">Xem trước hình ảnh sẽ hiển thị ở đây</p>';
         }
     }
 
-    // Preview image khi load trang
-    window.onload = function() {
-        previewImage();
-    };
+    // Load preview khi mở trang edit
+    window.onload = previewImages;
+
+    function addImageInput() {
+        const input = document.createElement('input');
+        input.type = 'url';
+        input.name = 'imageLinks';
+        input.className = 'image-input';
+        input.placeholder = 'https://example.com/image.jpg';
+        input.onchange = previewImages;
+
+        document.getElementById('imageInputs').appendChild(input);
+    }
 </script>
+
 </body>
 </html>

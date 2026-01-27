@@ -12,66 +12,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/admin/products_setting.css">
 
 
-    <style>
-        /*.detail-container {*/
-        /*    max-width: 1000px;*/
-        /*    margin: 20px auto;*/
-        /*    background: white;*/
-        /*    padding: 30px;*/
-        /*    border-radius: 12px;*/
-        /*    box-shadow: 0 2px 8px rgba(0,0,0,0.1);*/
-        /*}*/
-        /*.detail-header {*/
-        /*    display: flex;*/
-        /*    justify-content: space-between;*/
-        /*    align-items: center;*/
-        /*    margin-bottom: 30px;*/
-        /*    padding-bottom: 20px;*/
-        /*    border-bottom: 2px solid #e2e8f0;*/
-        /*}*/
-        /*.product-image-large {*/
-        /*    width: 100%;*/
-        /*    max-width: 500px;*/
-        /*    height: auto;*/
-        /*    border-radius: 8px;*/
-        /*    margin: 20px auto;*/
-        /*    display: block;*/
-        /*}*/
-        /*.detail-section {*/
-        /*    margin-bottom: 30px;*/
-        /*}*/
-        /*.detail-section h4 {*/
-        /*    font-size: 18px;*/
-        /*    margin-bottom: 15px;*/
-        /*    color: #2d3748;*/
-        /*    padding-bottom: 10px;*/
-        /*    border-bottom: 2px solid #e2e8f0;*/
-        /*}*/
-        /*.detail-grid {*/
-        /*    display: grid;*/
-        /*    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));*/
-        /*    gap: 15px;*/
-        /*    margin-top: 15px;*/
-        /*}*/
-        /*.detail-item {*/
-        /*    display: flex;*/
-        /*    flex-direction: column;*/
-        /*    gap: 5px;*/
-        /*}*/
-        /*.detail-label {*/
-        /*    font-weight: 600;*/
-        /*    color: #4a5568;*/
-        /*    font-size: 14px;*/
-        /*}*/
-        /*.detail-value {*/
-        /*    color: #2d3748;*/
-        /*    font-size: 15px;*/
-        /*}*/
-        /*.btn-group {*/
-        /*    display: flex;*/
-        /*    gap: 10px;*/
-        /*}*/
-    </style>
+
 </head>
 <body>
 <div class="container">
@@ -90,7 +31,15 @@
                 </div>
             </div>
 
-            <img src="${product.mainImage}" alt="${product.name}" class="product-image-large"/>
+            <div class="product-image-gallery">
+                <c:forEach items="${product.images}" var="img">
+                    <img src="${img}"
+                         alt="${product.name}"
+                         class="product-image"/>
+                </c:forEach>
+            </div>
+
+
             <div class="form-section">
                 <div class="form-section-title">📋 Thông Tin Cơ Bản</div>
 

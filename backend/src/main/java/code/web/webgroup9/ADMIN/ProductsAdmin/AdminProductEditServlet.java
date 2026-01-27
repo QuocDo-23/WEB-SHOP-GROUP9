@@ -128,8 +128,14 @@ public class AdminProductEditServlet extends HttpServlet {
             }
 
             // Image
-            product.setMainImage(req.getParameter("imageLink"));
-
+            String[] imageLinks = req.getParameterValues("imageLinks");
+            if (imageLinks != null) {
+                product.setImages(
+                        java.util.Arrays.stream(imageLinks)
+                                .filter(s -> s != null && !s.trim().isEmpty())
+                                .toList()
+                );
+            }
             // Cập nhật sản phẩm trong database
             boolean success = productDAO.updateProduct(product);
 

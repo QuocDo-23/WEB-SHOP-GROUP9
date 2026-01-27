@@ -54,6 +54,7 @@ public class NewsServlet extends HttpServlet {
         request.setAttribute("newsList", newsList);
         // từ khóa để hiển thị trong input
         request.setAttribute("searchKeyword", searchKeyword);
+        request.setAttribute("currentPage", "news");
         request.getRequestDispatcher("/Admin/news.jsp").forward(request, response);
     }
 

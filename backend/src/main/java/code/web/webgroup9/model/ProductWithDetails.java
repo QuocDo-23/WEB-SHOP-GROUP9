@@ -2,6 +2,7 @@
 package code.web.webgroup9.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class ProductWithDetails extends Product {
     private String categoryName;
@@ -16,6 +17,7 @@ public class ProductWithDetails extends Product {
     private String style;
     private String mainImage;
     private String hoverImage;
+    private List<String> images;
 
     // Calculated fields
     public double getDiscountedPrice() {
@@ -124,6 +126,15 @@ public class ProductWithDetails extends Product {
 
     public void setHoverImage(String hoverImage) {
         this.hoverImage = hoverImage;
+    }
+
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 
 }

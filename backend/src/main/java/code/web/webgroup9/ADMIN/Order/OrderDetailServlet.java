@@ -63,6 +63,7 @@ public class OrderDetailServlet extends HttpServlet {
 
             request.setAttribute("order", order);
             request.setAttribute("hasReview", hasReview);
+            request.setAttribute("currentPage", "orders");
 
             request.getRequestDispatcher("/Admin/order-detail.jsp").forward(request, response);
 
