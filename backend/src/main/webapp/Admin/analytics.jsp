@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -8,6 +9,8 @@
     <title>Thống Kê</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/admin/admin.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+
 </head>
 
 <body>
@@ -17,23 +20,57 @@
     <div class="main-content">
         <h1>📈 Thống Kê</h1>
 
-        <!-- ================= DOANH THU ================= -->
-        <div style="width: 700px; height: 400px; margin-bottom: 60px;">
-            <h3>Doanh thu 6 tháng gần nhất</h3>
+        <!-- ================= 4 Ô THỐNG KÊ ================= -->
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <div class="stat-value">
+                    <fmt:formatNumber value="${totalRevenue}" groupingUsed="true"/>đ
+                </div>
+                <div class="stat-label">Tổng doanh thu</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-value">${totalOrders}</div>
+                <div class="stat-label">Tổng đơn hàng</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-value">${processingOrders}</div>
+                <div class="stat-label">Đơn đang xử lý</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-value">${totalCustomers}</div>
+                <div class="stat-label">Khách hàng</div>
+            </div>
+
+        </div>
+
+        <!-- ================= BIỂU ĐỒ DOANH THU ================= -->
+        <div style="
+    width: 700px;
+    height: 400px;
+    margin: 0 auto 60px auto;
+    text-align: center;">
+
+        <h3>Doanh thu 6 tháng gần nhất</h3>
             <canvas id="revenueChart"></canvas>
         </div>
 
-        <!-- ================= TRẠNG THÁI ================= -->
-        <div style="width: 500px; height: 350px;">
+        <!-- ================= BIỂU ĐỒ TRẠNG THÁI ================= -->
+        <div style="
+            width: 500px;
+            height: 350px;
+            margin: 60px auto;
+            text-align: center;">
             <h3>Tỉ lệ trạng thái đơn hàng</h3>
             <canvas id="statusChart"></canvas>
         </div>
 
-        <!-- ================= TOP SẢN PHẨM ================= -->
-        <div style="width: 700px; height: 400px; margin-top: 60px;">
-            <h3>Top 5 sản phẩm bán chạy</h3>
-            <canvas id="topProductChart"></canvas>
-        </div>
+
+
+
     </div>
 </div>
 
@@ -58,23 +95,53 @@
             datasets: [{
                 label: 'Doanh thu',
                 data: revenueData,
-                backgroundColor: '#4f46e5'
+                backgroundColor: '#4f46e5',
+                borderRadius: 8
             }]
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false
-        }
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                },
+                datalabels: {
+                    color: '#ffffff',
+                    anchor: 'center',
+                    align: 'center',
+                    font: {
+                        weight: 'bold',
+                        size: 12
+                    },
+                    formatter: function (value) {
+                        return (value / 1_000_000).toFixed(1) + ' tr';
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function (value) {
+                            return value.toLocaleString('vi-VN') + ' đ';
+                        }
+                    }
+                }
+            }
+        },
+        plugins: [ChartDataLabels]
     });
 
-    /* ================= TRẠNG THÁI ================= */
-    const statusCanvas = document.getElementById('statusChart');
 
+
+    /* ================= TRẠNG THÁI ================= */
     if (window.statusChart instanceof Chart) {
         window.statusChart.destroy();
     }
 
-    window.statusChart = new Chart(statusCanvas, {
+    window.statusChart = new Chart(document.getElementById('statusChart'), {
         type: 'doughnut',
         data: {
             labels: ['Đang xử lý', 'Đang giao', 'Đã giao', 'Đã huỷ'],
@@ -94,36 +161,6 @@
             }]
         },
         options: {
-            responsive: true,
-            maintainAspectRatio: false
-        }
-    });
-
-    /* ================= TOP SẢN PHẨM ================= */
-    const productLabels = [
-        <c:forEach var="p" items="${topProducts}">
-        "${p.productName}",
-        </c:forEach>
-    ];
-
-    const productData = [
-        <c:forEach var="p" items="${topProducts}">
-        ${p.totalSold},
-        </c:forEach>
-    ];
-
-    new Chart(document.getElementById('topProductChart'), {
-        type: 'bar',
-        data: {
-            labels: productLabels,
-            datasets: [{
-                label: 'Số lượng bán',
-                data: productData,
-                backgroundColor: '#0ea5e9'
-            }]
-        },
-        options: {
-            indexAxis: 'y',
             responsive: true,
             maintainAspectRatio: false
         }
