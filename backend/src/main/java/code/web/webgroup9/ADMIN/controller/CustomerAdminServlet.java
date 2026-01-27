@@ -7,7 +7,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
-@WebServlet(name = "CustomerAdminServlet", value = "/admin/customers")
+@WebServlet("/admin/customers")
 public class CustomerAdminServlet extends HttpServlet {
 
     private UserDAO userDAO;
