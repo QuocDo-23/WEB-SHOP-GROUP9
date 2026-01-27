@@ -62,7 +62,7 @@ public class OrderReviewServlet extends HttpServlet {
             json.append("\"orderId\": \"#DH").append(String.format("%03d", orderId)).append("\",");
             json.append("\"userName\": \"").append(review.get("userName")).append("\",");
             json.append("\"rating\": ").append(review.get("rating")).append(",");
-            json.append("\"text\": \"").append(escapeJson((String) review.get("text"))).append("\"");
+            json.append("\"content\": \"").append(escapeJson((String) review.get("content"))).append("\"");
             json.append("}");
 
             response.getWriter().write(json.toString());

@@ -166,19 +166,7 @@
                     </div>
                 </div>
 
-                <!-- Đánh giá (nếu có) -->
-                <c:if test="${hasReview}">
-                    <div class="detail-section">
-                        <h3><i class="fas fa-star" style="color: #f39c12;"></i> Đánh Giá Từ Khách Hàng</h3>
-                        <div style="padding: 15px; background: #f7fafc; border-radius: 8px;">
-                            <p style="color: #4a5568;">Khách hàng đã đánh giá đơn hàng này.</p>
-                            <button class="btn btn-sm btn-view" style="margin-top: 10px;"
-                                    onclick="window.location.href='${pageContext.request.contextPath}/admin/orders?action=viewReview&id=${order.id}'">
-                                <i class="fas fa-eye"></i> Xem đánh giá
-                            </button>
-                        </div>
-                    </div>
-                </c:if>
+
 
                 <!-- Actions -->
                 <div class="detail-section">

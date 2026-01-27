@@ -124,6 +124,13 @@ public class ProductDAO {
                         .mapTo(String.class)
                         .list();
                 p.setImages(images);
+
+                if (!images.isEmpty()) {
+                    p.setMainImage(images.get(0));
+                }
+                if (images.size() > 1) {
+                    p.setHoverImage(images.get(1));
+                }
             });
 
             return productOpt;
@@ -433,13 +440,31 @@ public class ProductDAO {
     /**
      * Xóa sản phẩm
      */
-    public boolean deleteProduct(int productId) {
-        String sql = "DELETE FROM product WHERE id = ?";
+    // Update to ProductDAO.java
+// Add this to the existing ProductDAO class
 
-        return jdbi.withHandle(handle -> {
-            int rows = handle.createUpdate(sql)
+    public boolean deleteProduct(int productId) {
+        return jdbi.inTransaction(handle -> {
+            // Xóa images liên quan
+            handle.createUpdate("DELETE FROM Image WHERE type = 'product' AND ref_id = ?")
                     .bind(0, productId)
                     .execute();
+
+            // Xóa product_detail
+            handle.createUpdate("DELETE FROM Product_Detail WHERE product_id = ?")
+                    .bind(0, productId)
+                    .execute();
+
+            // Xóa reviews nếu cần (tùy chọn, ở đây giả sử xóa để sạch dữ liệu)
+            handle.createUpdate("DELETE FROM Review_Product WHERE product_id = ?")
+                    .bind(0, productId)
+                    .execute();
+
+            // Xóa product
+            int rows = handle.createUpdate("DELETE FROM Product WHERE id = ?")
+                    .bind(0, productId)
+                    .execute();
+
             return rows > 0;
         });
     }

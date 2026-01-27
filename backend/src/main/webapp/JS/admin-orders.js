@@ -11,7 +11,7 @@ function filterByStatus(status) {
 
 // Xem đánh giá
 function viewReview(orderId, customerName) {
-    fetch(contextPath + '/admin/orders?action=viewReview&id=' + orderId)
+    fetch(contextPath + '/admin/orders/review?id=' + orderId)
         .then(res => res.json())
         .then(data => {
             if (data.success) {
@@ -28,7 +28,7 @@ function viewReview(orderId, customerName) {
 
                 document.getElementById('modalRating').innerHTML = stars;
                 document.getElementById('modalNote').textContent =
-                    data.text || 'Không có ghi chú';
+                    data.content || 'Không có ghi chú';
 
                 document.getElementById('reviewModal').style.display = 'block';
             } else {

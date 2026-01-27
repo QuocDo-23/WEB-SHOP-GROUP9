@@ -10,6 +10,7 @@ public class Payment implements Serializable {
     private double amount;
     private String status;
     private LocalDate payDate;
+    private String paymentStatus;
 
     public Payment() {
         this.status = "pending";
@@ -65,5 +66,13 @@ public class Payment implements Serializable {
 
     public java.sql.Date getOrderDateAsSqlDate() {
         return java.sql.Date.valueOf(payDate);
+    }
+
+    public String getPaymentStatus() {
+        return status;
+    }
+
+    public void setPaymentStatus(String paymentStatus) {
+        this.status = paymentStatus;
     }
 }
