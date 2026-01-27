@@ -610,13 +610,10 @@ public class OrderDAO {
      */
     public boolean hasOrderReview(int orderId) {
         String sql = "SELECT COUNT(*) FROM review_order WHERE order_id = ?";
-
-        return jdbi.withHandle(handle ->
-                handle.createQuery(sql)
-                        .bind(0, orderId)
-                        .mapTo(Integer.class)
-                        .one() > 0
-        );
+        return jdbi.withHandle(handle -> handle.createQuery(sql)
+                .bind(0, orderId)
+                .mapTo(Integer.class)
+                .one() > 0);
     }
 
     /**
@@ -638,7 +635,7 @@ public class OrderDAO {
                             review.put("userId", rs.getInt("user_id"));
                             review.put("userName", rs.getString("user_name"));
                             review.put("rating", rs.getInt("rating"));
-                            review.put("text", rs.getString("text"));
+                            review.put("content", rs.getString("content"));
                             review.put("date", rs.getTimestamp("date"));
                             return review;
                         })
@@ -751,4 +748,32 @@ public class OrderDAO {
         });
     }
 
+    public boolean addOrderReview(int orderId, int userId, int rating, String reviewText) {
+        String sql = "INSERT INTO review_order (order_id, user_id, rating, content, date) " +
+                "VALUES (?, ?, ?, ?, NOW())";
+
+        return jdbi.withHandle(handle -> {
+            try {
+                System.out.println("=== BẮT ĐẦU INSERT REVIEW ===");
+                System.out.println("orderId: " + orderId);
+                System.out.println("userId: " + userId);
+                System.out.println("rating: " + rating);
+                System.out.println("content: " + reviewText);
+
+                int rows = handle.createUpdate(sql)
+                        .bind(0, orderId)
+                        .bind(1, userId)
+                        .bind(2, rating)
+                        .bind(3, reviewText)
+                        .execute();
+
+                System.out.println("Rows inserted: " + rows);
+                return rows > 0;
+            } catch (Exception e) {
+                System.out.println("Lỗi insert review: " + e.getMessage());
+                e.printStackTrace();
+                return false;
+            }
+        });
+    }
 }

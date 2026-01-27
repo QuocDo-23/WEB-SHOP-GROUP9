@@ -50,7 +50,6 @@ h1.title {
 .register-container span,
 .login-container span {
     font-size: 14px;
-    margin-top: 15px;
     color: #2a221a;
 }
 
@@ -351,17 +350,33 @@ button#register:hover i {
 
 /* nút chung */
 .social-buttons .btn {
-    width: 48px;
+    min-width: 200px;           /* chiều rộng tối thiểu, có thể tăng lên 220px–280px tùy ý */
     height: 48px;
-    border-radius: 50%;          /* hình tròn */
+    border-radius: 8px;         /* bo góc nhẹ thay vì tròn hoàn toàn (có thể để 4px hoặc 6px) */
     display: flex;
     align-items: center;
     justify-content: center;
     border: none;
     cursor: pointer;
-    padding: 0;
+    padding: 0 16px;            /* thêm padding hai bên để chữ không sát mép */
     transition: all 0.25s ease;
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    gap: 12px;                  /* khoảng cách giữa icon và text */
+    font-size: 15px;
+    font-weight: 500;
+    color: #333;                /* hoặc #000 tùy theme */
+    background-color: #ffffff;  /* nền trắng chuẩn Google */
+}
+
+/* Khi hover thì nâng nhẹ + bóng đậm hơn (tùy chọn) */
+.social-buttons .btn:hover {
+    box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+    transform: translateY(-1px);
+}
+
+/* Đặc biệt cho nút Google (nếu muốn giữ màu viền xám nhẹ) */
+.btn-google {
+    border: 1px solid #dadce0;   /* viền xám nhạt chuẩn Google */
 }
 
 /* icon */
