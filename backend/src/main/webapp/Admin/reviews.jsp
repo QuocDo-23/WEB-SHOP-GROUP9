@@ -19,25 +19,8 @@
 <body>
 <div class="container">
 
-    <!-- SIDEBAR -->
-    <div class="sidebar">
-        <div class="logo">
-            <img src="https://i.postimg.cc/26JnYsPT/Logo-Photoroom.png">
-            LightAdmin
-        </div>
+    <jsp:include page="siderbar.jsp"/>
 
-        <a href="${pageContext.request.contextPath}/admin/dashboard" class="menu-item">📊 Tổng Quan</a>
-        <a href="${pageContext.request.contextPath}/admin/products" class="menu-item">📦 Sản Phẩm</a>
-        <a href="${pageContext.request.contextPath}/admin/orders" class="menu-item">🛒 Đơn Hàng</a>
-        <a href="${pageContext.request.contextPath}/admin/customers" class="menu-item">👥 Khách Hàng</a>
-        <a href="${pageContext.request.contextPath}/admin/news" class="menu-item">📰 Tin Tức</a>
-        <a href="${pageContext.request.contextPath}/admin/reviews" class="menu-item active">⭐ Đánh Giá</a>
-
-        <button class="logout-btn"
-                onclick="location.href='${pageContext.request.contextPath}/logout'">
-            Đăng xuất
-        </button>
-    </div>
 
     <!-- MAIN -->
     <div class="main-content">
