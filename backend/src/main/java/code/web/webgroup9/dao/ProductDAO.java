@@ -104,26 +104,37 @@ public class ProductDAO {
      * Lấy chi tiết một sản phẩm
      */
     public Optional<ProductWithDetails> getProductById(int id) {
-        return jdbi.withHandle(handle ->
-                handle.createQuery(
-                                "SELECT p.*, " +
-                                        "c.name as category_name, " +
-                                        "d.discount_rate, " +
-                                        "pd.description, pd.warranty, pd.material, pd.voltage, " +
-                                        "pd.dimensions, pd.type, pd.color, pd.style, " +
-                                        "(SELECT img FROM Image WHERE type = 'product' AND ref_id = p.id LIMIT 1) as main_image, " +
-                                        "(SELECT img FROM Image WHERE type = 'product' AND ref_id = p.id LIMIT 1 OFFSET 1) as hover_image " +
-                                        "FROM Product p " +
-                                        "LEFT JOIN Categories c ON p.category_id = c.id " +
-                                        "LEFT JOIN Discount d ON p.discount_id = d.id " +
-                                        "LEFT JOIN Product_Detail pd ON p.id = pd.product_id " +
-                                        "WHERE p.id = :id"
-                        )
+        return jdbi.withHandle(handle -> {
+
+            Optional<ProductWithDetails> productOpt = handle.createQuery(
+                            "SELECT p.*, c.name as category_name, d.discount_rate, " +
+                                    "pd.description, pd.warranty, pd.material, pd.voltage, " +
+                                    "pd.dimensions, pd.type, pd.color, pd.style " +
+                                    "FROM Product p " +
+                                    "LEFT JOIN Categories c ON p.category_id = c.id " +
+                                    "LEFT JOIN Discount d ON p.discount_id = d.id " +
+                                    "LEFT JOIN Product_Detail pd ON p.id = pd.product_id " +
+                                    "WHERE p.id = :id"
+                    )
+                    .bind("id", id)
+                    .mapToBean(ProductWithDetails.class)
+                    .findFirst();
+
+            // ⭐ LẤY TẤT CẢ ẢNH
+            productOpt.ifPresent(p -> {
+                List<String> images = handle.createQuery(
+                                "SELECT img FROM Image WHERE type = 'product' AND ref_id = :id ORDER BY id")
                         .bind("id", id)
-                        .mapToBean(ProductWithDetails.class)
-                        .findFirst()
-        );
+                        .mapTo(String.class)
+                        .list();
+                p.setImages(images);
+            });
+
+            return productOpt;
+        });
     }
+
+
 
     /**
      * Tìm kiếm sản phẩm theo tên
@@ -362,12 +373,14 @@ public class ProductDAO {
                     .execute();
 
             // 3. Insert main image
-            if (product.getMainImage() != null) {
-                handle.createUpdate(
-                                "INSERT INTO Image (type, ref_id, img) VALUES ('product', ?, ?)")
-                        .bind(0, productId)
-                        .bind(1, product.getMainImage())
-                        .execute();
+            if (product.getImages() != null) {
+                for (String img : product.getImages()) {
+                    handle.createUpdate(
+                                    "INSERT INTO Image (type, ref_id, img) VALUES ('product', ?, ?)")
+                            .bind(0, productId)
+                            .bind(1, img.trim())
+                            .execute();
+                }
             }
 
             return true;
@@ -407,18 +420,27 @@ public class ProductDAO {
                     .bind(8, product.getId())
                     .execute();
 
-            // 3. Update main image
-            if (product.getMainImage() != null) {
-                handle.createUpdate(
-                                "UPDATE Image SET img = ? WHERE type = 'product' AND ref_id = ? LIMIT 1")
-                        .bind(0, product.getMainImage())
-                        .bind(1, product.getId())
-                        .execute();
+            // 3. XÓA ẢNH CŨ
+            handle.createUpdate(
+                            "DELETE FROM Image WHERE type = 'product' AND ref_id = ?")
+                    .bind(0, product.getId())
+                    .execute();
+
+            // 4. INSERT ẢNH MỚI
+            if (product.getImages() != null) {
+                for (String img : product.getImages()) {
+                    handle.createUpdate(
+                                    "INSERT INTO Image (type, ref_id, img) VALUES ('product', ?, ?)")
+                            .bind(0, product.getId())
+                            .bind(1, img.trim())
+                            .execute();
+                }
             }
 
             return productRows > 0 && detailRows > 0;
         });
     }
+
 
 
     /**
@@ -534,6 +556,17 @@ public class ProductDAO {
 
             return query.mapTo(Integer.class).one();
         });
+    }
+
+    public List<String> getProductImages(int productId) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery(
+                                "SELECT img FROM Image WHERE type = 'product' AND ref_id = :productId ORDER BY id"
+                        )
+                        .bind("productId", productId)
+                        .mapTo(String.class)
+                        .list()
+        );
     }
 
 

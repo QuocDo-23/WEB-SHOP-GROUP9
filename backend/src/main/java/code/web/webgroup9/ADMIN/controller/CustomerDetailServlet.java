@@ -72,6 +72,7 @@ public class CustomerDetailServlet extends HttpServlet {
             request.setAttribute("customer", customer);
             request.setAttribute("addresses", addresses);
             request.setAttribute("orders", orders);
+            request.setAttribute("currentPage", "customers");
 
             request.getRequestDispatcher("/Admin/customer_detail.jsp").forward(request, response);
 

@@ -62,6 +62,7 @@ public class NewsDetailServlet extends HttpServlet {
 
             request.setAttribute("article", article);
             request.setAttribute("contents", contents);
+            request.setAttribute("currentPage", "news");
             request.getRequestDispatcher("/Admin/news_content.jsp").forward(request, response);
 
         } catch (NumberFormatException e) {

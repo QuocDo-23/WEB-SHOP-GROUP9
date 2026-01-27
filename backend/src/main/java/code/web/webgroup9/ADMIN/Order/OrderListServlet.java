@@ -102,6 +102,8 @@ public class OrderListServlet extends HttpServlet {
         request.setAttribute("sortBy", sortBy);
         request.setAttribute("sortOrder", sortOrder);
         request.setAttribute("statusStats", statusStats);
+        request.setAttribute("currentPage", "orders");
+
 
         // Forward to JSP
         request.getRequestDispatcher("/Admin/orders-admin.jsp").forward(request, response);

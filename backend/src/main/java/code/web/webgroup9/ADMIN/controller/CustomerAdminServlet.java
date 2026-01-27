@@ -38,6 +38,8 @@ public class CustomerAdminServlet extends HttpServlet {
         List<User> customers = userDAO.getAllCustomers();
 
         request.setAttribute("customers", customers);
+        request.setAttribute("currentPage", "customers");
+
         request.getRequestDispatcher("/Admin/customers.jsp").forward(request, response);
     }
 

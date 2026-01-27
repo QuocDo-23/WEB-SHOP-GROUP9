@@ -32,6 +32,7 @@ public class AdminReviewServlet extends HttpServlet {
 
         request.setAttribute("reviews", reviews);
         request.setAttribute("statistics", statistics);
+        request.setAttribute("currentPage", "reviews");
 
         request.getRequestDispatcher("/Admin/reviews.jsp")
                 .forward(request, response);
