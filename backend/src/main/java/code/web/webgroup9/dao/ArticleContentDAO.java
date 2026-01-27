@@ -14,7 +14,7 @@ public class ArticleContentDAO {
     }
 
     /**
-     * Lấy bài viết theo ID
+     * Lấy nd bài viết theo ID
      */
     public List<ArticlesContent> getContentByArticleId(int articleId) {
         return jdbi.withHandle(handle ->
@@ -84,6 +84,79 @@ public class ArticleContentDAO {
                         .bind("limit", limit)
                         .mapToBean(Article.class)
                         .list()
+        );
+    }
+
+    /**
+     * Thêm nội dung mới vào bài viết
+     */
+    public boolean insertContent(ArticlesContent content) {
+        return jdbi.withHandle(handle ->
+                handle.createUpdate(
+                                "INSERT INTO articles_content (article_id, content, content_type, display_order) " +
+                                        "VALUES (:articleId, :content, :contentType, :displayOrder)"
+                        )
+                        .bind("articleId", content.getArticleId())
+                        .bind("content", content.getContent())
+                        .bind("contentType", content.getContentType())
+                        .bind("displayOrder", content.getDisplayOrder())
+                        .execute() > 0
+        );
+    }
+
+    /**
+     * update nội dung bài viết
+     */
+    public boolean updateContent(ArticlesContent content) {
+        return jdbi.withHandle(handle ->
+                handle.createUpdate(
+                                "UPDATE articles_content SET " +
+                                        "content = :content, " +
+                                        "content_type = :contentType, " +
+                                        "display_order = :displayOrder " +
+                                        "WHERE id = :id"
+                        )
+                        .bind("content", content.getContent())
+                        .bind("contentType", content.getContentType())
+                        .bind("displayOrder", content.getDisplayOrder())
+                        .bind("id", content.getId())
+                        .execute() > 0
+        );
+    }
+
+    /**
+     * Xóa nội dung bài viết
+     */
+    public boolean deleteContent(int id) {
+        return jdbi.withHandle(handle ->
+                handle.createUpdate("DELETE FROM articles_content WHERE id = :id")
+                        .bind("id", id)
+                        .execute() > 0
+        );
+    }
+
+    /**
+     * Lấy nội dung theo ID
+     */
+    public ArticlesContent getContentById(int id) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT * FROM articles_content WHERE id = :id")
+                        .bind("id", id)
+                        .mapToBean(ArticlesContent.class)
+                        .findFirst()
+                        .orElse(null)
+        );
+    }
+    
+    /**
+     * Lấy thứ tự hiển thị tiếp theo cho bài viết
+     */
+    public int getNextDisplayOrder(int articleId) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT COALESCE(MAX(display_order), 0) + 1 FROM articles_content WHERE article_id = :articleId")
+                        .bind("articleId", articleId)
+                        .mapTo(Integer.class)
+                        .one()
         );
     }
 

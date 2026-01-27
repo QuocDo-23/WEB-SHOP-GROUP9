@@ -59,7 +59,7 @@ public class ArticleDAO {
     public List<Article> getArticleWithPagination(int page, int pageSize, String sortBy) {
         int offset = (page - 1) * pageSize;
 
-        String orderClause; // Default: newest first
+        String orderClause;
         if ("oldest".equals(sortBy)) {
             orderClause = "a.date_of_posting ASC";
         } else {
@@ -144,7 +144,8 @@ public class ArticleDAO {
     public List<Article> getArticlesByCategory(int categoryId, int limit, int offset) {
         return jdbi.withHandle(handle ->
                 handle.createQuery(
-                                "SELECT a.*, c.name AS categoryName " +
+                                "SELECT a.*, c.name AS categoryName, " +
+                                        "(SELECT img FROM Image WHERE type = 'Articles' AND ref_id = a.id ORDER BY id LIMIT 1) as mainImg " +
                                         "FROM articles a " +
                                         "LEFT JOIN categories c ON a.category_id = c.id " +
                                         "WHERE a.category_id = :categoryId " +
@@ -166,7 +167,8 @@ public class ArticleDAO {
         String searchPattern = "%" + keyword + "%";
         return jdbi.withHandle(handle ->
                 handle.createQuery(
-                                "SELECT a.*, c.name AS categoryName " +
+                                "SELECT a.*, c.name AS categoryName, " +
+                                        "(SELECT img FROM Image WHERE type = 'Articles' AND ref_id = a.id ORDER BY id LIMIT 1) as mainImg " +
                                         "FROM articles a " +
                                         "LEFT JOIN categories c ON a.category_id = c.id " +
                                         "WHERE a.title LIKE :keyword " +
@@ -187,48 +189,100 @@ public class ArticleDAO {
      * @return ID của bài viết vừa tạo
      */
     public int insertArticle(Article article) {
-        return jdbi.withHandle(handle ->
-                handle.createUpdate(
-                                "INSERT INTO articles (category_id, title, description, date_of_posting, slug, mainImg, feature) " +
-                                        "VALUES (:categoryId, :title, :description, :dateOfPosting, :slug, :mainImg, :feature)"
-                        )
-                        .bindBean(article)
-                        .executeAndReturnGeneratedKeys("id")
-                        .mapTo(Integer.class)
-                        .one()
-        );
+        return jdbi.inTransaction(handle -> {
+            // 1. Insert bài viết (không có cột mainImg)
+            int articleId = handle.createUpdate(
+                            "INSERT INTO articles (category_id, title, description, date_of_posting, slug, feature) " +
+                                    "VALUES (:categoryId, :title, :description, :dateOfPosting, :slug, :feature)"
+                    )
+                    .bind("categoryId", article.getCategoryId())
+                    .bind("title", article.getTitle())
+                    .bind("description", article.getDescription())
+                    .bind("dateOfPosting", article.getDateOfPosting())
+                    .bind("slug", article.getSlug())
+                    .bind("feature", article.isFeature())
+                    .executeAndReturnGeneratedKeys("id")
+                    .mapTo(Integer.class)
+                    .one();
+
+            // 2. Insert ảnh vào bảng Image nếu có
+            if (article.getMainImg() != null && !article.getMainImg().isEmpty()) {
+                handle.createUpdate("INSERT INTO Image (type, ref_id, img) VALUES ('Articles', :refId, :img)")
+                        .bind("refId", articleId)
+                        .bind("img", article.getMainImg())
+                        .execute();
+            }
+
+            return articleId;
+        });
     }
 
     /**
      * Cập nhật bài viết
      */
     public int updateArticle(Article article) {
-        return jdbi.withHandle(handle ->
-                handle.createUpdate(
-                                "UPDATE articles SET " +
-                                        "category_id = :categoryId, " +
-                                        "title = :title, " +
-                                        "description = :description, " +
-                                        "date_of_posting = :dateOfPosting, " +
-                                        "slug = :slug, " +
-                                        "mainImg = :mainImg, " +
-                                        "feature = :feature " +
-                                        "WHERE id = :id"
-                        )
-                        .bindBean(article)
-                        .execute()
-        );
+        return jdbi.inTransaction(handle -> {
+            // 1. Update thông tin bài viết
+            int updatedRows = handle.createUpdate(
+                            "UPDATE articles SET " +
+                                    "category_id = :categoryId, " +
+                                    "title = :title, " +
+                                    "description = :description, " +
+                                    "date_of_posting = :dateOfPosting, " +
+                                    "slug = :slug, " +
+                                    "feature = :feature " +
+                                    "WHERE id = :id"
+                    )
+                    .bind("categoryId", article.getCategoryId())
+                    .bind("title", article.getTitle())
+                    .bind("description", article.getDescription())
+                    .bind("dateOfPosting", article.getDateOfPosting())
+                    .bind("slug", article.getSlug())
+                    .bind("feature", article.isFeature())
+                    .bind("id", article.getId())
+                    .execute();
+
+            // 2. Update ảnh (Xóa ảnh cũ và thêm ảnh mới hoặc update nếu logic cho phép nhiều ảnh)
+            // Ở đây ta giả sử mỗi bài viết chỉ có 1 ảnh chính, ta sẽ update ảnh đó
+            if (article.getMainImg() != null && !article.getMainImg().isEmpty()) {
+                // Kiểm tra xem đã có ảnh chưa
+                int imageCount = handle.createQuery("SELECT COUNT(*) FROM Image WHERE type = 'Articles' AND ref_id = :id")
+                        .bind("id", article.getId())
+                        .mapTo(Integer.class)
+                        .one();
+
+                if (imageCount > 0) {
+                    handle.createUpdate("UPDATE Image SET img = :img WHERE type = 'Articles' AND ref_id = :id")
+                            .bind("img", article.getMainImg())
+                            .bind("id", article.getId())
+                            .execute();
+                } else {
+                    handle.createUpdate("INSERT INTO Image (type, ref_id, img) VALUES ('Articles', :id, :img)")
+                            .bind("id", article.getId())
+                            .bind("img", article.getMainImg())
+                            .execute();
+                }
+            }
+
+            return updatedRows;
+        });
     }
 
     /**
      * Xóa bài viết
      */
     public int deleteArticle(int id) {
-        return jdbi.withHandle(handle ->
-                handle.createUpdate("DELETE FROM articles WHERE id = :id")
-                        .bind("id", id)
-                        .execute()
-        );
+        return jdbi.inTransaction(handle -> {
+            // 1. Xóa ảnh liên quan
+            handle.createUpdate("DELETE FROM Image WHERE type = 'Articles' AND ref_id = :id")
+                    .bind("id", id)
+                    .execute();
+
+            // 2. Xóa bài viết
+            return handle.createUpdate("DELETE FROM articles WHERE id = :id")
+                    .bind("id", id)
+                    .execute();
+        });
     }
 
 
