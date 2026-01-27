@@ -42,7 +42,7 @@
                 <div class="table-header">
                     <h2>Danh Sách Tin Tức</h2>
                     <div class="search-box">
-                        <form action="${pageContext.request.contextPath}/Admin/news" method="get" style="display: flex; gap: 10px;">
+                        <form action="${pageContext.request.contextPath}/admin/news" method="get" style="display: flex; gap: 10px;">
                             <input type="text" name="search" placeholder="Tìm kiếm tin tức..." value="${param.search}">
                             <button type="submit" class="btn btn-primary">Tìm</button>
                         </form>
@@ -85,7 +85,7 @@
                                         </td>
                                         <td>
                                             <button class="btn btn-sm btn-edit" onclick="editNews('${article.id}', '${article.title}', '${article.categoryId}', '${article.mainImg}', '${article.description}', '${article.feature}')">Sửa</button>
-                                            <form action="${pageContext.request.contextPath}/Admin/news" method="post" style="display: inline;" onsubmit="return confirm('Bạn có chắc muốn xóa tin tức này?');">
+                                            <form action="${pageContext.request.contextPath}/admin/news" method="post" style="display: inline;" onsubmit="return confirm('Bạn có chắc muốn xóa tin tức này?');">
                                                 <input type="hidden" name="action" value="delete">
                                                 <input type="hidden" name="id" value="${article.id}">
                                                 <button type="submit" class="btn btn-sm btn-delete">Xóa</button>
@@ -106,14 +106,14 @@
         </div>
     </div>
 
-    <!-- Modal Thêm/Sửa Tin Tức -->
+    <!--thêm/sửa tin tức -->
     <div id="productModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h3 id="modalTitle">Thêm Tin Tức Mới</h3>
                 <button class="close-btn" onclick="closeModal()">×</button>
             </div>
-            <form id="newsForm" action="${pageContext.request.contextPath}/Admin/news" method="post">
+            <form id="newsForm" action="${pageContext.request.contextPath}/admin/news" method="post">
                 <input type="hidden" name="action" id="formAction" value="add">
                 <input type="hidden" name="id" id="newsId">
 
@@ -128,7 +128,6 @@
                 <div class="form-group">
                     <label>Loại tin tức</label>
                     <select name="newsCategory" id="newsCategory" required>
-                        <option value="">Chọn loại</option>
                         <option value="1">Nổi bật</option>
                         <option value="2">Thường</option>
                     </select>
@@ -172,7 +171,7 @@
             document.getElementById('newsContent').value = content;
         }
 
-        // Hiển thị thông báo nếu có
+        //hiển thị thông báo
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
             const message = urlParams.get('message');

@@ -16,7 +16,7 @@ import java.security.SecureRandom;
 import java.util.List;
 import java.util.Optional;
 
-@WebServlet(name = "CustomerDetailServlet", value = "/admin/customer-detail")
+@WebServlet("/admin/customer-detail")
 public class CustomerDetailServlet extends HttpServlet {
 
     private UserDAO userDAO;
@@ -45,7 +45,7 @@ public class CustomerDetailServlet extends HttpServlet {
             return;
         }
 
-        // Lấy ID khách hàng từ request
+        //ID khách hàng từ request
         String idStr = request.getParameter("id");
         if (idStr == null || idStr.isEmpty()) {
             response.sendRedirect(request.getContextPath() + "/admin/customers");
@@ -55,7 +55,7 @@ public class CustomerDetailServlet extends HttpServlet {
         try {
             int customerId = Integer.parseInt(idStr);
 
-            //Lấy thông tin khách hàng
+            //thông tin khách hàng
             Optional<User> customerOpt = userDAO.getUserById(customerId);
             if (!customerOpt.isPresent()) {
                 response.sendRedirect(request.getContextPath() + "/admin/customers");
@@ -63,13 +63,12 @@ public class CustomerDetailServlet extends HttpServlet {
             }
             User customer = customerOpt.get();
 
-            //Lấy danh sách địa chỉ
+            //danh sách địa chỉ
             List<Address> addresses = addressDAO.getAddressByUserId(customerId);
 
-            //Lấy lịch sử đơn hàng
+            //lịch sử đơn hàng
             List<Order> orders = orderDAO.getOrdersByUserId(customerId);
 
-            // Set attributes
             request.setAttribute("customer", customer);
             request.setAttribute("addresses", addresses);
             request.setAttribute("orders", orders);
@@ -125,13 +124,13 @@ public class CustomerDetailServlet extends HttpServlet {
                     boolean success = userDAO.updatePasswordById(customerId, hashedPassword);
 
                     if (success) {
-                        // Lưu mật khẩu mới vào session
+                        //lưu mật khẩu mới vào session
                         session.setAttribute("newPassword", newPassword);
                         session.setAttribute("passwordResetFor", customerId);
                     }
                 }
 
-                // Redirect lại trang chi tiết để thấy thay đổi
+                // Redirect lại trang
                 response.sendRedirect(request.getContextPath() + "/admin/customer-detail?id=" + customerId);
                 return;
 

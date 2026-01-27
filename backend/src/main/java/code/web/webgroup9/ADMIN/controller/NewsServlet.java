@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@WebServlet(name = "NewsServlet", value = "/admin/news")
+@WebServlet("/admin/news")
 public class NewsServlet extends HttpServlet {
 
     private ArticleDAO articleDAO;
@@ -44,14 +44,16 @@ public class NewsServlet extends HttpServlet {
         List<Article> newsList;
 
         if (searchKeyword != null && !searchKeyword.trim().isEmpty()) {
-            // lấy trang đầu
+            // limit = 50, offset = 0 để lấy trang đầu tiên
             newsList = articleDAO.searchArticles(searchKeyword, 50, 0); 
         } else {
-            // lấy 50 bài mới nhất
+            // limit = 50 để lấy 50 bài viết mới nhất
             newsList = articleDAO.getArticle(50); 
         }
 
         request.setAttribute("newsList", newsList);
+        // từ khóa để hiển thị trong input
+        request.setAttribute("searchKeyword", searchKeyword);
         request.getRequestDispatcher("/Admin/news.jsp").forward(request, response);
     }
 
@@ -84,7 +86,7 @@ public class NewsServlet extends HttpServlet {
         String newsCategoryStr = request.getParameter("newsCategory");
         String content = request.getParameter("newsContent");
 
-        // bài viết thường
+        //2 là category 'Thường'
         int categoryId = (newsCategoryStr != null && !newsCategoryStr.isEmpty()) ? Integer.parseInt(newsCategoryStr) : 2;
 
         Article article = new Article();
@@ -94,23 +96,24 @@ public class NewsServlet extends HttpServlet {
         article.setCategoryId(categoryId);
         article.setDescription(content);
         article.setDateOfPosting(Timestamp.valueOf(LocalDateTime.now()));
-        article.setSlug(title.toLowerCase().replaceAll("\\s+", "-"));
-        //categoryId = 1 là bài viết nổi bậc
+        // Tạo slug từ title
+        article.setSlug(title != null ? title.toLowerCase().replaceAll("\\s+", "-") : "");
+        // categoryId = 1 là tin nổi bậc
         article.setFeature(categoryId == 1);
 
         boolean success = false;
 
         /**
-         * Thêm tin mới
+         * thêm tin mới
          */
         if ("add".equals(action)) {
             int newId = articleDAO.insertArticle(article);
             success = newId > 0;
-            message = success ? "Thêm tin tức mới thành công!" : "Thêm tin tức mới thất bại!";
+            message = success ? "Thêm tin tức thành công!" : "Thêm tin tức thất bại!";
         }
 
         /**
-         * cập nhât tin tức
+         * cập nhật tin
          */
         else if ("update".equals(action)) {
             int updatedRows = articleDAO.updateArticle(article);
@@ -127,6 +130,6 @@ public class NewsServlet extends HttpServlet {
             message = success ? "Xóa tin tức thành công!" : "Xóa tin tức thất bại!";
         }
 
-        response.sendRedirect(request.getContextPath() + "/Admin/news?message=" + message);
+        response.sendRedirect(request.getContextPath() + "/admin/news?message=" + java.net.URLEncoder.encode(message, "UTF-8"));
     }
 }
