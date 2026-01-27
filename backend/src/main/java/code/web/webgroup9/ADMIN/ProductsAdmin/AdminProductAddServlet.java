@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 
 @WebServlet("/admin/products/add")
@@ -89,8 +90,14 @@ public class AdminProductAddServlet extends HttpServlet {
             }
 
             // Image
-            product.setMainImage(req.getParameter("imageLink"));
-
+            String[] imageLinks = req.getParameterValues("imageLinks");
+            if (imageLinks != null && imageLinks.length > 0) {
+                product.setImages(
+                        Arrays.stream(imageLinks)
+                                .filter(s -> s != null && !s.trim().isEmpty())
+                                .toList()
+                );
+            }
             // Thêm sản phẩm vào database
             boolean success = productDAO.insertProduct(product);
 
