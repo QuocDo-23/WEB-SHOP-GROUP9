@@ -10,12 +10,12 @@
     <link rel="stylesheet" href="./CSS/style.css">
     <link rel="stylesheet" href="./CSS/sub_login.css">
     <link rel="stylesheet" href="./CSS/products.css">
+    <base href="${pageContext.request.contextPath}/">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cart.css">
 
     <link href='https://fonts.googleapis.com/css?family=Monsieur La Doulaise' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Literata' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-    <base href="${pageContext.request.contextPath}/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LightUP - Đèn Và Thiết Bị Chiếu Sáng</title>
@@ -175,11 +175,9 @@
                                     </c:if>
                                 </div>
                                 <div class="cart-icon">
-                                    <button type="button"
-                                            class="open-cart"
-                                            data-product-id="${product.id}">
+                                    <a href="add-cart?pID=${product.id}&quantity=1">
                                         <i class="bi bi-cart-check"></i>
-                                    </button>
+                                    </a>
                                 </div>
 
 
@@ -206,7 +204,7 @@
                     <div class="divider"></div>
                 </div>
                 <div class="select_colume">
-                    <img src="./IMG/tải xuống.webp" alt="">
+                    <img src="https://lotuslighting.vn/wp-content/uploads/2024/09/ldp-row2-img-1.jpg" alt="">
                     <div class="cont-r">
                         <h2>LightUP được thành lập với niềm đam mê mang ánh sáng và sự ấm áp đến mọi không gian sống.
                             Chúng tôi hiểu rằng ánh sáng không đơn thuần là một nhu cầu thiết yếu, mà còn là yếu tố quan
@@ -330,7 +328,6 @@
 
     <div id="cart-overlay"></div>
 
-    <jsp:include page="cart-mini.jsp"/>
 
 
 </main>

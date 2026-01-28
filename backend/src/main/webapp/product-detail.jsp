@@ -62,13 +62,7 @@
                 <h1 class="product_title">${product.name}</h1>
 
                 <!-- Rating -->
-                <div class="product-rating">
-                    <c:set var="rating" value="${product.review != null ? product.review : 0}"/>
-                    <div class="star-rating">
-                        <span style="width:${rating * 20}%;"></span>
-                    </div>
-                    <span class="review-count">(${stats.totalReviews} đánh giá)</span>
-                </div>
+
 
                 <!-- Prices -->
                 <div class="product-prices">
@@ -168,35 +162,51 @@
                 </table>
 
                 <!-- Quantity Section -->
-                <form method="post" action="${pageContext.request.contextPath}/cart" id="productForm">
+                <form method="get" action="${pageContext.request.contextPath}/add-cart" id="productForm">
 
-                    <input type="hidden" name="productId" value="${product.id}">
+                    <input type="hidden" name="pID" value="${product.id}">
 
                     <!-- Quantity -->
                     <div class="quantity-section">
                         <label class="quantity-label">Số lượng</label>
                         <div class="quantity-control">
-                            <button type="button" onclick="decreaseQty()">-</button>
-                            <input type="number" name="quantity" id="quantity"
-                                   value="1" min="1" max="${product.inventoryQuantity}">
-                            <button type="button" onclick="increaseQty()">+</button>
+                            <button type="button" class="qty-btn qty-decrease" onclick="decreaseQty()" aria-label="Giảm số lượng">
+                                <span>−</span>
+                            </button>
+                            <input
+                                    type="number"
+                                    name="quantity"
+                                    id="quantity"
+                                    value="1"
+                                    min="1"
+                                    max="${product.inventoryQuantity}"
+                                    aria-label="Số lượng sản phẩm"
+                                    readonly
+                            >
+                            <button type="button" class="qty-btn qty-increase" onclick="increaseQty()" aria-label="Tăng số lượng">
+                                <span>+</span>
+                            </button>
                         </div>
                         <p class="stock-info">Còn lại: ${product.inventoryQuantity}</p>
                     </div>
 
                     <!-- Buttons -->
                     <div class="action-buttons">
-                        <button type="submit" name="action" value="add" class="btn btn-add-cart">
+                        <!-- THÊM VÀO GIỎ: giữ nguyên GET -->
+                        <button type="submit" class="btn btn-add-cart">
                             THÊM VÀO GIỎ
                         </button>
 
+                        <!-- MUA NGAY: chuyển sang buy-now bằng POST -->
                         <button type="submit"
+                                formmethod="post"
                                 formaction="${pageContext.request.contextPath}/buy-now"
                                 class="btn btn-buy-now">
                             MUA NGAY
                         </button>
                     </div>
                 </form>
+
 
 
                 <a href="./contact.jsp">
@@ -227,7 +237,7 @@
 
                         <div class="wd-accordion-content" id="tab-description">
                             <div class="wc-tab-inner">
-                                <h4>Chi tiết về ${product.name}</h4>
+                                <h4>Chi tiết về ${product.description}</h4>
 
                                 <c:if test="${not empty images && fn:length(images) > 0}">
                                     <div class="image-grid">

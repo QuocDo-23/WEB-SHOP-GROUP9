@@ -78,7 +78,7 @@ public class OrderDAO {
      * Lấy tất cả orders của user
      */
     public List<Order> getOrdersByUserId(int userId) {
-        String sql = "SELECT * FROM orders WHERE user_id = ? ORDER BY order_date DESC";
+        String sql = "SELECT * FROM orders WHERE user_id = ? ORDER BY order_date DESC, id DESC";
 
         return jdbi.withHandle(handle -> {
             return handle.createQuery(sql)
