@@ -195,10 +195,11 @@
                                         </c:if>
                                     </div>
                                     <div class="cart-icon">
-                                        <button type="button" class="open-cart"
-                                                data-product-id="${product.id}">
+                                        <a class="open-cart"
+                                           href="${pageContext.request.contextPath}/add-cart?pID=${product.id}&quantity=1">
                                             <i class="bi bi-cart-check"></i>
-                                        </button>
+                                        </a>
+
                                     </div>
                                 </div>
 
@@ -331,7 +332,6 @@
     </a>
 
     <!-- ===== MINI CART (CHỖ DÁN DUY NHẤT) ===== -->
-    <jsp:include page="cart-mini.jsp"/>
 
 </main>
 

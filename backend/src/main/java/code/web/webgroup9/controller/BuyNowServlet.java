@@ -25,10 +25,10 @@ public class BuyNowServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
 
-        int productId = Integer.parseInt(request.getParameter("productId"));
+        int pID = Integer.parseInt(request.getParameter("pID"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
 
-        Optional<ProductWithDetails> product = productDAO.getProductById(productId);
+        Optional<ProductWithDetails> product = productDAO.getProductById(pID);
         if (product.isEmpty()) {
             response.sendRedirect(request.getContextPath() + "/");
             return;
@@ -37,7 +37,6 @@ public class BuyNowServlet extends HttpServlet {
         Cart buyNowCart = new Cart();
         buyNowCart.addItem(product.get(), quantity);
 
-        // Đánh dấu là buy-now
         session.setAttribute("cart", buyNowCart);
         session.setAttribute("checkoutType", "buy-now");
 

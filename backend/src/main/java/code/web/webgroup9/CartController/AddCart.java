@@ -5,10 +5,7 @@ import code.web.webgroup9.model.ProductWithDetails;
 import code.web.webgroup9.service.ProductService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.*;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -36,10 +33,14 @@ public class AddCart extends HttpServlet {
         if (product.isPresent()) {
             cart.addItem(product.get(), quantity);
             session.setAttribute("cart", cart);
-            response.setStatus(HttpServletResponse.SC_OK);
+
+            String referer = request.getHeader("Referer");
+            if (referer != null) response.sendRedirect(referer);
+            else response.sendRedirect(request.getContextPath() + "/");
+
         } else {
             request.setAttribute("msg", "Product not found");
-            request.getRequestDispatcher("products.jsp").forward(request, response);
+            request.getRequestDispatcher("/products.jsp").forward(request, response);
         }
     }
 }
